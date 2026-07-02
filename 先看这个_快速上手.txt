@@ -1,0 +1,43 @@
+树莓派机械臂助手项目包
+
+先看这两个文件：
+
+1. README_使用说明.md
+   从烧录系统、上传项目、安装环境、运行测试，到后面接 STM32，全流程说明。
+
+2. 功能清单.md
+   说明这个项目最终展示哪些功能，以及当前树莓派代码已经能做什么。
+
+最短上手流程：
+
+1. 树莓派烧录 Raspberry Pi OS (64-bit)，开启 SSH，配置 WiFi。
+
+2. 查树莓派 IP：
+   hostname -I
+
+3. 在 Windows PowerShell 上传项目，IP 改成你自己的：
+   cd "C:\Users\ZhuanZ（无密码）\Desktop\raspi_robot_ai"
+   powershell -ExecutionPolicy Bypass -File ".\WINDOWS_上传到树莓派.ps1" -PiIp 192.168.1.50 -User pi
+
+4. 登录树莓派：
+   ssh pi@192.168.1.50
+
+5. 安装环境：
+   cd ~/raspi_robot_ai
+   chmod +x scripts/*.sh
+   bash scripts/setup_pi.sh
+   sudo reboot
+
+6. 重启后运行菜单：
+   cd ~/raspi_robot_ai
+   bash scripts/run_menu.sh
+
+建议测试顺序：
+1 -> 系统检查
+2 -> 摄像头测试
+3 -> YOLO 视觉识别
+4 -> 对话/指令解析
+6 -> 主程序，输入“帮我拿水杯”
+
+STM32 还没接好时，不要开串口发送。config.env 里保持：
+ENABLE_SERIAL=false

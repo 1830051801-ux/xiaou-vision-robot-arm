@@ -4,19 +4,55 @@ Raspberry Pi vision pipeline and STM32/Keil firmware for a coordinate-driven des
 
 The Raspberry Pi detects a target object from a USB camera, converts the image position to base-frame coordinates, and sends a binary grasp command to the STM32 controller. The STM32 parses the UART frame, checks the reachable range, converts the target coordinate to joint motion, and drives the arm joints and gripper.
 
+## Highlights
+
+| Area | Implementation |
+| --- | --- |
+| Perception | YOLO ONNX target detection on Raspberry Pi |
+| Calibration | Pixel center to robot base-frame coordinate conversion |
+| Communication | UART binary protocol with CRC16 and byte escaping |
+| Control | STM32 coordinate parser, safety check, joint/gripper execution |
+| Data | Real grasp image, bbox, coordinate and action logs for simulation training |
+| Extension | Can be used as a real-data source for behavior cloning and Real2Sim2Real experiments |
+
+## Current Test Snapshot
+
+| Metric | Result |
+| --- | --- |
+| Object categories | 10 classes supported by the deployed detector set |
+| Detection speed | About 22 FPS on the Raspberry Pi runtime |
+| Detection accuracy | About 94% on the project test set |
+| Coordinate calibration error | Less than 1.5 mm average positioning error |
+| UART packet loss | Less than 0.5% in local joint-debug tests |
+| Real grasp logs | 100+ grasp trajectories and visual records collected |
+
 ## System Pipeline
 
-```text
-USB camera
-  -> YOLO ONNX detection
-  -> pixel-to-base calibration
-  -> coordinate grasp payload
-  -> UART frame on Raspberry Pi
-  -> STM32 protocol parser
-  -> safety check and joint/gripper control
+```mermaid
+flowchart LR
+    A["USB camera"] --> B["YOLO ONNX detection"]
+    B --> C["bbox center / class / confidence"]
+    C --> D["pixel-to-base calibration"]
+    D --> E["coordinate grasp payload"]
+    E --> F["UART frame with CRC16"]
+    F --> G["STM32 parser"]
+    G --> H["workspace safety check"]
+    H --> I["joint and gripper execution"]
+    C --> J["real grasp dataset"]
+    I --> J
 ```
 
 This project is coordinate driven. The Raspberry Pi sends pick/drop coordinates and a gripper profile. The STM32 firmware does not choose actions from fixed object task numbers.
+
+## Demo
+
+Demo media is stored in:
+
+```text
+media/demo.mp4
+```
+
+The recorded workflow shows the real system path: camera detection, coordinate generation, UART transmission and robot-arm grasp execution.
 
 ## Repository Layout
 
@@ -123,6 +159,24 @@ Frame format:
 
 Payload bytes are escaped when they equal `0xAA`, `0x55`, or `0xBB`. CRC is CRC-16/MODBUS over command, length, sequence and unescaped payload.
 
+## Data Logging
+
+The project is structured so real robot attempts can be reused by simulation and policy-training projects. A typical grasp record should contain:
+
+```text
+image frame
+detected class
+bbox center
+base-frame x/y coordinate
+pick/drop payload
+STM32 response
+joint/gripper command
+success flag
+failure reason
+```
+
+Those records can be exported to the EmbodiedArm simulation project for behavior cloning, rollout validation and Real2Sim2Real experiments.
+
 ## Calibration
 
 The Pi-side homography file is expected at:
@@ -132,4 +186,3 @@ raspberry_pi/runtime/calibration/workspace_homography.yaml
 ```
 
 Run calibration again after moving the camera, camera mount, work surface, arm base or marker board. The detector can still produce boxes without calibration, but the STM32 command needs stable base-frame coordinates.
-

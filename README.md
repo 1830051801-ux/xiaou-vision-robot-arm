@@ -177,6 +177,10 @@ failure reason
 
 Those records can be exported to the EmbodiedArm simulation project for behavior cloning, rollout validation and Real2Sim2Real experiments.
 
+## Teleoperation Data Collection
+
+The coordinate-driven command format can also be used for expert demonstration collection. A manual or remote operator can send target coordinates, execute a grasp, and store the resulting image, coordinate, command and success label as one episode. This makes the real robot project a data source for imitation learning rather than only a fixed demonstration system.
+
 ## Calibration
 
 The Pi-side homography file is expected at:

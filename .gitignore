@@ -1,26 +1,27 @@
-.venv/
-.venv_train/
+# Python
 __pycache__/
-*.pyc
-
-config.env
-.env
-*.key
-*.pem
-*.p12
-*.pfx
-
+*.py[cod]
+.venv/
+venv/
 runtime/
-runs/
-my_data/
-my_all_data/
-my_objects_data/
+*.log
 
-*.zip
-*.rar
-*.7z
-*.mp3
-*.wav
+# Raspberry Pi local config
+raspberry_pi/config.env
 
+# Keil build outputs
+stm32_keil/**/MDK-ARM/Objects/
+stm32_keil/**/MDK-ARM/Listings/
+stm32_keil/**/*.axf
+stm32_keil/**/*.hex
+stm32_keil/**/*.map
+stm32_keil/**/*.dep
+stm32_keil/**/*.crf
+stm32_keil/**/*.o
+stm32_keil/**/*.d
+
+# OS/editor
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/

@@ -1,8 +1,0 @@
-requests
-python-dotenv
-sounddevice
-soundfile
-pyserial
-numpy
-edge-tts
-PyYAML

@@ -10,6 +10,7 @@ import numpy as np
 import yaml
 
 from common import PROJECT_DIR, get_camera_index
+from arm_control.task_planner import PlanningBlocked, load_homography, project_center
 from xiaou_runtime import get_xiaou_config
 from yolo_opencv import Detection, OpenCVDnnYolo
 
@@ -74,10 +75,17 @@ class TargetResult:
 
     def payload(self) -> dict:
         if not self.ok:
-            return {"cmd": self.reason, "object": self.obj}
+            return {
+                "cmd": self.reason,
+                "object": self.obj,
+                "execution": "ros2_moveit",
+                "six_axis": True,
+            }
         return {
             "cmd": "pick",
             "object": self.obj,
+            "execution": "ros2_moveit",
+            "six_axis": True,
             "u": self.u,
             "v": self.v,
             "x_base_mm": round(float(self.x_base_mm), 1),
@@ -103,9 +111,18 @@ class SlidingTargetFilter:
     def ready(self, min_samples: int) -> bool:
         return len(self.samples) >= min_samples
 
+    def stable(self, min_samples: int, max_center_spread_px: float = 28.0) -> bool:
+        if not self.ready(min_samples):
+            return False
+        arr = np.array(self.samples, dtype=np.float32)
+        centers = arr[:, :2]
+        center = np.median(centers, axis=0)
+        spread = np.linalg.norm(centers - center, axis=1)
+        return float(np.max(spread)) <= max_center_spread_px
+
     def mean(self) -> tuple[float, float, float, float]:
         arr = np.array(self.samples, dtype=np.float32)
-        return tuple(float(v) for v in arr.mean(axis=0))
+        return tuple(float(v) for v in np.median(arr, axis=0))
 
 
 def estimate_theta_deg(frame: np.ndarray, det: Detection) -> float:
@@ -239,37 +256,19 @@ def apply_rotation_calibration(theta_deg: float) -> float:
 
 
 def pixel_to_base_mm(u: float, v: float) -> tuple[float, float]:
-    cfg = get_xiaou_config()
-    workspace_path = PROJECT_DIR / "runtime" / "calibration" / "workspace_homography.yaml"
-    if workspace_path.exists():
-        data = yaml.safe_load(workspace_path.read_text(encoding="utf-8"))
-        homography = np.asarray(data["homography"], dtype=np.float64)
-        src = np.asarray([u, v, 1.0], dtype=np.float64)
-        dst = homography @ src
-        if abs(float(dst[2])) > 1e-9:
-            x_mm, y_mm = dst[:2] / dst[2]
-            return float(x_mm), float(y_mm)
-
-    origin_u = cfg.pixel_origin_u
-    origin_v = cfg.pixel_origin_v
-    scale_x = cfg.pixel_to_base_scale_x
-    scale_y = cfg.pixel_to_base_scale_y
-    offset_x = cfg.base_offset_x_mm
-    offset_y = cfg.base_offset_y_mm
-    x_mm = offset_x + (origin_v - v) * scale_y
-    y_mm = offset_y + (u - origin_u) * scale_x
-    return x_mm, y_mm
-
-
-def is_reachable(x_mm: float, y_mm: float) -> bool:
-    return True  # Always allow — calibrated limits handled by STM32
+    workspace_path = PROJECT_DIR / "codex_pickup_package" / "workspace_homography.yaml"
+    homography = load_homography(workspace_path)
+    x_table_m, y_table_m = project_center(homography, float(u), float(v))
+    return x_table_m * 1000.0, y_table_m * 1000.0
 
 
 def is_reachable(x_mm: float, y_mm: float) -> bool:
     cfg = get_xiaou_config()
+    radius_mm = math.hypot(x_mm, y_mm)
     return (
         cfg.workspace_x_min_mm <= x_mm <= cfg.workspace_x_max_mm
         and cfg.workspace_y_min_mm <= y_mm <= cfg.workspace_y_max_mm
+        and 250.0 <= radius_mm <= 430.0
     )
 
 
@@ -279,12 +278,13 @@ def clamp(value: float, lo: float, hi: float) -> float:
 
 def grip_plan_for_object(obj: str, width_mm: float) -> tuple[str, float, float, int]:
     cfg = get_xiaou_config()
+    obj = str(obj).strip().lower()
     grip_type = "top_grip"
-    if obj in {"Coffee cup", "Bottle", "Mug", "Wine glass"}:
+    if obj in {"cup", "cola", "bottle", "coffee cup", "mug", "wine glass"}:
         grip_type = "side_grip"
-    elif obj in {"Pen", "Pencil"}:
+    elif obj in {"pen", "pencil", "earphone"}:
         grip_type = "top_grip"
-    elif obj in {"Book", "Computer keyboard"}:
+    elif obj in {"book", "computer keyboard"}:
         grip_type = "flat_grip"
 
     gripper_open = clamp(width_mm + cfg.gripper_open_margin_mm, cfg.gripper_open_min_mm, cfg.gripper_open_max_mm)
@@ -396,11 +396,21 @@ def find_stable_target(
             theta = apply_rotation_calibration(estimate_theta_deg(frame, det))
             width_mm = max(det.x2 - det.x1, det.y2 - det.y1) * 0.50
             filt.add(det.cx, det.cy, theta, width_mm)
-            if not filt.ready(target_min_stable):
+            if not filt.stable(target_min_stable):
                 continue
 
             u, v, theta_mean, width_mean = filt.mean()
-            x_mm, y_mm = pixel_to_base_mm(u, v)
+            try:
+                x_mm, y_mm = pixel_to_base_mm(u, v)
+            except (OSError, PlanningBlocked):
+                save_debug_frame(frame, detections, target, "workspace_calibration_invalid.jpg")
+                return TargetResult(
+                    False,
+                    "workspace_calibration_invalid",
+                    target,
+                    int(round(u)),
+                    int(round(v)),
+                )
             grip_type, gripper_open, gripper_close, force = grip_plan_for_object(target, width_mean)
             if not is_reachable(x_mm, y_mm):
                 save_debug_frame(frame, detections, target, "last_out_of_range.jpg")

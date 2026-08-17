@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "default_profile": "high_recall",
+  "fallback_profile": "high_recall",
+  "automatic_switching": false,
+  "profiles": {
+    "high_recall": {
+      "model": "models/xiaou_objects_gpu_deep.onnx",
+      "sha256": "74794520a1fcf6d49738fb420fc8e8d2739b9db9b43f34e47f3e0e9773200d5d",
+      "class_schema": "robot_ai/vision/config/yolo_class_schema_v1.json",
+      "classes": ["pen", "bottle", "cola", "earphone"],
+      "confidence": 0.10,
+      "role": "prefer recall when missing a valid target is more costly than an extra candidate"
+    },
+    "high_precision": {
+      "model": "runtime/yolo_candidates/xiaou_objects_precision_candidate_20260809.onnx",
+      "sha256": "d850c87dc58d6b258fc1d0c9684f8fe13bf7351e12f088e7e30f6c90f39595ca",
+      "class_schema": "robot_ai/vision/config/yolo_class_schema_v1.json",
+      "classes": ["pen", "bottle", "cola", "earphone"],
+      "confidence": 0.10,
+      "role": "prefer fewer false positives when an incorrect grasp candidate is more costly"
+    }
+  },
+  "safety": {
+    "selection_enables_motion": false,
+    "unknown_profile_fails_closed": true,
+    "missing_or_changed_model_fails_closed": true,
+    "production_model_is_never_overwritten": true
+  }
+}

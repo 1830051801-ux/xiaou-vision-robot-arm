@@ -51,7 +51,7 @@ def main() -> None:
 
     print("")
     print("Environment:")
-    for key in ["CAMERA_INDEX", "YOLO_MODEL", "AI_API_URL", "AI_MODEL", "SERIAL_PORT", "SERIAL_BAUD"]:
+    for key in ["CAMERA_INDEX", "YOLO_MODEL", "AI_API_URL", "AI_MODEL"]:
         print(f"  {key}={os.getenv(key, '')}")
 
 

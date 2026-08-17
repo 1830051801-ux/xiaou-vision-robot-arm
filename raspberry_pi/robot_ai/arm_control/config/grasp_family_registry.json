@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "status": "offline_preview_only",
+  "coordinate_frame": "base_link",
+  "families": {
+    "taught_cylinder_side_v1": {
+      "strategy": "side_wrap",
+      "route_status": "preview_ready_if_local",
+      "reference_object": {
+        "class": "cola",
+        "radius_m": 0.032,
+        "height_m": 0.19
+      },
+      "local_dimension_tolerance_m": {
+        "radius": 0.002,
+        "height": 0.006
+      },
+      "target_offset_envelope_m": {
+        "min": [-0.002, -0.001, -0.0005],
+        "max": [0.002, 0.001, 0.0005],
+        "meaning": "largest all-corner envelope that passed the 2026-08-13 exact-ready-pose offline IK characterization; not a camera-calibrated workspace"
+      },
+      "required_measurements": [
+        "six_axis_ready_pose",
+        "taught_side_contact_pose",
+        "object_radius_m",
+        "object_height_m",
+        "table_height_m",
+        "gripper_open_close_measurement"
+      ]
+    },
+    "dedicated_cylinder_side_v1": {
+      "strategy": "side_wrap",
+      "route_status": "requires_dedicated_teach",
+      "required_measurements": [
+        "dedicated_contact_pose",
+        "object_radius_m",
+        "object_height_m",
+        "table_height_m",
+        "gripper_open_close_measurement"
+      ]
+    },
+    "dedicated_pen_pinch_v1": {
+      "strategy": "pen_pinch",
+      "route_status": "requires_dedicated_teach",
+      "required_measurements": [
+        "dedicated_pen_contact_pose",
+        "pen_axis_yaw",
+        "pen_length_and_radius",
+        "gripper_open_close_measurement"
+      ]
+    },
+    "dedicated_flat_pick_v1": {
+      "strategy": "flat_pick",
+      "route_status": "requires_dedicated_teach",
+      "required_measurements": [
+        "dedicated_top_contact_pose",
+        "object_height_m",
+        "table_height_m",
+        "gripper_open_close_measurement"
+      ]
+    },
+    "dedicated_tissue_pull_v1": {
+      "strategy": "tissue_pull",
+      "route_status": "requires_dedicated_teach",
+      "required_measurements": [
+        "tissue_edge_contact_pose",
+        "pull_direction_base_frame",
+        "pull_distance_m",
+        "gripper_open_close_measurement"
+      ]
+    },
+    "reject_flexible_v1": {
+      "strategy": "reject",
+      "route_status": "reject",
+      "required_measurements": [
+        "a_separate_grasp_family_and_demonstration"
+      ]
+    }
+  },
+  "classes": {
+    "cola": {
+      "family": "taught_cylinder_side_v1",
+      "reference_dimensions_allowed": true
+    },
+    "bottle": {
+      "family": "taught_cylinder_side_v1",
+      "reference_dimensions_allowed": false
+    },
+    "cup": {
+      "family": "dedicated_cylinder_side_v1"
+    },
+    "pen": {
+      "family": "dedicated_pen_pinch_v1"
+    },
+    "desktop_item": {
+      "family": "dedicated_flat_pick_v1"
+    },
+    "tissue_pull": {
+      "family": "dedicated_tissue_pull_v1"
+    },
+    "earphone": {
+      "family": "reject_flexible_v1"
+    }
+  },
+  "aliases": {
+    "water_bottle": "bottle",
+    "tissue": "tissue_pull",
+    "paper": "tissue_pull",
+    "desktop": "desktop_item"
+  },
+  "notes": "Only a cola-like cylinder inside the stated local envelope may reuse the current taught side route. Every other family remains a preview requiring its own real teach pose and gripper measurements."
+}

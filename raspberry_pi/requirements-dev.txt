@@ -1,0 +1,5 @@
+# CI and offline verification dependencies.
+-r requirements.txt
+onnxruntime>=1.18
+opencv-python-headless>=4.8
+Pillow>=10

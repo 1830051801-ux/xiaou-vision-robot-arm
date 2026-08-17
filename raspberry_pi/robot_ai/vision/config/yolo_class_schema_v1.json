@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "schema_name": "xiaou_objects_v1",
+  "status": "deployed_compatible",
+  "classes": [
+    {"id": 0, "name": "pen", "description": "pen or marker intended for pinch grasp"},
+    {"id": 1, "name": "bottle", "description": "generic bottle excluding the dedicated cola class"},
+    {"id": 2, "name": "cola", "description": "cola or finished-drink container used by cleanup mode"},
+    {"id": 3, "name": "earphone", "description": "earphone or small cable-like desktop item"}
+  ],
+  "compatible_models": [
+    "models/xiaou_objects_gpu_deep.onnx",
+    "runtime/yolo_candidates/xiaou_objects_precision_candidate_20260809.onnx"
+  ],
+  "rules": {
+    "ids_are_contiguous_and_immutable": true,
+    "unknown_classes_are_rejected": true,
+    "cup_and_tissue_are_not_aliases": true,
+    "class_change_requires_new_schema_version": true
+  }
+}

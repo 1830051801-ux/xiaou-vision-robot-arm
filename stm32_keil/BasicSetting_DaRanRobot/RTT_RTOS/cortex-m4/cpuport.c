@@ -20,14 +20,12 @@
 
 #include <rtthread.h>
 
-#if               /* ARMCC */ (  (defined ( __CC_ARM ) && defined ( __TARGET_FPU_VFP ))    \
-                  /* Clang */ || (defined ( __clang__ ) && defined ( __VFP_FP__ ) && !defined(__SOFTFP__)) \
-                  /* IAR */   || (defined ( __ICCARM__ ) && defined ( __ARMVFP__ ))        \
-                  /* GNU */   || (defined ( __GNUC__ ) && defined ( __VFP_FP__ ) && !defined(__SOFTFP__)) )
+/*
+ * STM32F407 has hardware FPU. context_rvds.S PendSV handler always uses
+ * FPU instructions (VLDM/VSTM) and expects struct stack_frame_fpu layout
+ * with FPU fields.  Force USE_FPU=1 so C stack layout matches assembly.
+ */
 #define USE_FPU   1
-#else
-#define USE_FPU   0
-#endif
 
 /* exception and interrupt handler table */
 rt_uint32_t rt_interrupt_from_thread;

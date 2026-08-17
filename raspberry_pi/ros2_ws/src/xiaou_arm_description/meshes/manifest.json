@@ -1,0 +1,177 @@
+{
+  "source_frame": "STEP world in millimetres",
+  "output_frame": "URDF link-local in metres",
+  "rigid_body_mapping_status": "CAD-derived provisional; RViz articulation review required",
+  "visual_target_faces": 80000,
+  "collision_target_faces": 12000,
+  "components": [
+    {
+      "source": "D:\\机械臂\\robot_geometry_renders\\world_model\\link_1_world.stl",
+      "link": "base_link",
+      "visual": "base_body.stl",
+      "collision": "base_body.stl",
+      "source_faces": 226761,
+      "visual_faces": 80000,
+      "collision_faces": 12000,
+      "bounds_link_m": [
+        [
+          -0.057016475,
+          -0.057016432,
+          -0.01
+        ],
+        [
+          0.057016388,
+          0.057014049,
+          0.105
+        ]
+      ]
+    },
+    {
+      "source": "D:\\机械臂\\robot_geometry_renders\\world_model\\link_2_world.stl",
+      "link": "link_1",
+      "visual": "joint_1_body.stl",
+      "collision": "joint_1_body.stl",
+      "source_faces": 275789,
+      "visual_faces": 80000,
+      "collision_faces": 12000,
+      "bounds_link_m": [
+        [
+          -0.037500048,
+          -0.058000006,
+          0.101
+        ],
+        [
+          0.03749996,
+          0.043000005,
+          0.1935
+        ]
+      ]
+    },
+    {
+      "source": "D:\\机械臂\\robot_geometry_renders\\world_model\\link_3_world.stl",
+      "link": "link_2",
+      "visual": "link_2_body.stl",
+      "collision": "link_2_body.stl",
+      "source_faces": 331169,
+      "visual_faces": 80000,
+      "collision_faces": 12000,
+      "bounds_link_m": [
+        [
+          -0.037499949,
+          0.013999985,
+          -0.037499857
+        ],
+        [
+          0.217499549,
+          0.104000047,
+          0.037867443
+        ]
+      ]
+    },
+    {
+      "source": "D:\\机械臂\\robot_geometry_renders\\world_model\\link_4_world.stl",
+      "link": "link_3",
+      "visual": "link_3_body.stl",
+      "collision": "link_3_body.stl",
+      "source_faces": 331169,
+      "visual_faces": 80000,
+      "collision_faces": 12000,
+      "bounds_link_m": [
+        [
+          -0.037479775,
+          -0.047000014,
+          -0.037479732
+        ],
+        [
+          0.047267749,
+          0.043000014,
+          0.217229068
+        ]
+      ]
+    },
+    {
+      "source": "D:\\机械臂\\robot_geometry_renders\\world_model\\link_5_world.stl",
+      "link": "link_4",
+      "visual": "joint_5_body.stl",
+      "collision": "joint_5_body.stl",
+      "source_faces": 275789,
+      "visual_faces": 80000,
+      "collision_faces": 12000,
+      "bounds_link_m": [
+        [
+          -0.046862592,
+          0.03799999,
+          -0.038568184
+        ],
+        [
+          0.055903472,
+          0.13050001,
+          0.038838116
+        ]
+      ]
+    },
+    {
+      "source": "D:\\机械臂\\robot_geometry_renders\\world_model\\link_6_world.stl",
+      "link": "link_5",
+      "visual": "joint_6_body.stl",
+      "collision": "joint_6_body.stl",
+      "source_faces": 275789,
+      "visual_faces": 80000,
+      "collision_faces": 12000,
+      "bounds_link_m": [
+        [
+          0.050556045,
+          -0.055628603,
+          -0.036109386
+        ],
+        [
+          0.143478808,
+          0.046599751,
+          0.041017214
+        ]
+      ]
+    },
+    {
+      "source": "D:\\机械臂\\robot_geometry_renders\\world_model\\wrist_connector_world.stl",
+      "link": "link_6",
+      "visual": "wrist_connector.stl",
+      "collision": "wrist_connector.stl",
+      "source_faces": 4088,
+      "visual_faces": 4088,
+      "collision_faces": 4088,
+      "bounds_link_m": [
+        [
+          -0.027651485,
+          -0.071370988,
+          -0.0220475
+        ],
+        [
+          0.027598506,
+          -0.050697515,
+          0.0242025
+        ]
+      ]
+    },
+    {
+      "source": "D:\\机械臂\\robot_geometry_renders\\world_model\\gripper_world.stl",
+      "link": "link_6",
+      "visual": "gripper.stl",
+      "collision": "gripper.stl",
+      "source_faces": 38532,
+      "visual_faces": 38532,
+      "collision_faces": 12000,
+      "bounds_link_m": [
+        [
+          -0.051625999,
+          -0.24054484,
+          -0.0403423
+        ],
+        [
+          0.057859145,
+          -0.062663214,
+          0.0635275
+        ]
+      ]
+    }
+  ]
+}

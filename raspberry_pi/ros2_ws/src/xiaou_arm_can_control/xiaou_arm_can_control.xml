@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<library path="xiaou_arm_can_system">
+  <class
+    name="xiaou_arm_can_control/XiaouArmCanSystem"
+    type="xiaou_arm_can_control::XiaouArmCanSystem"
+    base_class_type="hardware_interface::SystemInterface">
+    <description>Receive/send the XiaoU CAN V1 six-axis position protocol over SocketCAN.</description>
+  </class>
+</library>

@@ -1,0 +1,235 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "uart": {
+    "command": "CMD_GET_JOINT",
+    "sequence": 31,
+    "fragment_count": 10,
+    "decoded_joint": {
+      "joint_id": 5,
+      "angle_deg": 0.0,
+      "speed_rpm": 0.25,
+      "torque_nm": 0.10000000149011612,
+      "online": true
+    },
+    "crc_corruption_rejected": true
+  },
+  "j5_freshness": {
+    "timeout_s": 0.5,
+    "ages_s": {
+      "1": 0.25,
+      "2": 0.25,
+      "3": 0.25,
+      "4": 0.25,
+      "5": 2.25,
+      "6": 0.25
+    },
+    "online_joint_ids": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "stale_joint_ids": [
+      5
+    ]
+  },
+  "feedback_quality": {
+    "analysis_only": true,
+    "requested_joint_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "freshness_threshold_s": 0.5,
+    "freshness_reference_mode": "report_completion",
+    "min_online_ratio": 1.0,
+    "max_p95_latency_ms": null,
+    "per_joint": {
+      "1": {
+        "attempts": 1,
+        "query_pass": 1,
+        "query_fail": 0,
+        "online_samples": 1,
+        "offline_samples": 0,
+        "online_ratio": 1.0,
+        "latest_age_s": 0.25,
+        "freshness_reference": "report_completion",
+        "freshness_reference_monotonic_s": 10.25,
+        "freshness_state": "fresh",
+        "latest_feedback": {
+          "joint_id": 1,
+          "online": true
+        },
+        "latency_p50_ms": 21.0,
+        "latency_p95_ms": 21.0,
+        "sequence_mismatch_count": 0,
+        "timestamp_reversal_count": 0,
+        "blockers": [],
+        "passed": true
+      },
+      "2": {
+        "attempts": 1,
+        "query_pass": 1,
+        "query_fail": 0,
+        "online_samples": 1,
+        "offline_samples": 0,
+        "online_ratio": 1.0,
+        "latest_age_s": 0.25,
+        "freshness_reference": "report_completion",
+        "freshness_reference_monotonic_s": 10.25,
+        "freshness_state": "fresh",
+        "latest_feedback": {
+          "joint_id": 2,
+          "online": true
+        },
+        "latency_p50_ms": 22.0,
+        "latency_p95_ms": 22.0,
+        "sequence_mismatch_count": 0,
+        "timestamp_reversal_count": 0,
+        "blockers": [],
+        "passed": true
+      },
+      "3": {
+        "attempts": 1,
+        "query_pass": 1,
+        "query_fail": 0,
+        "online_samples": 1,
+        "offline_samples": 0,
+        "online_ratio": 1.0,
+        "latest_age_s": 0.25,
+        "freshness_reference": "report_completion",
+        "freshness_reference_monotonic_s": 10.25,
+        "freshness_state": "fresh",
+        "latest_feedback": {
+          "joint_id": 3,
+          "online": true
+        },
+        "latency_p50_ms": 23.0,
+        "latency_p95_ms": 23.0,
+        "sequence_mismatch_count": 0,
+        "timestamp_reversal_count": 0,
+        "blockers": [],
+        "passed": true
+      },
+      "4": {
+        "attempts": 1,
+        "query_pass": 1,
+        "query_fail": 0,
+        "online_samples": 1,
+        "offline_samples": 0,
+        "online_ratio": 1.0,
+        "latest_age_s": 0.25,
+        "freshness_reference": "report_completion",
+        "freshness_reference_monotonic_s": 10.25,
+        "freshness_state": "fresh",
+        "latest_feedback": {
+          "joint_id": 4,
+          "online": true
+        },
+        "latency_p50_ms": 24.0,
+        "latency_p95_ms": 24.0,
+        "sequence_mismatch_count": 0,
+        "timestamp_reversal_count": 0,
+        "blockers": [],
+        "passed": true
+      },
+      "5": {
+        "attempts": 1,
+        "query_pass": 1,
+        "query_fail": 0,
+        "online_samples": 1,
+        "offline_samples": 0,
+        "online_ratio": 1.0,
+        "latest_age_s": 2.25,
+        "freshness_reference": "report_completion",
+        "freshness_reference_monotonic_s": 10.25,
+        "freshness_state": "stale",
+        "latest_feedback": {
+          "joint_id": 5,
+          "online": true
+        },
+        "latency_p50_ms": 25.0,
+        "latency_p95_ms": 25.0,
+        "sequence_mismatch_count": 0,
+        "timestamp_reversal_count": 0,
+        "blockers": [
+          "freshness:stale"
+        ],
+        "passed": false
+      },
+      "6": {
+        "attempts": 1,
+        "query_pass": 1,
+        "query_fail": 0,
+        "online_samples": 0,
+        "offline_samples": 1,
+        "online_ratio": 0.0,
+        "latest_age_s": 0.25,
+        "freshness_reference": "report_completion",
+        "freshness_reference_monotonic_s": 10.25,
+        "freshness_state": "offline_reported",
+        "latest_feedback": {
+          "joint_id": 6,
+          "online": false
+        },
+        "latency_p50_ms": 26.0,
+        "latency_p95_ms": 26.0,
+        "sequence_mismatch_count": 0,
+        "timestamp_reversal_count": 0,
+        "blockers": [
+          "freshness:offline_reported",
+          "online_ratio"
+        ],
+        "passed": false
+      }
+    },
+    "blockers": [
+      "J5:freshness:stale",
+      "J6:freshness:offline_reported",
+      "J6:online_ratio"
+    ],
+    "passed": false
+  },
+  "can": {
+    "command_id": "0x105",
+    "feedback_id": "0x185",
+    "diagnostic_id": "0x1c5",
+    "decoded_command": {
+      "position_rad": 0.25,
+      "velocity_rad_s": 0.1,
+      "sequence": 7
+    },
+    "decoded_feedback": {
+      "position_rad": 0.25,
+      "velocity_rad_s": 0.1,
+      "status": 16
+    },
+    "wrong_node_rejected": true
+  },
+  "motion_gate": {
+    "ready": false,
+    "locked_fields": [
+      "motion_enabled",
+      "protocol_confirmed",
+      "uart_link_verified",
+      "f407_firmware_verified",
+      "estop_verified",
+      "feedback_verified",
+      "mcu_calibration_verified",
+      "position_min_rad",
+      "position_max_rad",
+      "velocity_max_rad_s",
+      "acceleration_max_rad_s2"
+    ]
+  },
+  "failure_count": 0,
+  "failures": [],
+  "passed": true
+}

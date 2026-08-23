@@ -31,6 +31,9 @@ raspberry_pi/runtime/**
 !raspberry_pi/runtime/yolo_train/xiaou_objects_dataset_deep/images/
 !raspberry_pi/runtime/yolo_train/xiaou_objects_dataset_deep/images/val/
 !raspberry_pi/runtime/yolo_train/xiaou_objects_dataset_deep/images/val/pen_calib_001.jpg
+raspberry_pi/runtime/deployment/
+raspberry_pi/runtime/logs/
+media/*.mp4
 *.pt
 *.pth
 *.ckpt

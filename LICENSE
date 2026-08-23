@@ -1,0 +1,17 @@
+Copyright (c) 2026 1830051801-ux
+
+## Project source
+
+Unless a file or directory contains its own license notice, the original
+source code in this repository is provided for personal portfolio review and
+technical evaluation only. No permission is granted to reproduce, modify,
+redistribute, sublicense or use the project source for a commercial purpose
+without written permission from the copyright holder.
+
+This notice does not change the license of third-party code. Third-party
+components remain subject to their own notices and licenses; see
+THIRD_PARTY_NOTICES.md and the license files shipped with those components.
+
+Model weights, images, videos, calibration records and runtime bundles may
+have separate provenance and redistribution restrictions. Their presence in a
+working tree is not a grant of permission to copy or deploy them.

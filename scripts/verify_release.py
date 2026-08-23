@@ -20,6 +20,9 @@ from typing import Iterable
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_PATHS = (
     "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "docs/PUBLICATION.md",
     "raspberry_pi/robot_ai/arm_control/uart_protocol.py",
     "raspberry_pi/robot_ai/decision/transformer_policy.py",
     "raspberry_pi/robot_ai/vision/model_registry.py",
@@ -41,14 +44,23 @@ def _tracked_files(root: Path) -> set[str]:
         capture_output=True,
         text=True,
     )
-    return {line.strip() for line in result.stdout.splitlines() if line.strip()}
+    return {
+        line.strip()
+        for line in result.stdout.splitlines()
+        if line.strip() and (root / line.strip()).is_file()
+    }
 
 
 def _forbidden_paths(paths: Iterable[str]) -> list[str]:
     failures: list[str] = []
     for path in paths:
         lower = path.lower()
-        if path == "raspberry_pi/config.env" or lower.endswith(".uvoptx") or ".uvguix." in lower:
+        if (
+            path == "raspberry_pi/config.env"
+            or path == "raspberry_pi/scripts/enable_passwordless_sudo.sh"
+            or lower.endswith(".uvoptx")
+            or ".uvguix." in lower
+        ):
             failures.append(path)
         elif "/objects/" in lower or "/listings/" in lower:
             failures.append(path)

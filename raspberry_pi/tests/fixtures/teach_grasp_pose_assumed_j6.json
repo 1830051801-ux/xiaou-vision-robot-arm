@@ -1,0 +1,16 @@
+{
+  "schema": "xiaou_teach_pose_v1",
+  "read_only": true,
+  "pose_deg": [
+    -100.000244140625,
+    -48.93047332763672,
+    -71.99970245361328,
+    -84.9998664855957,
+    110.00060272216797,
+    0.0
+  ],
+  "assumed_joint_ids": [6],
+  "all_joints_live_feedback": false,
+  "physical_motion_allowed": false,
+  "note": "Regression fixture reconstructed from the supervised stationary capture; J6 was assumed zero in that capture."
+}

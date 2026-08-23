@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xiaou-robot-ai"
+version = "0.1.0"
+description = "Offline perception, planning and protocol tooling for the XiaoU desktop robot"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "PyYAML>=6.0",
+  "requests>=2.31",
+  "python-dotenv>=1.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["robot_ai*", "simulation*"]
+
+[tool.setuptools.package-data]
+robot_ai = [
+  "arm_control/config/*.json",
+  "vision/config/*.json",
+  "emote_assets/gif/*.gif",
+]

@@ -18,7 +18,6 @@ set_default() {
   fi
 }
 
-set_default SERIAL_PROTOCOL binary
 set_default ROBOT_NAME 小U
 set_default PIXEL_ORIGIN_U 320
 set_default PIXEL_ORIGIN_V 240
@@ -44,4 +43,4 @@ set_default GRIPPER_FORCE_PCT 60
 set_default TTS_ENGINE local
 
 echo "Robot safety defaults applied:"
-grep 'ROBOT_NAME\|SERIAL_PROTOCOL\|PIXEL_ORIGIN\|PIXEL_TO_BASE\|BASE_OFFSET\|WORKSPACE\|Z_SAFE\|Z_GRAB\|TARGET_\|GRIPPER_' "$CONFIG_FILE"
+grep 'ROBOT_NAME\|PIXEL_ORIGIN\|PIXEL_TO_BASE\|BASE_OFFSET\|WORKSPACE\|Z_SAFE\|Z_GRAB\|TARGET_\|GRIPPER_' "$CONFIG_FILE"

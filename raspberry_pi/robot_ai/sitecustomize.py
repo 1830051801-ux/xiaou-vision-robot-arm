@@ -9,6 +9,8 @@ ROOT = HERE.parent
 EXTRA_PATHS = [
     ROOT,
     HERE,
+    ROOT / "codex_pickup_package",
+    ROOT / "codex_deskpet_package",
 ]
 
 for path in EXTRA_PATHS:

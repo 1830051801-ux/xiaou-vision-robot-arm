@@ -1,0 +1,178 @@
+{
+  "created": [
+    "emote_mapping.json",
+    "dialog_manager.py",
+    "emote_player.py",
+    "run_demo.py",
+    "run_tests.py",
+    "requirements.txt"
+  ],
+  "tests": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "details": [
+      {
+        "input": "Hello",
+        "expected_intent": "greeting",
+        "actual_intent": "greeting",
+        "pass": true,
+        "expected_emote": "happy",
+        "actual_emote": "happy",
+        "playback": {
+          "ok": true,
+          "mode": "headless_fallback",
+          "emote": "happy",
+          "asset": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\robot_ai\\emote_assets\\gif\\laugh.gif",
+          "loop": false
+        },
+        "reason": ""
+      },
+      {
+        "input": "Hi, how are you?",
+        "expected_intent": "greeting",
+        "actual_intent": "greeting",
+        "pass": true,
+        "expected_emote": "happy",
+        "actual_emote": "happy",
+        "playback": {
+          "ok": true,
+          "mode": "headless_fallback",
+          "emote": "happy",
+          "asset": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\robot_ai\\emote_assets\\gif\\laugh.gif",
+          "loop": false
+        },
+        "reason": ""
+      },
+      {
+        "input": "Thanks a lot",
+        "expected_intent": "thanks",
+        "actual_intent": "thanks",
+        "pass": true,
+        "expected_emote": "thankful",
+        "actual_emote": "thankful",
+        "playback": {
+          "ok": true,
+          "mode": "headless_fallback",
+          "emote": "thankful",
+          "asset": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\robot_ai\\emote_assets\\gif\\smile.gif",
+          "loop": false
+        },
+        "reason": ""
+      },
+      {
+        "input": "Sorry, my bad",
+        "expected_intent": "sorry",
+        "actual_intent": "sorry",
+        "pass": true,
+        "expected_emote": "apologize",
+        "actual_emote": "apologize",
+        "playback": {
+          "ok": true,
+          "mode": "headless_fallback",
+          "emote": "apologize",
+          "asset": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\robot_ai\\emote_assets\\gif\\sad.gif",
+          "loop": false
+        },
+        "reason": ""
+      },
+      {
+        "input": "Yes, please do it",
+        "expected_intent": "confirm",
+        "actual_intent": "confirm",
+        "pass": true,
+        "expected_emote": "agree",
+        "actual_emote": "agree",
+        "playback": {
+          "ok": true,
+          "mode": "headless_fallback",
+          "emote": "agree",
+          "asset": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\robot_ai\\emote_assets\\gif\\smile.gif",
+          "loop": false
+        },
+        "reason": ""
+      },
+      {
+        "input": "No, not that one",
+        "expected_intent": "deny",
+        "actual_intent": "deny",
+        "pass": true,
+        "expected_emote": "disagree",
+        "actual_emote": "disagree",
+        "playback": {
+          "ok": true,
+          "mode": "headless_fallback",
+          "emote": "disagree",
+          "asset": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\robot_ai\\emote_assets\\gif\\angry.gif",
+          "loop": false
+        },
+        "reason": ""
+      },
+      {
+        "input": "Wait, I'm thinking",
+        "expected_intent": "thinking",
+        "actual_intent": "thinking",
+        "pass": true,
+        "expected_emote": "thinking",
+        "actual_emote": "thinking",
+        "playback": {
+          "ok": true,
+          "mode": "headless_fallback",
+          "emote": "thinking",
+          "asset": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\robot_ai\\emote_assets\\gif\\ponder.gif",
+          "loop": true
+        },
+        "reason": ""
+      },
+      {
+        "input": "What do you mean?",
+        "expected_intent": "confused",
+        "actual_intent": "confused",
+        "pass": true,
+        "expected_emote": "confused",
+        "actual_emote": "confused",
+        "playback": {
+          "ok": true,
+          "mode": "headless_fallback",
+          "emote": "confused",
+          "asset": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\robot_ai\\emote_assets\\gif\\question.gif",
+          "loop": false
+        },
+        "reason": ""
+      },
+      {
+        "input": "Done, finished",
+        "expected_intent": "success",
+        "actual_intent": "success",
+        "pass": true,
+        "expected_emote": "celebrate",
+        "actual_emote": "celebrate",
+        "playback": {
+          "ok": true,
+          "mode": "headless_fallback",
+          "emote": "celebrate",
+          "asset": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\robot_ai\\emote_assets\\gif\\laugh.gif",
+          "loop": false
+        },
+        "reason": ""
+      },
+      {
+        "input": "I can't do that",
+        "expected_intent": "fail",
+        "actual_intent": "fail",
+        "pass": true,
+        "expected_emote": "sad",
+        "actual_emote": "sad",
+        "playback": {
+          "ok": true,
+          "mode": "headless_fallback",
+          "emote": "sad",
+          "asset": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\robot_ai\\emote_assets\\gif\\sad.gif",
+          "loop": false
+        },
+        "reason": ""
+      }
+    ]
+  },
+  "notes": "No DISPLAY detected; playback used headless fallback and did not open a window. All required test emotes resolve to existing GIF/PNG assets. Playback modes: headless_fallback"
+}

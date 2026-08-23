@@ -11,12 +11,12 @@
 #include <rthw.h>
 #include <rtthread.h>
 #include "stm32f4xx_hal.h"
-#if defined(RT_USING_USER_MAIN) && defined(RT_USING_HEAP)
+#if defined(RT_USING_HEAP)
 /*
  * Please modify RT_HEAP_SIZE if you enable RT_USING_HEAP
  * the RT_HEAP_SIZE max value = (sram size - ZI size), 1024 means 1024 bytes
  */
-#define RT_HEAP_SIZE (15*1024)
+#define RT_HEAP_SIZE (20*1024)
 static rt_uint8_t rt_heap[RT_HEAP_SIZE];
 
 RT_WEAK void *rt_heap_begin_get(void)
@@ -62,7 +62,7 @@ void rt_hw_board_init(void)
     rt_components_board_init();
 #endif
 
-#if defined(RT_USING_USER_MAIN) && defined(RT_USING_HEAP)
+#if defined(RT_USING_HEAP)
     rt_system_heap_init(rt_heap_begin_get(), rt_heap_end_get());
 #endif
 }

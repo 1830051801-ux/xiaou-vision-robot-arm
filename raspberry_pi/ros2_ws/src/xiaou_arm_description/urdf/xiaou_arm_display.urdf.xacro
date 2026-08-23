@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="xiaou_six_axis_arm">
+  <xacro:arg name="use_can_hardware" default="false"/>
+  <!--
+    Geometry and axes are STEP-derived. Joints are continuous only for RViz and
+    planning-model review. A calibrated planning URDF must replace them with
+    measured lower/upper/velocity/acceleration limits before hardware execution.
+  -->
+
+  <material name="xiaou_dark"><color rgba="0.10 0.12 0.14 1.0"/></material>
+  <material name="xiaou_metal"><color rgba="0.54 0.58 0.62 1.0"/></material>
+  <material name="xiaou_tool"><color rgba="0.18 0.42 0.62 1.0"/></material>
+
+  <xacro:macro name="mesh_geometry" params="path material">
+    <visual>
+      <geometry><mesh filename="package://xiaou_arm_description/meshes/visual/${path}.stl"/></geometry>
+      <material name="${material}"/>
+    </visual>
+    <collision>
+      <geometry><mesh filename="package://xiaou_arm_description/meshes/collision/${path}.stl"/></geometry>
+    </collision>
+  </xacro:macro>
+
+  <link name="base_link">
+    <xacro:mesh_geometry path="base_body" material="xiaou_dark"/>
+  </link>
+
+  <link name="link_1">
+    <xacro:mesh_geometry path="joint_1_body" material="xiaou_metal"/>
+  </link>
+  <joint name="joint_1" type="continuous">
+    <parent link="base_link"/><child link="link_1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/><axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="link_2">
+    <xacro:mesh_geometry path="link_2_body" material="xiaou_dark"/>
+  </link>
+  <joint name="joint_2" type="continuous">
+    <parent link="link_1"/><child link="link_2"/>
+    <origin xyz="-0.000000035529 0 0.155999957265" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="link_3">
+    <xacro:mesh_geometry path="link_3_body" material="xiaou_dark"/>
+  </link>
+  <joint name="joint_3" type="continuous">
+    <parent link="link_2"/><child link="link_3"/>
+    <origin xyz="0.179999609116 -0.000000000534 0.000367474698" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="link_4">
+    <xacro:mesh_geometry path="joint_5_body" material="xiaou_metal"/>
+  </link>
+  <joint name="joint_4" type="continuous">
+    <parent link="link_3"/><child link="link_4"/>
+    <origin xyz="0.009787294801 0 0.179733751772" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="link_5">
+    <xacro:mesh_geometry path="joint_6_body" material="xiaou_metal"/>
+  </link>
+  <joint name="joint_5" type="continuous">
+    <parent link="link_4"/><child link="link_5"/>
+    <origin xyz="-0.000000000056 0.093 0.000000002269" rpy="0 0 0"/>
+    <axis xyz="-0.999698993944 0 -0.024534088676"/>
+  </joint>
+
+  <link name="link_6">
+    <xacro:mesh_geometry path="wrist_connector" material="xiaou_metal"/>
+    <xacro:mesh_geometry path="gripper" material="xiaou_tool"/>
+  </link>
+  <joint name="joint_6" type="continuous">
+    <parent link="link_5"/><child link="link_6"/>
+    <origin xyz="0.105968179337 -0.000000000067 0.002600613812" rpy="0 0 0"/>
+    <axis xyz="0.000416435776 0.999855935329 -0.016968652540"/>
+  </joint>
+
+  <link name="grasp_tcp"/>
+  <joint name="link_6_to_grasp_tcp" type="fixed">
+    <parent link="link_6"/><child link="grasp_tcp"/>
+    <origin xyz="-0.000086410424 -0.207470106581 0.003520995402"
+            rpy="1.553826859837 0 -0.000416495754"/>
+  </joint>
+
+  <link name="tip_tcp"/>
+  <joint name="link_6_to_tip_tcp" type="fixed">
+    <parent link="link_6"/><child link="tip_tcp"/>
+    <origin xyz="-0.000099909813 -0.239881934509 0.004071059693"
+            rpy="1.553826859837 0 -0.000416495754"/>
+  </joint>
+
+  <!--
+    ros2_control integration point.  This remains locked until the measured
+    node IDs, offsets, directions, limits, CAN checks, and emergency-stop
+    verification replace the placeholders below.  The default MoveIt launch
+    does not start controller_manager, so it remains planning-only.
+  -->
+  <xacro:if value="$(arg use_can_hardware)">
+  <ros2_control name="xiaou_arm_can" type="system">
+    <hardware>
+      <plugin>xiaou_arm_can_control/XiaouArmCanSystem</plugin>
+      <param name="can_interface">can0</param>
+      <param name="can_bitrate">500000</param>
+      <param name="motion_enabled">false</param>
+      <param name="protocol_confirmed">false</param>
+      <param name="estop_verified">false</param>
+      <param name="feedback_verified">false</param>
+    </hardware>
+    <joint name="joint_1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <param name="node_id">1</param>
+      <param name="zero_offset_rad">0.0</param>
+      <param name="direction">1</param>
+      <param name="position_min_rad">-6.283185307</param>
+      <param name="position_max_rad">6.283185307</param>
+      <param name="velocity_max_rad_s">1.0</param>
+    </joint>
+    <joint name="joint_2">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <param name="node_id">2</param>
+      <param name="zero_offset_rad">0.0</param>
+      <param name="direction">1</param>
+      <param name="position_min_rad">-6.283185307</param>
+      <param name="position_max_rad">6.283185307</param>
+      <param name="velocity_max_rad_s">1.0</param>
+    </joint>
+    <joint name="joint_3">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <param name="node_id">3</param>
+      <param name="zero_offset_rad">0.0</param>
+      <param name="direction">1</param>
+      <param name="position_min_rad">-6.283185307</param>
+      <param name="position_max_rad">6.283185307</param>
+      <param name="velocity_max_rad_s">1.0</param>
+    </joint>
+    <joint name="joint_4">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <param name="node_id">4</param>
+      <param name="zero_offset_rad">0.0</param>
+      <param name="direction">1</param>
+      <param name="position_min_rad">-6.283185307</param>
+      <param name="position_max_rad">6.283185307</param>
+      <param name="velocity_max_rad_s">1.0</param>
+    </joint>
+    <joint name="joint_5">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <param name="node_id">5</param>
+      <param name="zero_offset_rad">0.0</param>
+      <param name="direction">1</param>
+      <param name="position_min_rad">-6.283185307</param>
+      <param name="position_max_rad">6.283185307</param>
+      <param name="velocity_max_rad_s">1.0</param>
+    </joint>
+    <joint name="joint_6">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <param name="node_id">6</param>
+      <param name="zero_offset_rad">0.0</param>
+      <param name="direction">1</param>
+      <param name="position_min_rad">-6.283185307</param>
+      <param name="position_max_rad">6.283185307</param>
+      <param name="velocity_max_rad_s">1.0</param>
+    </joint>
+  </ros2_control>
+  </xacro:if>
+</robot>

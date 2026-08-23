@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_checkpoint": "runtime\\decision\\transformer_policy_safety_seed20260832.pt",
+  "quantization": "dynamic_int8_linear_weights",
+  "max_seq_len": 16,
+  "observation_dim": 46,
+  "inputs": {
+    "observations": "float32[batch,sequence,46]",
+    "task_ids": "int64[batch]"
+  },
+  "outputs": {
+    "strategy_logits": "float32[batch,6]",
+    "phase_logits": "float32[batch,6]",
+    "action_params": "float32[batch,6]",
+    "risk_logit": "float32[batch]"
+  },
+  "strategy_names": [
+    "top_down_pinch",
+    "side_wrap",
+    "pen_pinch",
+    "flat_pick",
+    "tissue_pull",
+    "reject"
+  ],
+  "phase_names": [
+    "observe",
+    "approach",
+    "grasp",
+    "lift",
+    "pull",
+    "abort"
+  ],
+  "hardware_motion": false
+}

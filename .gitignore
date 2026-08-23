@@ -1,26 +1,70 @@
-# Python
+# Python and local environments
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.mypy_cache/
 .venv/
 venv/
-runtime/
-*.log
 
-# Raspberry Pi local config
+# Per-device configuration and credentials
 raspberry_pi/config.env
+*.env
+!raspberry_pi/config.env.example
+!raspberry_pi/config.demo.env
 
-# Keil build outputs
+# Training inputs, raw records and generated runtime output
+raspberry_pi/my_data/
+raspberry_pi/my_all_data/
+raspberry_pi/my_objects_data/
+raspberry_pi/runs/
+raspberry_pi/output/
+raspberry_pi/tmp/
+raspberry_pi/runtime/**
+!raspberry_pi/runtime/decision/
+!raspberry_pi/runtime/decision/transformer_policy_safety_final_20260813.int8.onnx
+!raspberry_pi/runtime/decision/transformer_policy_safety_final_20260813.int8.json
+!raspberry_pi/runtime/yolo_candidates/
+!raspberry_pi/runtime/yolo_candidates/xiaou_objects_precision_candidate_20260809.onnx
+!raspberry_pi/runtime/yolo_candidates/xiaou_objects_precision_candidate_20260809.names
+!raspberry_pi/runtime/yolo_train/
+!raspberry_pi/runtime/yolo_train/xiaou_objects_dataset_deep/
+!raspberry_pi/runtime/yolo_train/xiaou_objects_dataset_deep/images/
+!raspberry_pi/runtime/yolo_train/xiaou_objects_dataset_deep/images/val/
+!raspberry_pi/runtime/yolo_train/xiaou_objects_dataset_deep/images/val/pen_calib_001.jpg
+raspberry_pi/runtime/deployment/
+raspberry_pi/runtime/logs/
+media/*.mp4
+*.pt
+*.pth
+*.ckpt
+*.tar.gz
+*.whl
+
+# ROS 2 generated directories
+raspberry_pi/ros2_ws/build/
+raspberry_pi/ros2_ws/install/
+raspberry_pi/ros2_ws/log/
+
+# Keil, J-Link and firmware build products
 stm32_keil/**/MDK-ARM/Objects/
 stm32_keil/**/MDK-ARM/Listings/
 stm32_keil/**/*.axf
 stm32_keil/**/*.hex
+stm32_keil/**/*.bin
 stm32_keil/**/*.map
 stm32_keil/**/*.dep
 stm32_keil/**/*.crf
 stm32_keil/**/*.o
 stm32_keil/**/*.d
+stm32_keil/**/*.lst
+stm32_keil/**/*.uvoptx
+stm32_keil/**/*.uvguix.*
+stm32_keil/**/JLinkLog.txt
+stm32_keil/**/JLinkSettings.ini
+stm32_keil/**/*.htm
+stm32_keil/**/*.log
 
-# OS/editor
+# OS and editor state
 .DS_Store
 Thumbs.db
 .idea/

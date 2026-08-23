@@ -1,0 +1,73 @@
+{
+  "offline_algorithm_verified": true,
+  "real_motion_ready": false,
+  "poe_urdf_max_screw_axis_error": 3.965594685961804e-09,
+  "poe_urdf_max_home_transform_error": 1.0000333894311098e-12,
+  "meshes": {
+    "visual": {
+      "count": 8,
+      "bytes": 26131672
+    },
+    "collision": {
+      "count": 8,
+      "bytes": 4405072
+    },
+    "manifest_components": 8
+  },
+  "structured_files": {
+    "xml_files": 10,
+    "yaml_files": 6
+  },
+  "execution_locks": {
+    "move_group_started": true,
+    "move_group_execution_disabled": true,
+    "planner_execution_disabled": true,
+    "hardware_ready_required": true
+  },
+  "object_grasp_profiles": {
+    "classes": [
+      "bottle",
+      "cola",
+      "cup",
+      "earphone",
+      "pen"
+    ],
+    "height_reference": "relative_to_table_m",
+    "measured_grasp_heights": [],
+    "unmeasured_grasp_heights": [
+      "bottle",
+      "cola",
+      "cup",
+      "earphone",
+      "pen"
+    ]
+  },
+  "confirmed_node_ids": {
+    "J1": 1,
+    "J2": 2,
+    "J3": 3,
+    "J4": 4,
+    "J5": 5,
+    "J6": 6
+  },
+  "hardware_gate_missing_or_invalid": [
+    "motion_enabled",
+    "protocol_confirmed",
+    "uart_link_verified",
+    "f407_firmware_verified",
+    "estop_verified",
+    "feedback_verified",
+    "mcu_calibration_verified",
+    "position_min_rad",
+    "position_max_rad",
+    "velocity_max_rad_s",
+    "acceleration_max_rad_s2"
+  ],
+  "limitations": [
+    "ROS2 and MoveIt runtime build must be verified on the Raspberry Pi",
+    "J1..J6 CAN IDs are user-confirmed as 1..6; the F407 hardware target must still prove each physical response before enabling motion",
+    "zero offsets, directions, limits, feedback, and the actual STM32 frame implementation remain unmeasured",
+    "expanded camera calibration, measured table Z, and per-class grasp heights are required",
+    "real motion remains disabled"
+  ]
+}

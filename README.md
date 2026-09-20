@@ -10,7 +10,7 @@
 
 ![六轴机械模型渲染](docs/visuals/mechanical_model/robot_full_iso.png)
 
-本仓库现在是小U的**产品与工程主线**：保留机械模型、树莓派软件、F407/Keil 固件、ROS 2 描述与离线验证；同时在 `research/embodied-arm-learning/` 收录可独立复现的六轴数字孪生研究栈。结构渲染、系统关系图和来源说明见 [成果索引](docs/CONSOLIDATION.md)。
+本仓库现在是小U的**产品与工程主线**：机械模型、树莓派软件、F407/Keil 固件、ROS 2 描述、数字孪生和离线验证都从这里进入。先看图册，再按目录运行需要的模块。
 
 ![系统关系图](docs/visuals/xiaou-stack.svg)
 
@@ -118,15 +118,5 @@ teach_grasp_execute.py 的执行入口与离线预览分开，并要求显式参
 - [模型与量化](docs/MODELS.md)
 - [硬件上机与联调](docs/HARDWARE_BRINGUP.md)
 - [STM32F407 / Keil 工程](stm32_keil/README.md)
-- [公开发布范围](docs/PUBLICATION.md)
 - [第三方组件说明](THIRD_PARTY_NOTICES.md)
-- [成果归档与来源](docs/CONSOLIDATION.md)
 - [机械模型渲染索引](docs/visuals/README.md)
-
-## 公开发布范围
-
-不要把荣耀、富士康或其他内部项目的图片、日志、模型、源码、产品型号和标定数据放入本仓库。大模型、视频、部署压缩包和原始训练集应放在经过审查的 Release/LFS 资产中，源码提交只保留可复现且有来源说明的文件。具体规则见 docs/PUBLICATION.md。
-
-## 许可
-
-本仓库顶层代码按 LICENSE 的项目许可说明提供；STM32 CMSIS、HAL、RT-Thread 和其他第三方组件继续遵循各自目录中的原始许可证，详见 THIRD_PARTY_NOTICES.md。

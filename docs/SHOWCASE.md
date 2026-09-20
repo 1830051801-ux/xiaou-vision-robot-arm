@@ -1,6 +1,6 @@
 # 小U成果图册
 
-[源码与使用说明](../README.md) · [成果来源](CONSOLIDATION.md) · [下载完整成果包](https://github.com/1830051801-ux/xiaou-vision-robot-arm/releases/tag/consolidation-20260920)
+[源码与使用说明](../README.md) · [下载完整成果包](https://github.com/1830051801-ux/xiaou-vision-robot-arm/releases/tag/consolidation-20260920)
 
 ## 六轴结构
 
@@ -22,7 +22,7 @@
 
 ## 数字孪生与学习策略
 
-![五任务数字孪生历史评测](../research/embodied-arm-learning/assets/multitask_factory_cell_dashboard.png)
+![五任务数字孪生历史评测](visuals/simulation/multitask_factory_cell_dashboard.png)
 
 这是已有的离线训练评测成果，本轮整理没有重新训练或改写指标。过程图策略含 1,321,478 个参数，预测 `32 × 6` 关节动作块。历史名义测试包含 640 个样本，每个任务 128 个；约束投影后的平均抓取端点误差为 4.18 mm，全部任务的投影通过比例为 82.34%。这些指标是数值规划评测，不是真机抓取成功率。
 

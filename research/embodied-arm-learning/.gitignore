@@ -1,0 +1,40 @@
+.venv/
+.venv_train/
+__pycache__/
+*.pyc
+config.demo.env
+
+runtime/
+my_data/labels.cache
+
+# Local datasets, camera captures, and model weights are reproducible inputs,
+# not source artifacts for the public project.
+my_data/
+my_all_data/
+my_objects_data/
+runs/
+models/*.onnx
+models/*.pt
+models/*.engine
+yolov*.pt
+
+# ROS 2 build products and local diagnostics.
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+verification_*.log
+
+# Unrelated local demos and generated UI media.
+codex_deskpet_package/
+codex_emote_ai_package/
+codex_pickup_package/
+legacy_root_files/
+robot_ai/emote_assets/
+.codexignore
+
+*.pt
+*.zip
+*.rar
+*.7z
+*.mp3
+*.wav

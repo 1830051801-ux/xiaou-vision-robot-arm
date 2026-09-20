@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "type": "offline_risk_aware_grasp_candidates",
+  "notes": "Synthetic diagnostic candidates in base_link. They are not measured production placement poses and cannot enable hardware motion.",
+  "candidates": [
+    {
+      "name": "center_bin",
+      "yaw_offset_deg": 0.0,
+      "approach_margin_m": 0.09,
+      "place_xy_m": [0.26, -0.10]
+    },
+    {
+      "name": "rear_bin",
+      "yaw_offset_deg": 3.0,
+      "approach_margin_m": 0.09,
+      "place_xy_m": [0.33, -0.12]
+    },
+    {
+      "name": "left_bin",
+      "yaw_offset_deg": -3.0,
+      "approach_margin_m": 0.11,
+      "place_xy_m": [0.24, 0.12]
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "face_state_count": 20,
+  "gif_file_count": 10,
+  "assets": [
+    {
+      "state": "angry",
+      "file": "angry.gif",
+      "bytes": 98580,
+      "frames": 63,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "celebrate",
+      "file": "laugh.gif",
+      "bytes": 92158,
+      "frames": 50,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "confused",
+      "file": "question.gif",
+      "bytes": 76806,
+      "frames": 25,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "curious",
+      "file": "question.gif",
+      "bytes": 76806,
+      "frames": 25,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "error",
+      "file": "shocked.gif",
+      "bytes": 152651,
+      "frames": 75,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "excited",
+      "file": "laugh.gif",
+      "bytes": 92158,
+      "frames": 50,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "greet",
+      "file": "smile.gif",
+      "bytes": 52875,
+      "frames": 25,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "happy",
+      "file": "smile.gif",
+      "bytes": 52875,
+      "frames": 25,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "idle",
+      "file": "idle.gif",
+      "bytes": 41569,
+      "frames": 25,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "laugh",
+      "file": "laugh.gif",
+      "bytes": 92158,
+      "frames": 50,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "listening",
+      "file": "investigate.gif",
+      "bytes": 186902,
+      "frames": 100,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "mock",
+      "file": "mock.gif",
+      "bytes": 38653,
+      "frames": 25,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "question",
+      "file": "question.gif",
+      "bytes": 76806,
+      "frames": 25,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "sad",
+      "file": "sad.gif",
+      "bytes": 146364,
+      "frames": 75,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "searching",
+      "file": "investigate.gif",
+      "bytes": 186902,
+      "frames": 100,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "shocked",
+      "file": "shocked.gif",
+      "bytes": 152651,
+      "frames": 75,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "smile",
+      "file": "smile.gif",
+      "bytes": 52875,
+      "frames": 25,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "speaking",
+      "file": "smile.gif",
+      "bytes": 52875,
+      "frames": 25,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "stop",
+      "file": "shocked.gif",
+      "bytes": 152651,
+      "frames": 75,
+      "size": [
+        848,
+        848
+      ]
+    },
+    {
+      "state": "thinking",
+      "file": "ponder.gif",
+      "bytes": 52475,
+      "frames": 38,
+      "size": [
+        848,
+        848
+      ]
+    }
+  ],
+  "canvas_state_count": 20,
+  "unsupported_canvas_states": [],
+  "missing_emote_assets": [],
+  "missing_required_files": [],
+  "failures": [],
+  "passed": true
+}

@@ -1,0 +1,338 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "camera_opened": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "ros2_process_started": false,
+  "checkpoint": "raspberry_pi/runtime/decision/transformer_policy_safety_final_20260813.int8.onnx",
+  "actual_yolo_calibration_audit": [
+    {
+      "profile": {
+        "name": "high_recall",
+        "model": "raspberry_pi/models/xiaou_objects_gpu_deep.onnx",
+        "class_schema": "raspberry_pi/robot_ai/vision/config/yolo_class_schema_v1.json",
+        "classes": [
+          "pen",
+          "bottle",
+          "cola",
+          "earphone"
+        ],
+        "confidence": 0.1,
+        "role": "prefer recall when missing a valid target is more costly than an extra candidate",
+        "sha256": "74794520a1fcf6d49738fb420fc8e8d2739b9db9b43f34e47f3e0e9773200d5d",
+        "motion_enabled": false
+      },
+      "images": 20,
+      "detections": 68,
+      "class_counts": {
+        "cola": 11,
+        "bottle": 11,
+        "earphone": 11,
+        "pen": 35
+      },
+      "inside_calibration_region": 0,
+      "configuration_incomplete": 0,
+      "pose_candidates_published": 0,
+      "hardware_motion": false
+    },
+    {
+      "profile": {
+        "name": "high_precision",
+        "model": "raspberry_pi/runtime/yolo_candidates/xiaou_objects_precision_candidate_20260809.onnx",
+        "class_schema": "raspberry_pi/robot_ai/vision/config/yolo_class_schema_v1.json",
+        "classes": [
+          "pen",
+          "bottle",
+          "cola",
+          "earphone"
+        ],
+        "confidence": 0.1,
+        "role": "prefer fewer false positives when an incorrect grasp candidate is more costly",
+        "sha256": "d850c87dc58d6b258fc1d0c9684f8fe13bf7351e12f088e7e30f6c90f39595ca",
+        "motion_enabled": false
+      },
+      "images": 20,
+      "detections": 60,
+      "class_counts": {
+        "cola": 10,
+        "bottle": 12,
+        "earphone": 9,
+        "pen": 29
+      },
+      "inside_calibration_region": 0,
+      "configuration_incomplete": 0,
+      "pose_candidates_published": 0,
+      "hardware_motion": false
+    }
+  ],
+  "actual_chain_note": "Checked-in grasp heights are null, so actual image detections cannot publish a pose or motion candidate.",
+  "synthetic_contract_stress": {
+    "trials": 2048,
+    "seed": 20260813,
+    "case_counts": {
+      "valid": 256,
+      "low_confidence": 256,
+      "unknown_class": 256,
+      "collision_risk": 256,
+      "joint_offline": 256,
+      "outside_workspace": 256,
+      "stale_detection": 256,
+      "invalid_calibration": 256
+    },
+    "valid_candidates": 256,
+    "valid_total": 256,
+    "negative_total": 1792,
+    "policy_rejects": {
+      "low_confidence": 256,
+      "collision_risk": 256,
+      "joint_offline": 256
+    },
+    "gate_blocks": {
+      "low_confidence": 256,
+      "collision_risk": 256,
+      "joint_offline": 256,
+      "stale_detection": 256,
+      "invalid_calibration": 256
+    },
+    "precheck_blocks": {
+      "unknown_class": 256,
+      "outside_workspace": 256
+    },
+    "unsafe_candidates": {},
+    "unsafe_total": 0,
+    "hardware_candidates": 0,
+    "examples": [
+      {
+        "case": "valid",
+        "scenario": "desktop_item",
+        "pixel": [
+          315.3,
+          291.531
+        ],
+        "base_xy_m": [
+          0.272858,
+          -0.228463
+        ],
+        "simulation_status": "candidate",
+        "decision": {
+          "strategy": "flat_pick",
+          "phase": "grasp",
+          "confidence": 0.999935,
+          "risk": 0.102334,
+          "action_params": [
+            0.25964,
+            -0.18602,
+            0.031798,
+            0.087284,
+            0.065082,
+            0.001815
+          ],
+          "status": "candidate",
+          "blocked_reasons": []
+        }
+      },
+      {
+        "case": "low_confidence",
+        "scenario": "cola",
+        "pixel": [
+          327.854,
+          313.25
+        ],
+        "base_xy_m": [
+          0.25828,
+          -0.235554
+        ],
+        "simulation_status": "rejected_by_policy",
+        "decision": {
+          "strategy": "reject",
+          "phase": "abort",
+          "confidence": 0.999991,
+          "risk": 0.956704,
+          "action_params": [
+            0.345916,
+            -0.085946,
+            0.382529,
+            0.075194,
+            0.037065,
+            0.142285
+          ],
+          "status": "rejected_by_policy",
+          "blocked_reasons": [
+            "policy_reject"
+          ]
+        }
+      },
+      {
+        "case": "unknown_class",
+        "scenario": "pen",
+        "pixel": [
+          321.464,
+          306.982
+        ],
+        "base_xy_m": [
+          0.261487,
+          -0.232257
+        ],
+        "simulation_status": "blocked_by_precheck",
+        "decision": {
+          "strategy": "reject",
+          "phase": "abort",
+          "blocked_reasons": [
+            "unknown_object_class"
+          ]
+        }
+      },
+      {
+        "case": "collision_risk",
+        "scenario": "bottle",
+        "pixel": [
+          320.803,
+          285.612
+        ],
+        "base_xy_m": [
+          0.278572,
+          -0.232209
+        ],
+        "simulation_status": "rejected_by_policy",
+        "decision": {
+          "strategy": "reject",
+          "phase": "abort",
+          "confidence": 0.99999,
+          "risk": 0.957888,
+          "action_params": [
+            0.348801,
+            -0.076314,
+            0.392594,
+            0.076296,
+            0.038248,
+            0.143564
+          ],
+          "status": "rejected_by_policy",
+          "blocked_reasons": [
+            "policy_reject"
+          ]
+        }
+      },
+      {
+        "case": "joint_offline",
+        "scenario": "bottle",
+        "pixel": [
+          331.328,
+          298.91
+        ],
+        "base_xy_m": [
+          0.268366,
+          -0.237989
+        ],
+        "simulation_status": "rejected_by_policy",
+        "decision": {
+          "strategy": "reject",
+          "phase": "abort",
+          "confidence": 0.999991,
+          "risk": 0.958794,
+          "action_params": [
+            0.338254,
+            -0.082436,
+            0.390246,
+            0.074739,
+            0.03599,
+            0.143467
+          ],
+          "status": "rejected_by_policy",
+          "blocked_reasons": [
+            "policy_reject"
+          ]
+        }
+      },
+      {
+        "case": "outside_workspace",
+        "scenario": "pen",
+        "pixel": [
+          308.641,
+          298.742
+        ],
+        "base_xy_m": [
+          0.266008,
+          -0.224001
+        ],
+        "simulation_status": "blocked_by_precheck",
+        "decision": {
+          "strategy": "reject",
+          "phase": "abort",
+          "blocked_reasons": [
+            "outside_policy_workspace"
+          ]
+        }
+      },
+      {
+        "case": "stale_detection",
+        "scenario": "desktop_item",
+        "pixel": [
+          323.25,
+          302.323
+        ],
+        "base_xy_m": [
+          0.265017,
+          -0.233373
+        ],
+        "simulation_status": "blocked_by_safety_gate",
+        "decision": {
+          "strategy": "reject",
+          "phase": "abort",
+          "confidence": 0.999937,
+          "risk": 0.101986,
+          "action_params": [
+            0.256952,
+            -0.195602,
+            0.031651,
+            0.087425,
+            0.065272,
+            0.001812
+          ],
+          "status": "blocked_by_safety_gate",
+          "blocked_reasons": [
+            "detection_fresh"
+          ]
+        }
+      },
+      {
+        "case": "invalid_calibration",
+        "scenario": "bottle",
+        "pixel": [
+          323.633,
+          306.051
+        ],
+        "base_xy_m": [
+          0.262419,
+          -0.233503
+        ],
+        "simulation_status": "blocked_by_safety_gate",
+        "decision": {
+          "strategy": "reject",
+          "phase": "abort",
+          "confidence": 0.999962,
+          "risk": 0.101948,
+          "action_params": [
+            0.242676,
+            -0.186201,
+            0.217504,
+            0.083224,
+            0.061337,
+            0.001431
+          ],
+          "status": "blocked_by_safety_gate",
+          "blocked_reasons": [
+            "calibration_valid"
+          ]
+        }
+      }
+    ]
+  },
+  "passed": true,
+  "limitations": [
+    "cup and tissue detections are synthetic contracts because the current YOLO schema has no labeled cup/tissue data",
+    "provisional object geometry is used only for downstream message stress",
+    "no ROS executor, camera, motor bus, MoveIt execution, or real grasp is tested"
+  ]
+}

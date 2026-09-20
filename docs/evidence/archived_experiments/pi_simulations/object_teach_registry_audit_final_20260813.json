@@ -1,0 +1,242 @@
+{
+  "schema": "xiaou_object_teach_registry_audit_v1",
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "camera_opened": false,
+  "registry_status": "offline_planning_contract",
+  "objects": [
+    {
+      "object_class": "bottle",
+      "family": "dedicated_cylinder_side_v1",
+      "strategy": "side_wrap",
+      "route_status": "requires_dedicated_teach",
+      "required_pose_ids": [
+        "ready",
+        "raise",
+        "overhead",
+        "pregrasp",
+        "side_contact",
+        "lift"
+      ],
+      "required_measurements": [
+        "object_radius_m",
+        "object_height_m",
+        "table_height_m",
+        "side_approach_clearance_m"
+      ],
+      "gripper_measurements_required": [
+        "open_command",
+        "close_command",
+        "minimum_safe_width_m"
+      ],
+      "simulation_model": {
+        "shape": "cylinder",
+        "radius_m": 0.033,
+        "height_m": 0.21,
+        "mass_kg": 0.35
+      },
+      "ready_for_real_teach": true,
+      "scene_shape": "cylinder",
+      "shape_match": true,
+      "dimensions_match": true
+    },
+    {
+      "object_class": "cup",
+      "family": "dedicated_cylinder_side_v1",
+      "strategy": "side_wrap",
+      "route_status": "requires_dedicated_teach",
+      "required_pose_ids": [
+        "ready",
+        "raise",
+        "overhead",
+        "pregrasp",
+        "side_contact",
+        "lift"
+      ],
+      "required_measurements": [
+        "object_radius_m",
+        "object_height_m",
+        "table_height_m",
+        "handle_yaw_rad",
+        "side_approach_clearance_m"
+      ],
+      "gripper_measurements_required": [
+        "open_command",
+        "close_command",
+        "minimum_safe_width_m"
+      ],
+      "simulation_model": {
+        "shape": "cylinder",
+        "radius_m": 0.045,
+        "height_m": 0.09,
+        "mass_kg": 0.2
+      },
+      "ready_for_real_teach": true,
+      "scene_shape": "cylinder",
+      "shape_match": true,
+      "dimensions_match": true
+    },
+    {
+      "object_class": "pen",
+      "family": "dedicated_pen_pinch_v1",
+      "strategy": "pen_pinch",
+      "route_status": "requires_dedicated_teach",
+      "required_pose_ids": [
+        "ready",
+        "raise",
+        "overhead",
+        "pregrasp",
+        "top_contact",
+        "lift"
+      ],
+      "required_measurements": [
+        "pen_radius_m",
+        "pen_length_m",
+        "table_height_m",
+        "pen_axis_yaw_rad"
+      ],
+      "gripper_measurements_required": [
+        "open_command",
+        "close_command",
+        "minimum_safe_width_m"
+      ],
+      "simulation_model": {
+        "shape": "capsule",
+        "radius_m": 0.006,
+        "height_m": 0.14,
+        "mass_kg": 0.015
+      },
+      "ready_for_real_teach": true,
+      "scene_shape": "capsule",
+      "shape_match": true,
+      "dimensions_match": true
+    },
+    {
+      "object_class": "desktop_item",
+      "family": "dedicated_flat_pick_v1",
+      "strategy": "flat_pick",
+      "route_status": "requires_dedicated_teach",
+      "required_pose_ids": [
+        "ready",
+        "raise",
+        "overhead",
+        "pregrasp",
+        "top_contact",
+        "lift"
+      ],
+      "required_measurements": [
+        "object_width_m",
+        "object_length_m",
+        "object_height_m",
+        "table_height_m"
+      ],
+      "gripper_measurements_required": [
+        "open_command",
+        "close_command",
+        "minimum_safe_width_m"
+      ],
+      "simulation_model": {
+        "shape": "box",
+        "radius_m": 0.035,
+        "height_m": 0.03,
+        "mass_kg": 0.1
+      },
+      "ready_for_real_teach": true,
+      "scene_shape": "box",
+      "shape_match": true,
+      "dimensions_match": true
+    },
+    {
+      "object_class": "tissue_pull",
+      "family": "dedicated_tissue_pull_v1",
+      "strategy": "tissue_pull",
+      "route_status": "requires_dedicated_teach",
+      "required_pose_ids": [
+        "ready",
+        "raise",
+        "edge_pregrasp",
+        "edge_contact",
+        "pull_end",
+        "release"
+      ],
+      "required_measurements": [
+        "tissue_edge_height_m",
+        "table_height_m",
+        "pull_distance_m",
+        "pull_yaw_rad"
+      ],
+      "gripper_measurements_required": [
+        "open_command",
+        "close_command",
+        "minimum_safe_width_m"
+      ],
+      "simulation_model": {
+        "shape": "sheet_stack",
+        "radius_m": 0.06,
+        "height_m": 0.04,
+        "mass_kg": 0.08
+      },
+      "ready_for_real_teach": true,
+      "scene_shape": "sheet_stack",
+      "shape_match": true,
+      "dimensions_match": true
+    },
+    {
+      "object_class": "cola",
+      "family": "taught_cylinder_side_v1",
+      "strategy": "side_wrap",
+      "route_status": "current_local_preview",
+      "required_pose_ids": [
+        "ready",
+        "side_contact"
+      ],
+      "required_measurements": [
+        "object_radius_m",
+        "object_height_m",
+        "table_height_m"
+      ],
+      "gripper_measurements_required": [
+        "open_command",
+        "close_command",
+        "minimum_safe_width_m"
+      ],
+      "simulation_model": {
+        "shape": "cylinder",
+        "radius_m": 0.032,
+        "height_m": 0.19,
+        "mass_kg": 0.4
+      },
+      "ready_for_real_teach": false,
+      "scene_shape": "cylinder",
+      "shape_match": true,
+      "dimensions_match": true
+    }
+  ],
+  "rejected_object": {
+    "object_class": "earphone",
+    "family": "reject_flexible_v1",
+    "strategy": "reject",
+    "route_status": "reject",
+    "required_pose_ids": [
+      "separate_family_design"
+    ],
+    "required_measurements": [
+      "deformable_geometry_model"
+    ],
+    "gripper_measurements_required": [
+      "separate_end_effector_characterization"
+    ],
+    "simulation_model": {
+      "shape": "capsule",
+      "radius_m": 0.01,
+      "height_m": 0.02,
+      "mass_kg": 0.02
+    },
+    "ready_for_real_teach": false
+  },
+  "failure_count": 0,
+  "failures": [],
+  "passed": true
+}

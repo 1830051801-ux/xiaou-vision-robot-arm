@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-20",
+  "repository_role": "XiaoU product and six-axis integration",
+  "imports": [
+    {
+      "repository": "https://github.com/1830051801-ux/embodied-arm-learning",
+      "commit": "034c1c31098b5d04580abcb6f5cf730c8b8c715d",
+      "destination": "research/embodied-arm-learning",
+      "method": "git subtree squash"
+    }
+  ],
+  "visual_assets": [
+    "docs/visuals/mechanical_model/robot_full_iso.png",
+    "docs/visuals/mechanical_model/gripper_iso.png",
+    "docs/visuals/mechanical_model/gripper_axis.png",
+    "docs/visuals/xiaou-stack.svg",
+    "docs/visuals/simulation/taught-approach.gif",
+    "docs/visuals/simulation/tcp-path.png"
+  ],
+  "evidence": {
+    "offline_validation": "docs/evidence/offline_validation_20260820",
+    "current_validation": "docs/evidence/consolidation_20260920",
+    "historical_report_count": 205,
+    "historical_manifest": "docs/evidence/archived_experiments/MANIFEST.json",
+    "hardware_transport_opened": false,
+    "claim_boundary": "offline software and numerical evidence only"
+  },
+  "excluded_from_git": {
+    "raw_mesh_workspace": "approximately 1.5 GiB before deduplication; delivered as Release attachment",
+    "private_device_environment": "not included"
+  }
+}

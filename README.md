@@ -4,6 +4,20 @@
 
 > 默认状态是离线验证和运动锁定：不会自动打开相机、串口或 CAN，也不会由测试和示例命令发送真实运动指令。真实上机必须由现场人员按硬件前置条件逐项确认。
 
+## 成果总览
+
+[查看成果图册](docs/SHOWCASE.md) · [下载模型、权重与源码](https://github.com/1830051801-ux/xiaou-vision-robot-arm/releases/tag/consolidation-20260920)
+
+![六轴机械模型渲染](docs/visuals/mechanical_model/robot_full_iso.png)
+
+本仓库现在是小U的**产品与工程主线**：保留机械模型、树莓派软件、F407/Keil 固件、ROS 2 描述与离线验证；同时在 `research/embodied-arm-learning/` 收录可独立复现的六轴数字孪生研究栈。结构渲染、系统关系图和来源说明见 [成果索引](docs/CONSOLIDATION.md)。
+
+![系统关系图](docs/visuals/xiaou-stack.svg)
+
+![14 阶段 MuJoCo 接近路径回放](docs/visuals/simulation/taught-approach.gif)
+
+动画为规定关节位置的运动学回放，夹爪未执行；接触记录和本轮验证见[成果图册](docs/SHOWCASE.md)。
+
 ## 系统链路
 
 ~~~text
@@ -106,6 +120,8 @@ teach_grasp_execute.py 的执行入口与离线预览分开，并要求显式参
 - [STM32F407 / Keil 工程](stm32_keil/README.md)
 - [公开发布范围](docs/PUBLICATION.md)
 - [第三方组件说明](THIRD_PARTY_NOTICES.md)
+- [成果归档与来源](docs/CONSOLIDATION.md)
+- [机械模型渲染索引](docs/visuals/README.md)
 
 ## 公开发布范围
 

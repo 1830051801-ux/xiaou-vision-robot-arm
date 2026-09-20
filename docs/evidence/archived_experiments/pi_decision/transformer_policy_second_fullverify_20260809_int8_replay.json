@@ -1,0 +1,240 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "backend": "onnxruntime-cpu",
+  "checkpoint": "raspberry_pi/runtime/decision/transformer_policy_second_fullverify_20260809.int8.onnx",
+  "checkpoint_metadata": {
+    "schema_version": 1,
+    "source_checkpoint": "runtime/decision/transformer_policy_second_fullverify_20260809.pt",
+    "quantization": "dynamic_int8_linear_weights",
+    "max_seq_len": 16,
+    "observation_dim": 46,
+    "inputs": {
+      "observations": "float32[batch,sequence,46]",
+      "task_ids": "int64[batch]"
+    },
+    "outputs": {
+      "strategy_logits": "float32[batch,6]",
+      "phase_logits": "float32[batch,6]",
+      "action_params": "float32[batch,6]",
+      "risk_logit": "float32[batch]"
+    },
+    "strategy_names": [
+      "top_down_pinch",
+      "side_wrap",
+      "pen_pinch",
+      "flat_pick",
+      "tissue_pull",
+      "reject"
+    ],
+    "phase_names": [
+      "observe",
+      "approach",
+      "grasp",
+      "lift",
+      "pull",
+      "abort"
+    ],
+    "hardware_motion": false
+  },
+  "reports": [
+    {
+      "scenario": "bottle",
+      "decision": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.999736,
+        "risk": 0.102532,
+        "action_params": [
+          0.283029,
+          -0.060666,
+          0.207712,
+          0.082334,
+          0.064904,
+          0.004157
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "rule_candidate": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "score": 0.88,
+        "gripper_open_m": 0.084,
+        "gripper_close_m": 0.062,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.21
+        ],
+        "pull_distance_m": 0.0,
+        "reason": "profile=bottle"
+      }
+    },
+    {
+      "scenario": "cup",
+      "decision": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.999679,
+        "risk": 0.103201,
+        "action_params": [
+          0.283281,
+          -0.071658,
+          0.099808,
+          0.095773,
+          0.079949,
+          0.004085
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "rule_candidate": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "score": 0.88,
+        "gripper_open_m": 0.095,
+        "gripper_close_m": 0.086,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.09
+        ],
+        "pull_distance_m": 0.0,
+        "reason": "profile=cup"
+      }
+    },
+    {
+      "scenario": "pen",
+      "decision": {
+        "strategy": "pen_pinch",
+        "phase": "grasp",
+        "confidence": 0.999363,
+        "risk": 0.097746,
+        "action_params": [
+          0.277905,
+          -0.121546,
+          0.134649,
+          0.035711,
+          0.009054,
+          0.007258
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "rule_candidate": {
+        "strategy": "pen_pinch",
+        "phase": "grasp",
+        "score": 0.88,
+        "gripper_open_m": 0.035,
+        "gripper_close_m": 0.008,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.14
+        ],
+        "pull_distance_m": 0.0,
+        "reason": "profile=pen"
+      }
+    },
+    {
+      "scenario": "desktop_item",
+      "decision": {
+        "strategy": "flat_pick",
+        "phase": "grasp",
+        "confidence": 0.999355,
+        "risk": 0.102549,
+        "action_params": [
+          0.269079,
+          -0.114071,
+          0.034109,
+          0.087166,
+          0.067299,
+          0.007184
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "rule_candidate": {
+        "strategy": "flat_pick",
+        "phase": "grasp",
+        "score": 0.88,
+        "gripper_open_m": 0.088,
+        "gripper_close_m": 0.066,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.03
+        ],
+        "pull_distance_m": 0.0,
+        "reason": "profile=desktop_item"
+      }
+    },
+    {
+      "scenario": "tissue_pull",
+      "decision": {
+        "strategy": "tissue_pull",
+        "phase": "pull",
+        "confidence": 0.999608,
+        "risk": 0.196989,
+        "action_params": [
+          0.2818,
+          -0.032915,
+          0.038906,
+          0.062928,
+          0.034349,
+          0.082654
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "rule_candidate": {
+        "strategy": "tissue_pull",
+        "phase": "pull",
+        "score": 0.91,
+        "gripper_open_m": 0.065,
+        "gripper_close_m": 0.035,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.04
+        ],
+        "pull_distance_m": 0.08,
+        "reason": "grip sheet edge then pull along table plane"
+      }
+    },
+    {
+      "scenario": "cola",
+      "decision": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.999736,
+        "risk": 0.099444,
+        "action_params": [
+          0.281303,
+          -0.075366,
+          0.191752,
+          0.080881,
+          0.06236,
+          0.00454
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "rule_candidate": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "score": 0.88,
+        "gripper_open_m": 0.082,
+        "gripper_close_m": 0.06,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.19
+        ],
+        "pull_distance_m": 0.0,
+        "reason": "profile=cola"
+      }
+    }
+  ]
+}

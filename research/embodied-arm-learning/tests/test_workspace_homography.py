@@ -11,8 +11,8 @@ PROJECT_DIR = Path(__file__).resolve().parents[1]
 
 
 class WorkspaceHomographyTests(unittest.TestCase):
-    def test_saved_calibration_reprojects_within_limit(self) -> None:
-        path = PROJECT_DIR / "codex_pickup_package" / "workspace_homography.yaml"
+    def test_synthetic_fixture_reprojects_within_limit(self) -> None:
+        path = PROJECT_DIR / "tests" / "fixtures" / "synthetic_homography.yaml"
         data = yaml.safe_load(path.read_text(encoding="utf-8"))
         homography = np.asarray(data["homography"], dtype=np.float64)
         pixels = np.asarray(data["pixel_points"], dtype=np.float64)

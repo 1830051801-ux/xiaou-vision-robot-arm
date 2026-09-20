@@ -1,0 +1,64 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "yaml": "raspberry_pi/runtime/yolo_train/xiaou_objects_dataset_deep/dataset.yaml",
+  "root": "raspberry_pi/runtime/yolo_train/xiaou_objects_dataset_deep",
+  "names": [
+    "pen",
+    "bottle",
+    "cola",
+    "earphone"
+  ],
+  "expected_classes": [
+    "pen",
+    "bottle",
+    "cola",
+    "earphone"
+  ],
+  "observed_classes": [
+    "bottle",
+    "cola",
+    "earphone",
+    "pen"
+  ],
+  "missing_classes": [],
+  "instances": {
+    "pen": 148,
+    "bottle": 50,
+    "cola": 50,
+    "earphone": 44
+  },
+  "splits": {
+    "train": {
+      "images": 80,
+      "labels": 80,
+      "instances": {
+        "pen": 118,
+        "bottle": 40,
+        "cola": 40,
+        "earphone": 35
+      },
+      "missing_labels": 0,
+      "orphan_labels": 0,
+      "unreadable_images": 0,
+      "errors": 0
+    },
+    "val": {
+      "images": 20,
+      "labels": 20,
+      "instances": {
+        "pen": 30,
+        "bottle": 10,
+        "cola": 10,
+        "earphone": 9
+      },
+      "missing_labels": 0,
+      "orphan_labels": 0,
+      "unreadable_images": 0,
+      "errors": 0
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "passed": true
+}

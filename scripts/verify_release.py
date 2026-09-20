@@ -9,6 +9,7 @@ motion-lock default, and Keil source references.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -23,6 +24,13 @@ REQUIRED_PATHS = (
     "LICENSE",
     "THIRD_PARTY_NOTICES.md",
     "docs/PUBLICATION.md",
+    "docs/CONSOLIDATION.md",
+    "docs/CONSOLIDATION_MANIFEST.json",
+    "docs/visuals/xiaou-stack.svg",
+    "docs/visuals/mechanical_model/robot_full_iso.png",
+    "docs/SHOWCASE.md",
+    "docs/evidence/archived_experiments/MANIFEST.json",
+    "docs/visuals/simulation/taught-approach.gif",
     "raspberry_pi/robot_ai/arm_control/uart_protocol.py",
     "raspberry_pi/robot_ai/decision/transformer_policy.py",
     "raspberry_pi/robot_ai/vision/model_registry.py",
@@ -34,6 +42,8 @@ REQUIRED_PATHS = (
     "stm32_keil/BasicSetting_DaRanRobot/MDK-ARM/BasicSetting_DaRanRobot.uvprojx",
     "stm32_keil/BasicSetting_DaRanRobot/Src/trajectory.c",
     "stm32_keil/BasicSetting_DaRanRobot/Src/comm_protocol.c",
+    "research/embodied-arm-learning/README.md",
+    "research/embodied-arm-learning/UPSTREAM.md",
 )
 
 
@@ -57,7 +67,7 @@ def _forbidden_paths(paths: Iterable[str]) -> list[str]:
         lower = path.lower()
         if (
             path == "raspberry_pi/config.env"
-            or path == "raspberry_pi/scripts/enable_passwordless_sudo.sh"
+            or path.endswith("/scripts/enable_passwordless_sudo.sh")
             or lower.endswith(".uvoptx")
             or ".uvguix." in lower
         ):
@@ -133,6 +143,24 @@ def _motion_lock_failures(root: Path) -> list[str]:
     return []
 
 
+def _evidence_failures(root: Path) -> list[str]:
+    base = root / "docs/evidence/archived_experiments"
+    try:
+        manifest = json.loads((base / "MANIFEST.json").read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"archive manifest unreadable: {exc}"]
+    failures: list[str] = []
+    for report in manifest.get("reports", []):
+        path = (base / report["path"]).resolve()
+        if not path.is_relative_to(base.resolve()) or not path.is_file():
+            failures.append(f"archive report missing or out of scope: {report['path']}")
+            continue
+        data = path.read_bytes().replace(b"\r\n", b"\n")
+        if hashlib.sha256(data).hexdigest() != report["public_sha256"]:
+            failures.append(f"archive report hash mismatch: {report['path']}")
+    return failures
+
+
 def verify(root: Path) -> dict[str, object]:
     root = root.resolve()
     missing = [path for path in REQUIRED_PATHS if not (root / path).exists()]
@@ -145,7 +173,8 @@ def verify(root: Path) -> dict[str, object]:
     keil_failures = _keil_source_failures(root)
     registry_failures = _model_registry_failures(root)
     motion_failures = _motion_lock_failures(root)
-    failures = missing + forbidden + keil_failures + registry_failures + motion_failures
+    evidence_failures = _evidence_failures(root)
+    failures = missing + forbidden + keil_failures + registry_failures + motion_failures + evidence_failures
     return {
         "passed": not failures,
         "tracked_file_count": len(tracked),
@@ -154,6 +183,7 @@ def verify(root: Path) -> dict[str, object]:
         "keil_reference_failures": keil_failures,
         "model_registry_failures": registry_failures,
         "motion_lock_failures": motion_failures,
+        "evidence_hash_failures": evidence_failures,
     }
 
 

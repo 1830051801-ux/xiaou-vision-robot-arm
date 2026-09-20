@@ -1,0 +1,305 @@
+{
+  "evaluation": "constraint_diffusion_digital_twin",
+  "architecture": "process_graph_multitask_action_chunk_transformer_diffusion",
+  "context_tokens": [
+    "visual_grasp_pose",
+    "visual_place_goal",
+    "observation_uncertainty",
+    "task_profile",
+    "learned_task_token"
+  ],
+  "task_suite": [
+    "transfer",
+    "sort_zone_a",
+    "sort_zone_b",
+    "inspection_scan",
+    "precision_insert"
+  ],
+  "task_metrics": {
+    "transfer": {
+      "episodes": 20,
+      "raw_mean_grasp_position_error_m": 0.007372756677079852,
+      "raw_scene_safe_rate": 0.95,
+      "shielded_mean_grasp_position_error_m": 0.0040510935370331414,
+      "projected_safe_rate": 0.8,
+      "projection_success_rate": 0.8,
+      "abstention_rate": 0.0,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.2,
+      "counterfactual_consensus_rate": 0.7,
+      "counterfactual_mean_safe_rollout_rate": 0.7375,
+      "counterfactual_mean_projected_grasp_error_m": 0.004432942732993455
+    },
+    "sort_zone_a": {
+      "episodes": 20,
+      "raw_mean_grasp_position_error_m": 0.007000549272547195,
+      "raw_scene_safe_rate": 1.0,
+      "shielded_mean_grasp_position_error_m": 0.004793270243697882,
+      "projected_safe_rate": 0.8,
+      "projection_success_rate": 0.8,
+      "abstention_rate": 0.0,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.2,
+      "counterfactual_consensus_rate": 0.85,
+      "counterfactual_mean_safe_rollout_rate": 0.875,
+      "counterfactual_mean_projected_grasp_error_m": 0.005326456420535823
+    },
+    "sort_zone_b": {
+      "episodes": 20,
+      "raw_mean_grasp_position_error_m": 0.006492755215022808,
+      "raw_scene_safe_rate": 0.95,
+      "shielded_mean_grasp_position_error_m": 0.004685434118874182,
+      "projected_safe_rate": 0.75,
+      "projection_success_rate": 0.75,
+      "abstention_rate": 0.0,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.25,
+      "counterfactual_consensus_rate": 0.7,
+      "counterfactual_mean_safe_rollout_rate": 0.75,
+      "counterfactual_mean_projected_grasp_error_m": 0.004704032045093564
+    },
+    "inspection_scan": {
+      "episodes": 20,
+      "raw_mean_grasp_position_error_m": 0.007038735687087012,
+      "raw_scene_safe_rate": 1.0,
+      "shielded_mean_grasp_position_error_m": 0.00489506671429079,
+      "projected_safe_rate": 0.7,
+      "projection_success_rate": 0.7368421052631579,
+      "abstention_rate": 0.05,
+      "ood_abstention_rate": 0.05,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.25,
+      "counterfactual_consensus_rate": 0.7,
+      "counterfactual_mean_safe_rollout_rate": 0.7125,
+      "counterfactual_mean_projected_grasp_error_m": 0.005224219749562063
+    },
+    "precision_insert": {
+      "episodes": 20,
+      "raw_mean_grasp_position_error_m": 0.005174887246368239,
+      "raw_scene_safe_rate": 1.0,
+      "shielded_mean_grasp_position_error_m": 0.003743869054231466,
+      "projected_safe_rate": 0.85,
+      "projection_success_rate": 0.85,
+      "abstention_rate": 0.0,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.15,
+      "counterfactual_consensus_rate": 0.75,
+      "counterfactual_mean_safe_rollout_rate": 0.775,
+      "counterfactual_mean_projected_grasp_error_m": 0.004379784037542016
+    }
+  },
+  "action_chunk_length": 32,
+  "model_parameters": 1321478,
+  "real_motion_enabled": false,
+  "episodes": 100,
+  "episodes_per_task": 20,
+  "seed": 20260815,
+  "samples_per_context": 3,
+  "abstain_dispersion_rad": 0.45,
+  "context_support_threshold": 9.129976056741487,
+  "counterfactual_consensus": {
+    "enabled": true,
+    "rollouts_per_episode": 4,
+    "minimum_safe_fraction": 0.75,
+    "perception_noise_fraction": 0.5,
+    "accepted_rate": 0.74,
+    "mean_safe_rollout_rate": 0.77,
+    "mean_projected_grasp_error_m": 0.004829548270382682,
+    "rejection_reason_counts": {
+      "IK projection failed at grasp": 10,
+      "IK projection failed at grasp approach": 4,
+      "IK projection failed at place": 48,
+      "IK projection failed at place approach": 10,
+      "counterfactual context outside training support": 4,
+      "observed place pose outside selected task profile": 3,
+      "observed pose outside diagnostic workspace": 1,
+      "projected trajectory violates diagnostic scene clearance": 12
+    }
+  },
+  "belief_space_planning": {
+    "enabled": true,
+    "benchmark_only_synthetic_multiview_observations": true,
+    "view_count": 5,
+    "candidate_count": 3,
+    "synthetic_outlier_probability": 0.2,
+    "minimum_scenario_safe_fraction": 0.75,
+    "task_metrics": {
+      "transfer": {
+        "episodes": 20,
+        "primary_mean_pose_error_m": 0.004412875690939192,
+        "fused_mean_pose_error_m": 0.0024358164484096856,
+        "selected_safe_rate": 0.6,
+        "support_abstention_rate": 0.0,
+        "mean_inlier_fraction": 0.6599999999999999,
+        "mean_effective_view_count": 4.610279242218843,
+        "mean_scenario_safe_fraction": 0.9,
+        "mean_clearance_cvar_m": 0.049598243666460394,
+        "selected_mean_grasp_position_error_m": 0.002406830081514582
+      },
+      "sort_zone_a": {
+        "episodes": 20,
+        "primary_mean_pose_error_m": 0.0045940486550356445,
+        "fused_mean_pose_error_m": 0.002490532470801647,
+        "selected_safe_rate": 0.7,
+        "support_abstention_rate": 0.0,
+        "mean_inlier_fraction": 0.6700000000000002,
+        "mean_effective_view_count": 4.568446792014044,
+        "mean_scenario_safe_fraction": 0.9142857142857144,
+        "mean_clearance_cvar_m": 0.05723696768579818,
+        "selected_mean_grasp_position_error_m": 0.0024288525728530844
+      },
+      "sort_zone_b": {
+        "episodes": 20,
+        "primary_mean_pose_error_m": 0.004556178597816485,
+        "fused_mean_pose_error_m": 0.0025802563773728903,
+        "selected_safe_rate": 0.65,
+        "support_abstention_rate": 0.0,
+        "mean_inlier_fraction": 0.6500000000000001,
+        "mean_effective_view_count": 4.609569773872622,
+        "mean_scenario_safe_fraction": 0.9384615384615386,
+        "mean_clearance_cvar_m": 0.034480624833608156,
+        "selected_mean_grasp_position_error_m": 0.0025899450413011125
+      },
+      "inspection_scan": {
+        "episodes": 20,
+        "primary_mean_pose_error_m": 0.00466593274213114,
+        "fused_mean_pose_error_m": 0.0025229042255189966,
+        "selected_safe_rate": 0.6,
+        "support_abstention_rate": 0.05,
+        "mean_inlier_fraction": 0.6100000000000001,
+        "mean_effective_view_count": 4.550263157383414,
+        "mean_scenario_safe_fraction": 0.9500000000000001,
+        "mean_clearance_cvar_m": 0.06101827918191966,
+        "selected_mean_grasp_position_error_m": 0.00272687354481773
+      },
+      "precision_insert": {
+        "episodes": 20,
+        "primary_mean_pose_error_m": 0.004109261579182213,
+        "fused_mean_pose_error_m": 0.002528104418540023,
+        "selected_safe_rate": 0.6,
+        "support_abstention_rate": 0.0,
+        "mean_inlier_fraction": 0.64,
+        "mean_effective_view_count": 4.465586528971771,
+        "mean_scenario_safe_fraction": 0.9666666666666668,
+        "mean_clearance_cvar_m": 0.018811865987890284,
+        "selected_mean_grasp_position_error_m": 0.0025639726962988925
+      }
+    },
+    "metrics": {
+      "primary_mean_pose_error_m": 0.004467659453020935,
+      "fused_mean_pose_error_m": 0.0025115227881286483,
+      "pose_error_reduction_fraction": 0.4378437267794861,
+      "mean_inlier_fraction": 0.6460000000000001,
+      "mean_effective_view_count": 4.560829098892139,
+      "selected_safe_rate": 0.63,
+      "support_abstention_rate": 0.01,
+      "mean_selected_scenario_safe_fraction": 0.9333333333333331,
+      "mean_selected_clearance_cvar_m": 0.04448740216624325,
+      "selected_mean_grasp_position_error_m": 0.0025404021814036835,
+      "mean_selected_joint_travel_rad": 3.3621143283625097,
+      "mean_selected_joint_acceleration_rad": 0.08146708577112631
+    },
+    "rejection_reason_counts": {
+      "IK projection failed at grasp": 77,
+      "IK projection failed at grasp approach": 30,
+      "IK projection failed at place": 209,
+      "IK projection failed at place approach": 54,
+      "approach pose outside diagnostic workspace": 9,
+      "belief observation outside calibrated training support": 1,
+      "no diffusion candidate met the belief-scenario safety threshold": 36,
+      "observed place pose outside selected task profile": 21,
+      "observed pose outside diagnostic workspace": 3,
+      "projected trajectory violates diagnostic scene clearance": 30
+    }
+  },
+  "metrics": {
+    "raw_mean_grasp_position_error_m": 0.0066159368196210214,
+    "raw_scene_safe_rate": 0.98,
+    "shielded_mean_grasp_position_error_m": 0.004409846669189937,
+    "shielded_scene_safe_rate": 0.78,
+    "projection_success_rate": 0.7878787878787878,
+    "abstention_rate": 0.01,
+    "ood_abstention_rate": 0.01,
+    "dispersion_abstention_rate": 0.0
+  },
+  "projection_failure_counts": {
+    "IK projection failed at grasp": 1,
+    "IK projection failed at grasp approach": 2,
+    "IK projection failed at place": 11,
+    "IK projection failed at place approach": 4,
+    "observed place pose outside selected task profile": 1,
+    "projected trajectory violates diagnostic scene clearance": 2
+  },
+  "examples": [
+    {
+      "index": 0,
+      "task": "transfer",
+      "dispersion_rad": 0.0772104486823082,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.007697377661348926,
+      "shielded_grasp_error_m": 0.0028952706740062117
+    },
+    {
+      "index": 1,
+      "task": "inspection_scan",
+      "dispersion_rad": 0.056564729660749435,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at place"
+    },
+    {
+      "index": 2,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.03252900019288063,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.003906933490632328,
+      "shielded_grasp_error_m": 0.002616216932478572
+    },
+    {
+      "index": 3,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.05422027036547661,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at place"
+    },
+    {
+      "index": 4,
+      "task": "precision_insert",
+      "dispersion_rad": 0.12782777845859528,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.008000029332111433,
+      "shielded_grasp_error_m": 0.00693475271197229
+    },
+    {
+      "index": 5,
+      "task": "inspection_scan",
+      "support_distance": 10.97011551615872,
+      "dispersion_rad": 0.03216180205345154,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 6,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.09045595675706863,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at place approach"
+    },
+    {
+      "index": 7,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.03829994797706604,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.004976622809708437,
+      "shielded_grasp_error_m": 0.0013850955353414166
+    }
+  ],
+  "limitations": [
+    "training data is generated from the checked-in POE kinematic model and a synthetic perception noise model",
+    "constraint projection is a planning safety shield, not a measured real-arm control law",
+    "the diagnostic scene checks TCP clearance only and does not replace full-link collision checking"
+  ]
+}

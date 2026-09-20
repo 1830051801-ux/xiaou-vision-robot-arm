@@ -1,0 +1,265 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "checkpoint": "runtime/decision/transformer_policy_repeat.pt",
+  "model": "runtime/decision/transformer_policy_repeat.int8.onnx",
+  "scenarios": [
+    {
+      "scenario": "bottle",
+      "fp32": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.998747,
+        "risk": 0.098504,
+        "action_params": [
+          0.280592,
+          -0.021235,
+          0.200032,
+          0.085434,
+          0.063836,
+          0.005718
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "int8": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.998753,
+        "risk": 0.099112,
+        "action_params": [
+          0.281183,
+          -0.021469,
+          0.200217,
+          0.085275,
+          0.063688,
+          0.00573
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "strategy_match": true,
+      "phase_match": true,
+      "status_match": true,
+      "max_action_abs_delta": 0.00059089,
+      "confidence_abs_delta": 6.2e-06,
+      "risk_abs_delta": 0.000608
+    },
+    {
+      "scenario": "cup",
+      "fp32": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.998666,
+        "risk": 0.10081,
+        "action_params": [
+          0.284642,
+          -0.023148,
+          0.115357,
+          0.095795,
+          0.077139,
+          0.005784
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "int8": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.998638,
+        "risk": 0.101348,
+        "action_params": [
+          0.284087,
+          -0.020921,
+          0.115414,
+          0.095547,
+          0.076978,
+          0.005765
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "strategy_match": true,
+      "phase_match": true,
+      "status_match": true,
+      "max_action_abs_delta": 0.00222744,
+      "confidence_abs_delta": 2.795e-05,
+      "risk_abs_delta": 0.00053783
+    },
+    {
+      "scenario": "pen",
+      "fp32": {
+        "strategy": "pen_pinch",
+        "phase": "grasp",
+        "confidence": 0.997244,
+        "risk": 0.101357,
+        "action_params": [
+          0.287547,
+          -0.026963,
+          0.139714,
+          0.034743,
+          0.009072,
+          0.011443
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "int8": {
+        "strategy": "pen_pinch",
+        "phase": "grasp",
+        "confidence": 0.997322,
+        "risk": 0.10076,
+        "action_params": [
+          0.287765,
+          -0.030202,
+          0.140487,
+          0.034385,
+          0.00897,
+          0.011339
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "strategy_match": true,
+      "phase_match": true,
+      "status_match": true,
+      "max_action_abs_delta": 0.00323852,
+      "confidence_abs_delta": 7.838e-05,
+      "risk_abs_delta": 0.00059656
+    },
+    {
+      "scenario": "desktop_item",
+      "fp32": {
+        "strategy": "flat_pick",
+        "phase": "grasp",
+        "confidence": 0.997238,
+        "risk": 0.10045,
+        "action_params": [
+          0.292724,
+          -0.033942,
+          0.044087,
+          0.08986,
+          0.065816,
+          0.01131
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "int8": {
+        "strategy": "flat_pick",
+        "phase": "grasp",
+        "confidence": 0.997191,
+        "risk": 0.100496,
+        "action_params": [
+          0.291451,
+          -0.032317,
+          0.044269,
+          0.089726,
+          0.065568,
+          0.011331
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "strategy_match": true,
+      "phase_match": true,
+      "status_match": true,
+      "max_action_abs_delta": 0.00162461,
+      "confidence_abs_delta": 4.715e-05,
+      "risk_abs_delta": 4.607e-05
+    },
+    {
+      "scenario": "tissue_pull",
+      "fp32": {
+        "strategy": "tissue_pull",
+        "phase": "pull",
+        "confidence": 0.99798,
+        "risk": 0.197081,
+        "action_params": [
+          0.285744,
+          0.005773,
+          0.049091,
+          0.064697,
+          0.03442,
+          0.082373
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "int8": {
+        "strategy": "tissue_pull",
+        "phase": "pull",
+        "confidence": 0.997981,
+        "risk": 0.196544,
+        "action_params": [
+          0.284394,
+          0.000727,
+          0.049357,
+          0.064347,
+          0.034315,
+          0.082797
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "strategy_match": true,
+      "phase_match": true,
+      "status_match": true,
+      "max_action_abs_delta": 0.00504612,
+      "confidence_abs_delta": 8.3e-07,
+      "risk_abs_delta": 0.00053634
+    },
+    {
+      "scenario": "cola",
+      "fp32": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.998608,
+        "risk": 0.09985,
+        "action_params": [
+          0.285719,
+          -0.038916,
+          0.176611,
+          0.08274,
+          0.063662,
+          0.00538
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "int8": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.998626,
+        "risk": 0.100139,
+        "action_params": [
+          0.285203,
+          -0.042823,
+          0.176949,
+          0.082396,
+          0.063503,
+          0.005302
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "strategy_match": true,
+      "phase_match": true,
+      "status_match": true,
+      "max_action_abs_delta": 0.0039067,
+      "confidence_abs_delta": 1.842e-05,
+      "risk_abs_delta": 0.00028878
+    }
+  ],
+  "strategy_matches": 6,
+  "phase_matches": 6,
+  "status_matches": 6,
+  "scenario_count": 6,
+  "fp32_model": "runtime/decision/transformer_policy_repeat.onnx",
+  "int8_model": "runtime/decision/transformer_policy_repeat.int8.onnx",
+  "fp32_bytes": 286139,
+  "int8_bytes": 700064,
+  "size_ratio": 2.446587,
+  "quantization": "dynamic_int8_linear_weights",
+  "warning": "This validates policy equivalence on deterministic synthetic scenes; collect real episodes before hardware use."
+}

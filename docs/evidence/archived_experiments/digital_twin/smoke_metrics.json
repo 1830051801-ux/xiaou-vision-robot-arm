@@ -1,0 +1,95 @@
+{
+  "evaluation": "constraint_diffusion_digital_twin",
+  "real_motion_enabled": false,
+  "episodes": 12,
+  "samples_per_context": 2,
+  "abstain_dispersion_rad": 0.8,
+  "metrics": {
+    "raw_mean_grasp_position_error_m": 0.3059113608460821,
+    "raw_scene_safe_rate": 0.0,
+    "shielded_mean_grasp_position_error_m": null,
+    "shielded_scene_safe_rate": 0.0,
+    "projection_success_rate": 0.0,
+    "abstention_rate": 1.0
+  },
+  "projection_failure_counts": {},
+  "examples": [
+    {
+      "index": 0,
+      "dispersion_rad": 1.7269012928009033,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 1,
+      "dispersion_rad": 1.1478406190872192,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 2,
+      "dispersion_rad": 0.8414267301559448,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 3,
+      "dispersion_rad": 1.8428415060043335,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 4,
+      "dispersion_rad": 1.8119605779647827,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 5,
+      "dispersion_rad": 1.4098371267318726,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 6,
+      "dispersion_rad": 2.1747488975524902,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 7,
+      "dispersion_rad": 1.3128104209899902,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 8,
+      "dispersion_rad": 1.9326609373092651,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 9,
+      "dispersion_rad": 0.9848300814628601,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 10,
+      "dispersion_rad": 1.9592070579528809,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 11,
+      "dispersion_rad": 1.3878674507141113,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    }
+  ],
+  "limitations": [
+    "training data is generated from the checked-in POE kinematic model and a synthetic perception noise model",
+    "constraint projection is a planning safety shield, not a measured real-arm control law",
+    "the diagnostic scene checks TCP clearance only and does not replace full-link collision checking"
+  ]
+}

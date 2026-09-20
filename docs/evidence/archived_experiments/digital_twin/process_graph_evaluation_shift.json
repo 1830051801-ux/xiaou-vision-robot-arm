@@ -1,0 +1,197 @@
+{
+  "evaluation": "constraint_diffusion_digital_twin",
+  "architecture": "process_graph_multitask_action_chunk_transformer_diffusion",
+  "context_tokens": [
+    "visual_grasp_pose",
+    "visual_place_goal",
+    "observation_uncertainty",
+    "task_profile",
+    "learned_task_token"
+  ],
+  "task_suite": [
+    "transfer",
+    "sort_zone_a",
+    "sort_zone_b",
+    "inspection_scan",
+    "precision_insert"
+  ],
+  "task_metrics": {
+    "transfer": {
+      "episodes": 128,
+      "raw_mean_grasp_position_error_m": 0.010521590806292346,
+      "raw_scene_safe_rate": 0.984375,
+      "shielded_mean_grasp_position_error_m": null,
+      "projected_safe_rate": 0.0,
+      "projection_success_rate": 0.0,
+      "abstention_rate": 1.0,
+      "ood_abstention_rate": 1.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.0,
+      "counterfactual_consensus_rate": 0.0,
+      "counterfactual_mean_safe_rollout_rate": 0.0,
+      "counterfactual_mean_projected_grasp_error_m": null
+    },
+    "sort_zone_a": {
+      "episodes": 128,
+      "raw_mean_grasp_position_error_m": 0.011517096027108993,
+      "raw_scene_safe_rate": 0.9921875,
+      "shielded_mean_grasp_position_error_m": null,
+      "projected_safe_rate": 0.0,
+      "projection_success_rate": 0.0,
+      "abstention_rate": 1.0,
+      "ood_abstention_rate": 1.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.0,
+      "counterfactual_consensus_rate": 0.0,
+      "counterfactual_mean_safe_rollout_rate": 0.0,
+      "counterfactual_mean_projected_grasp_error_m": null
+    },
+    "sort_zone_b": {
+      "episodes": 128,
+      "raw_mean_grasp_position_error_m": 0.01110271240255996,
+      "raw_scene_safe_rate": 0.984375,
+      "shielded_mean_grasp_position_error_m": null,
+      "projected_safe_rate": 0.0,
+      "projection_success_rate": 0.0,
+      "abstention_rate": 1.0,
+      "ood_abstention_rate": 1.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.0,
+      "counterfactual_consensus_rate": 0.0,
+      "counterfactual_mean_safe_rollout_rate": 0.0,
+      "counterfactual_mean_projected_grasp_error_m": null
+    },
+    "inspection_scan": {
+      "episodes": 128,
+      "raw_mean_grasp_position_error_m": 0.011482762086682054,
+      "raw_scene_safe_rate": 1.0,
+      "shielded_mean_grasp_position_error_m": null,
+      "projected_safe_rate": 0.0,
+      "projection_success_rate": 0.0,
+      "abstention_rate": 1.0,
+      "ood_abstention_rate": 1.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.0,
+      "counterfactual_consensus_rate": 0.0,
+      "counterfactual_mean_safe_rollout_rate": 0.0,
+      "counterfactual_mean_projected_grasp_error_m": null
+    },
+    "precision_insert": {
+      "episodes": 128,
+      "raw_mean_grasp_position_error_m": 0.012083072557218279,
+      "raw_scene_safe_rate": 0.96875,
+      "shielded_mean_grasp_position_error_m": null,
+      "projected_safe_rate": 0.0,
+      "projection_success_rate": 0.0,
+      "abstention_rate": 1.0,
+      "ood_abstention_rate": 1.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.0,
+      "counterfactual_consensus_rate": 0.0,
+      "counterfactual_mean_safe_rollout_rate": 0.0,
+      "counterfactual_mean_projected_grasp_error_m": null
+    }
+  },
+  "action_chunk_length": 32,
+  "model_parameters": 1321478,
+  "real_motion_enabled": false,
+  "episodes": 640,
+  "seed": 20260815,
+  "samples_per_context": 3,
+  "abstain_dispersion_rad": 0.45,
+  "context_support_threshold": 9.129976056741487,
+  "counterfactual_consensus": {
+    "enabled": true,
+    "rollouts_per_episode": 4,
+    "minimum_safe_fraction": 0.75,
+    "perception_noise_fraction": 0.5,
+    "accepted_rate": 0.0,
+    "mean_safe_rollout_rate": 0.0,
+    "mean_projected_grasp_error_m": null,
+    "rejection_reason_counts": {
+      "counterfactual context outside training support": 2560
+    }
+  },
+  "metrics": {
+    "raw_mean_grasp_position_error_m": 0.011341446775972326,
+    "raw_scene_safe_rate": 0.9859375,
+    "shielded_mean_grasp_position_error_m": null,
+    "shielded_scene_safe_rate": 0.0,
+    "projection_success_rate": 0.0,
+    "abstention_rate": 1.0,
+    "ood_abstention_rate": 1.0,
+    "dispersion_abstention_rate": 0.0
+  },
+  "projection_failure_counts": {},
+  "examples": [
+    {
+      "index": 0,
+      "task": "transfer",
+      "support_distance": 10.543576842939366,
+      "dispersion_rad": 0.09096676111221313,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 1,
+      "task": "sort_zone_b",
+      "support_distance": 9.778700969097896,
+      "dispersion_rad": 0.055827487260103226,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 2,
+      "task": "inspection_scan",
+      "support_distance": 9.523861450087345,
+      "dispersion_rad": 0.024398386478424072,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 3,
+      "task": "precision_insert",
+      "support_distance": 10.252121153878715,
+      "dispersion_rad": 0.0341947041451931,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 4,
+      "task": "transfer",
+      "support_distance": 9.8121768027117,
+      "dispersion_rad": 0.07822256535291672,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 5,
+      "task": "transfer",
+      "support_distance": 9.939372052009062,
+      "dispersion_rad": 0.029458677396178246,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 6,
+      "task": "sort_zone_b",
+      "support_distance": 9.90473569740434,
+      "dispersion_rad": 0.04140445590019226,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 7,
+      "task": "precision_insert",
+      "support_distance": 10.644118466737533,
+      "dispersion_rad": 0.0496487058699131,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    }
+  ],
+  "limitations": [
+    "training data is generated from the checked-in POE kinematic model and a synthetic perception noise model",
+    "constraint projection is a planning safety shield, not a measured real-arm control law",
+    "the diagnostic scene checks TCP clearance only and does not replace full-link collision checking"
+  ]
+}

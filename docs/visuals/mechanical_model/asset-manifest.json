@@ -1,0 +1,255 @@
+{
+  "schema": "xiaou_mechanical_archive_v1",
+  "archive_date": "2026-09-20",
+  "mesh_units": "mm",
+  "urdf_scale": 0.001,
+  "scope": "original CAD and static home-pose visual exports; not measured dynamics or certified collision geometry",
+  "files": [
+    {
+      "path": "source/robot-assembly.step",
+      "bytes": 25005455,
+      "source_sha256": "c79f55dfa34266dc783730b53fa74655252a3404891ea40f08508e53645c80cd",
+      "sha256": "c79f55dfa34266dc783730b53fa74655252a3404891ea40f08508e53645c80cd",
+      "stored_as": "source/robot-assembly.step"
+    },
+    {
+      "path": "geometry/world_model/gripper_world.stl",
+      "bytes": 10018338,
+      "source_sha256": "0be6c3f83ffeca834650a446edc979ab96ed2ec23d5ca7ae675d864c1cfe1e73",
+      "sha256": "0be6c3f83ffeca834650a446edc979ab96ed2ec23d5ca7ae675d864c1cfe1e73",
+      "stored_as": "geometry/world_model/gripper_world.stl"
+    },
+    {
+      "path": "geometry/world_model/link_1_world.stl",
+      "bytes": 58957878,
+      "source_sha256": "71542c34db7b26feedec7ce0ce9ae3be4b1be91db7c9a450280af74bc24bddf0",
+      "sha256": "71542c34db7b26feedec7ce0ce9ae3be4b1be91db7c9a450280af74bc24bddf0",
+      "stored_as": "geometry/world_model/link_1_world.stl"
+    },
+    {
+      "path": "geometry/world_model/link_2_world.stl",
+      "bytes": 71705158,
+      "source_sha256": "8d8951fee549205eb15a773b31dbbbbdf0b4f99121f4c0b139d85322ff78ff0d",
+      "sha256": "8d8951fee549205eb15a773b31dbbbbdf0b4f99121f4c0b139d85322ff78ff0d",
+      "stored_as": "geometry/world_model/link_2_world.stl"
+    },
+    {
+      "path": "geometry/world_model/link_3_world.stl",
+      "bytes": 86103958,
+      "source_sha256": "a0cef9365f65b010eb60dea2e05da3d3aa0482469ea1ff9d723ef9364c8ac4cf",
+      "sha256": "a0cef9365f65b010eb60dea2e05da3d3aa0482469ea1ff9d723ef9364c8ac4cf",
+      "stored_as": "geometry/world_model/link_3_world.stl"
+    },
+    {
+      "path": "geometry/world_model/link_4_world.stl",
+      "bytes": 86103958,
+      "source_sha256": "9840d3bca736594c9bb9d2966b38c359d30ef430d9226abe6f9b001939f09e75",
+      "sha256": "9840d3bca736594c9bb9d2966b38c359d30ef430d9226abe6f9b001939f09e75",
+      "stored_as": "geometry/world_model/link_4_world.stl"
+    },
+    {
+      "path": "geometry/world_model/link_5_world.stl",
+      "bytes": 71705158,
+      "source_sha256": "1ad758cebd329fef8cf34825a02b78b3eee43b8fb25c7b9f2d47d13e82aca581",
+      "sha256": "1ad758cebd329fef8cf34825a02b78b3eee43b8fb25c7b9f2d47d13e82aca581",
+      "stored_as": "geometry/world_model/link_5_world.stl"
+    },
+    {
+      "path": "geometry/world_model/link_6_world.stl",
+      "bytes": 71705158,
+      "source_sha256": "9ba3cfccd51c254812e68476c0e2d1657b2f09fc1a0d8756f1cc06691a89e4ef",
+      "sha256": "9ba3cfccd51c254812e68476c0e2d1657b2f09fc1a0d8756f1cc06691a89e4ef",
+      "stored_as": "geometry/world_model/link_6_world.stl"
+    },
+    {
+      "path": "geometry/world_model/manifest.json",
+      "bytes": 2144,
+      "source_sha256": "5978049b090a11d7d4daf717c179987296a164036c5579e694cf673e57fb9b5c",
+      "sha256": "9aa9b2088581a38763b4637115a81355d1c0696d9f7ca9b401ca2e4de43f0f47",
+      "stored_as": "geometry/world_model/manifest.json"
+    },
+    {
+      "path": "geometry/world_model/robot_world_model.urdf",
+      "bytes": 2886,
+      "source_sha256": "6b8c70b9e072ca3aedf47ef4482aeaf35eeec7d46d616dd395fdd0be8c90f243",
+      "sha256": "6b8c70b9e072ca3aedf47ef4482aeaf35eeec7d46d616dd395fdd0be8c90f243",
+      "stored_as": "geometry/world_model/robot_world_model.urdf"
+    },
+    {
+      "path": "geometry/world_model/wrist_connector_world.stl",
+      "bytes": 1062898,
+      "source_sha256": "78c76d63a618759b81bade6c0b1ebba24201fbe6e69603284074598f358880c9",
+      "sha256": "78c76d63a618759b81bade6c0b1ebba24201fbe6e69603284074598f358880c9",
+      "stored_as": "geometry/world_model/wrist_connector_world.stl"
+    },
+    {
+      "path": "geometry/gripper.stl",
+      "bytes": 13343218,
+      "source_sha256": "9ab6a26cea70714fc0a6de42d8e34e1c5eaa002192e0d768e9cd7f17ac277513",
+      "sha256": "9ab6a26cea70714fc0a6de42d8e34e1c5eaa002192e0d768e9cd7f17ac277513",
+      "stored_as": "geometry/gripper.stl"
+    },
+    {
+      "path": "geometry/gripper_axis.png",
+      "bytes": 93465,
+      "source_sha256": "278deafc33920094c44e1131750d1304a1e33b66d9cd35efd5585c81f084f554",
+      "sha256": "278deafc33920094c44e1131750d1304a1e33b66d9cd35efd5585c81f084f554",
+      "stored_as": "geometry/gripper_axis.png"
+    },
+    {
+      "path": "geometry/gripper_iso.png",
+      "bytes": 160060,
+      "source_sha256": "413fb9274e03e793fc4f93ef7834a5d1b5b1af32b265c30870780875c1327608",
+      "sha256": "413fb9274e03e793fc4f93ef7834a5d1b5b1af32b265c30870780875c1327608",
+      "stored_as": "geometry/gripper_iso.png"
+    },
+    {
+      "path": "geometry/gripper_shell_01.stl",
+      "bytes": 2618,
+      "source_sha256": "d59946d92e43713117307a472175f38b97766dd7482907a56bb5c313255a8986",
+      "sha256": "d59946d92e43713117307a472175f38b97766dd7482907a56bb5c313255a8986",
+      "stored_as": "geometry/gripper_shell_01.stl"
+    },
+    {
+      "path": "geometry/gripper_shell_02.stl",
+      "bytes": 81138,
+      "source_sha256": "f5b5ace472feb35bab8033332ee0be6ac0ee7e4dccb3548623f59d59d0777248",
+      "sha256": "f5b5ace472feb35bab8033332ee0be6ac0ee7e4dccb3548623f59d59d0777248",
+      "stored_as": "geometry/gripper_shell_02.stl"
+    },
+    {
+      "path": "geometry/gripper_shell_03.stl",
+      "bytes": 81138,
+      "source_sha256": "e478b9205ac1c45839fe3f27ed6248ca3db822d4ce78f1906a9169e3e7208925",
+      "sha256": "e478b9205ac1c45839fe3f27ed6248ca3db822d4ce78f1906a9169e3e7208925",
+      "stored_as": "geometry/gripper_shell_03.stl"
+    },
+    {
+      "path": "geometry/gripper_shell_04.stl",
+      "bytes": 80618,
+      "source_sha256": "6271437693dcf87c8c392b1f51c62387822ae3c12e596477817f1ec46e7702e0",
+      "sha256": "6271437693dcf87c8c392b1f51c62387822ae3c12e596477817f1ec46e7702e0",
+      "stored_as": "geometry/gripper_shell_04.stl"
+    },
+    {
+      "path": "geometry/gripper_shell_05.stl",
+      "bytes": 3138,
+      "source_sha256": "04d269232c6f994c08691cdfe76f591d0203483c1e7b713f1ab3199419c1f871",
+      "sha256": "04d269232c6f994c08691cdfe76f591d0203483c1e7b713f1ab3199419c1f871",
+      "stored_as": "geometry/gripper_shell_05.stl"
+    },
+    {
+      "path": "geometry/gripper_shell_06.stl",
+      "bytes": 80618,
+      "source_sha256": "c6a7052140d2f9ceab42f743e514004d0d5fed4ad32750d4aeda0475fa3500f5",
+      "sha256": "c6a7052140d2f9ceab42f743e514004d0d5fed4ad32750d4aeda0475fa3500f5",
+      "stored_as": "geometry/gripper_shell_06.stl"
+    },
+    {
+      "path": "geometry/gripper_shell_07.stl",
+      "bytes": 2098,
+      "source_sha256": "6b1b5b1e2dd7cf93ca64d540915d3e16f706a7de7eeb66c7dbedadfb0b881b2e",
+      "sha256": "6b1b5b1e2dd7cf93ca64d540915d3e16f706a7de7eeb66c7dbedadfb0b881b2e",
+      "stored_as": "geometry/gripper_shell_07.stl"
+    },
+    {
+      "path": "geometry/gripper_shell_08.stl",
+      "bytes": 3138,
+      "source_sha256": "2f9c8a214f0b09bd74f80f3ceb5690825bd789ef5cf989146e0eb4d4634371c7",
+      "sha256": "2f9c8a214f0b09bd74f80f3ceb5690825bd789ef5cf989146e0eb4d4634371c7",
+      "stored_as": "geometry/gripper_shell_08.stl"
+    },
+    {
+      "path": "geometry/gripper_shell_09.stl",
+      "bytes": 959418,
+      "source_sha256": "3324ad0a5c15b7a4ace62097aa0d5f99274db120f669ec4b620f411a1fb7074b",
+      "sha256": "3324ad0a5c15b7a4ace62097aa0d5f99274db120f669ec4b620f411a1fb7074b",
+      "stored_as": "geometry/gripper_shell_09.stl"
+    },
+    {
+      "path": "geometry/gripper_shell_11.stl",
+      "bytes": 12049458,
+      "source_sha256": "5c1084c20c8d5ebc7df308747f21d00c00642cb36dbf31d745551fb2e666af93",
+      "sha256": "5c1084c20c8d5ebc7df308747f21d00c00642cb36dbf31d745551fb2e666af93",
+      "stored_as": "geometry/gripper_shell_11.stl"
+    },
+    {
+      "path": "geometry/gripper_side_x.png",
+      "bytes": 90404,
+      "source_sha256": "799b34141392eaf837d2552fc1b874256d281431e69eb9faf96fab9aa9b90bb3",
+      "sha256": "799b34141392eaf837d2552fc1b874256d281431e69eb9faf96fab9aa9b90bb3",
+      "stored_as": "geometry/gripper_side_x.png"
+    },
+    {
+      "path": "geometry/gripper_side_y.png",
+      "bytes": 88644,
+      "source_sha256": "639f4a23e1f51f202a62fa82520abd28e4b1614212abd7a046ca748bca25842f",
+      "sha256": "639f4a23e1f51f202a62fa82520abd28e4b1614212abd7a046ca748bca25842f",
+      "stored_as": "geometry/gripper_side_y.png"
+    },
+    {
+      "path": "geometry/links_world/link_1_world.stl",
+      "bytes": 58957878,
+      "source_sha256": "71542c34db7b26feedec7ce0ce9ae3be4b1be91db7c9a450280af74bc24bddf0",
+      "sha256": "71542c34db7b26feedec7ce0ce9ae3be4b1be91db7c9a450280af74bc24bddf0",
+      "stored_as": "geometry/world_model/link_1_world.stl"
+    },
+    {
+      "path": "geometry/links_world/link_2_world.stl",
+      "bytes": 71705158,
+      "source_sha256": "8d8951fee549205eb15a773b31dbbbbdf0b4f99121f4c0b139d85322ff78ff0d",
+      "sha256": "8d8951fee549205eb15a773b31dbbbbdf0b4f99121f4c0b139d85322ff78ff0d",
+      "stored_as": "geometry/world_model/link_2_world.stl"
+    },
+    {
+      "path": "geometry/links_world/link_3_world.stl",
+      "bytes": 86103958,
+      "source_sha256": "a0cef9365f65b010eb60dea2e05da3d3aa0482469ea1ff9d723ef9364c8ac4cf",
+      "sha256": "a0cef9365f65b010eb60dea2e05da3d3aa0482469ea1ff9d723ef9364c8ac4cf",
+      "stored_as": "geometry/world_model/link_3_world.stl"
+    },
+    {
+      "path": "geometry/links_world/link_4_world.stl",
+      "bytes": 86103958,
+      "source_sha256": "9840d3bca736594c9bb9d2966b38c359d30ef430d9226abe6f9b001939f09e75",
+      "sha256": "9840d3bca736594c9bb9d2966b38c359d30ef430d9226abe6f9b001939f09e75",
+      "stored_as": "geometry/world_model/link_4_world.stl"
+    },
+    {
+      "path": "geometry/links_world/link_5_world.stl",
+      "bytes": 71705158,
+      "source_sha256": "1ad758cebd329fef8cf34825a02b78b3eee43b8fb25c7b9f2d47d13e82aca581",
+      "sha256": "1ad758cebd329fef8cf34825a02b78b3eee43b8fb25c7b9f2d47d13e82aca581",
+      "stored_as": "geometry/world_model/link_5_world.stl"
+    },
+    {
+      "path": "geometry/links_world/link_6_world.stl",
+      "bytes": 71705158,
+      "source_sha256": "9ba3cfccd51c254812e68476c0e2d1657b2f09fc1a0d8756f1cc06691a89e4ef",
+      "sha256": "9ba3cfccd51c254812e68476c0e2d1657b2f09fc1a0d8756f1cc06691a89e4ef",
+      "stored_as": "geometry/world_model/link_6_world.stl"
+    },
+    {
+      "path": "geometry/links_world/manifest.json",
+      "bytes": 1334,
+      "source_sha256": "ac15223f44dd62fee0a001d85bb974e0db7859eae625890e920748f9927ef095",
+      "sha256": "fdb45278e306ac7cf1fc28f581c21c06d3ea07e16a2bc09fb7f60b3f6e450511",
+      "stored_as": "geometry/links_world/manifest.json"
+    },
+    {
+      "path": "geometry/robot_full.stl",
+      "bytes": 645034018,
+      "source_sha256": "715df9d714612eed9c6e04beb1385d2dfe61125e42d4e73ee567b9d237b85d56",
+      "sha256": "715df9d714612eed9c6e04beb1385d2dfe61125e42d4e73ee567b9d237b85d56",
+      "stored_as": "geometry/robot_full.stl"
+    },
+    {
+      "path": "geometry/robot_full_iso.png",
+      "bytes": 259417,
+      "source_sha256": "69df8f38a652c3f5e160298e04e5b98f88f8cde49348535d051a4ec19e345cdb",
+      "sha256": "69df8f38a652c3f5e160298e04e5b98f88f8cde49348535d051a4ec19e345cdb",
+      "stored_as": "geometry/robot_full_iso.png"
+    }
+  ],
+  "unique_files": 29
+}

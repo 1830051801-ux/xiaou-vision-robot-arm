@@ -1,0 +1,195 @@
+{
+  "evaluation": "constraint_diffusion_digital_twin",
+  "architecture": "process_graph_multitask_action_chunk_transformer_diffusion",
+  "context_tokens": [
+    "visual_grasp_pose",
+    "visual_place_goal",
+    "observation_uncertainty",
+    "task_profile",
+    "learned_task_token"
+  ],
+  "task_suite": [
+    "transfer",
+    "sort_zone_a",
+    "sort_zone_b",
+    "inspection_scan",
+    "precision_insert"
+  ],
+  "task_metrics": {
+    "transfer": {
+      "episodes": 5,
+      "raw_mean_grasp_position_error_m": 0.21417015092823877,
+      "raw_scene_safe_rate": 0.4,
+      "shielded_mean_grasp_position_error_m": null,
+      "projected_safe_rate": 0.0,
+      "projection_success_rate": 0.0,
+      "abstention_rate": 1.0,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 1.0,
+      "projection_failure_rate": 0.0,
+      "counterfactual_consensus_rate": 1.0,
+      "counterfactual_mean_safe_rollout_rate": 0.9,
+      "counterfactual_mean_projected_grasp_error_m": 0.0029285229423694444
+    },
+    "sort_zone_a": {
+      "episodes": 5,
+      "raw_mean_grasp_position_error_m": 0.2161731131209919,
+      "raw_scene_safe_rate": 0.0,
+      "shielded_mean_grasp_position_error_m": 0.003097598949216396,
+      "projected_safe_rate": 0.2,
+      "projection_success_rate": 1.0,
+      "abstention_rate": 0.8,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.8,
+      "projection_failure_rate": 0.0,
+      "counterfactual_consensus_rate": 1.0,
+      "counterfactual_mean_safe_rollout_rate": 0.9,
+      "counterfactual_mean_projected_grasp_error_m": 0.006207265435264212
+    },
+    "sort_zone_b": {
+      "episodes": 5,
+      "raw_mean_grasp_position_error_m": 0.13693394191775762,
+      "raw_scene_safe_rate": 0.2,
+      "shielded_mean_grasp_position_error_m": null,
+      "projected_safe_rate": 0.0,
+      "projection_success_rate": 0.0,
+      "abstention_rate": 1.0,
+      "ood_abstention_rate": 0.2,
+      "dispersion_abstention_rate": 0.8,
+      "projection_failure_rate": 0.0,
+      "counterfactual_consensus_rate": 0.6,
+      "counterfactual_mean_safe_rollout_rate": 0.4,
+      "counterfactual_mean_projected_grasp_error_m": 0.005217468421889635
+    },
+    "inspection_scan": {
+      "episodes": 5,
+      "raw_mean_grasp_position_error_m": 0.15601292931347116,
+      "raw_scene_safe_rate": 0.2,
+      "shielded_mean_grasp_position_error_m": 0.003672043896341202,
+      "projected_safe_rate": 0.2,
+      "projection_success_rate": 1.0,
+      "abstention_rate": 0.8,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.8,
+      "projection_failure_rate": 0.0,
+      "counterfactual_consensus_rate": 1.0,
+      "counterfactual_mean_safe_rollout_rate": 1.0,
+      "counterfactual_mean_projected_grasp_error_m": 0.00544144477746882
+    },
+    "precision_insert": {
+      "episodes": 5,
+      "raw_mean_grasp_position_error_m": 0.15851284323678733,
+      "raw_scene_safe_rate": 0.0,
+      "shielded_mean_grasp_position_error_m": null,
+      "projected_safe_rate": 0.0,
+      "projection_success_rate": 0.0,
+      "abstention_rate": 0.8,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.8,
+      "projection_failure_rate": 0.2,
+      "counterfactual_consensus_rate": 0.6,
+      "counterfactual_mean_safe_rollout_rate": 0.5,
+      "counterfactual_mean_projected_grasp_error_m": 0.0036775028542619923
+    }
+  },
+  "action_chunk_length": 32,
+  "model_parameters": 748422,
+  "real_motion_enabled": false,
+  "episodes": 25,
+  "seed": 20260816,
+  "samples_per_context": 2,
+  "abstain_dispersion_rad": 0.45,
+  "context_support_threshold": 8.566678207437956,
+  "counterfactual_consensus": {
+    "enabled": true,
+    "rollouts_per_episode": 2,
+    "minimum_safe_fraction": 0.5,
+    "perception_noise_fraction": 0.5,
+    "accepted_rate": 0.84,
+    "mean_safe_rollout_rate": 0.74,
+    "mean_projected_grasp_error_m": 0.004741479981141298,
+    "rejection_reason_counts": {
+      "IK projection failed at grasp": 3,
+      "IK projection failed at place": 4,
+      "IK projection failed at place approach": 1,
+      "counterfactual context outside training support": 2,
+      "observed place pose outside selected task profile": 3
+    }
+  },
+  "metrics": {
+    "raw_mean_grasp_position_error_m": 0.17636059570344936,
+    "raw_scene_safe_rate": 0.16,
+    "shielded_mean_grasp_position_error_m": 0.003384821422778799,
+    "shielded_scene_safe_rate": 0.08,
+    "projection_success_rate": 0.6666666666666666,
+    "abstention_rate": 0.88,
+    "ood_abstention_rate": 0.04,
+    "dispersion_abstention_rate": 0.84
+  },
+  "projection_failure_counts": {
+    "IK projection failed at grasp": 1
+  },
+  "examples": [
+    {
+      "index": 0,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.7810826897621155,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 1,
+      "task": "sort_zone_b",
+      "dispersion_rad": 0.677005410194397,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 2,
+      "task": "sort_zone_b",
+      "dispersion_rad": 1.1177587509155273,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 3,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.5971744060516357,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 4,
+      "task": "precision_insert",
+      "dispersion_rad": 0.24755162000656128,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at grasp"
+    },
+    {
+      "index": 5,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.5441290140151978,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 6,
+      "task": "inspection_scan",
+      "dispersion_rad": 0.5751561522483826,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 7,
+      "task": "transfer",
+      "dispersion_rad": 0.4865725040435791,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    }
+  ],
+  "limitations": [
+    "training data is generated from the checked-in POE kinematic model and a synthetic perception noise model",
+    "constraint projection is a planning safety shield, not a measured real-arm control law",
+    "the diagnostic scene checks TCP clearance only and does not replace full-link collision checking"
+  ]
+}

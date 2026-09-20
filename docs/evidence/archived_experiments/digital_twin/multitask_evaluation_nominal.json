@@ -1,0 +1,176 @@
+{
+  "evaluation": "constraint_diffusion_digital_twin",
+  "architecture": "multitask_embodied_action_chunk_transformer_diffusion",
+  "context_tokens": [
+    "visual_grasp_pose",
+    "visual_place_goal",
+    "observation_uncertainty",
+    "task_profile",
+    "learned_task_token"
+  ],
+  "task_suite": [
+    "transfer",
+    "sort_zone_a",
+    "sort_zone_b",
+    "inspection_scan",
+    "precision_insert"
+  ],
+  "task_metrics": {
+    "transfer": {
+      "episodes": 128,
+      "raw_mean_grasp_position_error_m": 0.006957135563487536,
+      "raw_scene_safe_rate": 0.9765625,
+      "shielded_mean_grasp_position_error_m": 0.004194652517968291,
+      "projected_safe_rate": 0.8359375,
+      "projection_success_rate": 0.8359375,
+      "abstention_rate": 0.0,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.1640625
+    },
+    "sort_zone_a": {
+      "episodes": 128,
+      "raw_mean_grasp_position_error_m": 0.0067865784016232,
+      "raw_scene_safe_rate": 0.9921875,
+      "shielded_mean_grasp_position_error_m": 0.004112834622961757,
+      "projected_safe_rate": 0.84375,
+      "projection_success_rate": 0.84375,
+      "abstention_rate": 0.0,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.15625
+    },
+    "sort_zone_b": {
+      "episodes": 128,
+      "raw_mean_grasp_position_error_m": 0.006564717755583434,
+      "raw_scene_safe_rate": 0.984375,
+      "shielded_mean_grasp_position_error_m": 0.004404255965368867,
+      "projected_safe_rate": 0.78125,
+      "projection_success_rate": 0.78125,
+      "abstention_rate": 0.0,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.21875
+    },
+    "inspection_scan": {
+      "episodes": 128,
+      "raw_mean_grasp_position_error_m": 0.006495022315967113,
+      "raw_scene_safe_rate": 0.9921875,
+      "shielded_mean_grasp_position_error_m": 0.004193203270542203,
+      "projected_safe_rate": 0.8203125,
+      "projection_success_rate": 0.8267716535433071,
+      "abstention_rate": 0.0078125,
+      "ood_abstention_rate": 0.0078125,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.171875
+    },
+    "precision_insert": {
+      "episodes": 128,
+      "raw_mean_grasp_position_error_m": 0.006282586045920363,
+      "raw_scene_safe_rate": 0.953125,
+      "shielded_mean_grasp_position_error_m": 0.004014571754629452,
+      "projected_safe_rate": 0.8359375,
+      "projection_success_rate": 0.8359375,
+      "abstention_rate": 0.0,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.0,
+      "projection_failure_rate": 0.1640625
+    }
+  },
+  "action_chunk_length": 32,
+  "model_parameters": 1320710,
+  "real_motion_enabled": false,
+  "episodes": 640,
+  "seed": 20260815,
+  "samples_per_context": 3,
+  "abstain_dispersion_rad": 0.45,
+  "context_support_threshold": 9.129976056741487,
+  "metrics": {
+    "raw_mean_grasp_position_error_m": 0.006617208016516329,
+    "raw_scene_safe_rate": 0.9796875,
+    "shielded_mean_grasp_position_error_m": 0.004180806596568588,
+    "shielded_scene_safe_rate": 0.8234375,
+    "projection_success_rate": 0.8247261345852895,
+    "abstention_rate": 0.0015625,
+    "ood_abstention_rate": 0.0015625,
+    "dispersion_abstention_rate": 0.0
+  },
+  "projection_failure_counts": {
+    "IK projection failed at grasp": 26,
+    "IK projection failed at grasp approach": 12,
+    "IK projection failed at place": 32,
+    "IK projection failed at place approach": 20,
+    "approach pose outside diagnostic workspace": 3,
+    "observed place pose outside selected task profile": 7,
+    "observed pose outside diagnostic workspace": 4,
+    "projected trajectory violates diagnostic scene clearance": 8
+  },
+  "examples": [
+    {
+      "index": 0,
+      "task": "transfer",
+      "dispersion_rad": 0.07238440960645676,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.010354830659383758,
+      "shielded_grasp_error_m": 0.0028956188306542723
+    },
+    {
+      "index": 1,
+      "task": "inspection_scan",
+      "dispersion_rad": 0.040064483880996704,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at place"
+    },
+    {
+      "index": 2,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.04005102440714836,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.004179000660168781,
+      "shielded_grasp_error_m": 0.002692442812709708
+    },
+    {
+      "index": 3,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.04363161325454712,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at place"
+    },
+    {
+      "index": 4,
+      "task": "precision_insert",
+      "dispersion_rad": 0.06546685844659805,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.006038217401771265,
+      "shielded_grasp_error_m": 0.00693475271197229
+    },
+    {
+      "index": 5,
+      "task": "inspection_scan",
+      "support_distance": 10.97011551615872,
+      "dispersion_rad": 0.028874581679701805,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 6,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.0852172002196312,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at place approach"
+    },
+    {
+      "index": 7,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.061241429299116135,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.006826304999899345,
+      "shielded_grasp_error_m": 0.0013630756331858905
+    }
+  ],
+  "limitations": [
+    "training data is generated from the checked-in POE kinematic model and a synthetic perception noise model",
+    "constraint projection is a planning safety shield, not a measured real-arm control law",
+    "the diagnostic scene checks TCP clearance only and does not replace full-link collision checking"
+  ]
+}

@@ -1,0 +1,3206 @@
+{
+  "simulation": "real_world_monte_carlo_offline",
+  "seed": 20260808,
+  "trials": 100,
+  "real_can_opened": false,
+  "real_motion_enabled": false,
+  "workspace_gate_enforced": false,
+  "max_ik_iterations": 20,
+  "ik_restarts": 1,
+  "noise_model": {
+    "detection_frames": 5,
+    "pixel_sigma_px": 1.5,
+    "homography_residual_sigma_mm": 0.83,
+    "object_xy_sigma_mm": 2.0,
+    "yaw_sigma_deg": 3.0,
+    "grasp_height_mean_m": 0.03,
+    "grasp_height_sigma_m": 0.003
+  },
+  "calibration_output_range_mm": {
+    "x_min": 256.70397012495687,
+    "x_max": 280.8841914725066,
+    "y_min": -242.47427008023263,
+    "y_max": -219.3940430550363
+  },
+  "gates": {
+    "target_unstable": 0,
+    "outside_calibrated_image_region": 2,
+    "outside_robot_workspace": 0,
+    "accepted_for_ik": 98
+  },
+  "current_algorithm": {
+    "successes_after_workspace_gate": 0,
+    "success_rate_after_gate": 0.0,
+    "failures": {
+      "IK did not converge within the assumed joint envelope": 392
+    },
+    "failed_stages": {
+      "approach": 98,
+      "descend": 98,
+      "lift": 98,
+      "place": 98
+    },
+    "ik_iterations": {
+      "max": 20,
+      "mean": 16.0
+    }
+  },
+  "model_aligned_diagnostic": {
+    "successes_after_workspace_gate": 7,
+    "success_rate_after_gate": 0.07142857142857142,
+    "failures": {
+      "IK did not converge within the assumed joint envelope": 273
+    },
+    "failed_stages": {
+      "approach": 91,
+      "descend": 91,
+      "lift": 91
+    },
+    "ik_iterations": {
+      "max": 20,
+      "mean": 17.687755102040818
+    }
+  },
+  "global_findings": [
+    "The checked-in homography maps its calibration points to y approximately -220..-240 mm, while the runtime workspace gate is -180..180 mm; this configuration mismatch must be resolved from measured geometry.",
+    "The current RPY(pi,0,yaw) TCP orientation fails the model IK for accepted targets; it requires a real TCP frame calibration before use.",
+    "The model-aligned orientation is diagnostic only and is not written into production ROS2 parameters.",
+    "The numeric batch does not replace MoveIt PlanningScene collision checking or real actuator feedback."
+  ],
+  "trials_detail": [
+    {
+      "trial": 0,
+      "true_pixel": [
+        311.0205417690589,
+        307.6959248210447
+      ],
+      "median_pixel": [
+        310.4516169642272,
+        307.9037082839066
+      ],
+      "spread_px": 3.513859535719292,
+      "base_xy_m": [
+        0.2606416852777659,
+        -0.2274801059965562
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.02146342077870507,
+      "grasp_z_m": 0.03206399498850939,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 1,
+      "true_pixel": [
+        305.55745413496794,
+        294.12690389652875
+      ],
+      "median_pixel": [
+        306.5891577799884,
+        294.08075713303174
+      ],
+      "spread_px": 5.841762991622903,
+      "base_xy_m": [
+        0.27195836942328167,
+        -0.22146317129828466
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.001592619443636621,
+      "grasp_z_m": 0.030163842348335988,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 2,
+      "true_pixel": [
+        307.2450961318634,
+        302.9864059597074
+      ],
+      "median_pixel": [
+        306.6696365264195,
+        300.81694943633073
+      ],
+      "spread_px": 3.355226469069529,
+      "base_xy_m": [
+        0.26537985017634214,
+        -0.2233434057853764
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.09459164061081438,
+      "grasp_z_m": 0.033418746865388406,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 3,
+      "true_pixel": [
+        308.81765685937,
+        305.19899837361544
+      ],
+      "median_pixel": [
+        308.5191285001407,
+        305.15578618191637
+      ],
+      "spread_px": 1.9504559564412396,
+      "base_xy_m": [
+        0.25878649006209775,
+        -0.22364632303321946
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.038640938038477186,
+      "grasp_z_m": 0.02899918745455706,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 4,
+      "true_pixel": [
+        319.937399713118,
+        295.8535074278888
+      ],
+      "median_pixel": [
+        321.05856124398065,
+        296.4461891195734
+      ],
+      "spread_px": 3.886774360588306,
+      "base_xy_m": [
+        0.2678459070951908,
+        -0.23232271168405283
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.07183934499073329,
+      "grasp_z_m": 0.03189783086150613,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 5,
+      "true_pixel": [
+        314.87002704749136,
+        304.92036901130484
+      ],
+      "median_pixel": [
+        314.3729370138266,
+        304.0035045288409
+      ],
+      "spread_px": 2.3967658786095027,
+      "base_xy_m": [
+        0.2607198640887511,
+        -0.2300727770945131
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.03302296094172301,
+      "grasp_z_m": 0.029781494663764358,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 6,
+      "true_pixel": [
+        324.96962221292773,
+        291.1462880410644
+      ],
+      "median_pixel": [
+        323.84859591093107,
+        290.54961635312117
+      ],
+      "spread_px": 2.4294197556014194,
+      "base_xy_m": [
+        0.27415015935736076,
+        -0.23140485904485014
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.06109439415731311,
+      "grasp_z_m": 0.027728506254419402,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 7,
+      "true_pixel": [
+        308.73852247231173,
+        304.66241463164374
+      ],
+      "median_pixel": [
+        308.8185696658365,
+        304.0732837836076
+      ],
+      "spread_px": 2.2964821491522818,
+      "base_xy_m": [
+        0.2632257101055443,
+        -0.22151510870878519
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.0225716907250868,
+      "grasp_z_m": 0.0349349821910061,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 8,
+      "true_pixel": [
+        323.8884335705704,
+        306.4330031313358
+      ],
+      "median_pixel": [
+        324.7313628059495,
+        306.5371265559374
+      ],
+      "spread_px": 2.1894340041570812,
+      "base_xy_m": [
+        0.2640619606577583,
+        -0.23275314911499553
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.07724807921961947,
+      "grasp_z_m": 0.035175311957170496,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 9,
+      "true_pixel": [
+        304.85559282288085,
+        299.7469867709787
+      ],
+      "median_pixel": [
+        303.66028137777994,
+        299.7528026479584
+      ],
+      "spread_px": 3.09615538048358,
+      "base_xy_m": [
+        0.26522022584629373,
+        -0.2206004583044094
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.01919999724535944,
+      "grasp_z_m": 0.025712835050023006,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 10,
+      "true_pixel": [
+        333.8613118502572,
+        298.92931101602056
+      ],
+      "median_pixel": [
+        332.50367060044044,
+        299.03333607372133
+      ],
+      "spread_px": 4.179165057796304,
+      "base_xy_m": [
+        0.27012801602649883,
+        -0.23978485345339212
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.012481284067652438,
+      "grasp_z_m": 0.03159803350147106,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 11,
+      "true_pixel": [
+        324.0888959615623,
+        291.9513385673816
+      ],
+      "median_pixel": [
+        324.92623052661105,
+        292.11211685966504
+      ],
+      "spread_px": 3.439646287929945,
+      "base_xy_m": [
+        0.2738811397501604,
+        -0.23384504878995863
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.002160179739110803,
+      "grasp_z_m": 0.023024003440351576,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 12,
+      "true_pixel": [
+        326.525588007888,
+        306.44456966952663
+      ],
+      "median_pixel": [
+        327.52406728600226,
+        305.62413067625215
+      ],
+      "spread_px": 2.3688616339779855,
+      "base_xy_m": [
+        0.26292354306291216,
+        -0.23573286993859766
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.023708440811081918,
+      "grasp_z_m": 0.02878240060250203,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 13,
+      "true_pixel": [
+        332.33210609412174,
+        301.4326996144203
+      ],
+      "median_pixel": [
+        332.3800168589262,
+        300.8456278632167
+      ],
+      "spread_px": 2.3780794419906,
+      "base_xy_m": [
+        0.2637782892197503,
+        -0.24247427008023262
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.026050843866286703,
+      "grasp_z_m": 0.025581740414362793,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 14,
+      "true_pixel": [
+        327.0193463844176,
+        311.73583908348064
+      ],
+      "median_pixel": [
+        327.63992064265904,
+        312.1730059108912
+      ],
+      "spread_px": 2.9015155367246734,
+      "base_xy_m": [
+        0.2609180446412303,
+        -0.23627463264120072
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.09303374346875316,
+      "grasp_z_m": 0.02968238573706942,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 15,
+      "true_pixel": [
+        329.64560987212474,
+        308.60870822071405
+      ],
+      "median_pixel": [
+        330.936320764367,
+        308.2658941797094
+      ],
+      "spread_px": 3.588587212008952,
+      "base_xy_m": [
+        0.26497273428937185,
+        -0.23473608299588872
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.05358258792297949,
+      "grasp_z_m": 0.03348386634465441,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 16,
+      "true_pixel": [
+        316.8248463995883,
+        289.0010669144665
+      ],
+      "median_pixel": [
+        316.78898314778655,
+        290.20392961724497
+      ],
+      "spread_px": 2.6041025080603526,
+      "base_xy_m": [
+        0.2749717480074425,
+        -0.22854002082287975
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.018025788100409286,
+      "grasp_z_m": 0.030405484860446093,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 17,
+      "true_pixel": [
+        312.38269281401966,
+        294.26852248644275
+      ],
+      "median_pixel": [
+        310.9428271878937,
+        292.8830973068179
+      ],
+      "spread_px": 4.55576511220032,
+      "base_xy_m": [
+        0.2677232650100789,
+        -0.22240426755015003
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.055226990828425776,
+      "grasp_z_m": 0.03008629594021298,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 18,
+      "true_pixel": [
+        322.5242181152203,
+        294.1604119071767
+      ],
+      "median_pixel": [
+        322.74423830539087,
+        295.31445678170144
+      ],
+      "spread_px": 1.850878856538253,
+      "base_xy_m": [
+        0.26876889094631773,
+        -0.23394362813419756
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.031146754453624116,
+      "grasp_z_m": 0.027767842872761413,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 19,
+      "true_pixel": [
+        331.7148827438891,
+        293.5951207901681
+      ],
+      "median_pixel": [
+        330.36085625549407,
+        293.9784475332846
+      ],
+      "spread_px": 3.930356046423362,
+      "base_xy_m": [
+        0.2754288582226349,
+        -0.23879528344849513
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.07196685452971496,
+      "grasp_z_m": 0.03200325709428385,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 20,
+      "true_pixel": [
+        318.41005292473614,
+        303.5179732908054
+      ],
+      "median_pixel": [
+        319.1885248774733,
+        302.861579641705
+      ],
+      "spread_px": 2.6471662488798415,
+      "base_xy_m": [
+        0.26302646231453414,
+        -0.23031568198997088
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.06204568694459546,
+      "grasp_z_m": 0.03211321839593158,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 21,
+      "true_pixel": [
+        321.1579373084297,
+        289.7818129641925
+      ],
+      "median_pixel": [
+        321.69858441131794,
+        288.8425438565806
+      ],
+      "spread_px": 2.6199552570538303,
+      "base_xy_m": [
+        0.2731691861218247,
+        -0.23605011217174887
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.10609966617859794,
+      "grasp_z_m": 0.025415196469355122,
+      "current_algorithm_success": false,
+      "model_aligned_success": true,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": []
+    },
+    {
+      "trial": 22,
+      "true_pixel": [
+        304.7247669292586,
+        301.37136683963257
+      ],
+      "median_pixel": [
+        305.8672813870613,
+        300.8169225408677
+      ],
+      "spread_px": 3.9705511108371234,
+      "base_xy_m": [
+        0.2615426453660136,
+        -0.2193940430550363
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.0717063744408129,
+      "grasp_z_m": 0.027066129357001586,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 23,
+      "true_pixel": [
+        304.3842025064354,
+        302.4693111178611
+      ],
+      "median_pixel": [
+        304.5401540710737,
+        304.3583963214035
+      ],
+      "spread_px": 3.2461086234070535,
+      "base_xy_m": [
+        0.2574491132306502,
+        -0.22085182568403322
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.02971461013041079,
+      "grasp_z_m": 0.033593487620551074,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 24,
+      "true_pixel": [
+        331.84196680102025,
+        295.5398246478862
+      ],
+      "median_pixel": [
+        331.7047133231098,
+        294.89439927043895
+      ],
+      "spread_px": 2.685097274560696,
+      "base_xy_m": [
+        0.27411202062038253,
+        -0.23662945495460172
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.04169761295494552,
+      "grasp_z_m": 0.026168071926539898,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 25,
+      "true_pixel": [
+        318.50775623730016,
+        304.1879117019528
+      ],
+      "median_pixel": [
+        318.7197161088856,
+        302.89285481171316
+      ],
+      "spread_px": 2.862217823382083,
+      "base_xy_m": [
+        0.26506938040040967,
+        -0.2307571159187242
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.052849637296020276,
+      "grasp_z_m": 0.0295769070926422,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 26,
+      "true_pixel": [
+        308.933010308882,
+        301.59019398250155
+      ],
+      "median_pixel": [
+        309.9159196015175,
+        301.4011575413908
+      ],
+      "spread_px": 3.5153927882455496,
+      "base_xy_m": [
+        0.2656603241876562,
+        -0.22586431469757895
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.025097943893626434,
+      "grasp_z_m": 0.03130853780056151,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 27,
+      "true_pixel": [
+        309.1027568346068,
+        285.94849566701726
+      ],
+      "median_pixel": [
+        308.93647540147003,
+        286.7264999064668
+      ],
+      "spread_px": 2.3105186656138557,
+      "base_xy_m": [
+        0.27311223685822605,
+        -0.22402276052933612
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.06042279755564523,
+      "grasp_z_m": 0.0344239723159806,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 28,
+      "true_pixel": [
+        312.76934206460356,
+        298.85658798992466
+      ],
+      "median_pixel": [
+        312.47645292552227,
+        298.12730930836534
+      ],
+      "spread_px": 3.643725748435547,
+      "base_xy_m": [
+        0.2645278377268769,
+        -0.22872501452595057
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.06672394457859049,
+      "grasp_z_m": 0.03693806811696492,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 29,
+      "true_pixel": [
+        324.45882723431737,
+        309.6855195442278
+      ],
+      "median_pixel": [
+        324.1955442915503,
+        309.3955752294734
+      ],
+      "spread_px": 3.831962197193328,
+      "base_xy_m": [
+        0.261397717647972,
+        -0.23332999440954486
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.08602903313154582,
+      "grasp_z_m": 0.02620902286944974,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 30,
+      "true_pixel": [
+        303.63573897124365,
+        288.84063273119415
+      ],
+      "median_pixel": [
+        302.4469822172719,
+        288.70189215923057
+      ],
+      "spread_px": 1.5838207714959205,
+      "gate": "outside_calibrated_image_region"
+    },
+    {
+      "trial": 31,
+      "true_pixel": [
+        310.01140540290675,
+        308.16935139558774
+      ],
+      "median_pixel": [
+        308.99116648609504,
+        308.1772943183891
+      ],
+      "spread_px": 3.631769060829618,
+      "base_xy_m": [
+        0.2611654109046102,
+        -0.22104125892303736
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.0006248286740810305,
+      "grasp_z_m": 0.030322947163134335,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 32,
+      "true_pixel": [
+        306.5238834558752,
+        296.11028515760296
+      ],
+      "median_pixel": [
+        307.15721753366483,
+        296.53375736814604
+      ],
+      "spread_px": 3.007652655246204,
+      "base_xy_m": [
+        0.26680491489217895,
+        -0.22235482418410168
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.05157925046178444,
+      "grasp_z_m": 0.027581204216667512,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 33,
+      "true_pixel": [
+        317.11121110260683,
+        302.3925601084982
+      ],
+      "median_pixel": [
+        317.68735875772427,
+        302.6903082324479
+      ],
+      "spread_px": 2.33440563737444,
+      "base_xy_m": [
+        0.2608058284880344,
+        -0.22854447201961794
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.00892690202489538,
+      "grasp_z_m": 0.026748386588822164,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 34,
+      "true_pixel": [
+        303.50409175634087,
+        295.4026096144058
+      ],
+      "median_pixel": [
+        304.2438777914608,
+        295.7204959795555
+      ],
+      "spread_px": 4.731655744977824,
+      "base_xy_m": [
+        0.2681161346802466,
+        -0.21954115755144457
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.0510896290218048,
+      "grasp_z_m": 0.03337482875971336,
+      "current_algorithm_success": false,
+      "model_aligned_success": true,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": []
+    },
+    {
+      "trial": 35,
+      "true_pixel": [
+        322.3661028712924,
+        305.16390065657333
+      ],
+      "median_pixel": [
+        321.6795402603959,
+        304.4057231296073
+      ],
+      "spread_px": 2.8014862853647533,
+      "base_xy_m": [
+        0.2625258438778178,
+        -0.2304850839199021
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.03924766102098535,
+      "grasp_z_m": 0.03305018667337057,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 36,
+      "true_pixel": [
+        331.7296497935202,
+        300.59834712918433
+      ],
+      "median_pixel": [
+        331.2576079411476,
+        301.15258074405415
+      ],
+      "spread_px": 2.573101026979373,
+      "base_xy_m": [
+        0.26580361946656356,
+        -0.2365394496971562
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.014584062012040724,
+      "grasp_z_m": 0.025364097732961402,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 37,
+      "true_pixel": [
+        332.98586887503853,
+        294.8462050323683
+      ],
+      "median_pixel": [
+        332.9871159371326,
+        294.4877135331543
+      ],
+      "spread_px": 3.1881213853112427,
+      "base_xy_m": [
+        0.2734680505975549,
+        -0.23853603306086907
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.027885700112236112,
+      "grasp_z_m": 0.02738389268422939,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 38,
+      "true_pixel": [
+        330.7390581686712,
+        297.2508891674098
+      ],
+      "median_pixel": [
+        330.14111818800575,
+        296.66407059738225
+      ],
+      "spread_px": 2.9155830662322906,
+      "base_xy_m": [
+        0.27180558502196983,
+        -0.23812397290565798
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.04254040435691052,
+      "grasp_z_m": 0.03313433302631022,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 39,
+      "true_pixel": [
+        310.9644306185794,
+        287.90569968551887
+      ],
+      "median_pixel": [
+        311.2049578831404,
+        289.1330600938642
+      ],
+      "spread_px": 4.220747519442398,
+      "base_xy_m": [
+        0.2725032317694246,
+        -0.2282360411684405
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.09407855824216178,
+      "grasp_z_m": 0.0293221945107076,
+      "current_algorithm_success": false,
+      "model_aligned_success": true,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": []
+    },
+    {
+      "trial": 40,
+      "true_pixel": [
+        329.77181306625346,
+        301.49943398752237
+      ],
+      "median_pixel": [
+        330.52664506167844,
+        301.80890570567317
+      ],
+      "spread_px": 4.903609917397116,
+      "base_xy_m": [
+        0.26353748158437607,
+        -0.2373484520559402
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.0025360070279723613,
+      "grasp_z_m": 0.02641690171022266,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 41,
+      "true_pixel": [
+        322.1808272371681,
+        310.1096211923601
+      ],
+      "median_pixel": [
+        324.083063367871,
+        309.39686451866544
+      ],
+      "spread_px": 2.5687476324729914,
+      "base_xy_m": [
+        0.2625423599007492,
+        -0.2310452248216934
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.08099510526588617,
+      "grasp_z_m": 0.029949249818811422,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 42,
+      "true_pixel": [
+        323.03748989142906,
+        296.336243855588
+      ],
+      "median_pixel": [
+        321.9639479414734,
+        296.07411447615794
+      ],
+      "spread_px": 3.42283928958949,
+      "base_xy_m": [
+        0.2687716224876989,
+        -0.23531935056654574
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.1244140386181649,
+      "grasp_z_m": 0.022008056657378303,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 43,
+      "true_pixel": [
+        319.51618951358,
+        305.24423152172517
+      ],
+      "median_pixel": [
+        319.33493245357016,
+        304.23560032551353
+      ],
+      "spread_px": 2.3038875833339603,
+      "base_xy_m": [
+        0.2642255491781999,
+        -0.23009114626443933
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.036983316486638454,
+      "grasp_z_m": 0.026596146721582222,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 44,
+      "true_pixel": [
+        316.0277385956629,
+        290.02980474255094
+      ],
+      "median_pixel": [
+        316.96118727168823,
+        290.8664223547931
+      ],
+      "spread_px": 2.7010475009187216,
+      "base_xy_m": [
+        0.26982927603839785,
+        -0.23113057810404838
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.05100089838515418,
+      "grasp_z_m": 0.030838881266180656,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 45,
+      "true_pixel": [
+        320.13748058233386,
+        300.5543967025211
+      ],
+      "median_pixel": [
+        320.6197338651699,
+        301.04435881677887
+      ],
+      "spread_px": 2.2823819052250482,
+      "base_xy_m": [
+        0.2658215609166712,
+        -0.23591645787537788
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.07492825498635476,
+      "grasp_z_m": 0.02818260191078733,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 46,
+      "true_pixel": [
+        308.5574175306197,
+        295.235852991651
+      ],
+      "median_pixel": [
+        309.67573798715875,
+        294.7310893490335
+      ],
+      "spread_px": 2.265604259849282,
+      "base_xy_m": [
+        0.2702368041523588,
+        -0.22617789088892548
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.0332638784591358,
+      "grasp_z_m": 0.030299857419883242,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 47,
+      "true_pixel": [
+        305.03557580826185,
+        296.8012935366306
+      ],
+      "median_pixel": [
+        305.5140127781066,
+        297.01717146949863
+      ],
+      "spread_px": 2.9646264113635983,
+      "base_xy_m": [
+        0.2673421011324408,
+        -0.22369030105198304
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.09050736837403209,
+      "grasp_z_m": 0.02470635004640787,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 48,
+      "true_pixel": [
+        331.7348527354749,
+        308.95185946408543
+      ],
+      "median_pixel": [
+        332.1627532145993,
+        308.84014871101687
+      ],
+      "spread_px": 2.6193921839405774,
+      "base_xy_m": [
+        0.2624803102322845,
+        -0.23708281092614464
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.00571684575578034,
+      "grasp_z_m": 0.030035891465492487,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 49,
+      "true_pixel": [
+        313.6996665691646,
+        288.7691616382561
+      ],
+      "median_pixel": [
+        313.0749204581182,
+        289.7084808045619
+      ],
+      "spread_px": 3.052323286302387,
+      "base_xy_m": [
+        0.2758239951040476,
+        -0.22748848762197926
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.0223348778359319,
+      "grasp_z_m": 0.03070765391566205,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 50,
+      "true_pixel": [
+        321.3992129160557,
+        302.6426425956048
+      ],
+      "median_pixel": [
+        321.1711669698976,
+        302.8960728151736
+      ],
+      "spread_px": 2.786824314481156,
+      "base_xy_m": [
+        0.26685819251169113,
+        -0.23047252997259413
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.07866525074406511,
+      "grasp_z_m": 0.03159352721361513,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 51,
+      "true_pixel": [
+        330.06361335891893,
+        286.07991584926043
+      ],
+      "median_pixel": [
+        329.5061109535747,
+        286.88737892438803
+      ],
+      "spread_px": 2.488401041986974,
+      "base_xy_m": [
+        0.2783415993874883,
+        -0.2374426375993753
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.047128527985054076,
+      "grasp_z_m": 0.03166078184211616,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 52,
+      "true_pixel": [
+        309.9363529368561,
+        290.9638204462151
+      ],
+      "median_pixel": [
+        311.93792985559884,
+        291.7256075741834
+      ],
+      "spread_px": 4.6469420276086035,
+      "base_xy_m": [
+        0.2770911653887401,
+        -0.22881565390723638
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.06797936251675271,
+      "grasp_z_m": 0.03071642201347897,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 53,
+      "true_pixel": [
+        308.7495383348832,
+        299.00837496979904
+      ],
+      "median_pixel": [
+        309.4081437437516,
+        298.9632182825899
+      ],
+      "spread_px": 3.431296420479361,
+      "base_xy_m": [
+        0.26437639476166563,
+        -0.22598577176074766
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.049574915312385205,
+      "grasp_z_m": 0.02918758038080554,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 54,
+      "true_pixel": [
+        317.3290387459914,
+        300.41710163045815
+      ],
+      "median_pixel": [
+        316.9237302912083,
+        299.8083968818978
+      ],
+      "spread_px": 3.134002265274615,
+      "base_xy_m": [
+        0.26523398882401744,
+        -0.22984757200766406
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.030458424912503848,
+      "grasp_z_m": 0.028626090618952937,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 55,
+      "true_pixel": [
+        314.0203828957486,
+        306.4312023894052
+      ],
+      "median_pixel": [
+        312.98324910155566,
+        306.50379998509453
+      ],
+      "spread_px": 2.5834950230102947,
+      "base_xy_m": [
+        0.2647361009230118,
+        -0.22733963738884103
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.056137340407367,
+      "grasp_z_m": 0.03132735580594674,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 56,
+      "true_pixel": [
+        303.98085395866633,
+        294.00723131067497
+      ],
+      "median_pixel": [
+        303.44011743667323,
+        294.5600914458698
+      ],
+      "spread_px": 3.7420046429050444,
+      "base_xy_m": [
+        0.2699942553094582,
+        -0.2232063787108087
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.010306984915543337,
+      "grasp_z_m": 0.026847272401072937,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 57,
+      "true_pixel": [
+        318.93740391377946,
+        289.717798384308
+      ],
+      "median_pixel": [
+        319.08081886598296,
+        289.9976827172164
+      ],
+      "spread_px": 2.540940404741672,
+      "base_xy_m": [
+        0.27353068166326094,
+        -0.23063425787875058
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.08762892478934597,
+      "grasp_z_m": 0.031411954774987684,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 58,
+      "true_pixel": [
+        311.27998947113235,
+        292.2584869754541
+      ],
+      "median_pixel": [
+        310.40407051602733,
+        292.31195758473683
+      ],
+      "spread_px": 3.5891035356980865,
+      "base_xy_m": [
+        0.2714681107713023,
+        -0.2234295321519647
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.04699071937759927,
+      "grasp_z_m": 0.032283340020143006,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 59,
+      "true_pixel": [
+        313.2067334142268,
+        309.03176430996825
+      ],
+      "median_pixel": [
+        313.78706217429794,
+        309.05920710307754
+      ],
+      "spread_px": 4.292746323429583,
+      "base_xy_m": [
+        0.2567039701249569,
+        -0.22925340302613484
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.01854212967049841,
+      "grasp_z_m": 0.029773717791352763,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 60,
+      "true_pixel": [
+        324.9329387624362,
+        296.38530195503574
+      ],
+      "median_pixel": [
+        324.4363721727332,
+        296.7001676397353
+      ],
+      "spread_px": 4.296813671491561,
+      "base_xy_m": [
+        0.26992490188409196,
+        -0.23593663055217826
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.08124125247866426,
+      "grasp_z_m": 0.03359508588235272,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 61,
+      "true_pixel": [
+        332.4056948323105,
+        294.62705945533156
+      ],
+      "median_pixel": [
+        333.9457526207078,
+        294.8256579064463
+      ],
+      "spread_px": 2.2205754039834207,
+      "base_xy_m": [
+        0.26803241931869176,
+        -0.2381159489919834
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.009646024242904748,
+      "grasp_z_m": 0.03694142796214482,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 62,
+      "true_pixel": [
+        332.27259930484564,
+        302.379421823902
+      ],
+      "median_pixel": [
+        333.2891586979121,
+        302.4972488726548
+      ],
+      "spread_px": 4.399332761795872,
+      "base_xy_m": [
+        0.2627346700742098,
+        -0.24025731775343642
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.04142885491855009,
+      "grasp_z_m": 0.03433075153708501,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 63,
+      "true_pixel": [
+        305.2261609487951,
+        295.52244124435265
+      ],
+      "median_pixel": [
+        305.50054975702153,
+        295.154994224964
+      ],
+      "spread_px": 2.6664662780797337,
+      "base_xy_m": [
+        0.26718081185312725,
+        -0.22211859474393814
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.020190388356302658,
+      "grasp_z_m": 0.03136124263514867,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 64,
+      "true_pixel": [
+        319.91563045312415,
+        294.33884877268827
+      ],
+      "median_pixel": [
+        319.8736703765554,
+        294.8961127603903
+      ],
+      "spread_px": 1.877362576701292,
+      "base_xy_m": [
+        0.26974265619556437,
+        -0.23049685664890038
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.015970368247507055,
+      "grasp_z_m": 0.0295896042515735,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 65,
+      "true_pixel": [
+        328.09245092036645,
+        309.980128938479
+      ],
+      "median_pixel": [
+        328.99539131395795,
+        310.7035855964478
+      ],
+      "spread_px": 2.2481757103215014,
+      "base_xy_m": [
+        0.25762128761151265,
+        -0.23557763001962279
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.006358114643061957,
+      "grasp_z_m": 0.03066997260018866,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 66,
+      "true_pixel": [
+        331.6224379987596,
+        309.17384692786857
+      ],
+      "median_pixel": [
+        331.8583600043295,
+        308.86032393716226
+      ],
+      "spread_px": 3.0120549660976588,
+      "base_xy_m": [
+        0.2646864790289833,
+        -0.2387569777750154
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.1102102087381666,
+      "grasp_z_m": 0.030383919318514203,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 67,
+      "true_pixel": [
+        332.9544631533025,
+        304.7720450717692
+      ],
+      "median_pixel": [
+        333.3999947604018,
+        304.82326635679937
+      ],
+      "spread_px": 2.2035057943085437,
+      "base_xy_m": [
+        0.2644144544919727,
+        -0.23866455880579604
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.03787208995156937,
+      "grasp_z_m": 0.029934430559793206,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 68,
+      "true_pixel": [
+        333.7618888718877,
+        306.603695838416
+      ],
+      "median_pixel": [
+        333.2340833280254,
+        306.69501174608587
+      ],
+      "spread_px": 3.9325176454507855,
+      "base_xy_m": [
+        0.26447399733339666,
+        -0.23963220174671482
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.0012468850687976536,
+      "grasp_z_m": 0.032294158243779826,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 69,
+      "true_pixel": [
+        321.90913752035385,
+        292.57785686369186
+      ],
+      "median_pixel": [
+        323.0412490436455,
+        293.2737008075311
+      ],
+      "spread_px": 2.732780542155212,
+      "base_xy_m": [
+        0.27067221935753966,
+        -0.23339648826951911
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.026353001169313998,
+      "grasp_z_m": 0.030405063111090574,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 70,
+      "true_pixel": [
+        326.0470991639102,
+        303.8091408632222
+      ],
+      "median_pixel": [
+        327.3462218120496,
+        303.41455056138585
+      ],
+      "spread_px": 3.197397131851413,
+      "base_xy_m": [
+        0.2627481537633777,
+        -0.23284675509992891
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.10969239176430601,
+      "grasp_z_m": 0.02897462090752769,
+      "current_algorithm_success": false,
+      "model_aligned_success": true,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": []
+    },
+    {
+      "trial": 71,
+      "true_pixel": [
+        329.51349667475506,
+        312.75902250425116
+      ],
+      "median_pixel": [
+        330.31274823678746,
+        311.4052868261403
+      ],
+      "spread_px": 3.938538049811813,
+      "base_xy_m": [
+        0.26202153211855755,
+        -0.2302868403197046
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.030461037731952495,
+      "grasp_z_m": 0.03096261695971566,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 72,
+      "true_pixel": [
+        319.03139902124224,
+        288.61518201212306
+      ],
+      "median_pixel": [
+        319.55144319952433,
+        289.38963971417627
+      ],
+      "spread_px": 3.347452601413181,
+      "base_xy_m": [
+        0.2722555129086201,
+        -0.23283792024050567
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.04073383696787676,
+      "grasp_z_m": 0.032778272754730615,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 73,
+      "true_pixel": [
+        332.14433171095754,
+        308.63620671098283
+      ],
+      "median_pixel": [
+        331.4490597622057,
+        309.0789896434826
+      ],
+      "spread_px": 2.9362797374848872,
+      "base_xy_m": [
+        0.2608121733362141,
+        -0.23940305809297768
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.06030064105590039,
+      "grasp_z_m": 0.029696433078547486,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 74,
+      "true_pixel": [
+        333.020707412812,
+        301.6874608322855
+      ],
+      "median_pixel": [
+        331.99697049783964,
+        301.66527344650467
+      ],
+      "spread_px": 2.7919904877933837,
+      "base_xy_m": [
+        0.26787389547235924,
+        -0.23884705092744835
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.07511255970150267,
+      "grasp_z_m": 0.0295445062153724,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 75,
+      "true_pixel": [
+        322.08981542184426,
+        294.7406792789872
+      ],
+      "median_pixel": [
+        323.63857432582455,
+        292.96372364985547
+      ],
+      "spread_px": 3.359183620097076,
+      "base_xy_m": [
+        0.2699071349159748,
+        -0.23326165272024235
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.1069498414512784,
+      "grasp_z_m": 0.029349330651625195,
+      "current_algorithm_success": false,
+      "model_aligned_success": true,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": []
+    },
+    {
+      "trial": 76,
+      "true_pixel": [
+        320.84702343032893,
+        295.1289222756869
+      ],
+      "median_pixel": [
+        320.9494867883989,
+        295.83331898804005
+      ],
+      "spread_px": 2.777716580026027,
+      "base_xy_m": [
+        0.27330224334216113,
+        -0.2335241592026551
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.06814510687651049,
+      "grasp_z_m": 0.034397569177415044,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 77,
+      "true_pixel": [
+        334.7567205011296,
+        314.52626736748175
+      ],
+      "median_pixel": [
+        334.813738168701,
+        314.5922889586537
+      ],
+      "spread_px": 2.8205711668533358,
+      "base_xy_m": [
+        0.26060324220558556,
+        -0.23597270894458117
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.017263224324891673,
+      "grasp_z_m": 0.030471654074074827,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 78,
+      "true_pixel": [
+        309.8250512122149,
+        305.007358390166
+      ],
+      "median_pixel": [
+        309.6601204597809,
+        305.4483997332686
+      ],
+      "spread_px": 3.5957725798419364,
+      "base_xy_m": [
+        0.2635319553483071,
+        -0.22618732425770197
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.014843003200523652,
+      "grasp_z_m": 0.03714483910671042,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 79,
+      "true_pixel": [
+        307.63132147557974,
+        304.4325556231869
+      ],
+      "median_pixel": [
+        307.41001850662127,
+        304.74483457159846
+      ],
+      "spread_px": 3.2352804925703262,
+      "base_xy_m": [
+        0.26316817141991095,
+        -0.22257653682312398
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.028866264268786804,
+      "grasp_z_m": 0.029142504285805015,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 80,
+      "true_pixel": [
+        331.7017208839773,
+        305.90599114539964
+      ],
+      "median_pixel": [
+        331.92263185680486,
+        305.6022526764459
+      ],
+      "spread_px": 3.953187644936316,
+      "base_xy_m": [
+        0.259563298807997,
+        -0.2399903168496528
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.03135701331235319,
+      "grasp_z_m": 0.03025497121774218,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 81,
+      "true_pixel": [
+        311.6435154133988,
+        293.079516009563
+      ],
+      "median_pixel": [
+        311.55273847465276,
+        293.4934427755232
+      ],
+      "spread_px": 3.1565944562928823,
+      "base_xy_m": [
+        0.27052907140053944,
+        -0.2275577064976572
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.0006202346155157147,
+      "grasp_z_m": 0.03369778235147948,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 82,
+      "true_pixel": [
+        318.00843849025523,
+        302.6149047807785
+      ],
+      "median_pixel": [
+        317.32216416715613,
+        302.8489199483531
+      ],
+      "spread_px": 1.938447466008155,
+      "base_xy_m": [
+        0.266247977279051,
+        -0.23551911034519613
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.04994169270106077,
+      "grasp_z_m": 0.03185742538294688,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 83,
+      "true_pixel": [
+        321.818449821291,
+        298.1602773566007
+      ],
+      "median_pixel": [
+        321.9755613480264,
+        297.5769212702113
+      ],
+      "spread_px": 3.1744608205293208,
+      "base_xy_m": [
+        0.2700304483749807,
+        -0.23321400391322764
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.07445686307081699,
+      "grasp_z_m": 0.03207718630178811,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 84,
+      "true_pixel": [
+        307.113295067537,
+        288.95650717682946
+      ],
+      "median_pixel": [
+        308.1482433042358,
+        288.3686410881852
+      ],
+      "spread_px": 2.5842991913992464,
+      "base_xy_m": [
+        0.2762000509744298,
+        -0.2201483357816038
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.048292570721824024,
+      "grasp_z_m": 0.033163024223532664,
+      "current_algorithm_success": false,
+      "model_aligned_success": true,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": []
+    },
+    {
+      "trial": 85,
+      "true_pixel": [
+        326.2773503137741,
+        295.1785239167914
+      ],
+      "median_pixel": [
+        327.4015332902559,
+        293.71061823227376
+      ],
+      "spread_px": 2.7510110979366647,
+      "base_xy_m": [
+        0.2748191316431538,
+        -0.23786975212895095
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.10834762110475003,
+      "grasp_z_m": 0.029622069178939604,
+      "current_algorithm_success": false,
+      "model_aligned_success": true,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": []
+    },
+    {
+      "trial": 86,
+      "true_pixel": [
+        325.8226728441301,
+        310.9258014875489
+      ],
+      "median_pixel": [
+        326.0999787743056,
+        310.2818640400648
+      ],
+      "spread_px": 3.0130316913259207,
+      "base_xy_m": [
+        0.26552280269800405,
+        -0.23456547789912424
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.014103448183788277,
+      "grasp_z_m": 0.03581525590555648,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 87,
+      "true_pixel": [
+        332.94885218920314,
+        309.1720527837694
+      ],
+      "median_pixel": [
+        332.0245980326342,
+        308.5695837133226
+      ],
+      "spread_px": 3.1464983336570542,
+      "base_xy_m": [
+        0.2591285871490782,
+        -0.23565614129097723
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.05036328925486605,
+      "grasp_z_m": 0.030047230983695244,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 88,
+      "true_pixel": [
+        334.6785108278817,
+        306.37274668632637
+      ],
+      "median_pixel": [
+        335.25766038558424,
+        307.5030656417882
+      ],
+      "spread_px": 2.893223266087093,
+      "base_xy_m": [
+        0.2613036831566072,
+        -0.24008356835346253
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.04882518694299473,
+      "grasp_z_m": 0.027147689613522936,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 89,
+      "true_pixel": [
+        311.30985812291294,
+        285.3569380097905
+      ],
+      "median_pixel": [
+        311.28957345231134,
+        284.6218337674698
+      ],
+      "spread_px": 2.7931685066793084,
+      "gate": "outside_calibrated_image_region"
+    },
+    {
+      "trial": 90,
+      "true_pixel": [
+        310.37079496851004,
+        298.7707340652456
+      ],
+      "median_pixel": [
+        310.3906558750049,
+        298.61998194835337
+      ],
+      "spread_px": 1.0424887613799818,
+      "base_xy_m": [
+        0.26742932241218503,
+        -0.22586763986825034
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.11855325528358844,
+      "grasp_z_m": 0.029381365780798075,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 91,
+      "true_pixel": [
+        330.5876042854507,
+        302.8937689045672
+      ],
+      "median_pixel": [
+        331.1997868035077,
+        302.64112915930707
+      ],
+      "spread_px": 2.42366439498598,
+      "base_xy_m": [
+        0.2701774357367458,
+        -0.2385486690725341
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": -0.007633143735269168,
+      "grasp_z_m": 0.03379502229681885,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 92,
+      "true_pixel": [
+        324.17609977558016,
+        289.05123366047263
+      ],
+      "median_pixel": [
+        325.632760277195,
+        288.76674076608003
+      ],
+      "spread_px": 3.0282544110557486,
+      "base_xy_m": [
+        0.2772567196848262,
+        -0.23145893612235785
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.05981256098509603,
+      "grasp_z_m": 0.02837714103250181,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 93,
+      "true_pixel": [
+        324.65756648055446,
+        304.1114848797909
+      ],
+      "median_pixel": [
+        325.70348587019424,
+        304.5665419715224
+      ],
+      "spread_px": 2.997251124990539,
+      "base_xy_m": [
+        0.2636509223082058,
+        -0.23245931523710167
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.02124891936934038,
+      "grasp_z_m": 0.03266808411032014,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 94,
+      "true_pixel": [
+        307.7507810611033,
+        300.4697552263483
+      ],
+      "median_pixel": [
+        308.47541673807694,
+        300.62185097694305
+      ],
+      "spread_px": 3.9542404683799965,
+      "base_xy_m": [
+        0.2641348176441484,
+        -0.22392936174644362
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.014317252898465202,
+      "grasp_z_m": 0.02981706322814157,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 95,
+      "true_pixel": [
+        324.2748052143412,
+        295.4526117754908
+      ],
+      "median_pixel": [
+        323.7295601800144,
+        296.49223322493214
+      ],
+      "spread_px": 3.531057959982785,
+      "base_xy_m": [
+        0.26978212853354555,
+        -0.22918204227287242
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.05651069679394182,
+      "grasp_z_m": 0.031009120035000563,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 96,
+      "true_pixel": [
+        323.04894432624224,
+        286.8929374243591
+      ],
+      "median_pixel": [
+        323.05894863580687,
+        286.84500176195644
+      ],
+      "spread_px": 1.6837006348502612,
+      "base_xy_m": [
+        0.2808841914725066,
+        -0.22875156032975277
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.005660179232623279,
+      "grasp_z_m": 0.02945826373051805,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 97,
+      "true_pixel": [
+        308.87204838024746,
+        298.3439861289486
+      ],
+      "median_pixel": [
+        308.5436652303074,
+        298.74337808989037
+      ],
+      "spread_px": 2.4310140377644416,
+      "base_xy_m": [
+        0.26576554810340847,
+        -0.22416742333981646
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.009480128300492536,
+      "grasp_z_m": 0.028744700282484634,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 98,
+      "true_pixel": [
+        310.91857942807724,
+        306.1529054112673
+      ],
+      "median_pixel": [
+        310.88728070919177,
+        306.28856123851085
+      ],
+      "spread_px": 4.1985303806499195,
+      "base_xy_m": [
+        0.25957393560063124,
+        -0.22843578704232004
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.004039610361726607,
+      "grasp_z_m": 0.028602398230278377,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    },
+    {
+      "trial": 99,
+      "true_pixel": [
+        329.91315695870946,
+        294.74354561190694
+      ],
+      "median_pixel": [
+        330.4347107396644,
+        294.90529987033864
+      ],
+      "spread_px": 3.0540842923139166,
+      "base_xy_m": [
+        0.2727903170327195,
+        -0.23672199310503295
+      ],
+      "gate": "workspace_bypassed_for_diagnostic",
+      "yaw_rad": 0.05170783011359546,
+      "grasp_z_m": 0.02971552206959859,
+      "current_algorithm_success": false,
+      "model_aligned_success": false,
+      "current_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope",
+        "place: IK did not converge within the assumed joint envelope"
+      ],
+      "aligned_issues": [
+        "approach: IK did not converge within the assumed joint envelope",
+        "descend: IK did not converge within the assumed joint envelope",
+        "lift: IK did not converge within the assumed joint envelope"
+      ]
+    }
+  ]
+}

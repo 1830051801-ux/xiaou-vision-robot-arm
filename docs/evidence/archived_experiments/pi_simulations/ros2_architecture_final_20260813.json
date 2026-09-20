@@ -1,0 +1,13 @@
+{
+  "architecture_verified": true,
+  "review_only_launch_has_no_can_control_node": true,
+  "required_layers": [
+    "state_publisher",
+    "MoveIt move_group",
+    "readiness gate",
+    "planner"
+  ],
+  "taught_preview_uses_ready_joint_state": true,
+  "failure_count": 0,
+  "failures": []
+}

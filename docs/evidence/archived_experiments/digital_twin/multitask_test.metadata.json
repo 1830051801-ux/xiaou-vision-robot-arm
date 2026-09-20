@@ -1,0 +1,47 @@
+{
+  "episodes": 640,
+  "attempts": 4143,
+  "acceptance_rate": 0.1544774318126961,
+  "trajectory_steps": 32,
+  "joint_count": 6,
+  "assumed_joint_limit_rad": 1.2,
+  "noise": {
+    "xy_sigma_m": 0.003,
+    "z_sigma_m": 0.002,
+    "yaw_sigma_deg": 2.0
+  },
+  "task_suite": [
+    "transfer",
+    "sort_zone_a",
+    "sort_zone_b",
+    "inspection_scan",
+    "precision_insert"
+  ],
+  "task_counts": {
+    "transfer": 128,
+    "sort_zone_a": 128,
+    "sort_zone_b": 128,
+    "inspection_scan": 128,
+    "precision_insert": 128
+  },
+  "attempts_by_task": {
+    "transfer": 230,
+    "sort_zone_a": 532,
+    "sort_zone_b": 795,
+    "inspection_scan": 226,
+    "precision_insert": 2360
+  },
+  "domain_randomization": {
+    "enabled": false,
+    "noise_scale_range": [
+      1.0,
+      1.0
+    ],
+    "confidence_range": [
+      0.8,
+      0.99
+    ]
+  },
+  "scene": "offline_diagnostic_scene.json",
+  "real_motion_enabled": false
+}

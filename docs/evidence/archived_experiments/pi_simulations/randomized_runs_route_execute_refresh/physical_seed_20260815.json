@@ -1,0 +1,4526 @@
+{
+  "simulation": "mujoco_physical_grasp_regression",
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "ros_hardware_started": false,
+  "physics_engine": {
+    "name": "MuJoCo",
+    "version": "3.3.7",
+    "mode": "DIRECT"
+  },
+  "sources": {
+    "robot_xacro": "raspberry_pi/ros2_ws/src/xiaou_arm_description/urdf/xiaou_arm_display.urdf.xacro",
+    "robot_collision_root": "raspberry_pi/ros2_ws/src/xiaou_arm_description/meshes/collision",
+    "cad_world_urdf": "local-artifact/robot_world_model.urdf",
+    "poe_model": "raspberry_pi/robot_ai/arm_control/config/arm_model.json",
+    "collision_mesh_count": 8,
+    "world_mesh_count": 8,
+    "cad_world_visual_loaded": false,
+    "cad_world_visual_note": "The checked-in CAD world STL files are ASCII; they are parsed and audited, while the MuJoCo world uses the table and rigid object primitives.",
+    "parsed_joint_names": [
+      "joint_1",
+      "joint_2",
+      "joint_3",
+      "joint_4",
+      "joint_5",
+      "joint_6"
+    ]
+  },
+  "assumptions": {
+    "robot_trajectory_mode": "kinematic_collision_playback; MuJoCo rigid-body dynamics are used for the free object and release, while uncalibrated arm motor dynamics are excluded",
+    "joint_position_limits_rad": "assumed +/- pi; encoder limits are not measured",
+    "velocity_limits_rad_s": 0.5,
+    "acceleration_limits_rad_s2": 1.0,
+    "link_density_kg_m3": 500.0,
+    "table_top_m": -0.02,
+    "grasp_z_offset_m": 0.05,
+    "release_clearance_m": 0.08,
+    "gripper": "CAD collision mesh plus fixed jaw contact proxies; jaw actuator calibration is not measured",
+    "object_model": "primitive rigid bodies with class-specific dimensions and mass from desktop scene specs",
+    "tissue": "rigid sheet-stack proxy; cloth deformation and pull dynamics are not modeled"
+  },
+  "policy_replay": {
+    "enabled": true,
+    "fp32_checkpoint": "raspberry_pi/runtime/decision/transformer_policy_safety_seed20260832.pt",
+    "int8_model": "raspberry_pi/runtime/decision/transformer_policy_safety_final_20260813.int8.onnx",
+    "int8_error": null
+  },
+  "seed": 20260815,
+  "trials_per_scenario": 4,
+  "max_sampling_attempts": 250,
+  "randomization": {
+    "placement_range_m": {
+      "x": [
+        0.235,
+        0.315
+      ],
+      "y": [
+        -0.155,
+        -0.085
+      ]
+    },
+    "yaw_range_deg": [
+      -3.0,
+      3.0
+    ],
+    "geometry_jitter_pct": 0.05,
+    "geometry_jitter_scope": "one independent radius/height perturbation per scenario and seed"
+  },
+  "total_trials": 24,
+  "total_passed": 24,
+  "success_rate": 1.0,
+  "scenarios": [
+    {
+      "scenario": "bottle",
+      "mjcf": "local-artifact/xiaou_bottle.xml",
+      "trials": 4,
+      "passed": 4,
+      "success_rate": 1.0,
+      "failure_counts": {},
+      "warning_counts": {},
+      "geometry_jitter": {
+        "radius_scale": 1.0026778406887895,
+        "height_scale": 1.0155591707871359,
+        "effective_radius_m": 0.03308836874273006,
+        "effective_height_m": 0.21326742586529854,
+        "effective_mass_kg": 0.3573519125851098
+      },
+      "trial_records": [
+        {
+          "trial": 0,
+          "scenario": "bottle",
+          "seed": 0,
+          "object_xyz_m": [
+            0.3135095381695435,
+            -0.14379963497738346,
+            0.08663371293264926
+          ],
+          "yaw_rad": -0.014742227368628257,
+          "sampling_attempts": 2,
+          "preflight_rejections": {
+            "grasp_forbidden_contact": 1
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999966,
+              "risk": 0.094314,
+              "action_params": [
+                0.334672,
+                -0.140654,
+                0.214153,
+                0.083444,
+                0.061784,
+                0.001444
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999964,
+              "risk": 0.09456,
+              "action_params": [
+                0.334575,
+                -0.136907,
+                0.214061,
+                0.083546,
+                0.06195,
+                0.001446
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 17,
+              "position_error_m": 0.00011376679702787356,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 520,
+                "duration_s": 5.186424178506328,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 2,
+              "position_error_m": 1.6919696214819521e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 204,
+                "duration_s": 2.0240732895764286,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 5.551115123125783e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1315,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 945,
+                  "target_geom<->jaw_left_proxy": 370
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 13,
+              "position_error_m": 7.940122534904289e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 204,
+                "duration_s": 2.0251638259152585,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 2.7755575615628914e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1020,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1020
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 520,
+                "duration_s": 5.18634664939796,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.320545523869068,
+            -0.1594389957276331,
+            0.012739206334125282
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 1,
+          "scenario": "bottle",
+          "seed": 1,
+          "object_xyz_m": [
+            0.2630230706318014,
+            -0.1180020400358405,
+            0.08663371293264926
+          ],
+          "yaw_rad": 0.001990627246042209,
+          "sampling_attempts": 2,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 1
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999969,
+              "risk": 0.100042,
+              "action_params": [
+                0.279117,
+                -0.113329,
+                0.217558,
+                0.083629,
+                0.061935,
+                0.001469
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999968,
+              "risk": 0.100267,
+              "action_params": [
+                0.280536,
+                -0.109377,
+                0.21799,
+                0.083617,
+                0.061951,
+                0.001477
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 7,
+              "position_error_m": 6.188162911840398e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 293,
+                "duration_s": 2.9100764039215905,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 9,
+              "position_error_m": 6.624430324707921e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 221,
+                "duration_s": 2.1912219061551808,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1455,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1020,
+                  "target_geom<->jaw_left_proxy": 435
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 14,
+              "position_error_m": 0.00011952946691753342,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 220,
+                "duration_s": 2.1894777449869642,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 2.7755575615628914e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1100,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1100
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 293,
+                "duration_s": 2.9118473801488305,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.27037733067093,
+            -0.13402297008198907,
+            0.012739217442461672
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 2,
+          "scenario": "bottle",
+          "seed": 2,
+          "object_xyz_m": [
+            0.2966046656667032,
+            -0.13698216355916693,
+            0.08663371293264926
+          ],
+          "yaw_rad": -0.05168128568701251,
+          "sampling_attempts": 11,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 6,
+            "grasp_forbidden_contact": 4
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999967,
+              "risk": 0.096359,
+              "action_params": [
+                0.315991,
+                -0.132951,
+                0.21551,
+                0.083512,
+                0.061855,
+                0.001448
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999966,
+              "risk": 0.096092,
+              "action_params": [
+                0.320261,
+                -0.128893,
+                0.215858,
+                0.083454,
+                0.061828,
+                0.001447
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 9,
+              "position_error_m": 3.7524103149992986e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 360,
+                "duration_s": 3.5803285657826907,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 9,
+              "position_error_m": 3.8004109255684904e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 196,
+                "duration_s": 1.9411159504684075,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 1.3877787807814457e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1230,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 905,
+                  "target_geom<->jaw_left_proxy": 325
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 0.00010177272949397247,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 195,
+                "duration_s": 1.9398687233705334,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 5.551115123125783e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 975,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 975
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 360,
+                "duration_s": 3.580357815444242,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.3032229709436645,
+            -0.1528031130121598,
+            0.012739213743236992
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 3,
+          "scenario": "bottle",
+          "seed": 3,
+          "object_xyz_m": [
+            0.29783855298217166,
+            -0.1407088685019174,
+            0.08663371293264926
+          ],
+          "yaw_rad": -0.041869342554707395,
+          "sampling_attempts": 13,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 9,
+            "grasp_forbidden_contact": 3
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999967,
+              "risk": 0.096235,
+              "action_params": [
+                0.317438,
+                -0.136781,
+                0.215387,
+                0.0835,
+                0.061841,
+                0.001447
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999966,
+              "risk": 0.09617,
+              "action_params": [
+                0.323607,
+                -0.135187,
+                0.215846,
+                0.083457,
+                0.061823,
+                0.001442
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 28,
+              "position_error_m": 9.986652514217642e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 464,
+                "duration_s": 4.6264303189729175,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 5,
+              "position_error_m": 1.41125702882715e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 196,
+                "duration_s": 1.944547017832638,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 5.551115123125783e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1240,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 905,
+                  "target_geom<->jaw_left_proxy": 335
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 5,
+              "position_error_m": 1.9940443022320806e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 196,
+                "duration_s": 1.9443193240704733,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 980,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 980
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 464,
+                "duration_s": 4.6265174344343665,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.30449082292734014,
+            -0.1562932229301545,
+            0.012739212863527692
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        }
+      ]
+    },
+    {
+      "scenario": "cup",
+      "mjcf": "local-artifact/xiaou_cup.xml",
+      "trials": 4,
+      "passed": 4,
+      "success_rate": 1.0,
+      "failure_counts": {},
+      "warning_counts": {},
+      "geometry_jitter": {
+        "radius_scale": 1.0424125716982364,
+        "height_scale": 1.0072148035607869,
+        "effective_radius_m": 0.04690856572642064,
+        "effective_height_m": 0.09064933232047082,
+        "effective_mass_kg": 0.21889274962397728
+      },
+      "trial_records": [
+        {
+          "trial": 0,
+          "scenario": "cup",
+          "seed": 0,
+          "object_xyz_m": [
+            0.30157108304196156,
+            -0.11570759158564681,
+            0.025324666160235407
+          ],
+          "yaw_rad": 0.0178752320603255,
+          "sampling_attempts": 9,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 7,
+            "grasp_forbidden_contact": 1
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999972,
+              "risk": 0.09382,
+              "action_params": [
+                0.323173,
+                -0.10779,
+                0.092714,
+                0.095258,
+                0.085474,
+                0.001136
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999973,
+              "risk": 0.09363,
+              "action_params": [
+                0.328681,
+                -0.108796,
+                0.092243,
+                0.095286,
+                0.085526,
+                0.001139
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 8.24639554635371e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 351,
+                "duration_s": 3.4958667339308915,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 13,
+              "position_error_m": 2.1143255278911006e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 183,
+                "duration_s": 1.812972653300176,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1140,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 410,
+                  "target_geom<->jaw_left_proxy": 365,
+                  "target_geom<->jaw_right_proxy": 365
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_left_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_right_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 4.305758098146832e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 183,
+                "duration_s": 1.812451269559242,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 2745,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 915,
+                  "target_geom<->jaw_left_proxy": 915,
+                  "target_geom<->jaw_right_proxy": 915
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_left_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_right_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 351,
+                "duration_s": 3.495892074726106,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.36482592494138055,
+            -0.1252994301600698,
+            0.02676882208140778
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 1,
+          "scenario": "cup",
+          "seed": 1,
+          "object_xyz_m": [
+            0.3101218478007007,
+            -0.13030796721618007,
+            0.025324666160235407
+          ],
+          "yaw_rad": -0.003147776199371663,
+          "sampling_attempts": 2,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 1
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999972,
+              "risk": 0.0929,
+              "action_params": [
+                0.333048,
+                -0.124146,
+                0.091826,
+                0.095303,
+                0.085614,
+                0.001126
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999971,
+              "risk": 0.093195,
+              "action_params": [
+                0.33224,
+                -0.125513,
+                0.091565,
+                0.095386,
+                0.08569,
+                0.001119
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 11,
+              "position_error_m": 7.344398127952216e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 472,
+                "duration_s": 4.702673639691232,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 13,
+              "position_error_m": 5.309459655849257e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 170,
+                "duration_s": 1.6884631032312307,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1060,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 380,
+                  "target_geom<->jaw_left_proxy": 340,
+                  "target_geom<->jaw_right_proxy": 340
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_left_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_right_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 6,
+              "position_error_m": 0.000173546413434151,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 170,
+                "duration_s": 1.6871178272453082,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 2550,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 850,
+                  "target_geom<->jaw_left_proxy": 850,
+                  "target_geom<->jaw_right_proxy": 850
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_left_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_right_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 472,
+                "duration_s": 4.702777056992913,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.37318984353492396,
+            -0.14005676651430848,
+            0.02677619081200524
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 2,
+          "scenario": "cup",
+          "seed": 2,
+          "object_xyz_m": [
+            0.3054341360987077,
+            -0.12677304233105746,
+            0.025324666160235407
+          ],
+          "yaw_rad": 0.00947124833644216,
+          "sampling_attempts": 1,
+          "preflight_rejections": {},
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999972,
+              "risk": 0.093379,
+              "action_params": [
+                0.32778,
+                -0.119988,
+                0.092279,
+                0.095281,
+                0.085546,
+                0.001129
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999972,
+              "risk": 0.093288,
+              "action_params": [
+                0.330481,
+                -0.116783,
+                0.091922,
+                0.095354,
+                0.085619,
+                0.00113
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 10,
+              "position_error_m": 0.00014462678160314881,
+              "orientation_error_rad": 0.00010060260239665423,
+              "motion": {
+                "trajectory_points": 476,
+                "duration_s": 4.746774097251905,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 3,
+              "position_error_m": 2.839668182044145e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 172,
+                "duration_s": 1.706661578279709,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 6.938893903907228e-18,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1075,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 385,
+                  "target_geom<->jaw_left_proxy": 345,
+                  "target_geom<->jaw_right_proxy": 345
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_left_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_right_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 6,
+              "position_error_m": 0.00016531252722624585,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 172,
+                "duration_s": 1.7072398153169124,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 2.7755575615628914e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 2580,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 860,
+                  "target_geom<->jaw_left_proxy": 860,
+                  "target_geom<->jaw_right_proxy": 860
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_left_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_right_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 477,
+                "duration_s": 4.7530227756269525,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.36856504014019564,
+            -0.1361211676169923,
+            0.026768832956662016
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 3,
+          "scenario": "cup",
+          "seed": 3,
+          "object_xyz_m": [
+            0.28129628351562486,
+            -0.1280269372189577,
+            0.025324666160235407
+          ],
+          "yaw_rad": -0.005026947404335694,
+          "sampling_attempts": 5,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 4
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999973,
+              "risk": 0.096027,
+              "action_params": [
+                0.301133,
+                -0.11985,
+                0.094256,
+                0.095223,
+                0.085293,
+                0.00113
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999974,
+              "risk": 0.096683,
+              "action_params": [
+                0.299518,
+                -0.118611,
+                0.094143,
+                0.095327,
+                0.085437,
+                0.001138
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 1.1157384863349065e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 459,
+                "duration_s": 4.571333218866503,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 13,
+              "position_error_m": 7.686315903161936e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 184,
+                "duration_s": 1.820282821436517,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1150,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 410,
+                  "target_geom<->jaw_left_proxy": 370,
+                  "target_geom<->jaw_right_proxy": 370
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_left_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_right_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 7.2074167612638e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 183,
+                "duration_s": 1.81937596317458,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 6.938893903907228e-18,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 2745,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 915,
+                  "target_geom<->jaw_left_proxy": 915,
+                  "target_geom<->jaw_right_proxy": 915
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_left_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                },
+                {
+                  "geom1": "target_geom",
+                  "geom2": "jaw_right_proxy",
+                  "body1": "target_object",
+                  "body2": "grasp_tcp"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 459,
+                "duration_s": 4.571353641695601,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.34463208856914895,
+            -0.13945140208098158,
+            0.026776443868717713
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        }
+      ]
+    },
+    {
+      "scenario": "pen",
+      "mjcf": "local-artifact/xiaou_pen.xml",
+      "trials": 4,
+      "passed": 4,
+      "success_rate": 1.0,
+      "failure_counts": {},
+      "warning_counts": {},
+      "geometry_jitter": {
+        "radius_scale": 0.9871966856177066,
+        "height_scale": 0.9874538613425736,
+        "effective_radius_m": 0.00592318011370624,
+        "effective_height_m": 0.13824354058796032,
+        "effective_mass_kg": 0.014434955476922636
+      },
+      "trial_records": [
+        {
+          "trial": 0,
+          "scenario": "pen",
+          "seed": 0,
+          "object_xyz_m": [
+            0.30058195400061555,
+            -0.1366082150229821,
+            0.049121770293980155
+          ],
+          "yaw_rad": -0.04770900989420593,
+          "sampling_attempts": 5,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 3,
+            "grasp_forbidden_contact": 1
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "pen_pinch",
+              "phase": "grasp",
+              "confidence": 0.999942,
+              "risk": 0.09675,
+              "action_params": [
+                0.323291,
+                -0.139921,
+                0.138739,
+                0.03379,
+                0.007602,
+                0.002028
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "pen_pinch",
+              "phase": "grasp",
+              "confidence": 0.999946,
+              "risk": 0.096359,
+              "action_params": [
+                0.322973,
+                -0.147887,
+                0.138347,
+                0.033616,
+                0.007522,
+                0.002016
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 13,
+              "position_error_m": 5.132376786231176e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 373,
+                "duration_s": 3.7182293005786726,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 13,
+              "position_error_m": 3.118041240372267e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 185,
+                "duration_s": 1.8312330581345946,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 1.3877787807814457e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 505,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 505
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 0.0001224861038254996,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 184,
+                "duration_s": 1.8296241770728352,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 2.7755575615628914e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 920,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 920
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 373,
+                "duration_s": 3.718294653142404,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.30045839031836413,
+            -0.13674340918700054,
+            -0.01409135328381073
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 1,
+          "scenario": "pen",
+          "seed": 1,
+          "object_xyz_m": [
+            0.3113669432139475,
+            -0.137330532671122,
+            0.049121770293980155
+          ],
+          "yaw_rad": -0.03658736457807665,
+          "sampling_attempts": 6,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 5
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "pen_pinch",
+              "phase": "grasp",
+              "confidence": 0.999941,
+              "risk": 0.095656,
+              "action_params": [
+                0.334332,
+                -0.141361,
+                0.137983,
+                0.033784,
+                0.007601,
+                0.002035
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "pen_pinch",
+              "phase": "grasp",
+              "confidence": 0.999946,
+              "risk": 0.095495,
+              "action_params": [
+                0.328554,
+                -0.147364,
+                0.137862,
+                0.033596,
+                0.007523,
+                0.002023
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 9,
+              "position_error_m": 0.00016311900114470554,
+              "orientation_error_rad": 3.060628834198721e-05,
+              "motion": {
+                "trajectory_points": 433,
+                "duration_s": 4.318734844422234,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 3,
+              "position_error_m": 2.3199926314299056e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 179,
+                "duration_s": 1.773328103123993,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 490,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 490
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 6.373615285478493e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 179,
+                "duration_s": 1.7751808446349282,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 895,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 895
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 434,
+                "duration_s": 4.320779862210555,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.31130186594849224,
+            -0.13746996064236636,
+            -0.01409135328381073
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 2,
+          "scenario": "pen",
+          "seed": 2,
+          "object_xyz_m": [
+            0.3018210258947453,
+            -0.10957417584934351,
+            0.049121770293980155
+          ],
+          "yaw_rad": 0.05157388237435302,
+          "sampling_attempts": 9,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 7,
+            "grasp_forbidden_contact": 1
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "pen_pinch",
+              "phase": "grasp",
+              "confidence": 0.999943,
+              "risk": 0.096165,
+              "action_params": [
+                0.32495,
+                -0.112047,
+                0.138611,
+                0.033692,
+                0.007552,
+                0.00205
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "pen_pinch",
+              "phase": "grasp",
+              "confidence": 0.999946,
+              "risk": 0.096829,
+              "action_params": [
+                0.320148,
+                -0.121363,
+                0.139351,
+                0.033571,
+                0.007499,
+                0.002044
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 9,
+              "position_error_m": 5.388606092662271e-05,
+              "orientation_error_rad": 4.1021483295941725e-05,
+              "motion": {
+                "trajectory_points": 431,
+                "duration_s": 4.299389296469187,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 5,
+              "position_error_m": 1.3742193733007718e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 186,
+                "duration_s": 1.8422090193691987,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 1.3877787807814457e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 510,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 510
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 0.000176195370303354,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 186,
+                "duration_s": 1.842016845419482,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 930,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 930
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 432,
+                "duration_s": 4.303511599842888,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.3016604451024614,
+            -0.10972053161020885,
+            -0.01409135328381073
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 3,
+          "scenario": "pen",
+          "seed": 3,
+          "object_xyz_m": [
+            0.3121143928601948,
+            -0.13613083679818994,
+            0.049121770293980155
+          ],
+          "yaw_rad": -0.032444790057792786,
+          "sampling_attempts": 6,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 4,
+            "grasp_forbidden_contact": 1
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "pen_pinch",
+              "phase": "grasp",
+              "confidence": 0.999941,
+              "risk": 0.09557,
+              "action_params": [
+                0.335103,
+                -0.140206,
+                0.137934,
+                0.033779,
+                0.007598,
+                0.002036
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "pen_pinch",
+              "phase": "grasp",
+              "confidence": 0.999945,
+              "risk": 0.095512,
+              "action_params": [
+                0.330018,
+                -0.148956,
+                0.137679,
+                0.033634,
+                0.007525,
+                0.002014
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 9,
+              "position_error_m": 0.00017515736039525723,
+              "orientation_error_rad": 3.311320939695729e-05,
+              "motion": {
+                "trajectory_points": 434,
+                "duration_s": 4.328650939094533,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 3,
+              "position_error_m": 2.251658871504869e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 179,
+                "duration_s": 1.7724196108097483,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 1.3877787807814457e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 490,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 490
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 6.344543067679594e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 179,
+                "duration_s": 1.774547927128332,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 895,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 895
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 435,
+                "duration_s": 4.330941203313343,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.31205016612206926,
+            -0.13627053716834928,
+            -0.01409135328381073
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        }
+      ]
+    },
+    {
+      "scenario": "desktop_item",
+      "mjcf": "local-artifact/xiaou_desktop_item.xml",
+      "trials": 4,
+      "passed": 4,
+      "success_rate": 1.0,
+      "failure_counts": {},
+      "warning_counts": {},
+      "geometry_jitter": {
+        "radius_scale": 0.9722465486013349,
+        "height_scale": 0.9860852794156975,
+        "effective_radius_m": 0.034028629201046726,
+        "effective_height_m": 0.02958255838247092,
+        "effective_mass_kg": 0.09321102758557431
+      },
+      "trial_records": [
+        {
+          "trial": 0,
+          "scenario": "desktop_item",
+          "seed": 0,
+          "object_xyz_m": [
+            0.31036511881304407,
+            -0.12324031044727247,
+            -0.00520872080876454
+          ],
+          "yaw_rad": 0.001017111951436389,
+          "sampling_attempts": 1,
+          "preflight_rejections": {},
+          "policy": {
+            "fp32": {
+              "strategy": "flat_pick",
+              "phase": "grasp",
+              "confidence": 0.999938,
+              "risk": 0.094808,
+              "action_params": [
+                0.326833,
+                -0.125478,
+                0.030153,
+                0.087952,
+                0.066115,
+                0.001795
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "flat_pick",
+              "phase": "grasp",
+              "confidence": 0.999938,
+              "risk": 0.095366,
+              "action_params": [
+                0.326149,
+                -0.130101,
+                0.030231,
+                0.087857,
+                0.065811,
+                0.001779
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 11,
+              "position_error_m": 2.3582573980373097e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 401,
+                "duration_s": 3.9967128030424437,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 7.256816609375835e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 161,
+                "duration_s": 1.5967937911237517,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 6.938893903907228e-18,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 185,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 185
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 4,
+              "position_error_m": 1.1649706631338599e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 161,
+                "duration_s": 1.5965676498317636,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 805,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 805
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 401,
+                "duration_s": 3.996748172160474,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.34441519797450165,
+            -0.13359402746791932,
+            0.01412745910833415
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 1,
+          "scenario": "desktop_item",
+          "seed": 1,
+          "object_xyz_m": [
+            0.29437886398874513,
+            -0.11608177844843609,
+            -0.00520872080876454
+          ],
+          "yaw_rad": 0.039529810659962306,
+          "sampling_attempts": 78,
+          "preflight_rejections": {
+            "grasp_ik_not_converged": 3,
+            "approach_forbidden_contact": 63,
+            "grasp_forbidden_contact": 11
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "flat_pick",
+              "phase": "grasp",
+              "confidence": 0.999941,
+              "risk": 0.096545,
+              "action_params": [
+                0.309941,
+                -0.117952,
+                0.030428,
+                0.087926,
+                0.066124,
+                0.001809
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "flat_pick",
+              "phase": "grasp",
+              "confidence": 0.999942,
+              "risk": 0.096131,
+              "action_params": [
+                0.318178,
+                -0.121561,
+                0.030157,
+                0.088045,
+                0.066162,
+                0.001813
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 4.3157554650564314e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 465,
+                "duration_s": 4.639436510623984,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 1.5123818878117574e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 168,
+                "duration_s": 1.6626356020076023,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 195,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 195
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 4,
+              "position_error_m": 1.1916360516589925e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 168,
+                "duration_s": 1.6624875144453846,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 3.469446951953614e-18,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 840,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 840
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 465,
+                "duration_s": 4.639457693476714,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.32905603408704087,
+            -0.12496649382659247,
+            0.014131066269213741
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 2,
+          "scenario": "desktop_item",
+          "seed": 2,
+          "object_xyz_m": [
+            0.30752971259887746,
+            -0.12156710959174587,
+            -0.00520872080876454
+          ],
+          "yaw_rad": 0.028830468233281142,
+          "sampling_attempts": 20,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 18,
+            "grasp_forbidden_contact": 1
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "flat_pick",
+              "phase": "grasp",
+              "confidence": 0.999939,
+              "risk": 0.095108,
+              "action_params": [
+                0.323903,
+                -0.123782,
+                0.030192,
+                0.087952,
+                0.066124,
+                0.001797
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "flat_pick",
+              "phase": "grasp",
+              "confidence": 0.999939,
+              "risk": 0.09532,
+              "action_params": [
+                0.325869,
+                -0.121568,
+                0.030266,
+                0.087907,
+                0.065855,
+                0.001781
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 13,
+              "position_error_m": 4.379950836986686e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 482,
+                "duration_s": 4.807090968412046,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 13,
+              "position_error_m": 1.5839727244356282e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 159,
+                "duration_s": 1.5775322531445728,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 6.938893903907228e-18,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 185,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 185
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 4,
+              "position_error_m": 8.354751231219574e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 159,
+                "duration_s": 1.5773755481320229,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 795,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 795
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 482,
+                "duration_s": 4.80713465127011,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.3421313303170941,
+            -0.13098579240320254,
+            0.014152554575550093
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 3,
+          "scenario": "desktop_item",
+          "seed": 3,
+          "object_xyz_m": [
+            0.2943691520867022,
+            -0.1341144788010398,
+            -0.00520872080876454
+          ],
+          "yaw_rad": -0.00802906340333747,
+          "sampling_attempts": 1,
+          "preflight_rejections": {},
+          "policy": {
+            "fp32": {
+              "strategy": "flat_pick",
+              "phase": "grasp",
+              "confidence": 0.999941,
+              "risk": 0.09685,
+              "action_params": [
+                0.310169,
+                -0.136372,
+                0.030511,
+                0.087882,
+                0.066066,
+                0.001801
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "flat_pick",
+              "phase": "grasp",
+              "confidence": 0.999944,
+              "risk": 0.097828,
+              "action_params": [
+                0.305239,
+                -0.137301,
+                0.030628,
+                0.087913,
+                0.065927,
+                0.001821
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 23,
+              "position_error_m": 1.0986269460655265e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 494,
+                "duration_s": 4.92537917502384,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 1.5319399596147434e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 162,
+                "duration_s": 1.6090231149110543,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 5.204170427930421e-18,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 190,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 190
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 4,
+              "position_error_m": 9.923329657336742e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 162,
+                "duration_s": 1.6088284970304574,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 810,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 810
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 494,
+                "duration_s": 4.9253970627629,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.3286278653120427,
+            -0.14469887987745342,
+            0.014017989928111695
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        }
+      ]
+    },
+    {
+      "scenario": "tissue_pull",
+      "mjcf": "local-artifact/xiaou_tissue_pull.xml",
+      "trials": 4,
+      "passed": 4,
+      "success_rate": 1.0,
+      "failure_counts": {},
+      "warning_counts": {},
+      "geometry_jitter": {
+        "radius_scale": 0.9673481262973612,
+        "height_scale": 0.9762858795096604,
+        "effective_radius_m": 0.05804088757784167,
+        "effective_height_m": 0.03905143518038642,
+        "effective_mass_kg": 0.07308572921660265
+      },
+      "trial_records": [
+        {
+          "trial": 0,
+          "scenario": "tissue_pull",
+          "seed": 0,
+          "object_xyz_m": [
+            0.31434638174722274,
+            -0.11982302766860198,
+            -0.00047428240980679215
+          ],
+          "yaw_rad": 0.015110062621054021,
+          "sampling_attempts": 5,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 4
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "tissue_pull",
+              "phase": "pull",
+              "confidence": 0.999955,
+              "risk": 0.187307,
+              "action_params": [
+                0.330555,
+                -0.11993,
+                0.037937,
+                0.064622,
+                0.035059,
+                0.081373
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "tissue_pull",
+              "phase": "pull",
+              "confidence": 0.999954,
+              "risk": 0.187742,
+              "action_params": [
+                0.33041,
+                -0.119041,
+                0.038117,
+                0.064448,
+                0.034882,
+                0.081591
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 11,
+              "position_error_m": 1.0343945975145282e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 417,
+                "duration_s": 4.154847229484123,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 1.1893263734371214e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 161,
+                "duration_s": 1.5981964907016462,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 3.469446951953614e-18,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1425,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 225,
+                  "jaw_left_proxy<->target_geom": 600,
+                  "jaw_right_proxy<->target_geom": 600
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "pull",
+              "ik_converged": true,
+              "ik_iterations": 6,
+              "position_error_m": 7.290037484850432e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 298,
+                "duration_s": 2.9690796431866406,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 13410,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1490,
+                  "jaw_left_proxy<->target_geom": 5960,
+                  "jaw_right_proxy<->target_geom": 5960
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": null,
+              "status": "not_applicable_rigid_tissue_proxy"
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 398,
+                "duration_s": 3.9663343225541494,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 17910,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1990,
+                  "jaw_left_proxy<->target_geom": 7960,
+                  "jaw_right_proxy<->target_geom": 7960
+                },
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": null,
+          "released_object_xyz_m": [
+            0.295668637245,
+            -0.11447010718200001,
+            0.342222795218
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 1,
+          "scenario": "tissue_pull",
+          "seed": 1,
+          "object_xyz_m": [
+            0.29742260465170184,
+            -0.13964344967764308,
+            -0.00047428240980679215
+          ],
+          "yaw_rad": -0.049208133384308066,
+          "sampling_attempts": 8,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 7
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "tissue_pull",
+              "phase": "pull",
+              "confidence": 0.999956,
+              "risk": 0.190572,
+              "action_params": [
+                0.313283,
+                -0.141453,
+                0.038507,
+                0.064676,
+                0.035039,
+                0.081905
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "tissue_pull",
+              "phase": "pull",
+              "confidence": 0.999955,
+              "risk": 0.189425,
+              "action_params": [
+                0.319813,
+                -0.142957,
+                0.038377,
+                0.064372,
+                0.034734,
+                0.081332
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 10,
+              "position_error_m": 6.406838311315e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 426,
+                "duration_s": 4.2416498939230065,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 1.4107434792570194e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 165,
+                "duration_s": 1.636620972137327,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1470,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 230,
+                  "jaw_left_proxy<->target_geom": 620,
+                  "jaw_right_proxy<->target_geom": 620
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "pull",
+              "ik_converged": true,
+              "ik_iterations": 5,
+              "position_error_m": 5.545560333669337e-05,
+              "orientation_error_rad": 7.165418070471953e-06,
+              "motion": {
+                "trajectory_points": 242,
+                "duration_s": 2.4053065538923972,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 5.551115123125783e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 10890,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1210,
+                  "jaw_left_proxy<->target_geom": 4840,
+                  "jaw_right_proxy<->target_geom": 4840
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": null,
+              "status": "not_applicable_rigid_tissue_proxy"
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 299,
+                "duration_s": 2.9725223947884416,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 13455,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1495,
+                  "jaw_left_proxy<->target_geom": 5980,
+                  "jaw_right_proxy<->target_geom": 5980
+                },
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": null,
+          "released_object_xyz_m": [
+            0.295668637245,
+            -0.11447010718200001,
+            0.342222795218
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 2,
+          "scenario": "tissue_pull",
+          "seed": 2,
+          "object_xyz_m": [
+            0.3052602012294574,
+            -0.12380548267650933,
+            -0.00047428240980679215
+          ],
+          "yaw_rad": 0.008165733988650788,
+          "sampling_attempts": 3,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 2
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "tissue_pull",
+              "phase": "pull",
+              "confidence": 0.999956,
+              "risk": 0.189064,
+              "action_params": [
+                0.3213,
+                -0.124234,
+                0.038235,
+                0.064649,
+                0.035034,
+                0.081868
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "tissue_pull",
+              "phase": "pull",
+              "confidence": 0.999955,
+              "risk": 0.18847,
+              "action_params": [
+                0.324792,
+                -0.124407,
+                0.038195,
+                0.064373,
+                0.034725,
+                0.081527
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 7.103311579149668e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 445,
+                "duration_s": 4.431825681289967,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 1.5623854991799355e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 164,
+                "duration_s": 1.6222324499635996,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 3.469446951953614e-18,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1470,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 230,
+                  "jaw_left_proxy<->target_geom": 620,
+                  "jaw_right_proxy<->target_geom": 620
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "pull",
+              "ik_converged": true,
+              "ik_iterations": 9,
+              "position_error_m": 0.000100739483744453,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 282,
+                "duration_s": 2.809613130071435,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 12690,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1410,
+                  "jaw_left_proxy<->target_geom": 5640,
+                  "jaw_right_proxy<->target_geom": 5640
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": null,
+              "status": "not_applicable_rigid_tissue_proxy"
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 418,
+                "duration_s": 4.162646161278419,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 18810,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 2090,
+                  "jaw_left_proxy<->target_geom": 8360,
+                  "jaw_right_proxy<->target_geom": 8360
+                },
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": null,
+          "released_object_xyz_m": [
+            0.295668637245,
+            -0.11447010718200001,
+            0.342222795218
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 3,
+          "scenario": "tissue_pull",
+          "seed": 3,
+          "object_xyz_m": [
+            0.2924634831003459,
+            -0.13582613931736967,
+            -0.00047428240980679215
+          ],
+          "yaw_rad": -0.03264606220837796,
+          "sampling_attempts": 5,
+          "preflight_rejections": {
+            "grasp_forbidden_contact": 1,
+            "approach_forbidden_contact": 3
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "tissue_pull",
+              "phase": "pull",
+              "confidence": 0.999957,
+              "risk": 0.1918,
+              "action_params": [
+                0.307959,
+                -0.137249,
+                0.038658,
+                0.064682,
+                0.035005,
+                0.082398
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "tissue_pull",
+              "phase": "pull",
+              "confidence": 0.999956,
+              "risk": 0.190921,
+              "action_params": [
+                0.309015,
+                -0.139083,
+                0.038577,
+                0.064561,
+                0.034898,
+                0.081699
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 2.9993623202186833e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 447,
+                "duration_s": 4.456609681921595,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 1.724593485911861e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 167,
+                "duration_s": 1.6589465444005254,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1475,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 235,
+                  "jaw_left_proxy<->target_geom": 620,
+                  "jaw_right_proxy<->target_geom": 620
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "pull",
+              "ik_converged": true,
+              "ik_iterations": 4,
+              "position_error_m": 0.00017185062963364617,
+              "orientation_error_rad": 3.185732548553149e-05,
+              "motion": {
+                "trajectory_points": 216,
+                "duration_s": 2.140682794271529,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 5.551115123125783e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 9720,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1080,
+                  "jaw_left_proxy<->target_geom": 4320,
+                  "jaw_right_proxy<->target_geom": 4320
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_left_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                },
+                {
+                  "geom1": "jaw_right_proxy",
+                  "geom2": "target_geom",
+                  "body1": "grasp_tcp",
+                  "body2": "target_object"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": null,
+              "status": "not_applicable_rigid_tissue_proxy"
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 368,
+                "duration_s": 3.6679272069799724,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 16560,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1840,
+                  "jaw_left_proxy<->target_geom": 7360,
+                  "jaw_right_proxy<->target_geom": 7360
+                },
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": null,
+          "released_object_xyz_m": [
+            0.295668637245,
+            -0.11447010718200001,
+            0.342222795218
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        }
+      ]
+    },
+    {
+      "scenario": "cola",
+      "mjcf": "local-artifact/xiaou_cola.xml",
+      "trials": 4,
+      "passed": 4,
+      "success_rate": 1.0,
+      "failure_counts": {},
+      "warning_counts": {},
+      "geometry_jitter": {
+        "radius_scale": 0.9614822091418036,
+        "height_scale": 1.0226418036649287,
+        "effective_radius_m": 0.030767430692537717,
+        "effective_height_m": 0.19430194269633647,
+        "effective_mass_kg": 0.378151683792905
+      },
+      "trial_records": [
+        {
+          "trial": 0,
+          "scenario": "cola",
+          "seed": 0,
+          "object_xyz_m": [
+            0.31384270130472586,
+            -0.12808269623395846,
+            0.07715097134816823
+          ],
+          "yaw_rad": 0.008812168545551696,
+          "sampling_attempts": 7,
+          "preflight_rejections": {
+            "grasp_forbidden_contact": 1,
+            "approach_forbidden_contact": 5
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999971,
+              "risk": 0.093545,
+              "action_params": [
+                0.345166,
+                -0.126941,
+                0.190828,
+                0.081797,
+                0.060167,
+                0.001254
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999972,
+              "risk": 0.095224,
+              "action_params": [
+                0.327194,
+                -0.125289,
+                0.193719,
+                0.081916,
+                0.060328,
+                0.001242
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 10,
+              "position_error_m": 0.00015874791122321726,
+              "orientation_error_rad": 6.591672263739537e-05,
+              "motion": {
+                "trajectory_points": 482,
+                "duration_s": 4.802685265517533,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 5,
+              "position_error_m": 1.116023028920627e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 192,
+                "duration_s": 1.9071458510062773,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 2.7755575615628914e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 725,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 725
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 5,
+              "position_error_m": 5.141201908667248e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 193,
+                "duration_s": 1.9103321377699234,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 5.551115123125783e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 965,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 965
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 482,
+                "duration_s": 4.806929532904566,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.31400518564237084,
+            -0.12857484464699473,
+            0.010344543347748671
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 1,
+          "scenario": "cola",
+          "seed": 1,
+          "object_xyz_m": [
+            0.3054162618065693,
+            -0.14456564542411277,
+            0.07715097134816823
+          ],
+          "yaw_rad": -0.044192453869869815,
+          "sampling_attempts": 1,
+          "preflight_rejections": {},
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999971,
+              "risk": 0.094405,
+              "action_params": [
+                0.336379,
+                -0.143673,
+                0.191693,
+                0.081762,
+                0.060109,
+                0.001244
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999971,
+              "risk": 0.096133,
+              "action_params": [
+                0.323538,
+                -0.145901,
+                0.193239,
+                0.081849,
+                0.060266,
+                0.00124
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 15,
+              "position_error_m": 0.00012568877312136106,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 483,
+                "duration_s": 4.8175188385043155,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 5,
+              "position_error_m": 1.102779471514955e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 192,
+                "duration_s": 1.9084928836792898,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 2.7755575615628914e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 725,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 725
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 5,
+              "position_error_m": 5.070266734366719e-05,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 193,
+                "duration_s": 1.9101235349856354,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 5.551115123125783e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 965,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 965
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 483,
+                "duration_s": 4.817200109263982,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.3053736664648671,
+            -0.14505779650545603,
+            0.010344550264066573
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 2,
+          "scenario": "cola",
+          "seed": 2,
+          "object_xyz_m": [
+            0.2652537944708859,
+            -0.12283964213209853,
+            0.07715097134816823
+          ],
+          "yaw_rad": -0.013178720960935308,
+          "sampling_attempts": 13,
+          "preflight_rejections": {
+            "grasp_forbidden_contact": 4,
+            "approach_forbidden_contact": 8
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999973,
+              "risk": 0.097692,
+              "action_params": [
+                0.293226,
+                -0.119364,
+                0.194894,
+                0.081869,
+                0.060138,
+                0.001276
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999973,
+              "risk": 0.098796,
+              "action_params": [
+                0.275918,
+                -0.118959,
+                0.196474,
+                0.081824,
+                0.060044,
+                0.001265
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 7,
+              "position_error_m": 2.4640912413797458e-05,
+              "orientation_error_rad": 5.91683799528328e-06,
+              "motion": {
+                "trajectory_points": 315,
+                "duration_s": 3.1325029709660375,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 3,
+              "position_error_m": 4.947506273516097e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 215,
+                "duration_s": 2.1317904245407258,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 970,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 815,
+                  "target_geom<->jaw_left_proxy": 155
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 14,
+              "position_error_m": 4.3720419081174574e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 215,
+                "duration_s": 2.1317937811452174,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1075,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1075
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 315,
+                "duration_s": 3.1330631992199756,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.26532661428228077,
+            -0.12333628322869208,
+            0.010344545270093462
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        },
+        {
+          "trial": 3,
+          "scenario": "cola",
+          "seed": 3,
+          "object_xyz_m": [
+            0.2803000449139408,
+            -0.11925222517567087,
+            0.07715097134816823
+          ],
+          "yaw_rad": 0.005009245171765209,
+          "sampling_attempts": 15,
+          "preflight_rejections": {
+            "approach_forbidden_contact": 10,
+            "grasp_forbidden_contact": 4
+          },
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999973,
+              "risk": 0.096394,
+              "action_params": [
+                0.309324,
+                -0.116082,
+                0.193714,
+                0.081898,
+                0.060222,
+                0.001274
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.999973,
+              "risk": 0.097151,
+              "action_params": [
+                0.299687,
+                -0.115719,
+                0.195906,
+                0.081876,
+                0.060176,
+                0.001266
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 1.5305318265880361e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 351,
+                "duration_s": 3.4996836291531594,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 13,
+              "position_error_m": 6.376554736946316e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 204,
+                "duration_s": 2.0234165795454477,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 1.1102230246251565e-16,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 825,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 770,
+                  "target_geom<->jaw_left_proxy": 55
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "lift",
+              "ik_converged": true,
+              "ik_iterations": 8,
+              "position_error_m": 0.0001619757706188978,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 204,
+                "duration_s": 2.02227422072699,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 2.7755575615628914e-17,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 1020,
+                "target_contact_pairs": {
+                  "target_geom<->link_6_gripper": 1020
+                },
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "release_settle",
+              "table_contact": true
+            },
+            {
+              "stage": "return_home",
+              "motion": {
+                "trajectory_points": 351,
+                "duration_s": 3.4997759572928304,
+                "max_tracking_error_rad": 0.0,
+                "final_tracking_error_rad": 0.0,
+                "trajectory_mode": "kinematic_collision_playback",
+                "forbidden_contact_samples": 0,
+                "target_contact_samples": 0,
+                "target_contact_pairs": {},
+                "within_assumed_limits": true
+              }
+            }
+          ],
+          "contact_verified": true,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.2801347510450597,
+            -0.11974500316362835,
+            0.010344544200504527
+          ],
+          "issues": [],
+          "warnings": [],
+          "passed": true,
+          "hardware_motion": false
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "MuJoCo contact and dynamics use provisional link density because CAD mass properties are not calibrated.",
+    "The ROS2 Xacro declares continuous joints; the regression applies an assumed +/- pi envelope only for offline safety checks.",
+    "Static gripper CAD is supplemented by fixed jaw proxies; real jaw width, force, and finger motion remain unverified.",
+    "A passed offline trial is not proof of camera calibration, encoder correctness, F407 feedback, grasp force, or real object friction.",
+    "Real motion remains locked by hardware_calibration.json and is never enabled by this script."
+  ]
+}

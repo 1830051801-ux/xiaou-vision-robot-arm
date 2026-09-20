@@ -1,0 +1,402 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "ssh_used": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "archive": "raspberry_pi/tmp/verification_final_20260816/xiaou_pi_inference.tar.gz",
+  "profile_set": "production",
+  "archive_bytes": 11533252,
+  "archive_sha256": "fcdaae57c140d7646339f7aed1c23cd1ac20d1e71f011cd0efe513fae5bcbe92",
+  "file_count": 72,
+  "payload_bytes_uncompressed": 14221519,
+  "requirements": [
+    "numpy>=1.24",
+    "onnxruntime",
+    "Pillow>=10"
+  ],
+  "host_import_probe": {
+    "cv2": true,
+    "numpy": true,
+    "onnxruntime": true,
+    "PIL": true
+  },
+  "forbidden_desktop_artifacts": [
+    "*.pt",
+    "*.pth",
+    "Ultralytics",
+    "PyTorch",
+    "MuJoCo",
+    "camera capture"
+  ],
+  "opencv_install_policy": "Raspberry Pi OS python3-opencv is required before creating the --system-site-packages inference venv",
+  "ram_budget": {
+    "ram_limit_mb": 2048,
+    "reserved_os_ros2_mb": 512,
+    "estimated_peak_process_mb": 864,
+    "required_headroom_mb": 256,
+    "estimated_total_mb": 1376,
+    "passes_2gb_budget": true
+  },
+  "runtime_model_policy": "load exactly one YOLO profile at a time; keep transformer_policy_safety_final_20260813 INT8 on CPU; route object classes through the grasp-family registry before planning",
+  "files": [
+    {
+      "path": "codex_emote_ai_package/dialog_manager.py",
+      "bytes": 3072,
+      "sha256": "d768d8850fe1fa9c5f8547b0742aa0d2ee8070d1ab527039b6a522c33a769996"
+    },
+    {
+      "path": "codex_emote_ai_package/emote_mapping.json",
+      "bytes": 1740,
+      "sha256": "f9cde04661a8db5e84291398702f55c6c94523312e74f942347480063073a1fd"
+    },
+    {
+      "path": "codex_emote_ai_package/emote_player.py",
+      "bytes": 1994,
+      "sha256": "b3cfffa53089ff0be679d7a29a1b1b1c3b29562d890588443a2dfa1c5e603ca0"
+    },
+    {
+      "path": "codex_pickup_package/workspace_homography.yaml",
+      "bytes": 859,
+      "sha256": "80d34c4249776d1e57c67e6fb2442c5aba42c98715e591fd7108c1d07562b09c"
+    },
+    {
+      "path": "docs/Pi_离线推理包_原子部署回滚_20260809.md",
+      "bytes": 1847,
+      "sha256": "b34d056dcdf5a5602544a0a4014d383fa906ea7faae4199d62a10f645b36df6b"
+    },
+    {
+      "path": "docs/小U_ControlTower_交互与安全呈现_20260809.md",
+      "bytes": 2624,
+      "sha256": "6688a3b3e1351720eaf8394a2e6a098749dfdfab9415e975af5c69bdc4f22221"
+    },
+    {
+      "path": "docs/小U_表情外观与ControlTower协作_20260809.md",
+      "bytes": 1610,
+      "sha256": "27017508cfe50eb9ae2823b21f255480a6de581d14aff5a4c28118b5fad6227a"
+    },
+    {
+      "path": "models/xiaou_objects_gpu_deep.names",
+      "bytes": 29,
+      "sha256": "cfb88d309b366099e5a0f289170f301852d31e7afc371142ee7c321207bbcb98"
+    },
+    {
+      "path": "models/xiaou_objects_gpu_deep.onnx",
+      "bytes": 12240890,
+      "sha256": "74794520a1fcf6d49738fb420fc8e8d2739b9db9b43f34e47f3e0e9773200d5d"
+    },
+    {
+      "path": "README_使用说明.md",
+      "bytes": 2170,
+      "sha256": "1adf8594ded006c67adc8d8a6b44bede55be5333e246e6acc8c30debea598da7"
+    },
+    {
+      "path": "requirements_pi_inference.txt",
+      "bytes": 346,
+      "sha256": "f9dd05b18f2131402c151bef2dbe1a30a9c7141162fa86b53141ac227ecb641e"
+    },
+    {
+      "path": "robot_ai/arm_control/__init__.py",
+      "bytes": 1731,
+      "sha256": "780e65b4671c9ed21b1a36cc5209ecbc5f8725091877d0c7b8904d89fa72b420"
+    },
+    {
+      "path": "robot_ai/arm_control/can_passive.py",
+      "bytes": 5135,
+      "sha256": "aff5adc65de55cfb62031ec63eba88e8d0c4b1feab0a299d4baeacb4cd1a81cc"
+    },
+    {
+      "path": "robot_ai/arm_control/can_protocol.py",
+      "bytes": 5511,
+      "sha256": "6e5a18cdc41b2781e43bb8254c1acb7691e77afa829d425734cb38160799dee0"
+    },
+    {
+      "path": "robot_ai/arm_control/config/arm_model.json",
+      "bytes": 1260,
+      "sha256": "55d5854aabc901ed5d7bf7b70bc5927d1b56e9720b4df9f7a2b88b6d8281d94f"
+    },
+    {
+      "path": "robot_ai/arm_control/config/grasp_family_registry.json",
+      "bytes": 3275,
+      "sha256": "7feb6b95718e44a5b1e6c6d721019f262c666672365cb90517af143cbe0a3237"
+    },
+    {
+      "path": "robot_ai/arm_control/config/hardware_calibration.json",
+      "bytes": 2721,
+      "sha256": "6cff6619cc53fb80675c65745b90dae318a68a9489dfeb12c2afe9a35d3521e3"
+    },
+    {
+      "path": "robot_ai/arm_control/config/object_grasp_profiles.json",
+      "bytes": 1963,
+      "sha256": "e4047ee8114e3cb6869635931f6a5218ab50d43dded465890e15e4d363c72fcd"
+    },
+    {
+      "path": "robot_ai/arm_control/config/object_teach_registry.json",
+      "bytes": 4148,
+      "sha256": "602adaeb1e08172806e791464412178926998747856fa9e214dd209ff85fb2de"
+    },
+    {
+      "path": "robot_ai/arm_control/feedback_quality.py",
+      "bytes": 15889,
+      "sha256": "1b60c5b84910c5f970bb7046ef2bf13cbe4a2cdbc2daa4ae06cc0180850df23b"
+    },
+    {
+      "path": "robot_ai/arm_control/grasp_families.py",
+      "bytes": 11371,
+      "sha256": "65c9a68feb139a83ba8a310e05477818b80e648dd57c24f72de76e7bf7c71712"
+    },
+    {
+      "path": "robot_ai/arm_control/joint_status_probe.py",
+      "bytes": 6524,
+      "sha256": "76493f3e7e2288c712032541eb85ba6e8d999846116d22b9f91a1f42ea78d0ba"
+    },
+    {
+      "path": "robot_ai/arm_control/kinematics.py",
+      "bytes": 9079,
+      "sha256": "fc8e73094943c8ab73c221a366af14ea233132f6bf076e2cca3ae51241521753"
+    },
+    {
+      "path": "robot_ai/arm_control/lie.py",
+      "bytes": 4247,
+      "sha256": "2d8872adac2437b20f2c18e2d8260a1ce18c25db779a772ca9e5e3417ab09395"
+    },
+    {
+      "path": "robot_ai/arm_control/model.py",
+      "bytes": 2557,
+      "sha256": "9a8f4bab8d4ba0219dd5eddd7a441c702c2ea12475584186c6128dcf2373704c"
+    },
+    {
+      "path": "robot_ai/arm_control/motor_feedback_diagnostic.py",
+      "bytes": 10654,
+      "sha256": "609a02f7510dd177c2da3a4763355a15819147d47656d0cf3dc002a832f39989"
+    },
+    {
+      "path": "robot_ai/arm_control/safety.py",
+      "bytes": 6427,
+      "sha256": "7f3a80535026c6ef26111d8512c0054f8b9e5945afe5c947a3fbfee92b11d99c"
+    },
+    {
+      "path": "robot_ai/arm_control/task_planner.py",
+      "bytes": 12501,
+      "sha256": "6de7716510153a8addda3aeb4b4b5e328325daeb6106b7a27a91708d97ccda3a"
+    },
+    {
+      "path": "robot_ai/arm_control/taught_grasp.py",
+      "bytes": 21916,
+      "sha256": "baebe106d387b5d046ff5d770b51173cbfca73bf4a47ea0750767a659c893ecf"
+    },
+    {
+      "path": "robot_ai/arm_control/taught_waypoint_plan.py",
+      "bytes": 5953,
+      "sha256": "9cd88b80b5fe5e4f5edfb5004a2a7508dad6a2f457871cb0dd9bc88bdcf35bef"
+    },
+    {
+      "path": "robot_ai/arm_control/teach_registry.py",
+      "bytes": 10334,
+      "sha256": "7574004cef6bb2f802a190ab536bfaa1e1ea1bac34046ef7c5b8c68282c8e596"
+    },
+    {
+      "path": "robot_ai/arm_control/trajectory.py",
+      "bytes": 3913,
+      "sha256": "bb0a5fa455b64627a767ad13e060031b794504c13862b737a67803bad0ccfb0c"
+    },
+    {
+      "path": "robot_ai/arm_control/uart_protocol.py",
+      "bytes": 20564,
+      "sha256": "f49143d4f8a9155c5a608a113bda5de959e0f21b450ca130b0501216091f4809"
+    },
+    {
+      "path": "robot_ai/common.py",
+      "bytes": 7656,
+      "sha256": "65c22c3476f68f9955d138b0cccc2e411a9ba37bd5361e1eb777a282870ec4d7"
+    },
+    {
+      "path": "robot_ai/decision/__init__.py",
+      "bytes": 330,
+      "sha256": "780a76e59b8d5d514fdbc58945bde5bb49d43df3cd20a7ade0fa0c27bc06dbd9"
+    },
+    {
+      "path": "robot_ai/decision/onnx_policy.py",
+      "bytes": 7080,
+      "sha256": "dea624e398fb5f2dbb8f16628a30e958752b41b5a0f8643b32ecab8906008dee"
+    },
+    {
+      "path": "robot_ai/decision/transformer_policy.py",
+      "bytes": 14429,
+      "sha256": "ea7d297a0005bac25b0fbdcf7dad9b4f256fde6016a4fe53b0983ff54833e4d3"
+    },
+    {
+      "path": "robot_ai/dialog_emote_bridge.py",
+      "bytes": 989,
+      "sha256": "066629f0bb71dd7a88ce19fd45256b523fef0fea82475f1120eb5d1cfa680c83"
+    },
+    {
+      "path": "robot_ai/emote_assets/gif/angry.gif",
+      "bytes": 98580,
+      "sha256": "ca568905ca0c7c6a37867e87acc305c9b47b293bdc806ce9c6f88e8f9396c913"
+    },
+    {
+      "path": "robot_ai/emote_assets/gif/idle.gif",
+      "bytes": 41569,
+      "sha256": "2780204ebe805b06d2fb7fd79b57782f03872e302d8e58001364c0aa152f5386"
+    },
+    {
+      "path": "robot_ai/emote_assets/gif/investigate.gif",
+      "bytes": 186902,
+      "sha256": "176e51c7824e397927031f32973f8a4bfceee5d2a4e2558b164c45c6335473c8"
+    },
+    {
+      "path": "robot_ai/emote_assets/gif/laugh.gif",
+      "bytes": 92158,
+      "sha256": "43fc80b60463d255730e1d1643226a1b3f833e50faab6a2b6803bbd26e706462"
+    },
+    {
+      "path": "robot_ai/emote_assets/gif/mock.gif",
+      "bytes": 38653,
+      "sha256": "e90a69d6c2816cce7c2f74bf5a016edf6bb15c25f4b6c23bf2fe6ea81b229b64"
+    },
+    {
+      "path": "robot_ai/emote_assets/gif/ponder.gif",
+      "bytes": 52475,
+      "sha256": "ac50ad2a36b4f7e3ee50ad75347570ff2e98b3aa48342393859a54854cf0bfe7"
+    },
+    {
+      "path": "robot_ai/emote_assets/gif/question.gif",
+      "bytes": 76806,
+      "sha256": "681cd29ab33401ebe7036543536119f00c5c99490f3c1e3e7b6e0c68f3fea5d4"
+    },
+    {
+      "path": "robot_ai/emote_assets/gif/sad.gif",
+      "bytes": 146364,
+      "sha256": "d9ee6844cdbe2e11e587bbbe0b97b79d2c9c45397d655a724e87f0a85665e391"
+    },
+    {
+      "path": "robot_ai/emote_assets/gif/shocked.gif",
+      "bytes": 152651,
+      "sha256": "169ae031eff4bc285792c946fa0c421864d6a279298069dd8a4f2f679c5924a7"
+    },
+    {
+      "path": "robot_ai/emote_assets/gif/smile.gif",
+      "bytes": 52875,
+      "sha256": "bf69ef787f710f010afedafc232f3f5203a784044819331fd9a9b915abc51252"
+    },
+    {
+      "path": "robot_ai/face_animation.py",
+      "bytes": 21265,
+      "sha256": "1c2a514743ab2a5fe289c664bef7918ee00b2ef30b33f0bad7071381cee0f608"
+    },
+    {
+      "path": "robot_ai/face_display.py",
+      "bytes": 7061,
+      "sha256": "bc9cc6d308758e2921b2e0e7cae57ccf29ea6783e88ac76cbc4266ba8a47eaa6"
+    },
+    {
+      "path": "robot_ai/face_presentation.py",
+      "bytes": 2058,
+      "sha256": "f11dbc37c2a5992f1ddc8caa23b55577043b540d68b7381c1694d84d8443bd02"
+    },
+    {
+      "path": "robot_ai/face_state.py",
+      "bytes": 832,
+      "sha256": "f7465f5c90d21c9340c59c42a84bc168a50bf030dd6946ca3c553b7b1de3253d"
+    },
+    {
+      "path": "robot_ai/sitecustomize.py",
+      "bytes": 387,
+      "sha256": "461cb11535b53ff360693c60874f69e2cea0268ab9e15fc6d03421cf80bc6522"
+    },
+    {
+      "path": "robot_ai/status_dashboard.py",
+      "bytes": 10514,
+      "sha256": "b52852cc7a4fc0715972fc7b3e7d23c64c88cbb06f3213c3053aecdfd2d14471"
+    },
+    {
+      "path": "robot_ai/vision/__init__.py",
+      "bytes": 350,
+      "sha256": "2c02b65834d9f0883e583348553abcb07d26a5f4c12afcc1e4e3744948b8f440"
+    },
+    {
+      "path": "robot_ai/vision/unified_yolo.py",
+      "bytes": 8923,
+      "sha256": "7d3dcc0f3a618faf1ef6ca438e647eca33f81b7ad6b259cc740d8c5bad7dcda5"
+    },
+    {
+      "path": "robot_ai/xiaou_runtime.py",
+      "bytes": 9777,
+      "sha256": "b481cc3153124a12688e0fd0d82bc416819bcc73984b05509de6133773edec77"
+    },
+    {
+      "path": "robot_ai/xiaou_status_dashboard.py",
+      "bytes": 12496,
+      "sha256": "c82be8b38768a18468261aaa7818ee24f3a72ddeb2830c659af368e918322c63"
+    },
+    {
+      "path": "robot_ai/yolo_opencv.py",
+      "bytes": 10834,
+      "sha256": "036dcfbb0ec4df0366fbd27eede7c043120d2b91ae6d7aebbad41cace8cb6a4d"
+    },
+    {
+      "path": "runtime/decision/transformer_policy_safety_final_20260813.int8.json",
+      "bytes": 785,
+      "sha256": "957d4afaf41d5586724fd7a21a2fe05d625eb1826685208f80f422e7003dc152"
+    },
+    {
+      "path": "runtime/decision/transformer_policy_safety_final_20260813.int8.onnx",
+      "bytes": 700065,
+      "sha256": "a9cd9ad79d13284d8a5d7941ad4663653d2ed52b16bfcbb22b4e255e25eaf3fa"
+    },
+    {
+      "path": "scripts/install_pi_inference_release.sh",
+      "bytes": 217,
+      "sha256": "03ac7468fceba3d2e8c0bcef47337353d200ccc8a4b638a8a9b035a27fd4ef13"
+    },
+    {
+      "path": "scripts/run_xiaou_face_screen.sh",
+      "bytes": 392,
+      "sha256": "6e68ee31f30ed84f9b0cbfe7b34a1848f6e0919b0da3324df88498f5d7a512ff"
+    },
+    {
+      "path": "scripts/run_xiaou_status_dashboard.sh",
+      "bytes": 402,
+      "sha256": "d262b73522b98c9a8abe4b45e2a406cc50ec2b4074341f16326b620ff2823963"
+    },
+    {
+      "path": "scripts/setup_pi_inference_env.sh",
+      "bytes": 825,
+      "sha256": "5232e8f128d7e95cff9be4e8a668cca91eb664d7f83633c7f85977eadaed9a9b"
+    },
+    {
+      "path": "scripts/verify_pi_inference_release.sh",
+      "bytes": 405,
+      "sha256": "9e66701b791c9885708034656f9303d9c45cd70a81317256e0aa947222ebef64"
+    },
+    {
+      "path": "tools/install_pi_inference_release.py",
+      "bytes": 6566,
+      "sha256": "f044678d76733b63cd9fa77cc4377ccec9ec4fb4742edec005c1efe1cbf7cab8"
+    },
+    {
+      "path": "tools/preview_object_teach_record.py",
+      "bytes": 3310,
+      "sha256": "577db10feda45cade3ef69ecd3f656ae742ec17bd7c689d60376cd5d2af10135"
+    },
+    {
+      "path": "tools/profile_pi_inference_runtime.py",
+      "bytes": 7514,
+      "sha256": "216361b4d136827904ac315052966745108e8e0a3db25a8d41aaa0d4b1450317"
+    },
+    {
+      "path": "tools/verify_pi_inference_release.py",
+      "bytes": 5605,
+      "sha256": "d23dd6dac0c4a1688d3978480dbefadc281de4ad7800a7c6b0efc11d0fb47844"
+    },
+    {
+      "path": "tools/verify_xiaou_presentation.py",
+      "bytes": 4244,
+      "sha256": "2895f5d11e5ccfba89d532623535f41b48e9dbd837df51abde5ad6b4f01d43ad"
+    }
+  ],
+  "manifest": "DEPLOYMENT_MANIFEST.json",
+  "switch_policy": "stage to a new release directory, verify manifest and hardware lock, atomically update current symlink, keep previous symlink for rollback",
+  "passed": true
+}

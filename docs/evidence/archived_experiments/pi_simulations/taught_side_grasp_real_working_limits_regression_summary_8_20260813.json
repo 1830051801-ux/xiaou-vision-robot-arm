@@ -1,0 +1,61 @@
+{
+  "schema": "xiaou_real_working_limits_regression_summary_v1",
+  "offline": true,
+  "hardware_motion": false,
+  "run_count": 4,
+  "trial_count": 8,
+  "passed": 8,
+  "failed": 0,
+  "all_limits_ok": true,
+  "runs": [
+    {
+      "file": "runtime/simulations/taught_side_grasp_real_working_limits_regression_2_20260813.json",
+      "seed": 20260813,
+      "passed": 2,
+      "failed": 0,
+      "cad_contact_summary": {
+        "link_1_joint_1_body<->link_3_link_3_body": 2,
+        "link_1_joint_1_body<->link_4_joint_5_body": 2,
+        "link_2_link_2_body<->link_4_joint_5_body": 2
+      },
+      "all_limits_ok": true
+    },
+    {
+      "file": "runtime/simulations/taught_side_grasp_real_working_limits_regression_seed14_2_20260813.json",
+      "seed": 20260814,
+      "passed": 2,
+      "failed": 0,
+      "cad_contact_summary": {
+        "link_1_joint_1_body<->link_3_link_3_body": 2,
+        "link_1_joint_1_body<->link_4_joint_5_body": 2,
+        "link_2_link_2_body<->link_4_joint_5_body": 2
+      },
+      "all_limits_ok": true
+    },
+    {
+      "file": "runtime/simulations/taught_side_grasp_real_working_limits_regression_seed15_2_20260813.json",
+      "seed": 20260815,
+      "passed": 2,
+      "failed": 0,
+      "cad_contact_summary": {
+        "link_1_joint_1_body<->link_3_link_3_body": 2,
+        "link_1_joint_1_body<->link_4_joint_5_body": 2,
+        "link_2_link_2_body<->link_4_joint_5_body": 2
+      },
+      "all_limits_ok": true
+    },
+    {
+      "file": "runtime/simulations/taught_side_grasp_real_working_limits_regression_seed16_2_20260813.json",
+      "seed": 20260816,
+      "passed": 2,
+      "failed": 0,
+      "cad_contact_summary": {
+        "link_1_joint_1_body<->link_3_link_3_body": 2,
+        "link_1_joint_1_body<->link_4_joint_5_body": 2,
+        "link_2_link_2_body<->link_4_joint_5_body": 2
+      },
+      "all_limits_ok": true
+    }
+  ],
+  "note": "Four 2-trial MuJoCo batches were used to remain below the desktop execution time cap. CAD contacts are record-only observations."
+}

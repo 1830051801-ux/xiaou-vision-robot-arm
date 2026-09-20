@@ -1,0 +1,83 @@
+{
+  "evaluation": "constraint_diffusion_digital_twin",
+  "real_motion_enabled": false,
+  "episodes": 128,
+  "seed": 20260815,
+  "samples_per_context": 3,
+  "abstain_dispersion_rad": 0.45,
+  "context_support_threshold": 9.076378616689789,
+  "metrics": {
+    "raw_mean_grasp_position_error_m": 0.05271864001360681,
+    "raw_scene_safe_rate": 1.0,
+    "shielded_mean_grasp_position_error_m": null,
+    "shielded_scene_safe_rate": 0.0,
+    "projection_success_rate": 0.0,
+    "abstention_rate": 1.0,
+    "ood_abstention_rate": 1.0,
+    "dispersion_abstention_rate": 0.0
+  },
+  "projection_failure_counts": {},
+  "examples": [
+    {
+      "index": 0,
+      "support_distance": 583095.1894334476,
+      "dispersion_rad": 0.15953396260738373,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 1,
+      "support_distance": 583095.189437615,
+      "dispersion_rad": 0.08906909078359604,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 2,
+      "support_distance": 583095.1894424289,
+      "dispersion_rad": 0.12972547113895416,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 3,
+      "support_distance": 583095.1894423264,
+      "dispersion_rad": 0.10346341133117676,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 4,
+      "support_distance": 583095.189454187,
+      "dispersion_rad": 0.10595854371786118,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 5,
+      "support_distance": 583095.1894435922,
+      "dispersion_rad": 0.08194374293088913,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 6,
+      "support_distance": 583095.1894455651,
+      "dispersion_rad": 0.1271122246980667,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    },
+    {
+      "index": 7,
+      "support_distance": 583095.1894324747,
+      "dispersion_rad": 0.15328577160835266,
+      "decision": "abstain",
+      "reason": "context outside calibrated training support"
+    }
+  ],
+  "limitations": [
+    "training data is generated from the checked-in POE kinematic model and a synthetic perception noise model",
+    "constraint projection is a planning safety shield, not a measured real-arm control law",
+    "the diagnostic scene checks TCP clearance only and does not replace full-link collision checking"
+  ]
+}

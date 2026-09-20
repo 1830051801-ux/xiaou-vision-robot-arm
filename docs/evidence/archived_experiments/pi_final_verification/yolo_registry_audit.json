@@ -1,0 +1,59 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "camera_opened": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "automatic_switching": false,
+  "default_profile": "high_recall",
+  "profiles": [
+    {
+      "name": "high_recall",
+      "model": "raspberry_pi/models/xiaou_objects_gpu_deep.onnx",
+      "class_schema": "raspberry_pi/robot_ai/vision/config/yolo_class_schema_v1.json",
+      "classes": [
+        "pen",
+        "bottle",
+        "cola",
+        "earphone"
+      ],
+      "confidence": 0.1,
+      "role": "prefer recall when missing a valid target is more costly than an extra candidate",
+      "sha256": "74794520a1fcf6d49738fb420fc8e8d2739b9db9b43f34e47f3e0e9773200d5d",
+      "motion_enabled": false,
+      "backend_names": [
+        "opencv-onnx-cpu"
+      ],
+      "detection_count": 4,
+      "detected_classes": [
+        "pen"
+      ],
+      "passed": true
+    },
+    {
+      "name": "high_precision",
+      "model": "raspberry_pi/runtime/yolo_candidates/xiaou_objects_precision_candidate_20260809.onnx",
+      "class_schema": "raspberry_pi/robot_ai/vision/config/yolo_class_schema_v1.json",
+      "classes": [
+        "pen",
+        "bottle",
+        "cola",
+        "earphone"
+      ],
+      "confidence": 0.1,
+      "role": "prefer fewer false positives when an incorrect grasp candidate is more costly",
+      "sha256": "d850c87dc58d6b258fc1d0c9684f8fe13bf7351e12f088e7e30f6c90f39595ca",
+      "motion_enabled": false,
+      "backend_names": [
+        "opencv-onnx-cpu"
+      ],
+      "detection_count": 2,
+      "detected_classes": [
+        "pen"
+      ],
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "passed": true
+}

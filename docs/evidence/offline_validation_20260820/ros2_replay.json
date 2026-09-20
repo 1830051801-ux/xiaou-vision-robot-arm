@@ -1,0 +1,433 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "ros2_process_started": false,
+  "ros2_cli_required": false,
+  "checkpoint": "runtime/decision/transformer_policy_safety_final_20260813.int8.onnx",
+  "backend": "onnxruntime-cpu",
+  "checkpoint_metadata": {
+    "schema_version": 1,
+    "source_checkpoint": "runtime\\decision\\transformer_policy_safety_seed20260832.pt",
+    "quantization": "dynamic_int8_linear_weights",
+    "max_seq_len": 16,
+    "observation_dim": 46,
+    "inputs": {
+      "observations": "float32[batch,sequence,46]",
+      "task_ids": "int64[batch]"
+    },
+    "outputs": {
+      "strategy_logits": "float32[batch,6]",
+      "phase_logits": "float32[batch,6]",
+      "action_params": "float32[batch,6]",
+      "risk_logit": "float32[batch]"
+    },
+    "strategy_names": [
+      "top_down_pinch",
+      "side_wrap",
+      "pen_pinch",
+      "flat_pick",
+      "tissue_pull",
+      "reject"
+    ],
+    "phase_names": [
+      "observe",
+      "approach",
+      "grasp",
+      "lift",
+      "pull",
+      "abort"
+    ],
+    "hardware_motion": false
+  },
+  "topic_contract": {
+    "/xiaou/sim/observation": "JSON observation from desktop scene",
+    "/xiaou/sim/action_candidates": "JSON rule candidates",
+    "/xiaou/sim/target_pose": "PoseStamped in base_link",
+    "/xiaou/sim/status": "JSON simulation status",
+    "/xiaou/target_pose": "PoseStamped from YOLO perception",
+    "/xiaou/target_status": "JSON target status from YOLO perception",
+    "/xiaou/decision_observation": "JSON bridge output for Transformer",
+    "/xiaou/decision": "JSON Transformer decision candidate or blocked result",
+    "/xiaou/hardware_ready": "latched Bool readiness gate"
+  },
+  "source_gate_failures": [],
+  "resilience_cases": {
+    "freshness": {
+      "fresh_at_1_4s": true,
+      "stale_at_1_6s": false,
+      "missing_channel": false
+    },
+    "malformed_message_rejected": true,
+    "malformed_failures": [
+      "schema_version",
+      "yolo_class",
+      "target_class",
+      "target_position",
+      "joint_position",
+      "joint_velocity",
+      "joint_online",
+      "phase",
+      "perception",
+      "safety"
+    ]
+  },
+  "scenarios": [
+    {
+      "scenario": "bottle",
+      "topics": {
+        "observation": "/xiaou/sim/observation",
+        "candidate": "/xiaou/sim/action_candidates",
+        "target_pose": "/xiaou/sim/target_pose",
+        "tf": "base_link -> sim_bottle",
+        "decision": "/xiaou/decision"
+      },
+      "contract": {
+        "schema_version": 1,
+        "yolo_class": "bottle",
+        "target_class": "bottle",
+        "target_frame": "base_link",
+        "tf_child": "sim_bottle",
+        "observation_dim": 46
+      },
+      "contract_validation": {
+        "passed": true,
+        "failures": []
+      },
+      "simulation_decision": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.999969,
+        "risk": 0.100051,
+        "action_params": [
+          0.289844,
+          -0.112714,
+          0.217444,
+          0.08376,
+          0.06217,
+          0.001473
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "hardware_gate_decision": {
+        "strategy": "reject",
+        "phase": "abort",
+        "confidence": 0.999969,
+        "risk": 0.100051,
+        "action_params": [
+          0.289844,
+          -0.112714,
+          0.217444,
+          0.08376,
+          0.06217,
+          0.001473
+        ],
+        "status": "blocked_by_safety_gate",
+        "blocked_reasons": [
+          "motion_enabled",
+          "hardware_ready",
+          "feedback_verified"
+        ]
+      },
+      "hardware_motion": false
+    },
+    {
+      "scenario": "cup",
+      "topics": {
+        "observation": "/xiaou/sim/observation",
+        "candidate": "/xiaou/sim/action_candidates",
+        "target_pose": "/xiaou/sim/target_pose",
+        "tf": "base_link -> sim_cup",
+        "decision": "/xiaou/decision"
+      },
+      "contract": {
+        "schema_version": 1,
+        "yolo_class": "cup",
+        "target_class": "cup",
+        "target_frame": "base_link",
+        "tf_child": "sim_cup",
+        "observation_dim": 46
+      },
+      "contract_validation": {
+        "passed": true,
+        "failures": []
+      },
+      "simulation_decision": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.999974,
+        "risk": 0.097529,
+        "action_params": [
+          0.286489,
+          -0.108243,
+          0.094854,
+          0.095226,
+          0.085218,
+          0.001134
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "hardware_gate_decision": {
+        "strategy": "reject",
+        "phase": "abort",
+        "confidence": 0.999974,
+        "risk": 0.097529,
+        "action_params": [
+          0.286489,
+          -0.108243,
+          0.094854,
+          0.095226,
+          0.085218,
+          0.001134
+        ],
+        "status": "blocked_by_safety_gate",
+        "blocked_reasons": [
+          "motion_enabled",
+          "hardware_ready",
+          "feedback_verified"
+        ]
+      },
+      "hardware_motion": false
+    },
+    {
+      "scenario": "pen",
+      "topics": {
+        "observation": "/xiaou/sim/observation",
+        "candidate": "/xiaou/sim/action_candidates",
+        "target_pose": "/xiaou/sim/target_pose",
+        "tf": "base_link -> sim_pen",
+        "decision": "/xiaou/decision"
+      },
+      "contract": {
+        "schema_version": 1,
+        "yolo_class": "pen",
+        "target_class": "pen",
+        "target_frame": "base_link",
+        "tf_child": "sim_pen",
+        "observation_dim": 46
+      },
+      "contract_validation": {
+        "passed": true,
+        "failures": []
+      },
+      "simulation_decision": {
+        "strategy": "pen_pinch",
+        "phase": "grasp",
+        "confidence": 0.999947,
+        "risk": 0.099489,
+        "action_params": [
+          0.29408,
+          -0.132688,
+          0.140311,
+          0.033581,
+          0.007494,
+          0.002048
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "hardware_gate_decision": {
+        "strategy": "reject",
+        "phase": "abort",
+        "confidence": 0.999947,
+        "risk": 0.099489,
+        "action_params": [
+          0.29408,
+          -0.132688,
+          0.140311,
+          0.033581,
+          0.007494,
+          0.002048
+        ],
+        "status": "blocked_by_safety_gate",
+        "blocked_reasons": [
+          "motion_enabled",
+          "hardware_ready",
+          "feedback_verified"
+        ]
+      },
+      "hardware_motion": false
+    },
+    {
+      "scenario": "desktop_item",
+      "topics": {
+        "observation": "/xiaou/sim/observation",
+        "candidate": "/xiaou/sim/action_candidates",
+        "target_pose": "/xiaou/sim/target_pose",
+        "tf": "base_link -> sim_desktop_item",
+        "decision": "/xiaou/decision"
+      },
+      "contract": {
+        "schema_version": 1,
+        "yolo_class": "desktop_item",
+        "target_class": "desktop_item",
+        "target_frame": "base_link",
+        "tf_child": "sim_desktop_item",
+        "observation_dim": 46
+      },
+      "contract_validation": {
+        "passed": true,
+        "failures": []
+      },
+      "simulation_decision": {
+        "strategy": "flat_pick",
+        "phase": "grasp",
+        "confidence": 0.999945,
+        "risk": 0.098864,
+        "action_params": [
+          0.287071,
+          -0.120663,
+          0.030722,
+          0.087841,
+          0.065866,
+          0.001831
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "hardware_gate_decision": {
+        "strategy": "reject",
+        "phase": "abort",
+        "confidence": 0.999945,
+        "risk": 0.098864,
+        "action_params": [
+          0.287071,
+          -0.120663,
+          0.030722,
+          0.087841,
+          0.065866,
+          0.001831
+        ],
+        "status": "blocked_by_safety_gate",
+        "blocked_reasons": [
+          "motion_enabled",
+          "hardware_ready",
+          "feedback_verified"
+        ]
+      },
+      "hardware_motion": false
+    },
+    {
+      "scenario": "tissue_pull",
+      "topics": {
+        "observation": "/xiaou/sim/observation",
+        "candidate": "/xiaou/sim/action_candidates",
+        "target_pose": "/xiaou/sim/target_pose",
+        "tf": "base_link -> sim_tissue_pull",
+        "decision": "/xiaou/decision"
+      },
+      "contract": {
+        "schema_version": 1,
+        "yolo_class": "tissue_pull",
+        "target_class": "tissue_pull",
+        "target_frame": "base_link",
+        "tf_child": "sim_tissue_pull",
+        "observation_dim": 46
+      },
+      "contract_validation": {
+        "passed": true,
+        "failures": []
+      },
+      "simulation_decision": {
+        "strategy": "tissue_pull",
+        "phase": "pull",
+        "confidence": 0.999959,
+        "risk": 0.19801,
+        "action_params": [
+          0.282443,
+          -0.116648,
+          0.039575,
+          0.064602,
+          0.034784,
+          0.084314
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "hardware_gate_decision": {
+        "strategy": "reject",
+        "phase": "abort",
+        "confidence": 0.999959,
+        "risk": 0.19801,
+        "action_params": [
+          0.282443,
+          -0.116648,
+          0.039575,
+          0.064602,
+          0.034784,
+          0.084314
+        ],
+        "status": "blocked_by_safety_gate",
+        "blocked_reasons": [
+          "motion_enabled",
+          "hardware_ready",
+          "feedback_verified"
+        ]
+      },
+      "hardware_motion": false
+    },
+    {
+      "scenario": "cola",
+      "topics": {
+        "observation": "/xiaou/sim/observation",
+        "candidate": "/xiaou/sim/action_candidates",
+        "target_pose": "/xiaou/sim/target_pose",
+        "tf": "base_link -> sim_cola",
+        "decision": "/xiaou/decision"
+      },
+      "contract": {
+        "schema_version": 1,
+        "yolo_class": "cola",
+        "target_class": "cola",
+        "target_frame": "base_link",
+        "tf_child": "sim_cola",
+        "observation_dim": 46
+      },
+      "contract_validation": {
+        "passed": true,
+        "failures": []
+      },
+      "simulation_decision": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "confidence": 0.999973,
+        "risk": 0.097875,
+        "action_params": [
+          0.281346,
+          -0.118577,
+          0.195804,
+          0.081844,
+          0.060163,
+          0.001246
+        ],
+        "status": "candidate",
+        "blocked_reasons": []
+      },
+      "hardware_gate_decision": {
+        "strategy": "reject",
+        "phase": "abort",
+        "confidence": 0.999973,
+        "risk": 0.097875,
+        "action_params": [
+          0.281346,
+          -0.118577,
+          0.195804,
+          0.081844,
+          0.060163,
+          0.001246
+        ],
+        "status": "blocked_by_safety_gate",
+        "blocked_reasons": [
+          "motion_enabled",
+          "hardware_ready",
+          "feedback_verified"
+        ]
+      },
+      "hardware_motion": false
+    }
+  ],
+  "failure_count": 0,
+  "failures": [],
+  "passed": true
+}

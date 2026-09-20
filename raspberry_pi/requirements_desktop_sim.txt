@@ -1,0 +1,6 @@
+# Desktop-only tooling; do not install this group on a 2 GB Raspberry Pi.
+-r requirements.txt
+opencv-python>=4.8
+onnxruntime>=1.18
+mujoco>=3.3,<3.4
+torch>=2.2

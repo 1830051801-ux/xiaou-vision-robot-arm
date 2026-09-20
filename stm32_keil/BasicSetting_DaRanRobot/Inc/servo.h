@@ -70,15 +70,15 @@ typedef enum {
 #define SERVO_ANGLE_MIN          0.0f       /* 最小角度 (夹爪闭合/张开)     */
 #define SERVO_ANGLE_MAX          180.0f     /* 最大角度 (夹爪张开/闭合)     */
 
-/* Gripper profiles (0 deg open side ~ 180 deg closed side) ----------------*/
-#define GRIP_MODE1_CLOSE         115.0f      /* profile 1 close */
-#define GRIP_MODE1_RELEASE        48.0f      /* profile 1 release */
-#define GRIP_MODE2_CLOSE         140.0f      /* profile 2 close */
-#define GRIP_MODE2_RELEASE        50.0f      /* profile 2 release */
-#define GRIP_MODE3_CLOSE          110.0f     /* profile 3 close */
-#define GRIP_MODE3_RELEASE         35.0f     /* profile 3 release */
-#define GRIP_MODE4_CLOSE          130.0f     /* profile 4 close */
-#define GRIP_MODE4_RELEASE         50.0f     /* profile 4 release */
+/* 夹爪模式 (0°全张 ~ 180°全闭) -------------------------------------------*/
+#define GRIP_MODE1_CLOSE         115.0f      /* 模式1: 水瓶/可乐等较大物品 */
+#define GRIP_MODE1_RELEASE        48.0f      /* 模式1: 释放张开 */
+#define GRIP_MODE2_CLOSE         140.0f      /* 模式2: 笔等细小物品 */
+#define GRIP_MODE2_RELEASE        50.0f      /* 模式2: 释放张开 */
+#define GRIP_MODE3_CLOSE          110.0f     /* 模式3: 矿泉水瓶闭合 */
+#define GRIP_MODE3_RELEASE         35.0f     /* 模式3: 释放张开(更宽) */
+#define GRIP_MODE4_CLOSE          130.0f     /* 模式4: 耳机闭合(同mode2) */
+#define GRIP_MODE4_RELEASE         50.0f     /* 模式4: 耳机张开(同mode2) */
 
 /* 全局定时器句柄 (供 MSP/IT 使用) ----------------------------------------*/
 extern TIM_HandleTypeDef htim3;

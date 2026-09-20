@@ -1,0 +1,47 @@
+{
+  "created": [
+    "deskpet_common.py",
+    "face_greet.py",
+    "scheduler.py",
+    "run_demo.py",
+    "run_tests.py",
+    "requirements.txt"
+  ],
+  "tests": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "details": [
+      {
+        "name": "face_state_write",
+        "ok": true,
+        "file": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\runtime\\face_state.json"
+      },
+      {
+        "name": "emotion_memory",
+        "ok": true,
+        "file": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\runtime\\deskpet_emotion.json"
+      },
+      {
+        "name": "scheduler_trigger",
+        "ok": true,
+        "reminder_id": "800ba6d7-5734-4e5e-bb1b-617198a2547d"
+      },
+      {
+        "name": "haar_cascade_available",
+        "ok": true,
+        "warning": "OpenCV import failed on this machine; live face detection needs python3-opencv on Raspberry Pi.",
+        "error": "numpy.core.multiarray failed to import",
+        "fix": "sudo apt install -y python3-opencv"
+      }
+    ]
+  },
+  "paths": {
+    "project": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai",
+    "face_state": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\runtime\\face_state.json",
+    "event_log": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\runtime\\deskpet_events.jsonl",
+    "emotion_db": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\runtime\\deskpet_emotion.json",
+    "reminder_db": "C:\\Users\\ZhuanZ（无密码）\\Desktop\\raspi_robot_ai\\runtime\\deskpet_reminders.json"
+  },
+  "notes": "Camera live face greeting requires a real camera. If haar_cascade_available fails, install/fix OpenCV on target: sudo apt install -y python3-opencv, or reinstall matching numpy/opencv in the venv."
+}

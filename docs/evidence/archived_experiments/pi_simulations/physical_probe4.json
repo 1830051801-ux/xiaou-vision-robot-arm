@@ -1,0 +1,181 @@
+{
+  "simulation": "mujoco_physical_grasp_regression",
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "ros_hardware_started": false,
+  "physics_engine": {
+    "name": "MuJoCo",
+    "version": "3.3.7",
+    "mode": "DIRECT"
+  },
+  "sources": {
+    "robot_xacro": "raspberry_pi/ros2_ws/src/xiaou_arm_description/urdf/xiaou_arm_display.urdf.xacro",
+    "robot_collision_root": "raspberry_pi/ros2_ws/src/xiaou_arm_description/meshes/collision",
+    "cad_world_urdf": "local-artifact/robot_world_model.urdf",
+    "poe_model": "raspberry_pi/robot_ai/arm_control/config/arm_model.json",
+    "collision_mesh_count": 8,
+    "world_mesh_count": 8,
+    "cad_world_visual_loaded": false,
+    "cad_world_visual_note": "The checked-in CAD world STL files are ASCII; they are parsed and audited, while the MuJoCo world uses the table and rigid object primitives.",
+    "parsed_joint_names": [
+      "joint_1",
+      "joint_2",
+      "joint_3",
+      "joint_4",
+      "joint_5",
+      "joint_6"
+    ]
+  },
+  "assumptions": {
+    "joint_position_limits_rad": "assumed +/- pi; encoder limits are not measured",
+    "velocity_limits_rad_s": 0.5,
+    "acceleration_limits_rad_s2": 1.0,
+    "link_density_kg_m3": 500.0,
+    "gripper": "CAD collision mesh plus fixed jaw contact proxies; jaw actuator calibration is not measured",
+    "object_model": "primitive rigid bodies with class-specific dimensions and mass from desktop scene specs",
+    "tissue": "rigid sheet-stack proxy; cloth deformation and pull dynamics are not modeled"
+  },
+  "policy_replay": {
+    "enabled": true,
+    "fp32_checkpoint": "raspberry_pi/runtime/decision/transformer_policy_repeat.pt",
+    "int8_model": "raspberry_pi/runtime/decision/transformer_policy_repeat.int8.onnx",
+    "int8_error": null
+  },
+  "seed": 20260809,
+  "trials_per_scenario": 1,
+  "total_trials": 1,
+  "total_passed": 0,
+  "success_rate": 0.0,
+  "scenarios": [
+    {
+      "scenario": "bottle",
+      "mjcf": "local-artifact/xiaou_bottle.xml",
+      "trials": 1,
+      "passed": 0,
+      "success_rate": 0.0,
+      "failure_counts": {
+        "grasp_forbidden_contact": 1,
+        "grasp_contact_not_verified": 1
+      },
+      "trial_records": [
+        {
+          "trial": 0,
+          "scenario": "bottle",
+          "seed": 0,
+          "object_xyz_m": [
+            0.2903657567805768,
+            -0.12621744629651638,
+            0.05499999999999999
+          ],
+          "yaw_rad": -0.03148395981029911,
+          "policy": {
+            "fp32": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.998748,
+              "risk": 0.098457,
+              "action_params": [
+                0.280774,
+                -0.022607,
+                0.199883,
+                0.085404,
+                0.06379,
+                0.005693
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            },
+            "int8": {
+              "strategy": "side_wrap",
+              "phase": "grasp",
+              "confidence": 0.998725,
+              "risk": 0.098968,
+              "action_params": [
+                0.28093,
+                -0.023855,
+                0.200056,
+                0.085064,
+                0.063451,
+                0.005677
+              ],
+              "status": "candidate",
+              "blocked_reasons": []
+            }
+          },
+          "stages": [
+            {
+              "stage": "approach",
+              "ik_converged": true,
+              "ik_iterations": 15,
+              "position_error_m": 9.043906896065199e-07,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 289,
+                "duration_s": 2.878565800941474,
+                "max_tracking_error_rad": 0.09369043687506495,
+                "final_tracking_error_rad": 0.07527368773418808,
+                "forbidden_contact_samples": 0,
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [
+                {
+                  "geom1": "target_geom",
+                  "geom2": "link_6_gripper",
+                  "body1": "target_object",
+                  "body2": "link_6"
+                }
+              ],
+              "forbidden_contacts": []
+            },
+            {
+              "stage": "grasp",
+              "ik_converged": true,
+              "ik_iterations": 12,
+              "position_error_m": 4.754113849428999e-06,
+              "orientation_error_rad": 0.0,
+              "motion": {
+                "trajectory_points": 210,
+                "duration_s": 2.0823860512199923,
+                "max_tracking_error_rad": 0.3071492742105585,
+                "final_tracking_error_rad": 0.3063041131107056,
+                "forbidden_contact_samples": 394,
+                "within_assumed_limits": true
+              },
+              "target_robot_contacts": [],
+              "forbidden_contacts": [
+                {
+                  "geom1": "base_body_geom",
+                  "geom2": "link_2_link_2_body",
+                  "body1": "base_link",
+                  "body2": "link_2"
+                }
+              ]
+            }
+          ],
+          "contact_verified": false,
+          "settled_table_contact": true,
+          "released_object_xyz_m": [
+            0.5376273733666033,
+            -0.20793143998685745,
+            -0.017289312580704284
+          ],
+          "issues": [
+            "grasp_forbidden_contact",
+            "grasp_contact_not_verified"
+          ],
+          "passed": false,
+          "hardware_motion": false
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "MuJoCo contact and dynamics use provisional link density because CAD mass properties are not calibrated.",
+    "The ROS2 Xacro declares continuous joints; the regression applies an assumed +/- pi envelope only for offline safety checks.",
+    "Static gripper CAD is supplemented by fixed jaw proxies; real jaw width, force, and finger motion remain unverified.",
+    "A passed offline trial is not proof of camera calibration, encoder correctness, F407 feedback, grasp force, or real object friction.",
+    "Real motion remains locked by hardware_calibration.json and is never enabled by this script."
+  ]
+}

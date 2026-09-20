@@ -1,0 +1,103 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "archive": "raspberry_pi/tmp/verification_final_20260816/xiaou_pi_inference.tar.gz",
+  "file_count": 72,
+  "forbidden_entries": [],
+  "missing_required_files": [],
+  "yolo_names": [
+    "pen",
+    "bottle",
+    "cola",
+    "earphone"
+  ],
+  "yolo_detection_count": 4,
+  "transformer_metadata": {
+    "schema_version": 1,
+    "source_checkpoint": "runtime/decision/transformer_policy_safety_seed20260832.pt",
+    "quantization": "dynamic_int8_linear_weights",
+    "max_seq_len": 16,
+    "observation_dim": 46,
+    "inputs": {
+      "observations": "float32[batch,sequence,46]",
+      "task_ids": "int64[batch]"
+    },
+    "outputs": {
+      "strategy_logits": "float32[batch,6]",
+      "phase_logits": "float32[batch,6]",
+      "action_params": "float32[batch,6]",
+      "risk_logit": "float32[batch]"
+    },
+    "strategy_names": [
+      "top_down_pinch",
+      "side_wrap",
+      "pen_pinch",
+      "flat_pick",
+      "tissue_pull",
+      "reject"
+    ],
+    "phase_names": [
+      "observe",
+      "approach",
+      "grasp",
+      "lift",
+      "pull",
+      "abort"
+    ],
+    "hardware_motion": false
+  },
+  "grasp_family_registry_schema": 1,
+  "grasp_family_classes": [
+    "bottle",
+    "cola",
+    "cup",
+    "desktop_item",
+    "earphone",
+    "pen",
+    "tissue_pull"
+  ],
+  "teach_registry_classes": [
+    "bottle",
+    "cola",
+    "cup",
+    "desktop_item",
+    "earphone",
+    "pen",
+    "tissue_pull"
+  ],
+  "release_verification": {
+    "offline": true,
+    "hardware_motion": false,
+    "serial_opened": false,
+    "can_opened": false,
+    "root": "local-artifact/xiaou_pi",
+    "manifest_profile_set": "production",
+    "manifest_file_count": 71,
+    "verified_file_count": 71,
+    "missing_required": [],
+    "runtime_modules": {
+      "cv2": true,
+      "numpy": true,
+      "onnxruntime": true,
+      "PIL": true
+    },
+    "locked_fields": [
+      "motion_enabled",
+      "protocol_confirmed",
+      "uart_link_verified",
+      "f407_firmware_verified",
+      "estop_verified",
+      "feedback_verified"
+    ],
+    "unlocked_fields": [],
+    "failures": [],
+    "passed": true
+  },
+  "dual_candidate_checks": {
+    "present": false,
+    "passed": true
+  },
+  "passed": true
+}

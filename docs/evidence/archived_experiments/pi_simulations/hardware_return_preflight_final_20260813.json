@@ -1,0 +1,89 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "ros2_process_started": false,
+  "moveit_started": false,
+  "config": {
+    "path": "raspberry_pi/robot_ai/arm_control/config/hardware_calibration.json",
+    "motion_enabled": false,
+    "required_locked_fields": [
+      "motion_enabled",
+      "protocol_confirmed",
+      "uart_link_verified",
+      "f407_firmware_verified",
+      "estop_verified",
+      "feedback_verified",
+      "mcu_calibration_verified"
+    ],
+    "violations": [],
+    "transport": {
+      "kind": "uart",
+      "port": "/dev/serial0",
+      "baud": 115200
+    },
+    "passed": true
+  },
+  "protocol_replay": {
+    "command": [
+      "local-artifact/python.exe",
+      "raspberry_pi/tools/protocol_offline_replay.py",
+      "--output",
+      "raspberry_pi/runtime/simulations/protocol_offline_replay_final_20260813.json"
+    ],
+    "exit_code": 0,
+    "stdout_tail": "tency_p50_ms\": 26.0,\n        \"latency_p95_ms\": 26.0,\n        \"sequence_mismatch_count\": 0,\n        \"timestamp_reversal_count\": 0,\n        \"blockers\": [\n          \"freshness:offline_reported\",\n          \"online_ratio\"\n        ],\n        \"passed\": false\n      }\n    },\n    \"blockers\": [\n      \"J5:freshness:stale\",\n      \"J6:freshness:offline_reported\",\n      \"J6:online_ratio\"\n    ],\n    \"passed\": false\n  },\n  \"can\": {\n    \"command_id\": \"0x105\",\n    \"feedback_id\": \"0x185\",\n    \"diagnostic_id\": \"0x1c5\",\n    \"decoded_command\": {\n      \"position_rad\": 0.25,\n      \"velocity_rad_s\": 0.1,\n      \"sequence\": 7\n    },\n    \"decoded_feedback\": {\n      \"position_rad\": 0.25,\n      \"velocity_rad_s\": 0.1,\n      \"status\": 16\n    },\n    \"wrong_node_rejected\": true\n  },\n  \"motion_gate\": {\n    \"ready\": false,\n    \"locked_fields\": [\n      \"motion_enabled\",\n      \"protocol_confirmed\",\n      \"uart_link_verified\",\n      \"f407_firmware_verified\",\n      \"estop_verified\",\n      \"feedback_verified\",\n      \"mcu_calibration_verified\",\n      \"position_min_rad\",\n      \"position_max_rad\",\n      \"velocity_max_rad_s\",\n      \"acceleration_max_rad_s2\"\n    ]\n  },\n  \"failure_count\": 0,\n  \"failures\": [],\n  \"passed\": true\n}\n",
+    "stderr_tail": "",
+    "report": "raspberry_pi/runtime/simulations/protocol_offline_replay_final_20260813.json",
+    "passed": true
+  },
+  "ros2_replay": {
+    "command": [
+      "local-artifact/python.exe",
+      "raspberry_pi/tools/ros2_offline_replay.py",
+      "--checkpoint",
+      "raspberry_pi/runtime/decision/transformer_policy_safety_final_20260813.int8.onnx",
+      "--device",
+      "cpu",
+      "--output",
+      "raspberry_pi/runtime/simulations/ros2_offline_replay_final_20260813.json"
+    ],
+    "exit_code": 0,
+    "stdout_tail": "s\": \"cola\",\n        \"target_class\": \"cola\",\n        \"target_frame\": \"base_link\",\n        \"tf_child\": \"sim_cola\",\n        \"observation_dim\": 46\n      },\n      \"contract_validation\": {\n        \"passed\": true,\n        \"failures\": []\n      },\n      \"simulation_decision\": {\n        \"strategy\": \"side_wrap\",\n        \"phase\": \"grasp\",\n        \"confidence\": 0.999973,\n        \"risk\": 0.097875,\n        \"action_params\": [\n          0.281346,\n          -0.118577,\n          0.195804,\n          0.081844,\n          0.060163,\n          0.001246\n        ],\n        \"status\": \"candidate\",\n        \"blocked_reasons\": []\n      },\n      \"hardware_gate_decision\": {\n        \"strategy\": \"reject\",\n        \"phase\": \"abort\",\n        \"confidence\": 0.999973,\n        \"risk\": 0.097875,\n        \"action_params\": [\n          0.281346,\n          -0.118577,\n          0.195804,\n          0.081844,\n          0.060163,\n          0.001246\n        ],\n        \"status\": \"blocked_by_safety_gate\",\n        \"blocked_reasons\": [\n          \"motion_enabled\",\n          \"hardware_ready\",\n          \"feedback_verified\"\n        ]\n      },\n      \"hardware_motion\": false\n    }\n  ],\n  \"failure_count\": 0,\n  \"failures\": [],\n  \"passed\": true\n}\n",
+    "stderr_tail": "",
+    "report": "raspberry_pi/runtime/simulations/ros2_offline_replay_final_20260813.json",
+    "passed": true
+  },
+  "deployment_probe": {
+    "command": [
+      "local-artifact/python.exe",
+      "raspberry_pi/tools/verify_pi_deployment_package.py",
+      "--archive",
+      "raspberry_pi/runtime/deployment/xiaou_pi_inference_final_20260813.tar.gz",
+      "--output",
+      "raspberry_pi/runtime/deployment/xiaou_pi_inference_final_20260813_probe.json"
+    ],
+    "exit_code": 0,
+    "stdout_tail": ",\n      \"abort\"\n    ],\n    \"hardware_motion\": false\n  },\n  \"grasp_family_registry_schema\": 1,\n  \"grasp_family_classes\": [\n    \"bottle\",\n    \"cola\",\n    \"cup\",\n    \"desktop_item\",\n    \"earphone\",\n    \"pen\",\n    \"tissue_pull\"\n  ],\n  \"teach_registry_classes\": [\n    \"bottle\",\n    \"cola\",\n    \"cup\",\n    \"desktop_item\",\n    \"earphone\",\n    \"pen\",\n    \"tissue_pull\"\n  ],\n  \"release_verification\": {\n    \"offline\": true,\n    \"hardware_motion\": false,\n    \"serial_opened\": false,\n    \"can_opened\": false,\n    \"root\": \"local-artifact/redacted-path\",\n    \"manifest_profile_set\": \"production\",\n    \"manifest_file_count\": 70,\n    \"verified_file_count\": 70,\n    \"missing_required\": [],\n    \"runtime_modules\": {\n      \"cv2\": true,\n      \"numpy\": true,\n      \"onnxruntime\": true,\n      \"PIL\": true\n    },\n    \"locked_fields\": [\n      \"motion_enabled\",\n      \"protocol_confirmed\",\n      \"uart_link_verified\",\n      \"f407_firmware_verified\",\n      \"estop_verified\",\n      \"feedback_verified\"\n    ],\n    \"unlocked_fields\": [],\n    \"failures\": [],\n    \"passed\": true\n  },\n  \"dual_candidate_checks\": {\n    \"present\": false,\n    \"passed\": true\n  },\n  \"passed\": true\n}\n",
+    "stderr_tail": "",
+    "report": "raspberry_pi/runtime/deployment/xiaou_pi_inference_final_20260813_probe.json",
+    "passed": true
+  },
+  "archive": {
+    "archive": "raspberry_pi/runtime/deployment/xiaou_pi_inference_final_20260813.tar.gz",
+    "file_count": 71,
+    "forbidden_entries": [],
+    "report_exists": true,
+    "passed": true
+  },
+  "missing_files": [],
+  "checks": {
+    "hardware_config_locked": true,
+    "protocol_replay": true,
+    "ros2_contract_replay": true,
+    "deployment_archive": true,
+    "required_files": true
+  },
+  "passed": true
+}

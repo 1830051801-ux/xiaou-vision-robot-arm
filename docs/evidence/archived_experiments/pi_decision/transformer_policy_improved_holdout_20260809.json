@@ -1,0 +1,241 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "holdout": {
+    "generator": "fresh deterministic synthetic scenes",
+    "episodes": 4096,
+    "sequence_length": 8,
+    "seed": 20260901
+  },
+  "models": [
+    {
+      "checkpoint": "raspberry_pi/runtime/decision/transformer_policy_second_fullverify_20260809.pt",
+      "checkpoint_metadata": {
+        "synthetic_demonstrations": true,
+        "episodes": 2048,
+        "train_episodes": 1638,
+        "validation_episodes": 410,
+        "sequence_length": 8,
+        "val_ratio": 0.2,
+        "action_loss_weight": 1.0,
+        "device": "cuda"
+      },
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "action_mae": 0.01732864324003458,
+      "action_max_abs_error": 0.16701488196849823,
+      "risk_mae": 0.004094482399523258,
+      "per_scenario": {
+        "bottle": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.017636736988086796
+        },
+        "cup": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.019381306237341602
+        },
+        "pen": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.015837749283580792
+        },
+        "desktop_item": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.015724265965664456
+        },
+        "tissue_pull": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.018335481156992888
+        },
+        "cola": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.017057398053974947
+        }
+      }
+    },
+    {
+      "checkpoint": "raspberry_pi/runtime/decision/transformer_policy_improved_seed20260821.pt",
+      "checkpoint_metadata": {
+        "synthetic_demonstrations": true,
+        "episodes": 6144,
+        "train_episodes": 4915,
+        "validation_episodes": 1229,
+        "sequence_length": 8,
+        "val_ratio": 0.2,
+        "action_loss_weight": 1.0,
+        "device": "cuda"
+      },
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "action_mae": 0.00363973646502321,
+      "action_max_abs_error": 0.05717460811138153,
+      "risk_mae": 0.0025369699869770557,
+      "per_scenario": {
+        "bottle": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0030144726213935003
+        },
+        "cup": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0033924271227708273
+        },
+        "pen": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003883692202407807
+        },
+        "desktop_item": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.004025578968251454
+        },
+        "tissue_pull": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0042062228642729994
+        },
+        "cola": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003316380856135352
+        }
+      }
+    },
+    {
+      "checkpoint": "raspberry_pi/runtime/decision/transformer_policy_improved_seed20260822.pt",
+      "checkpoint_metadata": {
+        "synthetic_demonstrations": true,
+        "episodes": 6144,
+        "train_episodes": 4915,
+        "validation_episodes": 1229,
+        "sequence_length": 8,
+        "val_ratio": 0.2,
+        "action_loss_weight": 1.0,
+        "device": "cuda"
+      },
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "action_mae": 0.0036361561506055295,
+      "action_max_abs_error": 0.04456727206707001,
+      "risk_mae": 0.0026341472985222936,
+      "per_scenario": {
+        "bottle": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0037677116526050785
+        },
+        "cup": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.00379439244551785
+        },
+        "pen": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003642115460162398
+        },
+        "desktop_item": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0036314047852339265
+        },
+        "tissue_pull": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003957984833827903
+        },
+        "cola": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0030229008107474356
+        }
+      }
+    },
+    {
+      "checkpoint": "raspberry_pi/runtime/decision/transformer_policy_improved_seed20260823.pt",
+      "checkpoint_metadata": {
+        "synthetic_demonstrations": true,
+        "episodes": 6144,
+        "train_episodes": 4915,
+        "validation_episodes": 1229,
+        "sequence_length": 8,
+        "val_ratio": 0.2,
+        "action_loss_weight": 1.0,
+        "device": "cuda"
+      },
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "action_mae": 0.0037362046811419227,
+      "action_max_abs_error": 0.047639355063438416,
+      "risk_mae": 0.0026327621744712815,
+      "per_scenario": {
+        "bottle": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003901184516858442
+        },
+        "cup": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0036816278571629303
+        },
+        "pen": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003637134067801938
+        },
+        "desktop_item": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003361814831492158
+        },
+        "tissue_pull": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003771368371489351
+        },
+        "cola": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.004064630662871275
+        }
+      }
+    }
+  ],
+  "best_checkpoint": "raspberry_pi/runtime/decision/transformer_policy_improved_seed20260822.pt",
+  "selection_rule": "strategy accuracy, phase accuracy, action MAE, then risk MAE",
+  "warning": "Synthetic holdout ranks architecture candidates only; it does not measure real grasp success."
+}

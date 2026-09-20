@@ -1,0 +1,1706 @@
+{
+  "schema": "xiaou_taught_side_grasp_regression_v1",
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "ros_hardware_started": false,
+  "physics_engine": {
+    "name": "MuJoCo",
+    "version": "3.3.7"
+  },
+  "model": {
+    "poe": "raspberry_pi/robot_ai/arm_control/config/arm_model.json",
+    "urdf": "raspberry_pi/ros2_ws/src/xiaou_arm_description/urdf/xiaou_arm_display.urdf.xacro",
+    "collision_mesh_count": 8,
+    "hardware_motion_profile": "raspberry_pi/robot_ai/arm_control/config/hardware_calibration_candidate_20260811.json",
+    "hardware_motion_profile_schema_version": 5,
+    "ready_pose_deg": [
+      -0.03,
+      -49.96,
+      -55.0,
+      -70.0,
+      110.0,
+      0.01
+    ]
+  },
+  "randomization": {
+    "seed": 20260813,
+    "trials": 6,
+    "radius_jitter_m": 0.001,
+    "height_jitter_m": 0.003,
+    "taught_contact_xy_jitter_m": 0.001,
+    "taught_contact_z_jitter_m": 0.0005,
+    "start_joint_jitter_deg": 0.0,
+    "pregrasp_clearance_m": 0.12,
+    "contact_handoff_clearance_m": 0.066
+  },
+  "acceptance": {
+    "joint_limits": "must remain within the current effective Pi envelope",
+    "pre_contact_object_collision": "must have no MuJoCo target contact before the final taught contact segment",
+    "cad_contact_policy": "record_only"
+  },
+  "passed": 6,
+  "failed": 0,
+  "success_rate": 1.0,
+  "failure_counts": {},
+  "candidate_counts": {
+    "tool_z_positive": 6
+  },
+  "cad_contact_summary": {
+    "link_1_joint_1_body<->link_3_link_3_body": 6,
+    "link_1_joint_1_body<->link_4_joint_5_body": 6,
+    "link_2_link_2_body<->link_4_joint_5_body": 6
+  },
+  "trials": [
+    {
+      "trial": 0,
+      "object_radius_m": 0.03292403681789972,
+      "object_height_m": 0.18917062004019486,
+      "taught_contact_offset_base_m": [
+        -0.0005918375382011527,
+        0.0004619907448571252,
+        0.00038279723616453697
+      ],
+      "start_joint_deg": [
+        -0.03,
+        -49.96,
+        -55.0,
+        -70.0,
+        110.0,
+        0.01
+      ],
+      "passed": true,
+      "candidate": "tool_z_positive",
+      "stage_count": 14,
+      "endpoint_mode": "ik_retargeted",
+      "sampled_transit_min_clearance_m": 0.05264151902618519,
+      "contact_handoff_clearance_m": 0.066,
+      "premature_target_contacts": {},
+      "forbidden_contact_summary": {
+        "link_1_joint_1_body<->link_3_link_3_body": 1,
+        "link_1_joint_1_body<->link_4_joint_5_body": 1,
+        "link_2_link_2_body<->link_4_joint_5_body": 1
+      },
+      "playback": [
+        {
+          "name": "raise_to_transit",
+          "phase": "raise",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 2163,
+            "duration_s": 21.618097085218032,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_target",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 9347,
+            "duration_s": 93.45928602724737,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_pregrasp",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 3131,
+            "duration_s": 31.295653799813582,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 2.7755575615628914e-17,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_01",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 866,
+            "duration_s": 8.647475394348763,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_02",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 771,
+            "duration_s": 7.698967951508635,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_03",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 800,
+            "duration_s": 7.983885400276397,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_04",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 843,
+            "duration_s": 8.416984779071061,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_05",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 896,
+            "duration_s": 8.940356482825038,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_06",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 949,
+            "duration_s": 9.473093691918924,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_01",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 463,
+            "duration_s": 4.615461972355447,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_02",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 455,
+            "duration_s": 4.5373427152274655,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_03",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 463,
+            "duration_s": 4.612455218515918,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_04",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 471,
+            "duration_s": 4.695425731966453,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "taught_side_contact",
+          "phase": "approach_contact",
+          "target_contact_samples": 26245,
+          "forbidden_contact_count": 3,
+          "motion": {
+            "trajectory_points": 2831,
+            "duration_s": 28.29742359419673,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 9.540979117872439e-18,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 15915,
+            "target_contact_samples": 26245,
+            "target_contact_pairs": {
+              "target_geom<->jaw_left_proxy": 12645,
+              "target_geom<->link_6_gripper": 9745,
+              "target_geom<->jaw_right_proxy": 3855
+            },
+            "within_effective_limits": true
+          }
+        }
+      ]
+    },
+    {
+      "trial": 1,
+      "object_radius_m": 0.03266637366377522,
+      "object_height_m": 0.18960812164140592,
+      "taught_contact_offset_base_m": [
+        -0.0006681636626522918,
+        -0.00014111551179104317,
+        -0.000480479252871629
+      ],
+      "start_joint_deg": [
+        -0.03,
+        -49.96,
+        -55.0,
+        -70.0,
+        110.0,
+        0.01
+      ],
+      "passed": true,
+      "candidate": "tool_z_positive",
+      "stage_count": 14,
+      "endpoint_mode": "ik_retargeted",
+      "sampled_transit_min_clearance_m": 0.052662143706617884,
+      "contact_handoff_clearance_m": 0.066,
+      "premature_target_contacts": {},
+      "forbidden_contact_summary": {
+        "link_1_joint_1_body<->link_3_link_3_body": 1,
+        "link_1_joint_1_body<->link_4_joint_5_body": 1,
+        "link_2_link_2_body<->link_4_joint_5_body": 1
+      },
+      "playback": [
+        {
+          "name": "raise_to_transit",
+          "phase": "raise",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 2147,
+            "duration_s": 21.451444289337473,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_target",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 9348,
+            "duration_s": 93.46989148190957,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_pregrasp",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 3127,
+            "duration_s": 31.257949769521392,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 1.3877787807814457e-17,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_01",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 865,
+            "duration_s": 8.636327545172275,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_02",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 772,
+            "duration_s": 7.709584781821678,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_03",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 802,
+            "duration_s": 8.009609796615486,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_04",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 847,
+            "duration_s": 8.454926440939289,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_05",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 901,
+            "duration_s": 8.990990817099405,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_06",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 955,
+            "duration_s": 9.535924945838097,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_01",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 463,
+            "duration_s": 4.6131143148732425,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_02",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 455,
+            "duration_s": 4.538350339980232,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_03",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 463,
+            "duration_s": 4.615029731899747,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_04",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 471,
+            "duration_s": 4.6995115579683535,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "taught_side_contact",
+          "phase": "approach_contact",
+          "target_contact_samples": 26265,
+          "forbidden_contact_count": 3,
+          "motion": {
+            "trajectory_points": 2837,
+            "duration_s": 28.356850858983655,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 2.7755575615628914e-17,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 16565,
+            "target_contact_samples": 26265,
+            "target_contact_pairs": {
+              "target_geom<->jaw_left_proxy": 12675,
+              "target_geom<->link_6_gripper": 9760,
+              "target_geom<->jaw_right_proxy": 3830
+            },
+            "within_effective_limits": true
+          }
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "object_radius_m": 0.03221372541031163,
+      "object_height_m": 0.19094712403576627,
+      "taught_contact_offset_base_m": [
+        0.0009063610269175865,
+        0.0008660107836006865,
+        -0.00024452163723694055
+      ],
+      "start_joint_deg": [
+        -0.03,
+        -49.96,
+        -55.0,
+        -70.0,
+        110.0,
+        0.01
+      ],
+      "passed": true,
+      "candidate": "tool_z_positive",
+      "stage_count": 14,
+      "endpoint_mode": "ik_retargeted",
+      "sampled_transit_min_clearance_m": 0.05276871354834252,
+      "contact_handoff_clearance_m": 0.066,
+      "premature_target_contacts": {},
+      "forbidden_contact_summary": {
+        "link_1_joint_1_body<->link_3_link_3_body": 1,
+        "link_1_joint_1_body<->link_4_joint_5_body": 1,
+        "link_2_link_2_body<->link_4_joint_5_body": 1
+      },
+      "playback": [
+        {
+          "name": "raise_to_transit",
+          "phase": "raise",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 2172,
+            "duration_s": 21.70124944959181,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_target",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 9403,
+            "duration_s": 94.01386158202617,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_pregrasp",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 3093,
+            "duration_s": 30.91037619755585,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_01",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 872,
+            "duration_s": 8.709993312260352,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_02",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 776,
+            "duration_s": 7.741415929183199,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_03",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 805,
+            "duration_s": 8.032608533304582,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_04",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 849,
+            "duration_s": 8.471951356704,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_05",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 902,
+            "duration_s": 9.001459545283131,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_06",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 955,
+            "duration_s": 9.538854268346359,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_01",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 462,
+            "duration_s": 4.606019574752165,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_02",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 453,
+            "duration_s": 4.510815910028214,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_03",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 460,
+            "duration_s": 4.581446137864415,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_04",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 468,
+            "duration_s": 4.661167786484558,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "taught_side_contact",
+          "phase": "approach_contact",
+          "target_contact_samples": 25160,
+          "forbidden_contact_count": 3,
+          "motion": {
+            "trajectory_points": 2726,
+            "duration_s": 27.241522199817023,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 1.3010426069826053e-17,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 15320,
+            "target_contact_samples": 25160,
+            "target_contact_pairs": {
+              "target_geom<->jaw_left_proxy": 12175,
+              "target_geom<->link_6_gripper": 9365,
+              "target_geom<->jaw_right_proxy": 3620
+            },
+            "within_effective_limits": true
+          }
+        }
+      ]
+    },
+    {
+      "trial": 3,
+      "object_radius_m": 0.032728297061571744,
+      "object_height_m": 0.1920046703902609,
+      "taught_contact_offset_base_m": [
+        0.0004888574288366078,
+        0.0007403361456486577,
+        0.0001161564824855158
+      ],
+      "start_joint_deg": [
+        -0.03,
+        -49.96,
+        -55.0,
+        -70.0,
+        110.0,
+        0.01
+      ],
+      "passed": true,
+      "candidate": "tool_z_positive",
+      "stage_count": 14,
+      "endpoint_mode": "ik_retargeted",
+      "sampled_transit_min_clearance_m": 0.052746149724068866,
+      "contact_handoff_clearance_m": 0.066,
+      "premature_target_contacts": {},
+      "forbidden_contact_summary": {
+        "link_1_joint_1_body<->link_3_link_3_body": 1,
+        "link_1_joint_1_body<->link_4_joint_5_body": 1,
+        "link_2_link_2_body<->link_4_joint_5_body": 1
+      },
+      "playback": [
+        {
+          "name": "raise_to_transit",
+          "phase": "raise",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 2195,
+            "duration_s": 21.933789541555477,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_target",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 9388,
+            "duration_s": 93.86115103877334,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_pregrasp",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 3105,
+            "duration_s": 31.031771397208654,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 2.7755575615628914e-17,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_01",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 879,
+            "duration_s": 8.773314481158046,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_02",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 781,
+            "duration_s": 7.792672907268572,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_03",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 806,
+            "duration_s": 8.04854900333671,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_04",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 850,
+            "duration_s": 8.485883669025279,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_05",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 903,
+            "duration_s": 9.014691139845391,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_06",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 957,
+            "duration_s": 9.553449202487068,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_01",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 462,
+            "duration_s": 4.60957625940763,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_02",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 453,
+            "duration_s": 4.518848854467373,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_03",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 461,
+            "duration_s": 4.59058129756414,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_04",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 469,
+            "duration_s": 4.671073463827393,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "taught_side_contact",
+          "phase": "approach_contact",
+          "target_contact_samples": 25595,
+          "forbidden_contact_count": 3,
+          "motion": {
+            "trajectory_points": 2765,
+            "duration_s": 27.636624394162105,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 1.734723475976807e-17,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 15435,
+            "target_contact_samples": 25595,
+            "target_contact_pairs": {
+              "target_geom<->jaw_left_proxy": 12350,
+              "target_geom<->link_6_gripper": 9510,
+              "target_geom<->jaw_right_proxy": 3735
+            },
+            "within_effective_limits": true
+          }
+        }
+      ]
+    },
+    {
+      "trial": 4,
+      "object_radius_m": 0.031942431305057396,
+      "object_height_m": 0.1912229377178548,
+      "taught_contact_offset_base_m": [
+        0.0009973272611550508,
+        -0.0002508718232370659,
+        0.00027167151750153514
+      ],
+      "start_joint_deg": [
+        -0.03,
+        -49.96,
+        -55.0,
+        -70.0,
+        110.0,
+        0.01
+      ],
+      "passed": true,
+      "candidate": "tool_z_positive",
+      "stage_count": 14,
+      "endpoint_mode": "ik_retargeted",
+      "sampled_transit_min_clearance_m": 0.052812853855414704,
+      "contact_handoff_clearance_m": 0.066,
+      "premature_target_contacts": {},
+      "forbidden_contact_summary": {
+        "link_1_joint_1_body<->link_3_link_3_body": 1,
+        "link_1_joint_1_body<->link_4_joint_5_body": 1,
+        "link_2_link_2_body<->link_4_joint_5_body": 1
+      },
+      "playback": [
+        {
+          "name": "raise_to_transit",
+          "phase": "raise",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 2189,
+            "duration_s": 21.872268360613738,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_target",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 9414,
+            "duration_s": 94.1282964790412,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_pregrasp",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 3075,
+            "duration_s": 30.73347656263579,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_01",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 877,
+            "duration_s": 8.751477979823743,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_02",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 779,
+            "duration_s": 7.778107727090809,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_03",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 805,
+            "duration_s": 8.036879358144445,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_04",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 850,
+            "duration_s": 8.486162998945707,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_05",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 905,
+            "duration_s": 9.030981459750818,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_06",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 961,
+            "duration_s": 9.5911576049986,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_01",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 461,
+            "duration_s": 4.593823046350295,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_02",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 455,
+            "duration_s": 4.531177866430574,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_03",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 462,
+            "duration_s": 4.604242468068779,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_04",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 470,
+            "duration_s": 4.685340601546294,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "taught_side_contact",
+          "phase": "approach_contact",
+          "target_contact_samples": 25280,
+          "forbidden_contact_count": 3,
+          "motion": {
+            "trajectory_points": 2744,
+            "duration_s": 27.4252393240007,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 1.3010426069826053e-17,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 15630,
+            "target_contact_samples": 25280,
+            "target_contact_pairs": {
+              "target_geom<->jaw_left_proxy": 12250,
+              "target_geom<->link_6_gripper": 9420,
+              "target_geom<->jaw_right_proxy": 3610
+            },
+            "within_effective_limits": true
+          }
+        }
+      ]
+    },
+    {
+      "trial": 5,
+      "object_radius_m": 0.032334192610798874,
+      "object_height_m": 0.19278991012952942,
+      "taught_contact_offset_base_m": [
+        0.00018555706235955007,
+        0.0008509809069023615,
+        -0.0001614378682404206
+      ],
+      "start_joint_deg": [
+        -0.03,
+        -49.96,
+        -55.0,
+        -70.0,
+        110.0,
+        0.01
+      ],
+      "passed": true,
+      "candidate": "tool_z_positive",
+      "stage_count": 14,
+      "endpoint_mode": "ik_retargeted",
+      "sampled_transit_min_clearance_m": 0.052722856796015974,
+      "contact_handoff_clearance_m": 0.066,
+      "premature_target_contacts": {},
+      "forbidden_contact_summary": {
+        "link_1_joint_1_body<->link_3_link_3_body": 1,
+        "link_1_joint_1_body<->link_4_joint_5_body": 1,
+        "link_2_link_2_body<->link_4_joint_5_body": 1
+      },
+      "playback": [
+        {
+          "name": "raise_to_transit",
+          "phase": "raise",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 2198,
+            "duration_s": 21.963854970243993,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_target",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 9375,
+            "duration_s": 93.73589343747847,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "transfer_above_pregrasp",
+          "phase": "transfer",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 3099,
+            "duration_s": 30.97480564402047,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 1.3877787807814457e-17,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_01",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 882,
+            "duration_s": 8.801059024030463,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_02",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 783,
+            "duration_s": 7.814906493972934,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_03",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 809,
+            "duration_s": 8.070491794445003,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_04",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 853,
+            "duration_s": 8.512681733905564,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_05",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 906,
+            "duration_s": 9.047110493709091,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "descend_pregrasp_06",
+          "phase": "descend",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 961,
+            "duration_s": 9.591990333716986,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_01",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 462,
+            "duration_s": 4.609305201718334,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_02",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 454,
+            "duration_s": 4.520178930807786,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_03",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 461,
+            "duration_s": 4.592620009274905,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "side_approach_04",
+          "phase": "side_approach",
+          "target_contact_samples": 0,
+          "forbidden_contact_count": 0,
+          "motion": {
+            "trajectory_points": 469,
+            "duration_s": 4.67378256827803,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 0.0,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 0,
+            "target_contact_samples": 0,
+            "target_contact_pairs": {},
+            "within_effective_limits": true
+          }
+        },
+        {
+          "name": "taught_side_contact",
+          "phase": "approach_contact",
+          "target_contact_samples": 25540,
+          "forbidden_contact_count": 3,
+          "motion": {
+            "trajectory_points": 2765,
+            "duration_s": 27.63001513790467,
+            "max_tracking_error_rad": 0.0,
+            "final_tracking_error_rad": 1.5612511283791264e-17,
+            "trajectory_mode": "kinematic_collision_playback",
+            "forbidden_contact_samples": 15590,
+            "target_contact_samples": 25540,
+            "target_contact_pairs": {
+              "target_geom<->jaw_left_proxy": 12350,
+              "target_geom<->link_6_gripper": 9500,
+              "target_geom<->jaw_right_proxy": 3690
+            },
+            "within_effective_limits": true
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "This regression applies small coordinate/dimension perturbations around one cola side-grasp demonstration, not arbitrary object-class grasping.",
+    "MuJoCo uses approximate cylinder geometry and uncalibrated static jaw proxies; it does not validate real gripping force.",
+    "Only offline planning is exercised. The Pi/F407 UART executor remains outside this tool."
+  ]
+}

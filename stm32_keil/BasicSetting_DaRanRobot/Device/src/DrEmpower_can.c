@@ -1587,25 +1587,45 @@ void set_state_feedback_rate_ms(uint8_t id_num, uint32_t n_ms)
  * @param id_num 一体化关节 ID 编号，注意使用该函数时最好已经将总线中的关节设置为 1~63 号，并且没有相同 ID 号的关节。
  * @return angle_speed_torque：[angle, speed, torque]，分别表示角度(°)、转速(r/min)、力矩(Nm)
  */
+/**
+ * @brief 按 CAN ID 匹配的有界新鲜读取 — 最多等 2 帧 (2x10ms)
+ * @param id_num 一体化关节 ID 编号
+ * @param fresh  [out] 1=成功匹配本轴新帧, 0=超时或读到其他轴
+ * @return angle_speed_torque: [angle, speed, torque]
+ * @note  不把其他轴或旧帧当作当前关节反馈。调用方仅应在 fresh==1 时使用返回值。
+ */
+struct angle_speed_torque angle_speed_torque_state_fresh(uint8_t id_num, int *fresh)
+{
+	struct angle_speed_torque ast = {0.0f, 0.0f, 0.0f};
+	*fresh = 0;
+
+	READ_FLAG = 0;
+	for (int attempt = 0; attempt < 2; attempt++) {
+		receive_data();  /* single timeout 10ms */
+		if (READ_FLAG == 1 &&
+		    id_num == (uint8_t)(((can_id & 0x07E0) >> 5) & 0xFF)) {
+			float factor = 0.01f;
+			float value_data[3] = {0, 0, 0};
+			int   type_data[3]  = {0, 2, 2};
+			format_data(value_data, type_data, 3, "decode");
+			ast.angle  = data_list.value_data[0];
+			ast.speed  = data_list.value_data[1] * factor;
+			ast.torque = data_list.value_data[2] * factor;
+			*fresh = 1;
+			break;
+		}
+	}
+	return ast;
+}
+
+/**
+ * @brief 角度、转速、力矩实时反馈 — 调用 fresh 版本
+ * @note  v1.3: 改为调用 angle_speed_torque_state_fresh(), 不再无限等待
+ */
 struct angle_speed_torque angle_speed_torque_state(uint8_t id_num)
 {
-	READ_FLAG=0;
-	struct angle_speed_torque angle_speed_torque = {0, 0, 0};
-	while ((id_num != (uint8_t)(((can_id & 0x07E0) >> 5)&0xFF)))
-	{
-		receive_data();
-	}
-	if (id_num == ((uint8_t)((can_id & 0x07E0) >> 5)&0xFF))
-	{
-		float factor = 0.01f;
-		float value_data[3]= {0,0,0};
-		int type_data[3]= {0,2,2};
-		format_data(value_data,type_data,3,"decode");
-		angle_speed_torque.angle = data_list.value_data[0];
-		angle_speed_torque.speed = data_list.value_data[1]*factor;
-		angle_speed_torque.torque = data_list.value_data[2]*factor;
-	}
-	return angle_speed_torque;
+	int fresh = 0;
+	return angle_speed_torque_state_fresh(id_num, &fresh);
 }
 
 /**

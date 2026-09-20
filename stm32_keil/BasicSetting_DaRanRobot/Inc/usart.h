@@ -35,8 +35,8 @@ extern "C" {
 /* USART1: 树莓派通讯 (PA9-TX, PA10-RX), 接收物体坐标 */
 extern UART_HandleTypeDef huart1;
 
-/* USART2: 上位机调试 printf (PA2-TX, PA3-RX) */
-extern UART_HandleTypeDef huart2;
+/* USART3: 上位机调试 printf (PB10-TX, PB11-RX) */
+extern UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN Private defines */
 
@@ -46,14 +46,15 @@ extern UART_HandleTypeDef huart2;
 /* USER CODE END Private defines */
 
 void MX_USART1_UART_Init(void);
-void MX_USART2_UART_Init(void);
+void MX_USART3_UART_Init(void);
 
 /* 树莓派 UART 接收接口 */
 void Rpi_Uart_StartRx(void);
 int  Rpi_Uart_GetChar(void);
 int  Rpi_Uart_Available(void);
+void Rpi_Uart_Send(const uint8_t *data, uint16_t len);   /* v1.2: USART1 发送 */
 
-/* 调试 printf 重定向到 USART2 */
+/* 调试 printf 重定向到 USART3 */
 int  Dbg_Printf_Init(void);
 void rt_hw_console_output(const char *str);
 

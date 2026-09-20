@@ -1,0 +1,15 @@
+{
+  "episodes": 64,
+  "attempts": 158,
+  "acceptance_rate": 0.4050632911392405,
+  "trajectory_steps": 32,
+  "joint_count": 6,
+  "assumed_joint_limit_rad": 1.2,
+  "noise": {
+    "xy_sigma_m": 0.003,
+    "z_sigma_m": 0.002,
+    "yaw_sigma_deg": 2.0
+  },
+  "scene": "offline_diagnostic_scene.json",
+  "real_motion_enabled": false
+}

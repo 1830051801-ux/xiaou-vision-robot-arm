@@ -1,0 +1,168 @@
+{
+  "simulation": "mujoco_physical_grasp_regression",
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "ros_hardware_started": false,
+  "physics_engine": {
+    "name": "MuJoCo",
+    "version": "3.3.7",
+    "mode": "DIRECT"
+  },
+  "sources": {
+    "robot_xacro": "raspberry_pi/ros2_ws/src/xiaou_arm_description/urdf/xiaou_arm_display.urdf.xacro",
+    "robot_collision_root": "raspberry_pi/ros2_ws/src/xiaou_arm_description/meshes/collision",
+    "cad_world_urdf": "local-artifact/robot_world_model.urdf",
+    "poe_model": "raspberry_pi/robot_ai/arm_control/config/arm_model.json",
+    "hardware_motion_profile": "raspberry_pi/robot_ai/arm_control/config/hardware_calibration_candidate_20260811.json",
+    "hardware_motion_profile_schema_version": 5,
+    "collision_mesh_count": 8,
+    "world_mesh_count": 8,
+    "cad_world_visual_loaded": false,
+    "cad_world_visual_note": "The checked-in CAD world STL files are ASCII; they are parsed and audited, while the MuJoCo world uses the table and rigid object primitives.",
+    "parsed_joint_names": [
+      "joint_1",
+      "joint_2",
+      "joint_3",
+      "joint_4",
+      "joint_5",
+      "joint_6"
+    ]
+  },
+  "assumptions": {
+    "robot_trajectory_mode": "kinematic_collision_playback; MuJoCo rigid-body dynamics are used for the free object and release, while uncalibrated arm motor dynamics are excluded",
+    "joint_position_limits_rad": {
+      "source": "candidate Pi/F407 effective envelope; simulation only",
+      "min": [
+        -2.9670597283903604,
+        -2.2689280275926285,
+        -2.443460952792061,
+        -3.141592653589793,
+        -1.5707963267948966,
+        -3.141592653589793
+      ],
+      "max": [
+        2.9670597283903604,
+        0.0,
+        0.0,
+        0.0,
+        2.0943951023931953,
+        3.141592653589793
+      ]
+    },
+    "velocity_limits_rad_s": [
+      0.03490658503988659,
+      0.03490658503988659,
+      0.03490658503988659,
+      0.03490658503988659,
+      0.03490658503988659,
+      0.03490658503988659
+    ],
+    "acceleration_limits_rad_s2": [
+      0.017453292519943295,
+      0.017453292519943295,
+      0.017453292519943295,
+      0.017453292519943295,
+      0.017453292519943295,
+      0.017453292519943295
+    ],
+    "ready_pose_rad": [
+      -0.0005235987755982988,
+      -0.8719664942963671,
+      -0.9599310885968813,
+      -1.2217304763960306,
+      1.9198621771937625,
+      0.00017453292519943296
+    ],
+    "link_density_kg_m3": 500.0,
+    "table_top_m": -0.02,
+    "grasp_z_offset_m": 0.05,
+    "release_clearance_m": 0.08,
+    "gripper": "CAD collision mesh plus fixed jaw contact proxies; jaw actuator calibration is not measured",
+    "object_model": "primitive rigid bodies with class-specific dimensions and mass from desktop scene specs",
+    "tissue": "rigid sheet-stack proxy; cloth deformation and pull dynamics are not modeled"
+  },
+  "policy_replay": {
+    "enabled": false,
+    "fp32_checkpoint": "raspberry_pi/runtime/decision/transformer_policy_safety_seed20260832.pt",
+    "int8_model": "raspberry_pi/runtime/decision/transformer_policy_safety_final_20260813.int8.onnx",
+    "int8_error": null
+  },
+  "seed": 20260809,
+  "trials_per_scenario": 1,
+  "max_sampling_attempts": 200,
+  "randomization": {
+    "placement_range_m": {
+      "x": [
+        0.235,
+        0.315
+      ],
+      "y": [
+        -0.155,
+        -0.085
+      ]
+    },
+    "yaw_range_deg": [
+      -3.0,
+      3.0
+    ],
+    "geometry_jitter_pct": 0.05,
+    "geometry_jitter_scope": "one independent radius/height perturbation per scenario and seed"
+  },
+  "total_trials": 1,
+  "total_passed": 0,
+  "success_rate": 0.0,
+  "scenarios": [
+    {
+      "scenario": "cola",
+      "mjcf": "local-artifact/xiaou_cola.xml",
+      "trials": 1,
+      "passed": 0,
+      "success_rate": 0.0,
+      "failure_counts": {
+        "no_collision_free_candidate": 1
+      },
+      "warning_counts": {},
+      "geometry_jitter": {
+        "radius_scale": 1.019207195975721,
+        "height_scale": 0.9911179338621194,
+        "effective_radius_m": 0.03261463027122307,
+        "effective_height_m": 0.1883124074338027,
+        "effective_mass_kg": 0.41182270651247593
+      },
+      "trial_records": [
+        {
+          "trial": 0,
+          "scenario": "cola",
+          "seed": 0,
+          "object_xyz_m": [
+            0.2875943031471885,
+            -0.1529563082691231,
+            0.07415620371690135
+          ],
+          "yaw_rad": -0.019639773798991803,
+          "sampling_attempts": 200,
+          "preflight_rejections": {
+            "approach_ik_not_converged": 200
+          },
+          "policy": {},
+          "stages": [],
+          "issues": [
+            "no_collision_free_candidate"
+          ],
+          "warnings": [],
+          "passed": false,
+          "hardware_motion": false
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "MuJoCo contact and dynamics use provisional link density because CAD mass properties are not calibrated.",
+    "The regression uses the current candidate effective Pi/F407 envelope and ready pose; rerun it whenever STM zero or limits change.",
+    "Static gripper CAD is supplemented by fixed jaw proxies; real jaw width, force, and finger motion remain unverified.",
+    "A passed offline trial is not proof of camera calibration, encoder correctness, F407 feedback, grasp force, or real object friction.",
+    "Real motion remains locked by hardware_calibration.json and is never enabled by this script."
+  ]
+}

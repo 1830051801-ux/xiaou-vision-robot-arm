@@ -1,7 +1,8 @@
 /**
  ******************************************************************************
  * @file    sys_status.c
- * @brief   系统运行状态管理实现
+ * @brief   系统运行状态管理实现 (精简版)
+ * @date    2026-07-27 (移除 KINEMATICS/TRAJECTORY 模块引用)
  ******************************************************************************
  */
 
@@ -17,7 +18,6 @@ static const char *state_name(rt_uint8_t st)
     case SYS_STATE_RUNNING:     return "RUNNING";
     case SYS_STATE_ESTOP:       return "ESTOP";
     case SYS_STATE_ERROR:       return "ERROR";
-    case SYS_STATE_TEACH:       return "TEACH";
     case SYS_STATE_ZERO_CHECK:  return "ZERO_CHK";
     case SYS_STATE_CALIBRATION: return "CALIB";
     default:                    return "?";
@@ -43,14 +43,11 @@ void sys_dump_status(void)
     if (g_sys.estop_triggered)
         rt_kprintf(" ESTOP!");
 
-    rt_kprintf("\n[SYS] Modules: USART2=%c USART1=%c CAN=%c SERVO=%c PROTO=%c"
-               " KIN=%c TRAJ=%c JOINTS=%c\n",
-               (g_sys.modules_ready & SYS_MOD_USART2)     ? 'Y' : '-',
+    rt_kprintf("\n[SYS] Modules: USART3=%c USART1=%c CAN=%c SERVO=%c PROTO=%c JOINTS=%c\n",
+               (g_sys.modules_ready & SYS_MOD_USART3)     ? 'Y' : '-',
                (g_sys.modules_ready & SYS_MOD_USART1)     ? 'Y' : '-',
                (g_sys.modules_ready & SYS_MOD_CAN)        ? 'Y' : '-',
                (g_sys.modules_ready & SYS_MOD_SERVO)      ? 'Y' : '-',
                (g_sys.modules_ready & SYS_MOD_PROTOCOL)   ? 'Y' : '-',
-               (g_sys.modules_ready & SYS_MOD_KINEMATICS) ? 'Y' : '-',
-               (g_sys.modules_ready & SYS_MOD_TRAJECTORY) ? 'Y' : '-',
                (g_sys.modules_ready & SYS_MOD_JOINTS)     ? 'Y' : '-');
 }

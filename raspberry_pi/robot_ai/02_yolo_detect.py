@@ -1,8 +1,10 @@
+import argparse
+
 import cv2
 
 from common import PROJECT_DIR, get_camera_index, get_target_objects, get_yolo_model
 from device_runtime import open_cv_camera
-from yolo_opencv import OpenCVDnnYolo
+from vision.unified_yolo import UnifiedYolo, canonical_name
 
 
 MIN_BOX_AREA_RATIO = 0.010
@@ -25,12 +27,40 @@ SMALL_OBJECTS = {"pen", "Pen"}
 
 
 def main() -> None:
-    model_name = get_yolo_model()
-    targets = {item for item in get_target_objects() if item != "all"}
+    parser = argparse.ArgumentParser(description="Camera YOLO preview through the unified detector adapter.")
+    parser.add_argument("--model", default=None, help="ONNX or PyTorch model; comma-separate models for an ensemble")
+    parser.add_argument("--profile", default=None, help="hash-checked profile: high_recall or high_precision")
+    parser.add_argument("--device", default="cpu", help="cpu for Pi/ONNX, cuda:0 for desktop .pt inference")
+    parser.add_argument("--imgsz", type=int, default=None)
+    parser.add_argument("--conf", type=float, default=None)
+    parser.add_argument("--union", action="store_true", help="keep all model detections; default only supplements uncovered classes")
+    parser.add_argument("--headless", action="store_true", help="save frames and print detections without opening a window")
+    args = parser.parse_args()
+
+    if args.model and args.profile:
+        parser.error("--model and --profile are mutually exclusive")
+    model_name = args.model or get_yolo_model()
+    targets = {canonical_name(item) for item in get_target_objects() if item != "all"}
     print(f"Loading YOLO model: {model_name}")
-    print("Backend: OpenCV DNN ONNX")
+    print("Backend: unified YOLO adapter (ONNX CPU or PyTorch CUDA)")
     print(f"Target objects: {sorted(targets)}")
-    model = OpenCVDnnYolo()
+    if args.profile:
+        model = UnifiedYolo.from_profile(
+            args.profile,
+            imgsz=args.imgsz,
+            conf=args.conf,
+            device=args.device,
+            fallback_uncovered_classes=not args.union,
+        )
+    else:
+        model = UnifiedYolo.from_config(
+            model_name,
+            imgsz=args.imgsz,
+            conf=args.conf,
+            device=args.device,
+            fallback_uncovered_classes=not args.union,
+        )
+    print(f"Model backends: {model.backend_names}")
 
     cap = open_cv_camera(get_camera_index())
     if cap is None or not cap.isOpened():
@@ -49,7 +79,7 @@ def main() -> None:
         raw = []
         seen_names = set()
         for det in model.detect(frame):
-            if det.name not in targets:
+            if canonical_name(det.name) not in targets:
                 continue
             if det.conf < CLASS_CONF_OVERRIDES.get(det.name, 0.0):
                 continue
@@ -77,19 +107,21 @@ def main() -> None:
         if detections:
             print(detections)
         last_frame = annotated
-        try:
-            cv2.imshow("yolo_detect", annotated)
-            if cv2.waitKey(1) & 0xFF == ord("q"):
+        if not args.headless:
+            try:
+                cv2.imshow("yolo_detect", annotated)
+                if cv2.waitKey(1) & 0xFF == ord("q"):
+                    break
+            except cv2.error:
                 break
-        except cv2.error:
-            break
 
     if last_frame is not None:
         out = PROJECT_DIR / "last_yolo.jpg"
         cv2.imwrite(str(out), last_frame)
         print(f"Saved frame: {out}")
     cap.release()
-    cv2.destroyAllWindows()
+    if not args.headless:
+        cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":

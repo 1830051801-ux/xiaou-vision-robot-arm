@@ -1,0 +1,75 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "uart": {
+    "command": "CMD_GET_JOINT",
+    "sequence": 31,
+    "fragment_count": 10,
+    "decoded_joint": {
+      "joint_id": 5,
+      "angle_deg": 0.0,
+      "speed_rpm": 0.25,
+      "torque_nm": 0.10000000149011612,
+      "online": true
+    },
+    "crc_corruption_rejected": true
+  },
+  "j5_freshness": {
+    "timeout_s": 0.5,
+    "ages_s": {
+      "1": 0.25,
+      "2": 0.25,
+      "3": 0.25,
+      "4": 0.25,
+      "5": 2.25,
+      "6": 0.25
+    },
+    "online_joint_ids": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "stale_joint_ids": [
+      5
+    ]
+  },
+  "can": {
+    "command_id": "0x105",
+    "feedback_id": "0x185",
+    "diagnostic_id": "0x1c5",
+    "decoded_command": {
+      "position_rad": 0.25,
+      "velocity_rad_s": 0.1,
+      "sequence": 7
+    },
+    "decoded_feedback": {
+      "position_rad": 0.25,
+      "velocity_rad_s": 0.1,
+      "status": 16
+    },
+    "wrong_node_rejected": true
+  },
+  "motion_gate": {
+    "ready": false,
+    "locked_fields": [
+      "motion_enabled",
+      "protocol_confirmed",
+      "uart_link_verified",
+      "f407_firmware_verified",
+      "estop_verified",
+      "feedback_verified",
+      "mcu_calibration_verified",
+      "position_min_rad",
+      "position_max_rad",
+      "velocity_max_rad_s",
+      "acceleration_max_rad_s2"
+    ]
+  },
+  "failure_count": 0,
+  "failures": [],
+  "passed": true
+}

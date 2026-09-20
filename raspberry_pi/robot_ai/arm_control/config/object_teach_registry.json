@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "status": "offline_planning_contract",
+  "hardware_motion": false,
+  "objects": {
+    "cola": {
+      "family": "taught_cylinder_side_v1",
+      "strategy": "side_wrap",
+      "route_status": "current_local_preview",
+      "required_pose_ids": ["ready", "side_contact"],
+      "required_measurements": ["object_radius_m", "object_height_m", "table_height_m"],
+      "gripper_measurements_required": ["open_command", "close_command", "minimum_safe_width_m"],
+      "simulation_model": {"shape": "cylinder", "radius_m": 0.032, "height_m": 0.19, "mass_kg": 0.4}
+    },
+    "bottle": {
+      "family": "dedicated_cylinder_side_v1",
+      "strategy": "side_wrap",
+      "route_status": "requires_dedicated_teach",
+      "required_pose_ids": ["ready", "raise", "overhead", "pregrasp", "side_contact", "lift"],
+      "required_measurements": ["object_radius_m", "object_height_m", "table_height_m", "side_approach_clearance_m"],
+      "gripper_measurements_required": ["open_command", "close_command", "minimum_safe_width_m"],
+      "simulation_model": {"shape": "cylinder", "radius_m": 0.033, "height_m": 0.21, "mass_kg": 0.35}
+    },
+    "cup": {
+      "family": "dedicated_cylinder_side_v1",
+      "strategy": "side_wrap",
+      "route_status": "requires_dedicated_teach",
+      "required_pose_ids": ["ready", "raise", "overhead", "pregrasp", "side_contact", "lift"],
+      "required_measurements": ["object_radius_m", "object_height_m", "table_height_m", "handle_yaw_rad", "side_approach_clearance_m"],
+      "gripper_measurements_required": ["open_command", "close_command", "minimum_safe_width_m"],
+      "simulation_model": {"shape": "cylinder", "radius_m": 0.045, "height_m": 0.09, "mass_kg": 0.2}
+    },
+    "pen": {
+      "family": "dedicated_pen_pinch_v1",
+      "strategy": "pen_pinch",
+      "route_status": "requires_dedicated_teach",
+      "required_pose_ids": ["ready", "raise", "overhead", "pregrasp", "top_contact", "lift"],
+      "required_measurements": ["pen_radius_m", "pen_length_m", "table_height_m", "pen_axis_yaw_rad"],
+      "gripper_measurements_required": ["open_command", "close_command", "minimum_safe_width_m"],
+      "simulation_model": {"shape": "capsule", "radius_m": 0.006, "height_m": 0.14, "mass_kg": 0.015}
+    },
+    "desktop_item": {
+      "family": "dedicated_flat_pick_v1",
+      "strategy": "flat_pick",
+      "route_status": "requires_dedicated_teach",
+      "required_pose_ids": ["ready", "raise", "overhead", "pregrasp", "top_contact", "lift"],
+      "required_measurements": ["object_width_m", "object_length_m", "object_height_m", "table_height_m"],
+      "gripper_measurements_required": ["open_command", "close_command", "minimum_safe_width_m"],
+      "simulation_model": {"shape": "box", "radius_m": 0.035, "height_m": 0.03, "mass_kg": 0.1}
+    },
+    "tissue_pull": {
+      "family": "dedicated_tissue_pull_v1",
+      "strategy": "tissue_pull",
+      "route_status": "requires_dedicated_teach",
+      "required_pose_ids": ["ready", "raise", "edge_pregrasp", "edge_contact", "pull_end", "release"],
+      "required_measurements": ["tissue_edge_height_m", "table_height_m", "pull_distance_m", "pull_yaw_rad"],
+      "gripper_measurements_required": ["open_command", "close_command", "minimum_safe_width_m"],
+      "simulation_model": {"shape": "sheet_stack", "radius_m": 0.06, "height_m": 0.04, "mass_kg": 0.08}
+    },
+    "earphone": {
+      "family": "reject_flexible_v1",
+      "strategy": "reject",
+      "route_status": "reject",
+      "required_pose_ids": ["separate_family_design"],
+      "required_measurements": ["deformable_geometry_model"],
+      "gripper_measurements_required": ["separate_end_effector_characterization"],
+      "simulation_model": {"shape": "capsule", "radius_m": 0.01, "height_m": 0.02, "mass_kg": 0.02}
+    }
+  },
+  "aliases": {"water_bottle": "bottle", "tissue": "tissue_pull", "paper": "tissue_pull", "desktop": "desktop_item"},
+  "notes": "Only cola has a current local route preview. Every other grabbable class needs its own read-only multi-pose teach record plus measured gripper parameters before a real planning route can be claimed."
+}

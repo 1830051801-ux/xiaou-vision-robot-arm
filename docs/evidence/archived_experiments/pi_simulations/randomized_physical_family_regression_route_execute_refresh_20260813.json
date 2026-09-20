@@ -1,0 +1,171 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "randomization": {
+    "independent_seeds": [
+      20260815,
+      20260816
+    ],
+    "placement_and_yaw_sampling": "delegated to simulate_physical_grasp.py per trial",
+    "position_range_m": {
+      "x": [
+        0.235,
+        0.315
+      ],
+      "y": [
+        -0.155,
+        -0.085
+      ]
+    },
+    "yaw_range_deg": [
+      -3.0,
+      3.0
+    ],
+    "geometry_jitter": true,
+    "geometry_jitter_pct": 0.05,
+    "geometry_note": "Provisional +/- jitter is used for offline robustness only; replace with measured object dimensions before real-arm use."
+  },
+  "seeds": [
+    {
+      "seed": 20260815,
+      "total_trials": 24,
+      "total_passed": 24,
+      "success_rate": 1.0,
+      "hardware_motion": false,
+      "serial_opened": false,
+      "can_opened": false,
+      "ros_hardware_started": false,
+      "scenarios": [
+        {
+          "scenario": "bottle",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 13
+        },
+        {
+          "scenario": "cup",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 9
+        },
+        {
+          "scenario": "pen",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 9
+        },
+        {
+          "scenario": "desktop_item",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 78
+        },
+        {
+          "scenario": "tissue_pull",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 8
+        },
+        {
+          "scenario": "cola",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 15
+        }
+      ],
+      "runner_exit_code": 0,
+      "runner_stderr_tail": "raspberry_pi/robot_ai/decision/transformer_policy.py:90: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=layers)\n"
+    },
+    {
+      "seed": 20260816,
+      "total_trials": 24,
+      "total_passed": 24,
+      "success_rate": 1.0,
+      "hardware_motion": false,
+      "serial_opened": false,
+      "can_opened": false,
+      "ros_hardware_started": false,
+      "scenarios": [
+        {
+          "scenario": "bottle",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 7
+        },
+        {
+          "scenario": "cup",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 45
+        },
+        {
+          "scenario": "pen",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 5
+        },
+        {
+          "scenario": "desktop_item",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 49
+        },
+        {
+          "scenario": "tissue_pull",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 29
+        },
+        {
+          "scenario": "cola",
+          "trials": 4,
+          "passed": 4,
+          "success_rate": 1.0,
+          "failure_counts": {},
+          "warning_counts": {},
+          "max_sampling_attempts_used": 21
+        }
+      ],
+      "runner_exit_code": 0,
+      "runner_stderr_tail": "raspberry_pi/robot_ai/decision/transformer_policy.py:90: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=layers)\n"
+    }
+  ],
+  "total_trials": 48,
+  "total_passed": 48,
+  "success_rate": 1.0,
+  "hardware_safe": true,
+  "passed": true
+}

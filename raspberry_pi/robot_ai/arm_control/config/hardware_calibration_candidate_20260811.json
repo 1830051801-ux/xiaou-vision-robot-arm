@@ -1,0 +1,91 @@
+{
+  "schema_version": 5,
+  "motion_enabled": false,
+  "protocol_confirmed": true,
+  "uart_link_verified": true,
+  "f407_firmware_verified": false,
+  "estop_verified": true,
+  "feedback_verified": false,
+  "mcu_calibration_verified": false,
+  "protocol_family": "DaRanRobot_F407_UART_V1",
+  "protocol_status": "Candidate for the duration-aware F407 build; keep motion locked until post-flash live preflight and zero-motion ACK verification pass",
+  "transport": {
+    "kind": "uart",
+    "port": "/dev/serial0",
+    "baud": 115200,
+    "data_bits": 8,
+    "stop_bits": 1,
+    "parity": "none",
+    "flow_control": false,
+    "direct_passthrough": true,
+    "protocol_version": "DaRanRobot_F407_UART_V1"
+  },
+  "motor_bus": {
+    "owner": "stm32_f407",
+    "kind": "can",
+    "bitrate": 1000000,
+    "status": "STM32-owned; verify live after the new firmware is reachable"
+  },
+  "physical_estop": {
+    "stm32_pin": null,
+    "active_level": null,
+    "pull_configuration": null,
+    "direct_motor_power_cut": null,
+    "status": "physical state transition observed through GET_STATE; post-flash recheck pending"
+  },
+  "joint_node_ids": [1, 2, 3, 4, 5, 6],
+  "joint_node_ids_confirmed": true,
+  "joint_node_id_source": "user_confirmed_2026-08-08",
+  "motor_view_reference": "viewed from each motor gear side",
+  "motor_positive_rotation": ["gear_ccw", "gear_ccw", "gear_ccw", "gear_ccw", "gear_ccw", "gear_ccw"],
+  "command_positive_rotation": "counter_clockwise_from_each_motor_gear_side",
+  "mcu_calibration": {
+    "authority": "stm32_f407",
+    "verification_method": "live_get_calib_status",
+    "status": "executor must obtain a fresh six-axis zero_valid snapshot before creating a transient motion authorization"
+  },
+  "zero_pose_reference_rad": [null, null, null, null, null, null],
+  "position_min_rad": [
+    -2.8797932657906435,
+    -2.181661564992912,
+    -2.356194490192345,
+    -3.0543261909900767,
+    -1.4835298641951802,
+    -3.0543261909900767
+  ],
+  "position_max_rad": [
+    2.8797932657906435,
+    2.181661564992912,
+    2.356194490192345,
+    3.0543261909900767,
+    2.007128639793479,
+    3.0543261909900767
+  ],
+  "velocity_max_rad_s": [
+    0.03490658503988659,
+    0.03490658503988659,
+    0.03490658503988659,
+    0.03490658503988659,
+    0.03490658503988659,
+    0.03490658503988659
+  ],
+  "acceleration_max_rad_s2": [
+    0.017453292519943295,
+    0.017453292519943295,
+    0.017453292519943295,
+    0.017453292519943295,
+    0.017453292519943295,
+    0.017453292519943295
+  ],
+  "ready_pose_rad": [
+    -0.0005235987755982988,
+    -0.8719664942963671,
+    -0.9599310885968813,
+    -1.2217304763960306,
+    1.9198621771937625,
+    0.00017453292519943296
+  ],
+  "ready_pose_source": "user-provided STM32 joint-status screenshot on 2026-08-11",
+  "effective_limit_source": "real Pi/F407 working envelope: each end is held 5 deg inside the recorded physical limit; J1 [-165,165], J2 [-125,125], J3 [-135,135], J4 [-175,175], J5 [-85,115], J6 [-175,175] deg",
+  "notes": "Candidate only. These are real software working limits and must be kept identical to the flashed F407 JOINT_EFFECTIVE_* lists. Pi motion limits are 2 deg/s and 1 deg/s^2. Do not set motion_enabled or post-flash verification flags until live state, calibration, and zero-motion admission checks pass."
+}

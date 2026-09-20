@@ -1,0 +1,21 @@
+# This file keeps Pi-local artifacts out even when this directory is copied
+# independently from the repository root.
+config.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+runs/
+output/
+tmp/
+my_data/
+my_all_data/
+my_objects_data/
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+runtime/deployment/
+runtime/logs/
+runtime/teach_poses/
+*.pt
+*.pth

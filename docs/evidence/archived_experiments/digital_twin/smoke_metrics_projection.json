@@ -1,0 +1,92 @@
+{
+  "evaluation": "constraint_diffusion_digital_twin",
+  "real_motion_enabled": false,
+  "episodes": 12,
+  "samples_per_context": 2,
+  "abstain_dispersion_rad": 3.0,
+  "metrics": {
+    "raw_mean_grasp_position_error_m": 0.32242803222107014,
+    "raw_scene_safe_rate": 0.0,
+    "shielded_mean_grasp_position_error_m": 0.004051118238154852,
+    "shielded_scene_safe_rate": 0.6666666666666666,
+    "projection_success_rate": 0.6666666666666666,
+    "abstention_rate": 0.0
+  },
+  "projection_failure_counts": {
+    "IK projection failed at grasp": 3,
+    "IK projection failed at place": 1
+  },
+  "examples": [
+    {
+      "index": 0,
+      "dispersion_rad": 2.1115169525146484,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.49961802570487274,
+      "shielded_grasp_error_m": 0.0017513166974542495
+    },
+    {
+      "index": 1,
+      "dispersion_rad": 1.8254591226577759,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.24387997237343884,
+      "shielded_grasp_error_m": 0.00992211294082011
+    },
+    {
+      "index": 2,
+      "dispersion_rad": 2.023176908493042,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at grasp"
+    },
+    {
+      "index": 3,
+      "dispersion_rad": 1.2324714660644531,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.30059820341714644,
+      "shielded_grasp_error_m": 0.0035344053244311434
+    },
+    {
+      "index": 4,
+      "dispersion_rad": 2.4330637454986572,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.1910786425077665,
+      "shielded_grasp_error_m": 0.002143850922961516
+    },
+    {
+      "index": 5,
+      "dispersion_rad": 1.7088403701782227,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at grasp"
+    },
+    {
+      "index": 6,
+      "dispersion_rad": 1.616209864616394,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.07909277580315364,
+      "shielded_grasp_error_m": 0.007514800696801142
+    },
+    {
+      "index": 7,
+      "dispersion_rad": 1.4163506031036377,
+      "decision": "projected_safe",
+      "raw_grasp_error_m": 0.36205192179359874,
+      "shielded_grasp_error_m": 0.0021097585399499153
+    },
+    {
+      "index": 8,
+      "dispersion_rad": 2.4516143798828125,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at place"
+    },
+    {
+      "index": 9,
+      "dispersion_rad": 1.4138449430465698,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at grasp"
+    }
+  ],
+  "limitations": [
+    "training data is generated from the checked-in POE kinematic model and a synthetic perception noise model",
+    "constraint projection is a planning safety shield, not a measured real-arm control law",
+    "the diagnostic scene checks TCP clearance only and does not replace full-link collision checking"
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "simulation": "offline_six_axis_pick",
+  "real_can_opened": false,
+  "real_motion_enabled": false,
+  "synthetic_detection": {
+    "class": "cup",
+    "confidence": 0.92,
+    "pixel": [
+      318.0,
+      297.0
+    ]
+  },
+  "homography_output_m": [
+    0.26850051318188356,
+    -0.2302662337485009
+  ],
+  "grasp_height_source": "command_line_assumption_not_measured",
+  "assumed_grasp_height_m": 0.03,
+  "assumed_joint_limits": true,
+  "selected_orientation_mode": "cad_tcp",
+  "max_ik_iterations": 400,
+  "ik_restarts": 5,
+  "selected_path": {
+    "segments": [
+      {
+        "name": "approach",
+        "ik_converged": true,
+        "ik_iterations": 67,
+        "position_error_m": 2.3744441205002956e-07,
+        "orientation_error_rad": 0.0,
+        "trajectory_points": 732,
+        "duration_s": 7.30771871629563,
+        "issue": null
+      },
+      {
+        "name": "descend",
+        "ik_converged": true,
+        "ik_iterations": 4,
+        "position_error_m": 4.075299751458498e-06,
+        "orientation_error_rad": 0.0,
+        "trajectory_points": 182,
+        "duration_s": 1.80548034763416,
+        "issue": null
+      },
+      {
+        "name": "lift",
+        "ik_converged": true,
+        "ik_iterations": 7,
+        "position_error_m": 7.571511559610027e-06,
+        "orientation_error_rad": 0.0,
+        "trajectory_points": 182,
+        "duration_s": 1.8052839860269687,
+        "issue": null
+      },
+      {
+        "name": "place",
+        "ik_converged": true,
+        "ik_iterations": 9,
+        "position_error_m": 7.788908916811041e-05,
+        "orientation_error_rad": 3.634315004946021e-06,
+        "trajectory_points": 142,
+        "duration_s": 1.4070859893579006,
+        "issue": null
+      },
+      {
+        "name": "return_home",
+        "ik_converged": true,
+        "ik_iterations": 17,
+        "position_error_m": 2.522449103508186e-06,
+        "orientation_error_rad": 0.0,
+        "trajectory_points": 701,
+        "duration_s": 6.993702923162922,
+        "issue": null
+      }
+    ],
+    "issues": [],
+    "complete_pick_path": true
+  },
+  "current_algorithm": {
+    "orientation": "RPY(pi,0,yaw) from target_pose_node",
+    "segments": [
+      {
+        "name": "approach",
+        "ik_converged": false,
+        "ik_iterations": 400,
+        "position_error_m": 0.1096466883269114,
+        "orientation_error_rad": 0.08355658185559528,
+        "trajectory_points": 0,
+        "duration_s": 0.0,
+        "issue": "IK did not converge within the assumed joint envelope"
+      },
+      {
+        "name": "descend",
+        "ik_converged": false,
+        "ik_iterations": 400,
+        "position_error_m": 0.08417716683177012,
+        "orientation_error_rad": 0.08676760586821303,
+        "trajectory_points": 0,
+        "duration_s": 0.0,
+        "issue": "IK did not converge within the assumed joint envelope"
+      },
+      {
+        "name": "lift",
+        "ik_converged": false,
+        "ik_iterations": 400,
+        "position_error_m": 0.1096466883269114,
+        "orientation_error_rad": 0.08355658185559528,
+        "trajectory_points": 0,
+        "duration_s": 0.0,
+        "issue": "IK did not converge within the assumed joint envelope"
+      },
+      {
+        "name": "place",
+        "ik_converged": true,
+        "ik_iterations": 60,
+        "position_error_m": 8.184325292515558e-06,
+        "orientation_error_rad": 2.410088232055014e-05,
+        "trajectory_points": 746,
+        "duration_s": 7.442618997606663,
+        "issue": null
+      },
+      {
+        "name": "return_home",
+        "ik_converged": true,
+        "ik_iterations": 15,
+        "position_error_m": 1.5260444467559553e-06,
+        "orientation_error_rad": 0.0,
+        "trajectory_points": 746,
+        "duration_s": 7.442618818404766,
+        "issue": null
+      }
+    ],
+    "issues": [
+      "approach: IK did not converge within the assumed joint envelope",
+      "descend: IK did not converge within the assumed joint envelope",
+      "lift: IK did not converge within the assumed joint envelope"
+    ],
+    "complete_pick_path": false
+  },
+  "model_aligned_comparison": {
+    "orientation": "Rz(yaw) * model.home_grasp_tcp.rotation",
+    "segments": [
+      {
+        "name": "approach",
+        "ik_converged": true,
+        "ik_iterations": 67,
+        "position_error_m": 2.3744441205002956e-07,
+        "orientation_error_rad": 0.0,
+        "trajectory_points": 732,
+        "duration_s": 7.30771871629563,
+        "issue": null
+      },
+      {
+        "name": "descend",
+        "ik_converged": true,
+        "ik_iterations": 4,
+        "position_error_m": 4.075299751458498e-06,
+        "orientation_error_rad": 0.0,
+        "trajectory_points": 182,
+        "duration_s": 1.80548034763416,
+        "issue": null
+      },
+      {
+        "name": "lift",
+        "ik_converged": true,
+        "ik_iterations": 7,
+        "position_error_m": 7.571511559610027e-06,
+        "orientation_error_rad": 0.0,
+        "trajectory_points": 182,
+        "duration_s": 1.8052839860269687,
+        "issue": null
+      },
+      {
+        "name": "place",
+        "ik_converged": true,
+        "ik_iterations": 9,
+        "position_error_m": 7.788908916811041e-05,
+        "orientation_error_rad": 3.634315004946021e-06,
+        "trajectory_points": 142,
+        "duration_s": 1.4070859893579006,
+        "issue": null
+      },
+      {
+        "name": "return_home",
+        "ik_converged": true,
+        "ik_iterations": 17,
+        "position_error_m": 2.522449103508186e-06,
+        "orientation_error_rad": 0.0,
+        "trajectory_points": 701,
+        "duration_s": 6.993702923162922,
+        "issue": null
+      }
+    ],
+    "issues": [],
+    "complete_pick_path": true
+  },
+  "protocol_loopback": {
+    "socketcan_opened": false,
+    "all_joints_reached_command": true,
+    "quick_stop_ok": true,
+    "watchdog_fault_ok": true,
+    "positions_rad": {
+      "1": 0.05,
+      "2": 0.1,
+      "3": 0.15,
+      "4": 0.2,
+      "5": 0.25,
+      "6": 0.3
+    }
+  },
+  "findings": [
+    "Current object grasp profiles are null; production perception must remain locked until measured.",
+    "Current RPY(pi,0,yaw) target orientation must be checked against the real TCP frame; this simulation does not treat IK failure as a planning success.",
+    "The model-aligned comparison is diagnostic only and must not be copied into production without TCP orientation calibration.",
+    "MoveIt collision checking is not replaced by this numerical simulation; the ROS2 planning scene still requires a separate review-only run."
+  ]
+}

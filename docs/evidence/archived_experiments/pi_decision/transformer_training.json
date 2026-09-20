@@ -1,0 +1,188 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "training_data": "deterministic synthetic scene demonstrations",
+  "gpu_device": "cuda",
+  "cuda_available": true,
+  "episodes": 512,
+  "train_episodes": 410,
+  "validation_episodes": 102,
+  "val_ratio": 0.2,
+  "sequence_length": 8,
+  "observation_dim": 46,
+  "history": [
+    {
+      "epoch": 1.0,
+      "loss": 1.963027516225489,
+      "strategy_accuracy": 0.697560975609756,
+      "phase_accuracy": 0.36341463414634145,
+      "val_loss": 1.0198614597320557,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 0.7450980392156863,
+      "val_action_mae": 0.08418338745832443
+    },
+    {
+      "epoch": 2.0,
+      "loss": 0.7654283302586253,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 0.7707317073170732,
+      "val_loss": 0.49089622497558594,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 0.803921568627451,
+      "val_action_mae": 0.0718366876244545
+    },
+    {
+      "epoch": 3.0,
+      "loss": 0.4433337556152809,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 0.775609756097561,
+      "val_loss": 0.3474896550178528,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 0.803921568627451,
+      "val_action_mae": 0.05573514476418495
+    },
+    {
+      "epoch": 4.0,
+      "loss": 0.34930053498686814,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 0.7902439024390244,
+      "val_loss": 0.296684592962265,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 0.803921568627451,
+      "val_action_mae": 0.04816896840929985
+    },
+    {
+      "epoch": 5.0,
+      "loss": 0.30037429318195435,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 0.7780487804878049,
+      "val_loss": 0.2582913637161255,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 0.803921568627451,
+      "val_action_mae": 0.0462564080953598
+    },
+    {
+      "epoch": 6.0,
+      "loss": 0.2694870603520696,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 0.8439024390243902,
+      "val_loss": 0.2240663766860962,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 0.8921568627450981,
+      "val_action_mae": 0.044230829924345016
+    },
+    {
+      "epoch": 7.0,
+      "loss": 0.21626238953776475,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 0.8731707317073171,
+      "val_loss": 0.16780981421470642,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 0.9411764705882353,
+      "val_action_mae": 0.042589232325553894
+    },
+    {
+      "epoch": 8.0,
+      "loss": 0.14969421574255315,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 0.973170731707317,
+      "val_loss": 0.09825789928436279,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 1.0,
+      "val_action_mae": 0.04234301671385765
+    },
+    {
+      "epoch": 9.0,
+      "loss": 0.0926318215887721,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "val_loss": 0.07306431233882904,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 1.0,
+      "val_action_mae": 0.042371250689029694
+    },
+    {
+      "epoch": 10.0,
+      "loss": 0.07758579864734556,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "val_loss": 0.06793627887964249,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 1.0,
+      "val_action_mae": 0.04029781371355057
+    },
+    {
+      "epoch": 11.0,
+      "loss": 0.07050578005430175,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "val_loss": 0.06188194826245308,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 1.0,
+      "val_action_mae": 0.03794800490140915
+    },
+    {
+      "epoch": 12.0,
+      "loss": 0.06430205226671405,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "val_loss": 0.058621808886528015,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 1.0,
+      "val_action_mae": 0.036456767469644547
+    },
+    {
+      "epoch": 13.0,
+      "loss": 0.06077583632091196,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "val_loss": 0.056414395570755005,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 1.0,
+      "val_action_mae": 0.03584355488419533
+    },
+    {
+      "epoch": 14.0,
+      "loss": 0.05829574498461514,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "val_loss": 0.05441936105489731,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 1.0,
+      "val_action_mae": 0.034856896847486496
+    },
+    {
+      "epoch": 15.0,
+      "loss": 0.056376546003469606,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "val_loss": 0.052951037883758545,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 1.0,
+      "val_action_mae": 0.03452928736805916
+    },
+    {
+      "epoch": 16.0,
+      "loss": 0.05461273433231726,
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "val_loss": 0.05171867087483406,
+      "val_strategy_accuracy": 1.0,
+      "val_phase_accuracy": 1.0,
+      "val_action_mae": 0.034506045281887054
+    }
+  ],
+  "final_validation": {
+    "epoch": 16.0,
+    "loss": 0.05461273433231726,
+    "strategy_accuracy": 1.0,
+    "phase_accuracy": 1.0,
+    "val_loss": 0.05171867087483406,
+    "val_strategy_accuracy": 1.0,
+    "val_phase_accuracy": 1.0,
+    "val_action_mae": 0.034506045281887054
+  },
+  "action_loss_weight": 1.0,
+  "checkpoint": "runtime/decision/transformer_policy.pt",
+  "warning": "Synthetic labels validate architecture only; collect real camera/feedback grasp episodes before hardware decisions."
+}

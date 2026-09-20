@@ -1,0 +1,26 @@
+{
+  "intents": {
+    "greeting": {"emote": "happy", "loop": false, "priority": 40},
+    "thanks": {"emote": "thankful", "loop": false, "priority": 50},
+    "sorry": {"emote": "apologize", "loop": false, "priority": 50},
+    "confirm": {"emote": "agree", "loop": false, "priority": 45},
+    "deny": {"emote": "disagree", "loop": false, "priority": 45},
+    "thinking": {"emote": "thinking", "loop": true, "priority": 35},
+    "confused": {"emote": "confused", "loop": false, "priority": 55},
+    "success": {"emote": "celebrate", "loop": false, "priority": 60},
+    "fail": {"emote": "sad", "loop": false, "priority": 60},
+    "idle": {"emote": "idle", "loop": true, "priority": 0}
+  },
+  "keyword_map": {
+    "greeting": ["hello", "hi", "hey", "你好", "小u你好", "早上好", "晚上好"],
+    "thanks": ["thanks", "thank you", "thank", "thx", "谢谢", "多谢", "辛苦了"],
+    "sorry": ["sorry", "my bad", "apologize", "对不起", "抱歉", "不好意思"],
+    "confirm": ["yes", "please do it", "ok", "okay", "sure", "confirm", "可以", "好的", "对", "是的"],
+    "deny": ["no", "not that", "don't", "do not", "deny", "不是", "不要", "别", "不对"],
+    "thinking": ["thinking", "think", "wait", "let me think", "等一下", "想一想", "思考"],
+    "confused": ["what do you mean", "what?", "confused", "don't understand", "什么意思", "没懂", "听不懂"],
+    "success": ["done", "finished", "success", "complete", "搞定", "完成", "成功"],
+    "fail": ["can't", "cannot", "can't do", "failed", "fail", "error", "不行", "失败", "做不到"]
+  },
+  "notes": "Add new intents under intents, then add lowercase keywords under keyword_map. Higher priority wins when several keyword groups match."
+}

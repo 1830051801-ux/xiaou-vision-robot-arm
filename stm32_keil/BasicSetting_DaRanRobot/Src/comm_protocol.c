@@ -66,6 +66,24 @@ void proto_init(struct proto_parser *pp)
     pp->state = PROTO_RX_WAIT_START;
 }
 
+/* Parser state must live in ``pp`` across calls.  The caller-provided frame
+ * is only an output snapshot after a complete CRC-checked frame arrives. */
+static void parser_begin_frame(struct proto_parser *pp)
+{
+    memset(&pp->rx_frame, 0, sizeof(pp->rx_frame));
+    pp->state = PROTO_RX_CMD;
+    pp->payload_index = 0;
+    pp->escape_next = 0;
+    pp->crc_calc = 0xFFFF;
+}
+
+static void parser_reset_frame(struct proto_parser *pp)
+{
+    pp->state = PROTO_RX_WAIT_START;
+    pp->payload_index = 0;
+    pp->escape_next = 0;
+}
+
 void proto_rx_byte(struct proto_parser *pp, uint8_t ch)
 {
     /* 写入环形缓冲区 */
@@ -88,29 +106,24 @@ static int ring_get(struct proto_parser *pp, uint8_t *ch)
 int proto_try_parse(struct proto_parser *pp, struct proto_frame *frame)
 {
     uint8_t ch;
-    memset(frame, 0, sizeof(*frame));
-
     while (ring_get(pp, &ch)) {
         switch (pp->state) {
         case PROTO_RX_WAIT_START:
             if (ch == PROTO_FRAME_START) {
-                pp->state = PROTO_RX_CMD;
-                pp->payload_index = 0;
-                pp->escape_next = 0;
-                pp->crc_calc = 0xFFFF;
+                parser_begin_frame(pp);
             }
             break;
 
         case PROTO_RX_CMD:
-            frame->cmd = ch;
+            pp->rx_frame.cmd = ch;
             pp->crc_calc = (pp->crc_calc >> 8) ^ crc16_table[(pp->crc_calc ^ ch) & 0xFF];
             pp->state = PROTO_RX_LEN;
             break;
 
         case PROTO_RX_LEN:
-            frame->len = ch;
-            if (frame->len > PROTO_MAX_PAYLOAD) {
-                pp->state = PROTO_RX_WAIT_START;  /* 长度非法, 丢弃 */
+            pp->rx_frame.len = ch;
+            if (pp->rx_frame.len > PROTO_MAX_PAYLOAD) {
+                parser_reset_frame(pp);  /* 长度非法, 丢弃 */
                 break;
             }
             pp->crc_calc = (pp->crc_calc >> 8) ^ crc16_table[(pp->crc_calc ^ ch) & 0xFF];
@@ -118,9 +131,9 @@ int proto_try_parse(struct proto_parser *pp, struct proto_frame *frame)
             break;
 
         case PROTO_RX_SEQ:
-            frame->seq = ch;
+            pp->rx_frame.seq = ch;
             pp->crc_calc = (pp->crc_calc >> 8) ^ crc16_table[(pp->crc_calc ^ ch) & 0xFF];
-            pp->state = (frame->len > 0) ? PROTO_RX_PAYLOAD : PROTO_RX_CRC1;
+            pp->state = (pp->rx_frame.len > 0) ? PROTO_RX_PAYLOAD : PROTO_RX_CRC1;
             break;
 
         case PROTO_RX_PAYLOAD:
@@ -130,41 +143,50 @@ int proto_try_parse(struct proto_parser *pp, struct proto_frame *frame)
                 if (ch == 0x0A) ch = 0xAA;
                 else if (ch == 0x05) ch = 0x55;
                 else if (ch == 0x0B) ch = 0xBB;
-                /* 其他情况保持原值 */
+                else {
+                    parser_reset_frame(pp);
+                    break;
+                }
             } else if (ch == PROTO_ESCAPE_BYTE) {
                 pp->escape_next = 1;
                 break;  /* 不存储转义字节自身 */
+            } else if (ch == PROTO_FRAME_START) {
+                parser_begin_frame(pp);
+                break;
+            } else if (ch == PROTO_FRAME_END) {
+                parser_reset_frame(pp);
+                break;
             }
 
-            frame->payload[pp->payload_index++] = ch;
+            pp->rx_frame.payload[pp->payload_index++] = ch;
             pp->crc_calc = (pp->crc_calc >> 8) ^ crc16_table[(pp->crc_calc ^ ch) & 0xFF];
 
-            if (pp->payload_index >= frame->len) {
+            if (pp->payload_index >= pp->rx_frame.len) {
                 pp->state = PROTO_RX_CRC1;
             }
             break;
 
         case PROTO_RX_CRC1:
-            frame->crc = ch;  /* 低字节 */
+            pp->rx_frame.crc = ch;  /* 低字节 */
             pp->state = PROTO_RX_CRC2;
             break;
 
         case PROTO_RX_CRC2:
-            frame->crc |= ((uint16_t)ch << 8);  /* 高字节 */
+            pp->rx_frame.crc |= ((uint16_t)ch << 8);  /* 高字节 */
             pp->state = PROTO_RX_WAIT_END;
             break;
 
         case PROTO_RX_WAIT_END:
             if (ch == PROTO_FRAME_END) {
-                /* 校验 CRC (0xFFFF 跳过校验, 用于调试) */
-                if (frame->crc == 0xFFFF || pp->crc_calc == frame->crc) {
-                    frame->valid = 1;
+                /* 校验 CRC (禁止跳过: Pi v1.2 要求生产和调试均强制校验) */
+                if (pp->crc_calc == pp->rx_frame.crc) {
+                    pp->rx_frame.valid = 1;
+                    memcpy(frame, &pp->rx_frame, sizeof(*frame));
+                    parser_reset_frame(pp);
+                    return 1;
                 }
             }
-            pp->state = PROTO_RX_WAIT_START;
-            if (frame->valid) return 1;  /* 有效帧 */
-            /* 帧无效, 清空当前帧继续搜索 */
-            memset(frame, 0, sizeof(*frame));
+            parser_reset_frame(pp);
             break;
         }
     }
@@ -198,34 +220,27 @@ void proto_build_response(uint8_t rsp_cmd, uint8_t seq,
                           const uint8_t *payload, uint8_t len,
                           uint8_t *tx_buf, uint16_t *tx_len)
 {
+    uint16_t crc = 0xFFFF;
+
     *tx_len = 0;
+    if (len > 0 && payload == NULL) return;
 
     /* 帧头 */
     tx_buf[(*tx_len)++] = PROTO_FRAME_START;
 
-    /* CMD + LEN + SEQ (计入 CRC) */
-    uint8_t header[3] = { rsp_cmd, len, seq };
-    uint16_t crc = proto_crc16(header, 3);
-
-    tx_escape_byte(rsp_cmd, tx_buf, tx_len);
-    tx_escape_byte(len, tx_buf, tx_len);
-    tx_escape_byte(seq, tx_buf, tx_len);
+    /* Header is raw by protocol definition.  Escaping it makes reserved
+     * sequences (0xAA/0x55/0xBB) undecodable by the peer. */
+    tx_buf[(*tx_len)++] = rsp_cmd;
+    tx_buf[(*tx_len)++] = len;
+    tx_buf[(*tx_len)++] = seq;
+    crc = (crc >> 8) ^ crc16_table[(crc ^ rsp_cmd) & 0xFF];
+    crc = (crc >> 8) ^ crc16_table[(crc ^ len) & 0xFF];
+    crc = (crc >> 8) ^ crc16_table[(crc ^ seq) & 0xFF];
 
     /* Payload */
     for (uint8_t i = 0; i < len; i++) {
         tx_escape_byte(payload[i], tx_buf, tx_len);
-    }
-
-    /* 更新 CRC (payload 部分) */
-    crc = proto_crc16(header, 3);
-    if (len > 0)
-        crc = proto_crc16(payload, len);  /* 简化: 重算整个 CRC */
-    /* 更正: 需要联合计算 header + payload */
-    {
-        uint8_t crc_buf[256];
-        crc_buf[0] = rsp_cmd; crc_buf[1] = len; crc_buf[2] = seq;
-        if (len > 0) memcpy(crc_buf + 3, payload, len);
-        crc = proto_crc16(crc_buf, 3 + len);
+        crc = (crc >> 8) ^ crc16_table[(crc ^ payload[i]) & 0xFF];
     }
 
     /* CRC 小端 (CRC 自身不转义, 不参与 CRC 计算) */

@@ -1,24 +1,20 @@
 /**
  ******************************************************************************
  * @file    calibration.h
- * @brief   标定模块 — 关节原点校验 / 标定工作流 / 系统原点管理
- * @date    2026-06-24
+ * @brief   标定模块 — 零点/方向/Flash 持久化 (Pi v1.2 架构决策 A/B)
+ * @date    2026-08-08
  ******************************************************************************
  * @attention
- * 本模块管理三个层次的原点逻辑:
- *   1. 上电零点校验 — 启动时检查各关节角度是否在阈值内
- *   2. 单关节标定 — 助力拖拽 → 写入零点 → 回读确认
- *   3. 系统原点偏移 — 标定诊断工具, 记录 FK 与视觉输出的差值供手眼标定参考
- *      (正常运行时 base_offset 应为 {0,0,0}, 坐标对齐由树莓派手眼矩阵完成)
+ * 决策 A: encoder_direction / zero_offset 由 MCU 保存、加载和应用
+ *          Pi 只发送模型角度；MCU 负责模型↔原始的双向变换
  *
- * 状态机:
- *   ZERO_UNCHECKED → ZERO_CHECKING → ZERO_OK (→ 正常运动)
- *                                   → ZERO_LOST (→ 锁定 + 报错)
- *   ZERO_OK ↔ CALIBRATING (标定模式)
+ * 决策 B: 本模块独立于 UART 线程；Flash 写入在 joint_ctrl 线程中完成
  *
- * 依赖: DrEmpower_can.h (motion_aid, set_zero_position, get_angle)
- *       calib_defaults.h (阈值参数)
- *       RT-Thread (mutex, tick)
+ * 变换公式 (逐轴):
+ *   q_model_feedback = encoder_direction * (q_raw_feedback - zero_offset_raw)
+ *   q_raw_command    = zero_offset_raw + encoder_direction * q_model_target
+ *
+ * encoder_direction[i] 只能为 +1 或 -1
  ******************************************************************************
  */
 
@@ -30,120 +26,112 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "arm_config.h"
+
+/* -------------------------------------------------------------------------- */
+/* Flash 持久化数据结构 (写入 STM32F407 内部 Flash)                            */
+/* -------------------------------------------------------------------------- */
+
+#define CALIB_FLASH_MAGIC        0x4441524EUL   /* "DARN" (DaRan) */
+#define CALIB_FLASH_VERSION      1               /* 结构版本 */
+#define CALIB_FLASH_SECTOR       FLASH_SECTOR_11 /* 末扇区, 不干扰固件 */
+
+/* Flash 中存储的标定数据 (32 字节对齐便于 CRC) */
+struct calib_flash_record {
+    uint32_t magic;                             /* 0x4441524E */
+    uint16_t version;                           /* 结构版本 */
+    uint16_t crc16;                             /* CRC-16/MODBUS over 后续字段 */
+    float    zero_offset_raw_deg[MAX_JOINT_COUNT]; /* 各轴原始零偏 (°) */
+    int8_t   encoder_direction[MAX_JOINT_COUNT];   /* +1 或 -1 */
+    uint8_t  reserved[2];                       /* 对齐填充 */
+};
 
 /* -------------------------------------------------------------------------- */
 /* 标定状态枚举                                                               */
 /* -------------------------------------------------------------------------- */
 enum calib_state {
-    CALIB_ZERO_UNCHECKED = 0,   /* 尚未校验 */
+    CALIB_ZERO_UNCHECKED = 0,   /* 尚未校验/Flash 未加载 */
     CALIB_ZERO_CHECKING  = 1,   /* 校验进行中 */
     CALIB_ZERO_OK        = 2,   /* 零点正常 */
-    CALIB_ZERO_LOST      = 3,   /* 零点丢失 */
+    CALIB_ZERO_LOST      = 3,   /* 零点丢失 (Flash CRC 错/未写入) */
     CALIB_CALIBRATING    = 4,   /* 标定模式 */
 };
 
 /* -------------------------------------------------------------------------- */
-/* 标定上下文                                                                 */
+/* 标定运行时上下文                                                           */
 /* -------------------------------------------------------------------------- */
 struct calib_ctx {
-    enum calib_state state;             /* 当前状态 */
-    uint8_t  calib_joint_id;            /* 当前标定关节 ID (1~4, 0=无) */
-    float    drift_threshold;           /* 单关节漂移判定阈值 (°) */
-    float    base_offset[3];            /* 系统原点补偿 (x, y, z, mm) */
-    float    torque_baseline[4];        /* 空载力矩基线 (Nm, 零点校验通过时记录) */
-    uint32_t check_start_tick;          /* 零点校验开始时刻 (rt_tick) */
-    uint8_t  zero_valid[4];            /* 各关节零点有效标志 (索引 0~3 对应 J1~J4) */
-    uint8_t  check_rounds;             /* 已收到的数据轮次计数 */
+    enum calib_state state;                     /* 当前状态 */
+    uint8_t  calib_joint_id;                    /* 当前标定关节 ID (1~6, 0=无) */
+    float    drift_threshold;                   /* 单关节漂移判定阈值 (°) */
+    float    torque_baseline[MAX_JOINT_COUNT];  /* 空载力矩基线 (Nm) */
+    uint32_t check_start_tick;                  /* 零点校验开始时刻 */
+    uint8_t  zero_valid[MAX_JOINT_COUNT];       /* 各关节零点有效标志 */
+    uint8_t  check_rounds;                      /* 数据轮次计数 */
+
+    /* ---- v1.2: 方向与零偏 (MCU 负责) ---- */
+    float    zero_offset_raw_deg[MAX_JOINT_COUNT];  /* 原始零偏 */
+    int8_t   encoder_direction[MAX_JOINT_COUNT];     /* +1 或 -1 */
+
+    /* ---- v1.2: 零位写入验证 ---- */
+    float    set_zero_sample_deg;               /* 设零时的采样角度 */
+    uint8_t  set_zero_verified;                 /* 读回验证通过标志 */
 };
 
 /* -------------------------------------------------------------------------- */
 /* API                                                                        */
 /* -------------------------------------------------------------------------- */
 
-/**
- * @brief 初始化标定模块
- * @param ctx            标定上下文 (由调用方分配)
- * @param drift_threshold 零点漂移判定阈值 (°), 传 0 使用默认值
- */
-void calib_init(struct calib_ctx *ctx, float drift_threshold);
+/* 初始化 (加载 Flash 或标记为未标定) */
+int  calib_init(struct calib_ctx *ctx, float drift_threshold);
 
-/**
- * @brief 启动上电零点校验
- * @param ctx  标定上下文
- * @note  状态切换: → CALIB_ZERO_CHECKING
- */
+/* ---- 零点校验 ---- */
 void calib_start_check(struct calib_ctx *ctx);
-
-/**
- * @brief 零点校验更新 — 每个控制周期调用一次
- * @param ctx           标定上下文
- * @param joint_angles  当前 4 关节角度 (°)
- * @param now_tick      当前系统 tick
- * @return  1 = 校验通过 (→ ZERO_OK)
- *          0 = 校验中 (继续等待数据)
- *         -1 = 零点丢失 (→ ZERO_LOST)
- */
-int  calib_check_update(struct calib_ctx *ctx, const float joint_angles[4],
+int  calib_check_update(struct calib_ctx *ctx, const float joint_angles[MAX_JOINT_COUNT],
                         uint32_t now_tick);
 
-/**
- * @brief 进入单关节标定模式 (调 motion_aid 助力)
- * @param ctx       标定上下文
- * @param joint_id  目标关节 ID (1~4)
- * @return  0 = 成功进入标定模式
- *         -1 = 当前状态不允许标定
- */
+/* ---- 单关节标定 ---- */
 int  calib_start_joint(struct calib_ctx *ctx, uint8_t joint_id);
 
-/**
- * @brief 确认写入零点并回读校验
- * @param ctx       标定上下文
- * @param joint_id  目标关节 ID (1~4)
- * @return  1 = 写入成功且全部 4 关节零点有效
- *          0 = 写入成功, 本关节有效
- *         -1 = 回读校验失败 (角度偏差超阈值)
- *         -2 = 当前不在标定模式
- */
-int  calib_confirm_zero(struct calib_ctx *ctx, uint8_t joint_id);
+/* 确认零点: 记录当前原始反馈为零偏, encoder_direction 使用默认 +1 */
+int  calib_confirm_zero(struct calib_ctx *ctx, uint8_t joint_id,
+                        float current_raw_angle_deg);
 
-/**
- * @brief 退出标定模式
- * @param ctx  标定上下文
- * @note  状态切换: CALIB_CALIBRATING → CALIB_ZERO_OK
- */
+/* 读回验证: 设零后读取当前模型角度, 误差 <0.5° 视为通过 */
+int  calib_verify_zero(struct calib_ctx *ctx, uint8_t joint_id,
+                       float current_model_angle_deg);
+
 void calib_end(struct calib_ctx *ctx);
+void calib_record_torque_baseline(struct calib_ctx *ctx, const float torques[MAX_JOINT_COUNT]);
 
-/**
- * @brief 设置系统原点偏移
- * @param ctx  标定上下文
- * @param x    X 方向偏移 (mm)
- * @param y    Y 方向偏移 (mm)
- * @param z    Z 方向偏移 (mm)
- */
-void calib_set_base_offset(struct calib_ctx *ctx, float x, float y, float z);
+/* ---- v1.2: 模型↔原始角度变换 ---- */
 
-/**
- * @brief 应用系统原点偏移到目标位姿 (视觉坐标 → 机械臂坐标)
- *        IK 输入前调用: 视觉目标坐标减去系统原点偏移
- * @param base_offset  系统原点偏移 [x, y, z]
- * @param pose         位姿 [x, y, z, rx, ry, rz], 原地修改前 3 元素
- */
-void calib_apply_base_offset(const float base_offset[3], float pose[6]);
+/* 原始 CAN 反馈 → 模型角度 (joint_data 线程每周期调用) */
+float calib_raw_to_model(const struct calib_ctx *ctx, uint8_t joint_id,
+                         float raw_angle_deg);
 
-/**
- * @brief 取消系统原点偏移 (机械臂坐标 → 视觉坐标)
- *        FK 输出后调用: 机械臂坐标加上系统原点偏移
- * @param base_offset  系统原点偏移 [x, y, z]
- * @param pose         位姿 [x, y, z, rx, ry, rz], 原地修改前 3 元素
- */
-void calib_unapply_base_offset(const float base_offset[3], float pose[6]);
+/* 模型目标角度 → 原始 CAN 命令 (joint_ctrl 线程发 CAN 前调用) */
+float calib_model_to_raw(const struct calib_ctx *ctx, uint8_t joint_id,
+                         float model_angle_deg);
 
-/**
- * @brief 记录空载力矩基线
- * @param ctx      标定上下文
- * @param torques  4 关节力矩 (Nm)
- */
-void calib_record_torque_baseline(struct calib_ctx *ctx, const float torques[4]);
+/* 批量变换 (6 轴) */
+void calib_raw_to_model_all(const struct calib_ctx *ctx,
+                            const float raw_deg[MAX_JOINT_COUNT],
+                            float model_deg_out[MAX_JOINT_COUNT]);
+void calib_model_to_raw_all(const struct calib_ctx *ctx,
+                            const float model_deg[MAX_JOINT_COUNT],
+                            float raw_deg_out[MAX_JOINT_COUNT]);
+
+/* ---- v1.2: Flash 持久化 ---- */
+
+/* 保存当前标定数据到 Flash. 返回 0=成功, 非0=失败 */
+int  calib_save_to_flash(const struct calib_ctx *ctx);
+
+/* 从 Flash 加载标定数据. 返回 0=成功, 非0=失败 (CRC/版本/magic 异常) */
+int  calib_load_from_flash(struct calib_ctx *ctx);
+
+/* 检查 Flash 中是否有有效标定数据 */
+int  calib_flash_is_valid(void);
 
 #ifdef __cplusplus
 }

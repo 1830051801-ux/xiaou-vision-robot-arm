@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="510" viewBox="0 0 1200 510" role="img" aria-labelledby="title desc">
+<title id="title">小U工程与研究成果地图</title><desc id="desc">上排是视觉到控制器的接口链路，下排是机械模型、数字孪生和离线验证。真实运动默认锁定。</desc>
+<defs><style>.bg{fill:#f7f8fa}.box{fill:#fff;stroke:#334155;stroke-width:1.5}.research{fill:#eff6ff;stroke:#2563eb;stroke-width:1.5}.text{font-family:Arial,'Microsoft YaHei',sans-serif;fill:#172033;font-size:19px}.small{font-size:15px}.title{font-size:24px;font-weight:700}.arrow{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#end)}.dash{stroke-dasharray:6 5}</style><marker id="end" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0L10,3L0,6Z" fill="#64748b"/></marker></defs>
+<rect class="bg" width="1200" height="510" rx="12"/>
+<text class="text title" x="40" y="48">小U · 工程与研究成果地图</text><text class="text small" x="40" y="76">源码接口与验证关系；公开配置默认锁定真实运动</text>
+<rect class="box" x="40" y="125" width="180" height="100" rx="8"/><text class="text" x="60" y="160">视觉与标定</text><text class="text small" x="60" y="188">YOLO / 像素到坐标</text><text class="text small" x="60" y="211">感知观测入口</text>
+<rect class="box" x="280" y="125" width="210" height="100" rx="8"/><text class="text" x="300" y="160">规划与策略接口</text><text class="text small" x="300" y="188">ROS 2 / MoveIt 配置</text><text class="text small" x="300" y="211">任务与轨迹预览</text>
+<rect class="box" x="550" y="125" width="165" height="100" rx="8"/><text class="text" x="570" y="160">Pi 通信</text><text class="text small" x="570" y="188">UART / CRC / ACK</text><text class="text small" x="570" y="211">状态与命令接口</text>
+<rect class="box" x="775" y="125" width="165" height="100" rx="8"/><text class="text" x="795" y="160">STM32F407</text><text class="text small" x="795" y="188">RT-Thread / FIFO</text><text class="text small" x="795" y="211">轨迹与反馈</text>
+<rect class="box" x="1000" y="125" width="160" height="100" rx="8"/><text class="text" x="1020" y="160">六轴与末端</text><text class="text small" x="1020" y="188">CAN 驱动接口</text><text class="text small" x="1020" y="211">现场确认后执行</text>
+<path class="arrow" d="M220 175H280"/><path class="arrow" d="M490 175H550"/><path class="arrow" d="M715 175H775"/><path class="arrow" d="M940 175H1000"/>
+<rect class="research" x="40" y="330" width="255" height="100" rx="8"/><text class="text" x="60" y="365">机械模型</text><text class="text small" x="60" y="393">STEP / STL / URDF / POE</text><text class="text small" x="60" y="416">结构、关节链与坐标</text>
+<rect class="research" x="360" y="330" width="330" height="100" rx="8"/><text class="text" x="380" y="365">数字孪生与学习</text><text class="text small" x="380" y="393">过程图 Transformer / 扩散候选</text><text class="text small" x="380" y="416">MuJoCo 回放 / 合成数据 / 量化</text>
+<rect class="research" x="755" y="330" width="405" height="100" rx="8"/><text class="text" x="775" y="365">离线验证与成果</text><text class="text small" x="775" y="393">单元测试 / 模型一致性 / 协议回放</text><text class="text small" x="775" y="416">原始报告、哈希清单、图册与下载包</text>
+<path class="arrow" d="M295 380H360"/><path class="arrow" d="M690 380H755"/><path class="arrow dash" d="M525 330V277H385V225"/><path class="arrow dash" d="M860 225V330"/>
+<text class="text small" x="40" y="478">离线数值、接触回放与历史报告均保留原始适用范围；训练评测不等于真机抓取验收。</text>
+</svg>

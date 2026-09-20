@@ -1,0 +1,992 @@
+{
+  "schema": "xiaou_taught_cola_mujoco_replay_v1",
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "ros_hardware_started": false,
+  "physics_engine": {
+    "name": "MuJoCo",
+    "version": "3.10.0"
+  },
+  "execution_policy": {
+    "collision_mode": "record_only",
+    "gripper_action": "not_included",
+    "note": "This report does not prove physical collision clearance or gripping force."
+  },
+  "model_sources": {
+    "poe": "raspberry_pi/robot_ai/arm_control/config/arm_model.json",
+    "urdf": "raspberry_pi/ros2_ws/src/xiaou_arm_description/urdf/xiaou_arm_display.urdf.xacro",
+    "collision_meshes": 8,
+    "mjcf": "local-artifact/xiaou_taught_cola.xml",
+    "hardware_motion_profile": "raspberry_pi/robot_ai/arm_control/config/hardware_calibration_candidate_20260811.json",
+    "hardware_motion_profile_schema_version": 5
+  },
+  "world_alignment": {
+    "table_top_m": -0.10783322127283833,
+    "alignment": "derived from taught TCP side-center minus half approximate cola height",
+    "object_center_m": [
+      0.1727898534503301,
+      0.01666559600812907,
+      -0.012833221272838327
+    ]
+  },
+  "initial_robot_state": {
+    "source": "ready_pose_replay_start",
+    "joint_deg": [
+      -0.03,
+      -49.96,
+      -55.0,
+      -70.0,
+      110.0,
+      0.01
+    ],
+    "planned_joint_deg": [
+      -0.03,
+      -49.96,
+      -55.0,
+      -70.0,
+      110.0,
+      0.01
+    ]
+  },
+  "plan": {
+    "schema": "xiaou_taught_side_grasp_plan_v1",
+    "planner": "teach_pose_anchored_poe_ik",
+    "execution": "offline_only",
+    "hardware_motion": false,
+    "gripper_action": "not_included",
+    "model_name": "xiaou_six_axis_arm",
+    "start_joint_deg": [
+      -0.03,
+      -49.96,
+      -55.0,
+      -70.0,
+      110.0,
+      0.01
+    ],
+    "taught_grasp_joint_deg": [
+      -100.000244,
+      -48.930473,
+      -71.999702,
+      -84.999866,
+      110.000603,
+      0.0
+    ],
+    "taught_contact_offset_base_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "endpoint_mode": "exact_taught_joint_pose",
+    "object_model": {
+      "shape": "upright_cylinder",
+      "center_base_m": [
+        0.17279,
+        0.016666,
+        -0.012833
+      ],
+      "table_z_m": -0.10783322127283833,
+      "height_m": 0.19,
+      "radius_m": 0.032,
+      "anchor": "taught TCP is assumed to be side-center contact"
+    },
+    "approach": {
+      "selection": "tool_z_positive",
+      "direction_base": [
+        0.49778472,
+        -0.86730063,
+        0.0
+      ],
+      "pregrasp_distance_m": 0.152,
+      "contact_handoff_clearance_m": 0.066,
+      "overhead_clearance_m": 0.04,
+      "transit_sag_reserve_m": 0.02,
+      "transit_z_m": 0.14216677872716166,
+      "sampled_transit_min_clearance_m": 0.05269541314325686
+    },
+    "stages": [
+      {
+        "name": "raise_to_transit",
+        "phase": "raise",
+        "target_joint_deg": [
+          -0.030001,
+          -49.778648,
+          -32.113261,
+          -93.068091,
+          109.999999,
+          0.010001
+        ],
+        "target_tcp_xyz_m": [
+          -0.178633,
+          0.167362,
+          0.142167
+        ],
+        "target_tcp_rotation": [
+          [
+            -0.99825693,
+            -0.00149357,
+            -0.05899894
+          ],
+          [
+            -0.02255229,
+            0.93346763,
+            0.35795193
+          ],
+          [
+            0.05453897,
+            0.35865855,
+            -0.93187421
+          ]
+        ],
+        "ik_position_error_m": 0.00010701614440657579,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "transfer_above_target",
+        "phase": "transfer",
+        "target_joint_deg": [
+          -100.000254,
+          -47.035619,
+          -21.460891,
+          -137.433528,
+          110.000603,
+          6e-06
+        ],
+        "target_tcp_xyz_m": [
+          0.17279,
+          0.016666,
+          0.142167
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 4.396166485191282e-08,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "transfer_above_pregrasp",
+        "phase": "transfer",
+        "target_joint_deg": [
+          -77.351196,
+          -80.058705,
+          -0.79892,
+          -130.487162,
+          98.536834,
+          -20.294721
+        ],
+        "target_tcp_xyz_m": [
+          0.097127,
+          0.148495,
+          0.142167
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 4.6836357529749645e-05,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "descend_pregrasp_01",
+        "phase": "descend",
+        "target_joint_deg": [
+          -77.352437,
+          -78.88614,
+          -10.057543,
+          -122.400928,
+          98.537506,
+          -20.293663
+        ],
+        "target_tcp_xyz_m": [
+          0.097127,
+          0.148495,
+          0.116333
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 2.0681399263525347e-07,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "descend_pregrasp_02",
+        "phase": "descend",
+        "target_joint_deg": [
+          -77.352437,
+          -78.875547,
+          -18.29635,
+          -114.172715,
+          98.537506,
+          -20.293663
+        ],
+        "target_tcp_xyz_m": [
+          0.097127,
+          0.148495,
+          0.0905
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 6.235440057355937e-06,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "descend_pregrasp_03",
+        "phase": "descend",
+        "target_joint_deg": [
+          -77.352437,
+          -80.134976,
+          -25.584607,
+          -105.625029,
+          98.537506,
+          -20.293663
+        ],
+        "target_tcp_xyz_m": [
+          0.097127,
+          0.148495,
+          0.064667
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 6.125658402268401e-07,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "descend_pregrasp_04",
+        "phase": "descend",
+        "target_joint_deg": [
+          -77.352437,
+          -82.816774,
+          -31.926336,
+          -96.601502,
+          98.537506,
+          -20.293663
+        ],
+        "target_tcp_xyz_m": [
+          0.097127,
+          0.148495,
+          0.038833
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 5.266263169200189e-07,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "descend_pregrasp_05",
+        "phase": "descend",
+        "target_joint_deg": [
+          -77.352437,
+          -87.082663,
+          -37.260137,
+          -87.001812,
+          98.537506,
+          -20.293663
+        ],
+        "target_tcp_xyz_m": [
+          0.097127,
+          0.148495,
+          0.013
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 5.8480450943842674e-05,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "descend_pregrasp_06",
+        "phase": "descend",
+        "target_joint_deg": [
+          -77.352437,
+          -93.098462,
+          -41.43314,
+          -76.81301,
+          98.537506,
+          -20.293663
+        ],
+        "target_tcp_xyz_m": [
+          0.097127,
+          0.148495,
+          -0.012833
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 0.00010287166290270603,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "side_approach_01",
+        "phase": "side_approach",
+        "target_joint_deg": [
+          -78.386237,
+          -89.701797,
+          -45.102808,
+          -76.389914,
+          99.095663,
+          -19.410637
+        ],
+        "target_tcp_xyz_m": [
+          0.103847,
+          0.136787,
+          -0.012833
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 0.00010833343160033805,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "side_approach_02",
+        "phase": "side_approach",
+        "target_joint_deg": [
+          -79.532612,
+          -86.136419,
+          -48.619416,
+          -76.261685,
+          99.711832,
+          -18.427861
+        ],
+        "target_tcp_xyz_m": [
+          0.110567,
+          0.125078,
+          -0.012833
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 0.00010190947951880692,
+        "ik_orientation_error_rad": 0.0
+      },
+      {
+        "name": "side_approach_03",
+        "phase": "side_approach",
+        "target_joint_deg": [
+          -80.813652,
+          -82.452022,
+          -51.963755,
+          -76.390803,
+          100.396728,
+          -17.324917
+        ],
+        "target_tcp_xyz_m": [
+          0.117287,
+          0.11337,
+          -0.012833
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 9.943649530446856e-05,
+        "ik_orientation_error_rad": 2.3538199538296557e-06
+      },
+      {
+        "name": "side_approach_04",
+        "phase": "side_approach",
+        "target_joint_deg": [
+          -82.237161,
+          -78.633993,
+          -55.136159,
+          -76.785616,
+          101.152934,
+          -16.093068
+        ],
+        "target_tcp_xyz_m": [
+          0.124007,
+          0.101661,
+          -0.012833
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 0.00011983626127720389,
+        "ik_orientation_error_rad": 2.4023495385258116e-06
+      },
+      {
+        "name": "taught_side_contact",
+        "phase": "approach_contact",
+        "target_joint_deg": [
+          -100.000244,
+          -48.930473,
+          -71.999702,
+          -84.999866,
+          110.000603,
+          0.0
+        ],
+        "target_tcp_xyz_m": [
+          0.17279,
+          0.016666,
+          -0.012833
+        ],
+        "target_tcp_rotation": [
+          [
+            0.13094992,
+            0.9516036,
+            0.27803364
+          ],
+          [
+            0.87457692,
+            0.02118563,
+            -0.48442377
+          ],
+          [
+            -0.46686972,
+            0.30659705,
+            -0.82947629
+          ]
+        ],
+        "ik_position_error_m": 0.0,
+        "ik_orientation_error_rad": 0.0
+      }
+    ],
+    "limitations": [
+      "Object dimensions and tabletop height are approximate and anchored to the taught contact pose.",
+      "The final tool contact is a pose replay; gripper channel, jaw opening, closing angle, and gripping force are not modeled here.",
+      "This POE route is not a substitute for measured camera calibration or a calibrated planning scene."
+    ]
+  },
+  "playback": [
+    {
+      "name": "raise_to_transit",
+      "phase": "raise",
+      "target_joint_deg": [
+        -0.030001,
+        -49.778648,
+        -32.113261,
+        -93.068091,
+        109.999999,
+        0.010001
+      ],
+      "motion": {
+        "trajectory_points": 2164,
+        "duration_s": 21.62633489602728,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "transfer_above_target",
+      "phase": "transfer",
+      "target_joint_deg": [
+        -100.000254,
+        -47.035619,
+        -21.460891,
+        -137.433528,
+        110.000603,
+        6e-06
+      ],
+      "motion": {
+        "trajectory_points": 9374,
+        "duration_s": 93.72211177917332,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "transfer_above_pregrasp",
+      "phase": "transfer",
+      "target_joint_deg": [
+        -77.351196,
+        -80.058705,
+        -0.79892,
+        -130.487162,
+        98.536834,
+        -20.294721
+      ],
+      "motion": {
+        "trajectory_points": 3097,
+        "duration_s": 30.959143433715298,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 6.938893903907228e-18,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "descend_pregrasp_01",
+      "phase": "descend",
+      "target_joint_deg": [
+        -77.352437,
+        -78.88614,
+        -10.057543,
+        -122.400928,
+        98.537506,
+        -20.293663
+      ],
+      "motion": {
+        "trajectory_points": 869,
+        "duration_s": 8.679959464706855,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "descend_pregrasp_02",
+      "phase": "descend",
+      "target_joint_deg": [
+        -77.352437,
+        -78.875547,
+        -18.29635,
+        -114.172715,
+        98.537506,
+        -20.293663
+      ],
+      "motion": {
+        "trajectory_points": 774,
+        "duration_s": 7.723880729465278,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "descend_pregrasp_03",
+      "phase": "descend",
+      "target_joint_deg": [
+        -77.352437,
+        -80.134976,
+        -25.584607,
+        -105.625029,
+        98.537506,
+        -20.293663
+      ],
+      "motion": {
+        "trajectory_points": 803,
+        "duration_s": 8.013455423026409,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "descend_pregrasp_04",
+      "phase": "descend",
+      "target_joint_deg": [
+        -77.352437,
+        -82.816774,
+        -31.926336,
+        -96.601502,
+        98.537506,
+        -20.293663
+      ],
+      "motion": {
+        "trajectory_points": 847,
+        "duration_s": 8.459556325475965,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "descend_pregrasp_05",
+      "phase": "descend",
+      "target_joint_deg": [
+        -77.352437,
+        -87.082663,
+        -37.260137,
+        -87.001812,
+        98.537506,
+        -20.293663
+      ],
+      "motion": {
+        "trajectory_points": 901,
+        "duration_s": 8.999709885983718,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "descend_pregrasp_06",
+      "phase": "descend",
+      "target_joint_deg": [
+        -77.352437,
+        -93.098462,
+        -41.43314,
+        -76.81301,
+        98.537506,
+        -20.293663
+      ],
+      "motion": {
+        "trajectory_points": 957,
+        "duration_s": 9.552001415870821,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "side_approach_01",
+      "phase": "side_approach",
+      "target_joint_deg": [
+        -78.386237,
+        -89.701797,
+        -45.102808,
+        -76.389914,
+        99.095663,
+        -19.410637
+      ],
+      "motion": {
+        "trajectory_points": 462,
+        "duration_s": 4.6029164814476795,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "side_approach_02",
+      "phase": "side_approach",
+      "target_joint_deg": [
+        -79.532612,
+        -86.136419,
+        -48.619416,
+        -76.261685,
+        99.711832,
+        -18.427861
+      ],
+      "motion": {
+        "trajectory_points": 455,
+        "duration_s": 4.5370386939762435,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "side_approach_03",
+      "phase": "side_approach",
+      "target_joint_deg": [
+        -80.813652,
+        -82.452022,
+        -51.963755,
+        -76.390803,
+        100.396728,
+        -17.324917
+      ],
+      "motion": {
+        "trajectory_points": 463,
+        "duration_s": 4.612144112288261,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "side_approach_04",
+      "phase": "side_approach",
+      "target_joint_deg": [
+        -82.237161,
+        -78.633993,
+        -55.136159,
+        -76.785616,
+        101.152934,
+        -16.093068
+      ],
+      "motion": {
+        "trajectory_points": 471,
+        "duration_s": 4.695040352070392,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 0,
+        "target_contact_samples": 0,
+        "target_contact_pairs": {},
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 5,
+      "forbidden_contact_count_at_endpoint": 0
+    },
+    {
+      "name": "taught_side_contact",
+      "phase": "approach_contact",
+      "target_joint_deg": [
+        -100.000244,
+        -48.930473,
+        -71.999702,
+        -84.999866,
+        110.000603,
+        0.0
+      ],
+      "motion": {
+        "trajectory_points": 2786,
+        "duration_s": 27.84704937779777,
+        "max_tracking_error_rad": 0.0,
+        "final_tracking_error_rad": 0.0,
+        "trajectory_mode": "kinematic_collision_playback",
+        "forbidden_contact_samples": 18735,
+        "target_contact_samples": 47505,
+        "target_contact_pairs": {
+          "target_geom<->jaw_left_proxy": 26330,
+          "target_geom<->link_6_gripper": 10200,
+          "target_geom<->jaw_right_proxy": 10975
+        },
+        "within_effective_limits": true
+      },
+      "contact_count_at_endpoint": 18,
+      "forbidden_contact_count_at_endpoint": 4
+    }
+  ],
+  "contact_summary": {
+    "target_geom<->table": 70,
+    "link_1_joint_1_body<->link_3_link_3_body": 1,
+    "link_1_joint_1_body<->link_4_joint_5_body": 2,
+    "link_2_link_2_body<->link_4_joint_5_body": 1,
+    "target_geom<->link_6_gripper": 1,
+    "target_geom<->jaw_left_proxy": 4,
+    "target_geom<->jaw_right_proxy": 4
+  },
+  "forbidden_contact_summary": {
+    "link_1_joint_1_body<->link_3_link_3_body": 1,
+    "link_1_joint_1_body<->link_4_joint_5_body": 2,
+    "link_2_link_2_body<->link_4_joint_5_body": 1
+  },
+  "stage_count": 14,
+  "final_stage": "taught_side_contact"
+}

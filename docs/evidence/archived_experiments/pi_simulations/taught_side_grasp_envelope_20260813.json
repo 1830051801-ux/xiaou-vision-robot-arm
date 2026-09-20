@@ -1,0 +1,672 @@
+{
+  "schema": "xiaou_taught_side_grasp_envelope_v1",
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "ros_hardware_started": false,
+  "method": "zero-plus-eight-corners Cartesian retargeting with the exact ready pose and current effective joint limits",
+  "dimensions_tested": {
+    "reference_radius_m": 0.032,
+    "reference_height_m": 0.19,
+    "radius_variation_m": 0.0,
+    "height_variation_m": 0.0
+  },
+  "results": [
+    {
+      "envelope_half_extent_m": [
+        0.00025,
+        0.00025,
+        0.00025
+      ],
+      "case_count": 9,
+      "passed": 9,
+      "failed": 0,
+      "all_corners_reachable": true,
+      "cases": [
+        {
+          "offset_base_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05270754721112107
+        },
+        {
+          "offset_base_m": [
+            -0.00025,
+            -0.00025,
+            -0.00025
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052708677068632845
+        },
+        {
+          "offset_base_m": [
+            -0.00025,
+            -0.00025,
+            0.00025
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05275290972387821
+        },
+        {
+          "offset_base_m": [
+            -0.00025,
+            0.00025,
+            -0.00025
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05269092005741051
+        },
+        {
+          "offset_base_m": [
+            -0.00025,
+            0.00025,
+            0.00025
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05273515067985125
+        },
+        {
+          "offset_base_m": [
+            0.00025,
+            -0.00025,
+            -0.00025
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05274042491440879
+        },
+        {
+          "offset_base_m": [
+            0.00025,
+            -0.00025,
+            0.00025
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05278469286921593
+        },
+        {
+          "offset_base_m": [
+            0.00025,
+            0.00025,
+            -0.00025
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052722796869064295
+        },
+        {
+          "offset_base_m": [
+            0.00025,
+            0.00025,
+            0.00025
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052767062332968726
+        }
+      ]
+    },
+    {
+      "envelope_half_extent_m": [
+        0.0005,
+        0.0005,
+        0.0005
+      ],
+      "case_count": 9,
+      "passed": 9,
+      "failed": 0,
+      "all_corners_reachable": true,
+      "cases": [
+        {
+          "offset_base_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05270754721112107
+        },
+        {
+          "offset_base_m": [
+            -0.0005,
+            -0.0005,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05270345473014827
+        },
+        {
+          "offset_base_m": [
+            -0.0005,
+            -0.0005,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05274594804675807
+        },
+        {
+          "offset_base_m": [
+            -0.0005,
+            0.0005,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052667769819839796
+        },
+        {
+          "offset_base_m": [
+            -0.0005,
+            0.0005,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052710345454365135
+        },
+        {
+          "offset_base_m": [
+            0.0005,
+            -0.0005,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.0527668002084284
+        },
+        {
+          "offset_base_m": [
+            0.0005,
+            -0.0005,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05280940676139119
+        },
+        {
+          "offset_base_m": [
+            0.0005,
+            0.0005,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052731632224524524
+        },
+        {
+          "offset_base_m": [
+            0.0005,
+            0.0005,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052774317130687046
+        }
+      ]
+    },
+    {
+      "envelope_half_extent_m": [
+        0.001,
+        0.001,
+        0.0005
+      ],
+      "case_count": 9,
+      "passed": 9,
+      "failed": 0,
+      "all_corners_reachable": true,
+      "cases": [
+        {
+          "offset_base_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05270754721112107
+        },
+        {
+          "offset_base_m": [
+            -0.001,
+            -0.001,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05269013270842092
+        },
+        {
+          "offset_base_m": [
+            -0.001,
+            -0.001,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.0527325246659464
+        },
+        {
+          "offset_base_m": [
+            -0.001,
+            0.001,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052618254054360256
+        },
+        {
+          "offset_base_m": [
+            -0.001,
+            0.001,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05266081462761317
+        },
+        {
+          "offset_base_m": [
+            0.001,
+            -0.001,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05281611698931919
+        },
+        {
+          "offset_base_m": [
+            0.001,
+            -0.001,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05285873675690138
+        },
+        {
+          "offset_base_m": [
+            0.001,
+            0.001,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05274648265291117
+        },
+        {
+          "offset_base_m": [
+            0.001,
+            0.001,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.0527892577168083
+        }
+      ]
+    },
+    {
+      "envelope_half_extent_m": [
+        0.002,
+        0.001,
+        0.0005
+      ],
+      "case_count": 9,
+      "passed": 9,
+      "failed": 0,
+      "all_corners_reachable": true,
+      "cases": [
+        {
+          "offset_base_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05270754721112107
+        },
+        {
+          "offset_base_m": [
+            -0.002,
+            -0.001,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05262669505428237
+        },
+        {
+          "offset_base_m": [
+            -0.002,
+            -0.001,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05266896749801449
+        },
+        {
+          "offset_base_m": [
+            -0.002,
+            0.001,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05255381188550705
+        },
+        {
+          "offset_base_m": [
+            -0.002,
+            0.001,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05259626093730234
+        },
+        {
+          "offset_base_m": [
+            0.002,
+            -0.001,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052877285296660595
+        },
+        {
+          "offset_base_m": [
+            0.002,
+            -0.001,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05291999154241518
+        },
+        {
+          "offset_base_m": [
+            0.002,
+            0.001,
+            -0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05280929662545823
+        },
+        {
+          "offset_base_m": [
+            0.002,
+            0.001,
+            0.0005
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052852159253973616
+        }
+      ]
+    },
+    {
+      "envelope_half_extent_m": [
+        0.003,
+        0.002,
+        0.001
+      ],
+      "case_count": 9,
+      "passed": 7,
+      "failed": 2,
+      "all_corners_reachable": false,
+      "cases": [
+        {
+          "offset_base_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05270754721112107
+        },
+        {
+          "offset_base_m": [
+            -0.003,
+            -0.002,
+            -0.001
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052605243388008524
+        },
+        {
+          "offset_base_m": [
+            -0.003,
+            -0.002,
+            0.001
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05264337022445485
+        },
+        {
+          "offset_base_m": [
+            -0.003,
+            0.002,
+            -0.001
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.052457148259833566
+        },
+        {
+          "offset_base_m": [
+            -0.003,
+            0.002,
+            0.001
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": false,
+          "reason": "no orientation-derived side approach is reachable within effective limits: tool_z_positive: IK did not converge: position=0.000222 m, orientation=0.000037 rad; tool_z_negative: IK did not converge: position=0.016113 m, orientation=0.050302 rad; tool_x_positive: IK did not converge: position=0.008660 m, orientation=0.001560 rad; tool_x_negative: IK did not converge: position=0.025036 m, orientation=0.009492 rad; tool_y_positive: IK did not converge: position=0.006754 m, orientation=0.009283 rad; tool_y_negative: IK did not converge: position=0.017469 m, orientation=0.029918 rad"
+        },
+        {
+          "offset_base_m": [
+            0.003,
+            -0.002,
+            -0.001
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05297470934289196
+        },
+        {
+          "offset_base_m": [
+            0.003,
+            -0.002,
+            0.001
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05301400210093275
+        },
+        {
+          "offset_base_m": [
+            0.003,
+            0.002,
+            -0.001
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": true,
+          "stage_count": 14,
+          "candidate": "tool_z_positive",
+          "sampled_transit_min_clearance_m": 0.05284176395574085
+        },
+        {
+          "offset_base_m": [
+            0.003,
+            0.002,
+            0.001
+          ],
+          "object_radius_m": 0.032,
+          "object_height_m": 0.19,
+          "passed": false,
+          "reason": "no orientation-derived side approach is reachable within effective limits: tool_z_positive: IK did not converge: position=0.000489 m, orientation=0.000480 rad; tool_z_negative: IK did not converge: position=0.015780 m, orientation=0.049507 rad; tool_x_positive: IK did not converge: position=0.003082 m, orientation=0.001679 rad; tool_x_negative: IK did not converge: position=0.025681 m, orientation=0.005178 rad; tool_y_positive: IK did not converge: position=0.011040 m, orientation=0.001519 rad; tool_y_negative: IK did not converge: position=0.014673 m, orientation=0.034405 rad"
+        }
+      ]
+    }
+  ],
+  "largest_tested_all_corner_envelope_m": [
+    0.002,
+    0.001,
+    0.0005
+  ],
+  "limitations": [
+    "This checks planner reachability only, not camera error, gripper force, actuator tracking, or real collision clearance.",
+    "The start state is the exact taught ready pose. A different start pose needs a new plan and validation."
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "evaluation": "constraint_diffusion_digital_twin",
+  "architecture": "multitask_embodied_action_chunk_transformer_diffusion",
+  "context_tokens": [
+    "visual_grasp_pose",
+    "visual_place_goal",
+    "observation_uncertainty",
+    "task_profile",
+    "learned_task_token"
+  ],
+  "task_suite": [
+    "transfer",
+    "sort_zone_a",
+    "sort_zone_b",
+    "inspection_scan",
+    "precision_insert"
+  ],
+  "task_metrics": {
+    "transfer": {
+      "episodes": 5,
+      "raw_mean_grasp_position_error_m": 0.16257083281583437,
+      "raw_scene_safe_rate": 0.6,
+      "shielded_mean_grasp_position_error_m": 0.0025895934460775207,
+      "projected_safe_rate": 0.2,
+      "projection_success_rate": 1.0,
+      "abstention_rate": 0.8,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.8,
+      "projection_failure_rate": 0.0
+    },
+    "sort_zone_a": {
+      "episodes": 5,
+      "raw_mean_grasp_position_error_m": 0.1725428746343458,
+      "raw_scene_safe_rate": 0.6,
+      "shielded_mean_grasp_position_error_m": 0.003910755051999667,
+      "projected_safe_rate": 0.2,
+      "projection_success_rate": 0.5,
+      "abstention_rate": 0.6,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.6,
+      "projection_failure_rate": 0.2
+    },
+    "sort_zone_b": {
+      "episodes": 5,
+      "raw_mean_grasp_position_error_m": 0.24987219554324036,
+      "raw_scene_safe_rate": 0.2,
+      "shielded_mean_grasp_position_error_m": 0.007451418780238192,
+      "projected_safe_rate": 0.2,
+      "projection_success_rate": 1.0,
+      "abstention_rate": 0.8,
+      "ood_abstention_rate": 0.2,
+      "dispersion_abstention_rate": 0.6,
+      "projection_failure_rate": 0.0
+    },
+    "inspection_scan": {
+      "episodes": 5,
+      "raw_mean_grasp_position_error_m": 0.23754504397976212,
+      "raw_scene_safe_rate": 0.0,
+      "shielded_mean_grasp_position_error_m": 0.004361064201342267,
+      "projected_safe_rate": 0.4,
+      "projection_success_rate": 1.0,
+      "abstention_rate": 0.6,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.6,
+      "projection_failure_rate": 0.0
+    },
+    "precision_insert": {
+      "episodes": 5,
+      "raw_mean_grasp_position_error_m": 0.22530088508787638,
+      "raw_scene_safe_rate": 0.6,
+      "shielded_mean_grasp_position_error_m": 0.005459567895359694,
+      "projected_safe_rate": 0.2,
+      "projection_success_rate": 1.0,
+      "abstention_rate": 0.8,
+      "ood_abstention_rate": 0.0,
+      "dispersion_abstention_rate": 0.8,
+      "projection_failure_rate": 0.0
+    }
+  },
+  "action_chunk_length": 32,
+  "model_parameters": 747846,
+  "real_motion_enabled": false,
+  "episodes": 25,
+  "seed": 20260816,
+  "samples_per_context": 2,
+  "abstain_dispersion_rad": 0.45,
+  "context_support_threshold": 8.566678207437956,
+  "metrics": {
+    "raw_mean_grasp_position_error_m": 0.2095663664122118,
+    "raw_scene_safe_rate": 0.4,
+    "shielded_mean_grasp_position_error_m": 0.004688910596059934,
+    "shielded_scene_safe_rate": 0.24,
+    "projection_success_rate": 0.8571428571428571,
+    "abstention_rate": 0.72,
+    "ood_abstention_rate": 0.04,
+    "dispersion_abstention_rate": 0.68
+  },
+  "projection_failure_counts": {
+    "IK projection failed at grasp": 1
+  },
+  "examples": [
+    {
+      "index": 0,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.7740029692649841,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 1,
+      "task": "sort_zone_b",
+      "dispersion_rad": 0.7083855867385864,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 2,
+      "task": "sort_zone_b",
+      "dispersion_rad": 0.6668232679367065,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 3,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.4201750159263611,
+      "decision": "projection_failed",
+      "reason": "IK projection failed at grasp"
+    },
+    {
+      "index": 4,
+      "task": "precision_insert",
+      "dispersion_rad": 1.0991289615631104,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 5,
+      "task": "sort_zone_a",
+      "dispersion_rad": 0.4791422486305237,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 6,
+      "task": "inspection_scan",
+      "dispersion_rad": 0.5903880000114441,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 7,
+      "task": "transfer",
+      "dispersion_rad": 0.46381640434265137,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    }
+  ],
+  "limitations": [
+    "training data is generated from the checked-in POE kinematic model and a synthetic perception noise model",
+    "constraint projection is a planning safety shield, not a measured real-arm control law",
+    "the diagnostic scene checks TCP clearance only and does not replace full-link collision checking"
+  ]
+}

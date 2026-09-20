@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>xiaou_arm_can_control</name>
+  <version>0.1.0</version>
+  <description>Six-axis SocketCAN ros2_control hardware interface for XiaoU CAN V1.</description>
+  <maintainer email="maintainer@example.com">XiaoU</maintainer>
+  <license>Proprietary</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>hardware_interface</depend>
+  <depend>pluginlib</depend>
+  <depend>rclcpp</depend>
+  <depend>rclcpp_lifecycle</depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>joint_state_broadcaster</exec_depend>
+  <exec_depend>joint_trajectory_controller</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>xiaou_arm_description</exec_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+    <hardware_interface plugin="xiaou_arm_can_control.xml"/>
+  </export>
+</package>

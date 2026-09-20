@@ -1,0 +1,45 @@
+{
+  "schema_version": 3,
+  "motion_enabled": false,
+  "protocol_confirmed": false,
+  "uart_link_verified": false,
+  "f407_firmware_verified": false,
+  "estop_verified": false,
+  "feedback_verified": false,
+  "protocol_family": "DaRanRobot_F407_UART_V1",
+  "protocol_status": "UART framing is implemented offline; PING, hardware wiring, and F407 flash verification remain pending",
+  "transport": {
+    "kind": "uart",
+    "port": "/dev/serial0",
+    "baud": 115200,
+    "data_bits": 8,
+    "stop_bits": 1,
+    "parity": "none",
+    "flow_control": false,
+    "direct_passthrough": true,
+    "protocol_version": "DaRanRobot_F407_UART_V1"
+  },
+  "motor_bus": {
+    "owner": "stm32_f407",
+    "kind": "can",
+    "bitrate": null,
+    "status": "F407 source currently configures 1 Mbps; do not change or assume a physical rate before supervised confirmation"
+  },
+  "physical_estop": {
+    "stm32_pin": null,
+    "active_level": null,
+    "pull_configuration": null,
+    "direct_motor_power_cut": null,
+    "status": "unwired_and_unverified"
+  },
+  "joint_node_ids": [1, 2, 3, 4, 5, 6],
+  "motor_view_reference": "viewed from each motor gear side",
+  "motor_positive_rotation": ["gear_ccw", "gear_ccw", "gear_ccw", "gear_ccw", "gear_ccw", "gear_ccw"],
+  "encoder_zero_offset_rad": [null, null, null, null, null, null],
+  "encoder_direction": [null, null, null, null, null, null],
+  "position_min_rad": [null, null, null, null, null, null],
+  "position_max_rad": [null, null, null, null, null, null],
+  "velocity_max_rad_s": [null, null, null, null, null, null],
+  "acceleration_max_rad_s2": [null, null, null, null, null, null],
+  "notes": "Provisional node mapping only: J1=1..J6=6. The measured motor convention is positive command -> counter-clockwise at the gear side for every joint. This is not the same as encoder_direction; leave encoder direction, zero, limits, and all motion gates unresolved until the supervised STM32 test."
+}

@@ -1,0 +1,5 @@
+# Raspberry Pi inference release. Use a venv with --system-site-packages so
+# Raspberry Pi OS supplies the matching python3-opencv build.
+-r requirements.txt
+onnxruntime>=1.18
+Pillow>=10

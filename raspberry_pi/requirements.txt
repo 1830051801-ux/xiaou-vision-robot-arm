@@ -1,5 +1,8 @@
-numpy
-opencv-python
-pyserial
-python-dotenv
-PyYAML
+# Shared XiaoU application dependencies.
+numpy>=1.24
+PyYAML>=6.0
+requests>=2.31
+python-dotenv>=1.0
+sounddevice>=0.4
+soundfile>=0.12
+edge-tts>=6.1

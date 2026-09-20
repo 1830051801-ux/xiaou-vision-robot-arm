@@ -67,6 +67,8 @@ struct servo_volcur get_volcur(uint8_t id_num);
 void enable_angle_speed_torque_state(uint8_t id_num);
 void set_state_feedback_rate_ms(uint8_t id_num, uint32_t n_ms);
 struct angle_speed_torque angle_speed_torque_state(uint8_t id_num);
+/* v1.3: 按 CAN ID 匹配的有界读取 — 最多等 2 帧 (2×10ms), 未匹配返回 fresh=0 */
+struct angle_speed_torque angle_speed_torque_state_fresh(uint8_t id_num, int *fresh);
 void disable_angle_speed_torque_state(uint8_t id_num);
 struct PID get_pid(uint8_t id_num);
 float read_property(uint8_t id_num,int param_address, int param_type);

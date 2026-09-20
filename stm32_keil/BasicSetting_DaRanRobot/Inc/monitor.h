@@ -1,13 +1,13 @@
 /**
  ******************************************************************************
  * @file    monitor.h
- * @brief   安全监控模块 — 通信超时检测 / 自动回零 / 错误处理
- *
- * 每个控制周期调用 monitor_check() 检测超时:
- *   - 超时: 自动触发回零序列, 避免机械臂悬停
- *   - 收到有效帧: 调用 monitor_feed() 喂狗, 重置计时
- *
- * 回零流程: 急停 → 张开夹爪 → PTP 回零点 → DONE
+ * @brief   安全监控模块 — 通信超时检测 / 急停处理 / 关节安全
+ * @date    2026-07-27 (架构重构: 移除自动回零, MCU 不再自主生成轨迹)
+ ******************************************************************************
+ * @attention
+ * 重构后行为:
+ *   - 通信超时 → 急停 + 通知 Pi (不再自主回零)
+ *   - 保留独立 ESTOP 和关节级安全监控
  ******************************************************************************
  */
 
@@ -19,6 +19,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "arm_config.h"
 
 /* -------------------------------------------------------------------------- */
 /* 监控状态                                                                   */
@@ -26,10 +27,8 @@ extern "C" {
 enum monitor_state {
     MON_NORMAL      = 0,   /* 正常通信中 */
     MON_WARNING     = 1,   /* 通信延迟 (未超时但接近) */
-    MON_TIMEOUT     = 2,   /* 通信超时, 触发回零 */
-    MON_HOMING      = 3,   /* 回零进行中 */
-    MON_HOME_DONE   = 4,   /* 已回到零点, 等待恢复 */
-    MON_ESTOP       = 5,   /* 急停激活 */
+    MON_TIMEOUT     = 2,   /* 通信超时, 已触发急停 */
+    MON_ESTOP       = 3,   /* 急停激活 */
 };
 
 /* -------------------------------------------------------------------------- */
@@ -42,11 +41,6 @@ struct monitor {
     uint32_t timeout_ms;                /* 超时阈值 (ms) */
     uint32_t warn_ms;                   /* 预警阈值 (ms, < timeout_ms) */
 
-    uint32_t homing_start_tick;         /* 回零开始时刻 */
-    uint32_t homing_duration_ms;        /* 回零预计时长 */
-
-    float    home_joints[4];            /* 零点关节角度[4] */
-
     uint8_t  estop_active;              /* 急停激活标志 */
     uint8_t  feed_count;                /* 喂狗计数 (调试用) */
     uint8_t  timeout_count;             /* 超时次数 */
@@ -56,45 +50,14 @@ struct monitor {
 /* API                                                                        */
 /* -------------------------------------------------------------------------- */
 
-/**
- * @brief 初始化监控器
- * @param mon          监控器实例
- * @param timeout_ms   通信超时阈值 (ms), 默认 200ms
- * @param home_joints  零点关节角度[4] (°)
- */
-void monitor_init(struct monitor *mon, uint32_t timeout_ms,
-                  const float home_joints[4]);
+void monitor_init(struct monitor *mon, uint32_t timeout_ms);
 
-/**
- * @brief 喂狗 — 收到有效帧时调用, 重置超时计数器
- * @param mon      监控器实例
- * @param now_tick 当前系统 tick (rt_tick_get())
- */
 void monitor_feed(struct monitor *mon, uint32_t now_tick);
 
-/**
- * @brief 监控检查 — 每个控制周期调用
- * @param mon            监控器实例
- * @param now_tick       当前系统 tick
- * @param current_joints 当前关节角度[4] (°)
- * @param output_joints  输出: 如果回零中, 返回目标关节角度; 否则 = current
- * @param do_home        输入: 是否允许自动回零 (1=允许, 0=仅报警)
- * @return 当前监控状态
- */
-enum monitor_state monitor_check(struct monitor *mon,
-                                  uint32_t now_tick,
-                                  const float current_joints[4],
-                                  float output_joints[4],
-                                  int do_home);
+enum monitor_state monitor_check(struct monitor *mon, uint32_t now_tick);
 
-/**
- * @brief 手动触发急停
- */
 void monitor_estop(struct monitor *mon);
 
-/**
- * @brief 清除急停, 恢复监控
- */
 void monitor_clear_estop(struct monitor *mon);
 
 /* -------------------------------------------------------------------------- */
@@ -120,10 +83,10 @@ struct joint_safety {
 
 void joint_safety_init(struct joint_safety *js);
 void joint_safety_set_target(struct joint_safety *js,
-                             const float target[4], uint32_t now_tick);
+                             const float target[MAX_JOINT_COUNT], uint32_t now_tick);
 enum joint_safe_state joint_safety_check(struct joint_safety *js,
                                           uint32_t now_tick,
-                                          const float current[4]);
+                                          const float current[MAX_JOINT_COUNT]);
 
 #ifdef __cplusplus
 }

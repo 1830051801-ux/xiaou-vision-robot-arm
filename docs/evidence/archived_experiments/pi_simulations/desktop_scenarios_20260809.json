@@ -1,0 +1,711 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "scenarios": [
+    {
+      "scenario": "bottle",
+      "seed": 20260809,
+      "observation": {
+        "schema_version": 1,
+        "timestamp_step": 0,
+        "source": "offline_desktop_scene",
+        "scenario": "bottle",
+        "table": {
+          "frame": "base_link",
+          "z_m": 0.0,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "yolo": {
+          "class": "bottle",
+          "confidence": 0.92,
+          "center_px": [
+            320.0,
+            300.0
+          ],
+          "bbox_px": [
+            275.9,
+            255.9,
+            88.2,
+            88.2
+          ],
+          "camera_resolution": [
+            1920,
+            1080
+          ],
+          "source": "synthetic_yolo_contract"
+        },
+        "target": {
+          "class": "bottle",
+          "position_base_m": [
+            0.27000001072883606,
+            -0.11999999731779099,
+            0.0
+          ],
+          "yaw_rad": 0.0,
+          "shape": "cylinder",
+          "radius_m": 0.033,
+          "height_m": 0.21,
+          "mass_kg": 0.35,
+          "friction": 0.55,
+          "held": false
+        },
+        "arm": {
+          "joint_position_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_velocity_rad_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_online": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "gripper_open_m": 0.095,
+          "gripper_force_pct": 0.0
+        },
+        "phase": {
+          "name": "observe",
+          "index": 0
+        },
+        "safety": {
+          "motion_enabled": false,
+          "hardware_ready": false,
+          "collision_free": true,
+          "feedback_verified": false
+        },
+        "action_candidates": [
+          {
+            "strategy": "side_wrap",
+            "phase": "grasp",
+            "score": 0.88,
+            "gripper_open_m": 0.084,
+            "gripper_close_m": 0.062,
+            "target_xyz_m": [
+              0.27,
+              -0.12,
+              0.21
+            ],
+            "pull_distance_m": 0.0,
+            "reason": "profile=bottle"
+          },
+          {
+            "strategy": "reject",
+            "phase": "abort",
+            "score": 0.12,
+            "gripper_open_m": 0.0,
+            "gripper_close_m": 0.0,
+            "target_xyz_m": [
+              0.27,
+              -0.12,
+              0.0
+            ],
+            "pull_distance_m": 0.0,
+            "reason": "fallback until geometry and collision checks pass"
+          }
+        ]
+      },
+      "chosen_candidate": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "score": 0.88,
+        "gripper_open_m": 0.084,
+        "gripper_close_m": 0.062,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.21
+        ],
+        "pull_distance_m": 0.0,
+        "reason": "profile=bottle"
+      },
+      "result": {
+        "success": true,
+        "stage": "lift",
+        "reason": "simulated_grasp_accepted"
+      },
+      "observation_vector_dim": 46
+    },
+    {
+      "scenario": "cup",
+      "seed": 20260810,
+      "observation": {
+        "schema_version": 1,
+        "timestamp_step": 0,
+        "source": "offline_desktop_scene",
+        "scenario": "cup",
+        "table": {
+          "frame": "base_link",
+          "z_m": 0.0,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "yolo": {
+          "class": "cup",
+          "confidence": 0.92,
+          "center_px": [
+            320.0,
+            300.0
+          ],
+          "bbox_px": [
+            301.1,
+            281.1,
+            37.8,
+            37.8
+          ],
+          "camera_resolution": [
+            1920,
+            1080
+          ],
+          "source": "synthetic_yolo_contract"
+        },
+        "target": {
+          "class": "cup",
+          "position_base_m": [
+            0.27000001072883606,
+            -0.11999999731779099,
+            0.0
+          ],
+          "yaw_rad": 0.0,
+          "shape": "cylinder",
+          "radius_m": 0.045,
+          "height_m": 0.09,
+          "mass_kg": 0.2,
+          "friction": 0.45,
+          "held": false
+        },
+        "arm": {
+          "joint_position_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_velocity_rad_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_online": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "gripper_open_m": 0.095,
+          "gripper_force_pct": 0.0
+        },
+        "phase": {
+          "name": "observe",
+          "index": 0
+        },
+        "safety": {
+          "motion_enabled": false,
+          "hardware_ready": false,
+          "collision_free": true,
+          "feedback_verified": false
+        },
+        "action_candidates": [
+          {
+            "strategy": "side_wrap",
+            "phase": "grasp",
+            "score": 0.88,
+            "gripper_open_m": 0.095,
+            "gripper_close_m": 0.086,
+            "target_xyz_m": [
+              0.27,
+              -0.12,
+              0.09
+            ],
+            "pull_distance_m": 0.0,
+            "reason": "profile=cup"
+          },
+          {
+            "strategy": "reject",
+            "phase": "abort",
+            "score": 0.12,
+            "gripper_open_m": 0.0,
+            "gripper_close_m": 0.0,
+            "target_xyz_m": [
+              0.27,
+              -0.12,
+              0.0
+            ],
+            "pull_distance_m": 0.0,
+            "reason": "fallback until geometry and collision checks pass"
+          }
+        ]
+      },
+      "chosen_candidate": {
+        "strategy": "side_wrap",
+        "phase": "grasp",
+        "score": 0.88,
+        "gripper_open_m": 0.095,
+        "gripper_close_m": 0.086,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.09
+        ],
+        "pull_distance_m": 0.0,
+        "reason": "profile=cup"
+      },
+      "result": {
+        "success": true,
+        "stage": "lift",
+        "reason": "simulated_grasp_accepted"
+      },
+      "observation_vector_dim": 46
+    },
+    {
+      "scenario": "pen",
+      "seed": 20260811,
+      "observation": {
+        "schema_version": 1,
+        "timestamp_step": 0,
+        "source": "offline_desktop_scene",
+        "scenario": "pen",
+        "table": {
+          "frame": "base_link",
+          "z_m": 0.0,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "yolo": {
+          "class": "pen",
+          "confidence": 0.92,
+          "center_px": [
+            320.0,
+            300.0
+          ],
+          "bbox_px": [
+            290.6,
+            270.6,
+            58.8,
+            58.8
+          ],
+          "camera_resolution": [
+            1920,
+            1080
+          ],
+          "source": "synthetic_yolo_contract"
+        },
+        "target": {
+          "class": "pen",
+          "position_base_m": [
+            0.27000001072883606,
+            -0.11999999731779099,
+            0.0
+          ],
+          "yaw_rad": 0.0,
+          "shape": "capsule",
+          "radius_m": 0.006,
+          "height_m": 0.14,
+          "mass_kg": 0.015,
+          "friction": 0.35,
+          "held": false
+        },
+        "arm": {
+          "joint_position_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_velocity_rad_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_online": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "gripper_open_m": 0.095,
+          "gripper_force_pct": 0.0
+        },
+        "phase": {
+          "name": "observe",
+          "index": 0
+        },
+        "safety": {
+          "motion_enabled": false,
+          "hardware_ready": false,
+          "collision_free": true,
+          "feedback_verified": false
+        },
+        "action_candidates": [
+          {
+            "strategy": "pen_pinch",
+            "phase": "grasp",
+            "score": 0.88,
+            "gripper_open_m": 0.035,
+            "gripper_close_m": 0.008,
+            "target_xyz_m": [
+              0.27,
+              -0.12,
+              0.14
+            ],
+            "pull_distance_m": 0.0,
+            "reason": "profile=pen"
+          },
+          {
+            "strategy": "reject",
+            "phase": "abort",
+            "score": 0.12,
+            "gripper_open_m": 0.0,
+            "gripper_close_m": 0.0,
+            "target_xyz_m": [
+              0.27,
+              -0.12,
+              0.0
+            ],
+            "pull_distance_m": 0.0,
+            "reason": "fallback until geometry and collision checks pass"
+          }
+        ]
+      },
+      "chosen_candidate": {
+        "strategy": "pen_pinch",
+        "phase": "grasp",
+        "score": 0.88,
+        "gripper_open_m": 0.035,
+        "gripper_close_m": 0.008,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.14
+        ],
+        "pull_distance_m": 0.0,
+        "reason": "profile=pen"
+      },
+      "result": {
+        "success": true,
+        "stage": "lift",
+        "reason": "simulated_grasp_accepted"
+      },
+      "observation_vector_dim": 46
+    },
+    {
+      "scenario": "desktop_item",
+      "seed": 20260812,
+      "observation": {
+        "schema_version": 1,
+        "timestamp_step": 0,
+        "source": "offline_desktop_scene",
+        "scenario": "desktop_item",
+        "table": {
+          "frame": "base_link",
+          "z_m": 0.0,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "yolo": {
+          "class": "desktop_item",
+          "confidence": 0.92,
+          "center_px": [
+            320.0,
+            300.0
+          ],
+          "bbox_px": [
+            313.7,
+            293.7,
+            12.6,
+            12.6
+          ],
+          "camera_resolution": [
+            1920,
+            1080
+          ],
+          "source": "synthetic_yolo_contract"
+        },
+        "target": {
+          "class": "desktop_item",
+          "position_base_m": [
+            0.27000001072883606,
+            -0.11999999731779099,
+            0.0
+          ],
+          "yaw_rad": 0.0,
+          "shape": "box",
+          "radius_m": 0.035,
+          "height_m": 0.03,
+          "mass_kg": 0.1,
+          "friction": 0.5,
+          "held": false
+        },
+        "arm": {
+          "joint_position_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_velocity_rad_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_online": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "gripper_open_m": 0.095,
+          "gripper_force_pct": 0.0
+        },
+        "phase": {
+          "name": "observe",
+          "index": 0
+        },
+        "safety": {
+          "motion_enabled": false,
+          "hardware_ready": false,
+          "collision_free": true,
+          "feedback_verified": false
+        },
+        "action_candidates": [
+          {
+            "strategy": "flat_pick",
+            "phase": "grasp",
+            "score": 0.88,
+            "gripper_open_m": 0.088,
+            "gripper_close_m": 0.066,
+            "target_xyz_m": [
+              0.27,
+              -0.12,
+              0.03
+            ],
+            "pull_distance_m": 0.0,
+            "reason": "profile=desktop_item"
+          },
+          {
+            "strategy": "reject",
+            "phase": "abort",
+            "score": 0.12,
+            "gripper_open_m": 0.0,
+            "gripper_close_m": 0.0,
+            "target_xyz_m": [
+              0.27,
+              -0.12,
+              0.0
+            ],
+            "pull_distance_m": 0.0,
+            "reason": "fallback until geometry and collision checks pass"
+          }
+        ]
+      },
+      "chosen_candidate": {
+        "strategy": "flat_pick",
+        "phase": "grasp",
+        "score": 0.88,
+        "gripper_open_m": 0.088,
+        "gripper_close_m": 0.066,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.03
+        ],
+        "pull_distance_m": 0.0,
+        "reason": "profile=desktop_item"
+      },
+      "result": {
+        "success": true,
+        "stage": "lift",
+        "reason": "simulated_grasp_accepted"
+      },
+      "observation_vector_dim": 46
+    },
+    {
+      "scenario": "tissue_pull",
+      "seed": 20260813,
+      "observation": {
+        "schema_version": 1,
+        "timestamp_step": 0,
+        "source": "offline_desktop_scene",
+        "scenario": "tissue_pull",
+        "table": {
+          "frame": "base_link",
+          "z_m": 0.0,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "yolo": {
+          "class": "tissue_pull",
+          "confidence": 0.92,
+          "center_px": [
+            320.0,
+            300.0
+          ],
+          "bbox_px": [
+            311.6,
+            291.6,
+            16.8,
+            16.8
+          ],
+          "camera_resolution": [
+            1920,
+            1080
+          ],
+          "source": "synthetic_yolo_contract"
+        },
+        "target": {
+          "class": "tissue_pull",
+          "position_base_m": [
+            0.27000001072883606,
+            -0.11999999731779099,
+            0.0
+          ],
+          "yaw_rad": 0.0,
+          "shape": "sheet_stack",
+          "radius_m": 0.06,
+          "height_m": 0.04,
+          "mass_kg": 0.08,
+          "friction": 0.25,
+          "held": false
+        },
+        "arm": {
+          "joint_position_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_velocity_rad_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_online": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "gripper_open_m": 0.095,
+          "gripper_force_pct": 0.0
+        },
+        "phase": {
+          "name": "observe",
+          "index": 0
+        },
+        "safety": {
+          "motion_enabled": false,
+          "hardware_ready": false,
+          "collision_free": true,
+          "feedback_verified": false
+        },
+        "action_candidates": [
+          {
+            "strategy": "tissue_pull",
+            "phase": "pull",
+            "score": 0.91,
+            "gripper_open_m": 0.065,
+            "gripper_close_m": 0.035,
+            "target_xyz_m": [
+              0.27,
+              -0.12,
+              0.04
+            ],
+            "pull_distance_m": 0.08,
+            "reason": "grip sheet edge then pull along table plane"
+          },
+          {
+            "strategy": "reject",
+            "phase": "abort",
+            "score": 0.09,
+            "gripper_open_m": 0.0,
+            "gripper_close_m": 0.0,
+            "target_xyz_m": [
+              0.27,
+              -0.12,
+              0.0
+            ],
+            "pull_distance_m": 0.0,
+            "reason": "do not lift tissue stack as a rigid object"
+          }
+        ]
+      },
+      "chosen_candidate": {
+        "strategy": "tissue_pull",
+        "phase": "pull",
+        "score": 0.91,
+        "gripper_open_m": 0.065,
+        "gripper_close_m": 0.035,
+        "target_xyz_m": [
+          0.27,
+          -0.12,
+          0.04
+        ],
+        "pull_distance_m": 0.08,
+        "reason": "grip sheet edge then pull along table plane"
+      },
+      "result": {
+        "success": true,
+        "stage": "pull",
+        "reason": "pull_candidate"
+      },
+      "observation_vector_dim": 46
+    }
+  ]
+}

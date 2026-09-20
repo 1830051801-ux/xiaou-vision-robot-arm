@@ -1,0 +1,395 @@
+{
+  "evaluation": "constraint_diffusion_digital_twin",
+  "real_motion_enabled": false,
+  "episodes": 64,
+  "samples_per_context": 3,
+  "abstain_dispersion_rad": 0.45,
+  "metrics": {
+    "raw_mean_grasp_position_error_m": 0.23084508156348962,
+    "raw_scene_safe_rate": 0.15625,
+    "shielded_mean_grasp_position_error_m": 0.0033481227952391777,
+    "shielded_scene_safe_rate": 0.03125,
+    "projection_success_rate": 1.0,
+    "abstention_rate": 0.96875
+  },
+  "projection_failure_counts": {},
+  "examples": [
+    {
+      "index": 0,
+      "dispersion_rad": 1.3404232263565063,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 1,
+      "dispersion_rad": 0.9171690940856934,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 2,
+      "dispersion_rad": 0.791619598865509,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 3,
+      "dispersion_rad": 0.909641444683075,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 4,
+      "dispersion_rad": 1.7659273147583008,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 5,
+      "dispersion_rad": 1.3460184335708618,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 6,
+      "dispersion_rad": 1.1770623922348022,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 7,
+      "dispersion_rad": 0.8088917136192322,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 8,
+      "dispersion_rad": 0.5126045346260071,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 9,
+      "dispersion_rad": 1.570834755897522,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 10,
+      "dispersion_rad": 1.3048797845840454,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 11,
+      "dispersion_rad": 1.3671735525131226,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 12,
+      "dispersion_rad": 0.5362505316734314,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 13,
+      "dispersion_rad": 0.8327212333679199,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 14,
+      "dispersion_rad": 1.7672799825668335,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 16,
+      "dispersion_rad": 1.2182846069335938,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 17,
+      "dispersion_rad": 1.0572186708450317,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 18,
+      "dispersion_rad": 0.6459973454475403,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 19,
+      "dispersion_rad": 1.6204586029052734,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 20,
+      "dispersion_rad": 1.3010541200637817,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 21,
+      "dispersion_rad": 1.121142864227295,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 22,
+      "dispersion_rad": 0.964623749256134,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 23,
+      "dispersion_rad": 0.7520627975463867,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 24,
+      "dispersion_rad": 1.6178041696548462,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 25,
+      "dispersion_rad": 0.7795424461364746,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 26,
+      "dispersion_rad": 1.120818853378296,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 27,
+      "dispersion_rad": 1.978061318397522,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 28,
+      "dispersion_rad": 0.8100562691688538,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 29,
+      "dispersion_rad": 1.2239365577697754,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 30,
+      "dispersion_rad": 0.8901965618133545,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 31,
+      "dispersion_rad": 1.4166182279586792,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 32,
+      "dispersion_rad": 1.4110389947891235,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 33,
+      "dispersion_rad": 1.3032172918319702,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 34,
+      "dispersion_rad": 1.4278675317764282,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 35,
+      "dispersion_rad": 1.1567996740341187,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 36,
+      "dispersion_rad": 1.8748379945755005,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 37,
+      "dispersion_rad": 0.7806317806243896,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 38,
+      "dispersion_rad": 1.2933212518692017,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 39,
+      "dispersion_rad": 0.5770549774169922,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 40,
+      "dispersion_rad": 0.6070712208747864,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 41,
+      "dispersion_rad": 1.1740309000015259,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 42,
+      "dispersion_rad": 0.8071327805519104,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 43,
+      "dispersion_rad": 1.0136137008666992,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 44,
+      "dispersion_rad": 1.4131304025650024,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 45,
+      "dispersion_rad": 1.446939468383789,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 46,
+      "dispersion_rad": 1.0371909141540527,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 47,
+      "dispersion_rad": 1.487734317779541,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 48,
+      "dispersion_rad": 0.7457893490791321,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 49,
+      "dispersion_rad": 0.4578409194946289,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 50,
+      "dispersion_rad": 0.9611902236938477,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 51,
+      "dispersion_rad": 1.3572734594345093,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 52,
+      "dispersion_rad": 0.5014063715934753,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 53,
+      "dispersion_rad": 0.7187442779541016,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 54,
+      "dispersion_rad": 0.7447134852409363,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 55,
+      "dispersion_rad": 0.6075000762939453,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 56,
+      "dispersion_rad": 1.7197765111923218,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 57,
+      "dispersion_rad": 0.6068823933601379,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 59,
+      "dispersion_rad": 1.457536220550537,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 60,
+      "dispersion_rad": 0.9564235806465149,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 61,
+      "dispersion_rad": 1.0796645879745483,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 62,
+      "dispersion_rad": 1.6391981840133667,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    },
+    {
+      "index": 63,
+      "dispersion_rad": 1.1059774160385132,
+      "decision": "abstain",
+      "reason": "sample dispersion above threshold"
+    }
+  ],
+  "limitations": [
+    "training data is generated from the checked-in POE kinematic model and a synthetic perception noise model",
+    "constraint projection is a planning safety shield, not a measured real-arm control law",
+    "the diagnostic scene checks TCP clearance only and does not replace full-link collision checking"
+  ]
+}

@@ -1,0 +1,7 @@
+requests
+python-dotenv
+sounddevice
+soundfile
+numpy
+edge-tts
+PyYAML

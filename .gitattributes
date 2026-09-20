@@ -1,0 +1,12 @@
+*.onnx binary
+*.mp4 binary
+*.gif binary
+*.stl binary
+*.png binary
+*.jpg binary
+
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf

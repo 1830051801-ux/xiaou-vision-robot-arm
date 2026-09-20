@@ -1,0 +1,146 @@
+{
+  "offline": true,
+  "hardware_motion": false,
+  "serial_opened": false,
+  "can_opened": false,
+  "holdout": {
+    "generator": "fresh deterministic synthetic scenes",
+    "episodes": 4096,
+    "sequence_length": 8,
+    "seed": 20260813,
+    "safety_negative_ratio": 0.3
+  },
+  "models": [
+    {
+      "checkpoint": "raspberry_pi/runtime/decision/transformer_policy_safety_seed20260831.pt",
+      "checkpoint_metadata": {
+        "synthetic_demonstrations": true,
+        "episodes": 8192,
+        "train_episodes": 6554,
+        "validation_episodes": 1638,
+        "sequence_length": 8,
+        "safety_negative_ratio": 0.3,
+        "safety_negative_episodes": 2392,
+        "val_ratio": 0.2,
+        "action_loss_weight": 1.0,
+        "device": "cuda"
+      },
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "positive_strategy_accuracy": 1.0,
+      "reject_recall": 1.0,
+      "unsafe_accept_count": 0,
+      "unsafe_accept_rate": 0.0,
+      "positive_count": 2879,
+      "reject_count": 1217,
+      "action_mae": 0.003890010304951731,
+      "action_max_abs_error": 0.05023635923862457,
+      "risk_mae": 0.006707386957714334,
+      "per_scenario": {
+        "bottle": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0040326858487587875
+        },
+        "cup": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003582740534204739
+        },
+        "pen": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0040404888391327295
+        },
+        "desktop_item": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003614981959862764
+        },
+        "tissue_pull": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003934966941754915
+        },
+        "cola": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.004159435854981193
+        }
+      }
+    },
+    {
+      "checkpoint": "raspberry_pi/runtime/decision/transformer_policy_safety_seed20260832.pt",
+      "checkpoint_metadata": {
+        "synthetic_demonstrations": true,
+        "episodes": 8192,
+        "train_episodes": 6554,
+        "validation_episodes": 1638,
+        "sequence_length": 8,
+        "safety_negative_ratio": 0.3,
+        "safety_negative_episodes": 2427,
+        "val_ratio": 0.2,
+        "action_loss_weight": 1.0,
+        "device": "cuda"
+      },
+      "strategy_accuracy": 1.0,
+      "phase_accuracy": 1.0,
+      "positive_strategy_accuracy": 1.0,
+      "reject_recall": 1.0,
+      "unsafe_accept_count": 0,
+      "unsafe_accept_rate": 0.0,
+      "positive_count": 2879,
+      "reject_count": 1217,
+      "action_mae": 0.0033866396046380444,
+      "action_max_abs_error": 0.04786919057369232,
+      "risk_mae": 0.005179808766115457,
+      "per_scenario": {
+        "bottle": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0035076225368002203
+        },
+        "cup": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0030757930959598757
+        },
+        "pen": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.003636394884697526
+        },
+        "desktop_item": {
+          "count": 683,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0029798228158803767
+        },
+        "tissue_pull": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0034165679585388244
+        },
+        "cola": {
+          "count": 682,
+          "strategy_accuracy": 1.0,
+          "phase_accuracy": 1.0,
+          "action_mae": 0.0037369977700558825
+        }
+      }
+    }
+  ],
+  "best_checkpoint": "raspberry_pi/runtime/decision/transformer_policy_safety_seed20260832.pt",
+  "selection_rule": "reject recall, positive strategy accuracy, overall strategy accuracy, phase accuracy, action MAE, then risk MAE",
+  "warning": "Synthetic holdout ranks architecture candidates only; it does not measure real grasp success."
+}

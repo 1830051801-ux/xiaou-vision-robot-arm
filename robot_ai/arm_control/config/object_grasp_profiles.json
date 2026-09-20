@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "camera_contract": {
+    "width_px": 1920,
+    "height_px": 1080,
+    "mount": "fixed_external_overhead",
+    "camera_motion": "forbidden_during_pick"
+  },
+  "classes": {
+    "pen": {
+      "grasp_height_m": null,
+      "approach_height_m": null,
+      "gripper_open_pwm_deg": null,
+      "gripper_close_pwm_deg": null,
+      "placement_pose_id": null,
+      "grasp_mode": "top_down",
+      "failure_policy": "vision_recheck_then_safe_return_then_report"
+    },
+    "cup": {
+      "grasp_height_m": null,
+      "approach_height_m": null,
+      "gripper_open_pwm_deg": null,
+      "gripper_close_pwm_deg": null,
+      "placement_pose_id": null,
+      "grasp_mode": "top_down",
+      "failure_policy": "vision_recheck_then_safe_return_then_report"
+    },
+    "cola": {
+      "grasp_height_m": null,
+      "approach_height_m": null,
+      "gripper_open_pwm_deg": null,
+      "gripper_close_pwm_deg": null,
+      "placement_pose_id": null,
+      "grasp_mode": "top_down",
+      "failure_policy": "vision_recheck_then_safe_return_then_report"
+    },
+    "bottle": {
+      "grasp_height_m": null,
+      "approach_height_m": null,
+      "gripper_open_pwm_deg": null,
+      "gripper_close_pwm_deg": null,
+      "placement_pose_id": null,
+      "grasp_mode": "top_down",
+      "failure_policy": "vision_recheck_then_safe_return_then_report"
+    },
+    "earphone": {
+      "grasp_height_m": null,
+      "approach_height_m": null,
+      "gripper_open_pwm_deg": null,
+      "gripper_close_pwm_deg": null,
+      "placement_pose_id": null,
+      "grasp_mode": "top_down",
+      "failure_policy": "vision_recheck_then_safe_return_then_report"
+    }
+  },
+  "notes": "YOLO supplies only center points at 1920x1080. Every numeric height, gripper PWM angle, and placement pose is intentionally null until measured on this arm. Unknown or incomplete classes must be rejected, never assigned a generic grasp."
+}

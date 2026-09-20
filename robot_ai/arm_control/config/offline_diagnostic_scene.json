@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "scene_type": "offline_diagnostic",
+  "frame": "base_link",
+  "table_z_m": 0.0,
+  "tcp_safety_radius_m": 0.025,
+  "minimum_table_clearance_m": 0.01,
+  "minimum_obstacle_clearance_m": 0.015,
+  "keep_out_boxes": [
+    {
+      "name": "left_fixture_keepout",
+      "minimum_m": [0.08, 0.15, 0.0],
+      "maximum_m": [0.16, 0.23, 0.16]
+    },
+    {
+      "name": "rear_cable_keepout",
+      "minimum_m": [0.36, -0.24, 0.0],
+      "maximum_m": [0.42, -0.14, 0.25]
+    }
+  ],
+  "notes": "Synthetic base_link diagnostic scene. It is not a calibrated production PlanningScene and must not enable real motion."
+}

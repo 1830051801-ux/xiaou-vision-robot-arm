@@ -1,0 +1,11 @@
+model_status:
+  geometry_source: STEP
+  kinematics_cross_checked: true
+  poe_urdf_max_error: 5.60e-9
+  poe_dh_max_error: 5.61e-9
+  collision_mesh_mapping: provisional_rviz_review_required
+  inertial_parameters: uncalibrated
+  position_limits: uncalibrated
+  velocity_limits: uncalibrated
+  acceleration_limits: uncalibrated
+  hardware_motion_allowed: false

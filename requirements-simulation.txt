@@ -1,0 +1,5 @@
+# Optional GPU/offline digital-twin workflow.
+# Install a PyTorch build appropriate for the host CUDA runtime first.
+numpy>=1.25
+torch>=2.2
+matplotlib>=3.8

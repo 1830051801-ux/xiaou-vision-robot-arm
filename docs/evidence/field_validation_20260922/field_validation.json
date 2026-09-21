@@ -1,0 +1,30 @@
+{
+  "record_id": "xiaou-field-validation-20260922",
+  "recorded_at": "2026-09-22",
+  "project": "XiaoU",
+  "claim_level": "operator_reported",
+  "source": {
+    "type": "user_field_feedback",
+    "raw_artifacts_received": false,
+    "note": "依据项目操作者在现场对真实机械臂运行结果的确认。"
+  },
+  "hardware": {
+    "type": "real_six_axis_desktop_arm",
+    "model": null,
+    "firmware_hash": null,
+    "calibration_revision": null
+  },
+  "capabilities": {
+    "real_motion": "confirmed_by_operator",
+    "desktop_item_grasping": "confirmed_by_operator",
+    "desk_tidying": "confirmed_by_operator",
+    "trash_cleanup": "confirmed_by_operator",
+    "preset_functions": "confirmed_complete_by_operator"
+  },
+  "metrics": null,
+  "limitations": [
+    "未提供原始串口日志、视频或设备身份信息。",
+    "未提供执行次数、成功率、周期时间、负载和失败计数。",
+    "该记录不替代设备级安全、重复性和耐久性验收。"
+  ]
+}

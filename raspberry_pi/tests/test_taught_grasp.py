@@ -2,11 +2,10 @@ from __future__ import annotations
 
 import json
 import math
-from pathlib import Path
 import unittest
+from pathlib import Path
 
 import numpy as np
-
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 import sys
@@ -14,9 +13,12 @@ import sys
 if str(PROJECT_DIR) not in sys.path:
     sys.path.insert(0, str(PROJECT_DIR))
 
-from robot_ai.arm_control import build_taught_side_grasp_plan, load_default_model
+from robot_ai.arm_control import (
+    build_taught_side_grasp_candidates,
+    build_taught_side_grasp_plan,
+    load_default_model,
+)
 from robot_ai.arm_control.kinematics import fk_space
-
 
 READY_DEG = [0.0, -50.0, -55.0, -70.0, 110.0, 0.0]
 TAUGHT_DEG = [-100.000244140625, -48.93047332763672, -71.99970245361328, -84.9998664855957, 110.00060272216797, 0.0]
@@ -71,6 +73,27 @@ class TaughtGraspPlannerTests(unittest.TestCase):
             values = np.degrees(stage.target_joint_rad)
             self.assertTrue(np.all(values >= np.asarray(lower) - 1e-9))
             self.assertTrue(np.all(values <= np.asarray(upper) + 1e-9))
+
+    def test_candidate_enumeration_retains_all_reachable_branches(self) -> None:
+        lower, upper = effective_limits_deg()
+        candidates = build_taught_side_grasp_candidates(
+            READY_DEG,
+            TAUGHT_DEG,
+            model=load_default_model(),
+            lower_deg=lower,
+            upper_deg=upper,
+        )
+        labels = [plan.candidate_label for plan in candidates]
+        self.assertGreaterEqual(len(candidates), 1)
+        self.assertEqual(labels, list(dict.fromkeys(labels)))
+        self.assertEqual(build_taught_side_grasp_plan(
+            READY_DEG,
+            TAUGHT_DEG,
+            model=load_default_model(),
+            lower_deg=lower,
+            upper_deg=upper,
+        ).candidate_label, labels[0])
+        self.assertTrue(all(plan.stages[-1].name == "taught_side_contact" for plan in candidates))
 
     def test_plan_is_explicitly_gripper_free(self) -> None:
         lower, upper = effective_limits_deg()

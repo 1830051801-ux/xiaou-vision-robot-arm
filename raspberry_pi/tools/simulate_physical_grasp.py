@@ -2,9 +2,8 @@
 """Run an offline MuJoCo grasp regression with the checked-in CAD model.
 
     The articulated arm is generated from the ROS2 Xacro joint origins, axes, and
-    collision meshes.  If an optional CAD world-model URDF is available, it is
-    parsed and its mesh references are audited.  A table and one object are
-    simulated as rigid bodies.
+    collision meshes.  The static CAD world-model URDF is also parsed and its mesh
+    references are audited.  A table and one object are simulated as rigid bodies.
     The run uses the existing POE IK and quintic trajectory planner, then plays
     the robot trajectory exactly through MuJoCo's collision/contact scene while
     the object remains a dynamic rigid body.
@@ -611,6 +610,7 @@ class PhysicalEpisode:
         substeps = max(1, int(round(0.01 / self.model.opt.timestep)))
         max_error = 0.0
         forbidden_count = 0
+        forbidden_pairs: Counter[str] = Counter()
         target_contact_count = 0
         target_contact_pairs: Counter[str] = Counter()
         for point in points:
@@ -626,7 +626,9 @@ class PhysicalEpisode:
                 if self.data.eq_active[self.weld_id]:
                     self._snap_object_to_grasp()
                 max_error = max(max_error, float(np.max(np.abs(self.data.qpos[:6] - point.positions))))
-                forbidden_count += len(self.forbidden_contacts())
+                for contact in self.forbidden_contacts():
+                    forbidden_count += 1
+                    forbidden_pairs[f"{contact['geom1']}<->{contact['geom2']}"] += 1
                 for contact in self.target_robot_contacts():
                     target_contact_count += 1
                     target_contact_pairs[f"{contact['geom1']}<->{contact['geom2']}"] += 1
@@ -638,6 +640,7 @@ class PhysicalEpisode:
             "final_tracking_error_rad": final_error,
             "trajectory_mode": "kinematic_collision_playback",
             "forbidden_contact_samples": forbidden_count,
+            "forbidden_contact_pairs": dict(forbidden_pairs),
             "target_contact_samples": target_contact_count,
             "target_contact_pairs": dict(target_contact_pairs),
             "within_effective_limits": bool(
@@ -968,7 +971,7 @@ def main() -> int:
         "--world-urdf",
         type=Path,
         default=None,
-        help="optional external CAD world-model URDF; the checked-in arm meshes are used when omitted or unavailable",
+        help="optional external CAD world-model URDF; checked-in arm meshes are used when omitted or unavailable",
     )
     parser.add_argument("--fp32-checkpoint", type=Path, default=DEFAULT_FP32)
     parser.add_argument("--int8-model", type=Path, default=DEFAULT_INT8)

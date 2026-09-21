@@ -34,6 +34,7 @@ raspberry_pi/runtime/**
 raspberry_pi/runtime/deployment/
 raspberry_pi/runtime/logs/
 media/*.mp4
+runtime/simulations/*upgrade_20260920.json
 *.pt
 *.pth
 *.ckpt

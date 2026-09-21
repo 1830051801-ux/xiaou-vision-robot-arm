@@ -19,15 +19,15 @@ independent from this approximate geometry.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import math
-from typing import Any, Iterable, Sequence
+from collections.abc import Iterable, Sequence
+from dataclasses import dataclass
+from typing import Any
 
 import numpy as np
 
 from .kinematics import fk_space, ik_space_multistart
 from .model import ArmModel
-
 
 JOINT_COUNT = 6
 
@@ -305,12 +305,17 @@ def _build_candidate(
         current = start_rad.copy()
         stages: list[TaughtGraspStage] = []
 
-        def add_ik_stage(name: str, phase: str, target_pose: np.ndarray) -> None:
+        def add_ik_stage(
+            name: str,
+            phase: str,
+            target_pose: np.ndarray,
+            stage_list: list[TaughtGraspStage] = stages,
+        ) -> None:
             nonlocal current
             joints, position_error, orientation_error = _solve_ik(
                 model, target_pose, current, lower_rad, upper_rad
             )
-            stages.append(
+            stage_list.append(
                 TaughtGraspStage(name, phase, joints, target_pose, position_error, orientation_error)
             )
             current = joints
@@ -332,7 +337,7 @@ def _build_candidate(
 
             descent_count = max(
                 1,
-                int(math.ceil((requested_transit_z_m - float(taught_pose[2, 3])) / max_descent_step_m)),
+                math.ceil((requested_transit_z_m - float(taught_pose[2, 3])) / max_descent_step_m),
             )
             for index in range(1, descent_count + 1):
                 fraction = index / descent_count
@@ -349,7 +354,7 @@ def _build_candidate(
                     "contact handoff distance must stay below the pregrasp distance"
                 )
             side_travel_m = approach_distance_m - contact_handoff_distance_m
-            approach_count = max(1, int(math.ceil(side_travel_m / max_side_step_m)))
+            approach_count = max(1, math.ceil(side_travel_m / max_side_step_m))
             for index in range(1, approach_count + 1):
                 fraction = index / approach_count
                 distance_m = approach_distance_m - side_travel_m * fraction
@@ -419,7 +424,7 @@ def _build_candidate(
     raise TaughtGraspPlanningError(last_error or "candidate route could not be generated")
 
 
-def build_taught_side_grasp_plan(
+def build_taught_side_grasp_candidates(
     start_deg: Sequence[float],
     taught_deg: Sequence[float],
     *,
@@ -435,16 +440,19 @@ def build_taught_side_grasp_plan(
     max_side_step_m: float = 0.015,
     contact_handoff_clearance_m: float = 0.066,
     taught_contact_offset_base_m: Sequence[float] = (0.0, 0.0, 0.0),
-) -> TaughtGraspPlan:
-    """Plan a side grasp from a ready pose to a manually taught contact pose.
+) -> tuple[TaughtGraspPlan, ...]:
+    """Enumerate every reachable orientation-derived side approach.
 
-    The result is intentionally a *model-derived approximate demonstration*.
-    It has no knowledge of camera calibration or real gripper force, and does
-    not issue any command.  With the default zero contact offset, the final
-    stage exactly preserves ``taught_deg``.  A nonzero
-    ``taught_contact_offset_base_m`` retargets the demonstrated TCP in the
-    base frame through IK.  It is useful only for offline coordinate-error
-    regression; a real target offset still requires calibration before motion.
+    Candidate enumeration is deliberately deterministic and side-effect free.
+    It lets the offline MuJoCo scorer compare branches before a plan is shown
+    as usable.  The kinematics-only planner does not itself claim that a
+    candidate is collision-free; the caller must retain the collision-replay
+    evidence next to any selected branch.
+
+    With the default zero contact offset, every candidate preserves the exact
+    taught final joint pose.  A nonzero ``taught_contact_offset_base_m``
+    retargets the demonstrated TCP through IK for offline coordinate-error
+    regression only.
     """
 
     start_deg_array, taught_deg_array, lower_deg_array, upper_deg_array = _validate_inputs(
@@ -473,32 +481,81 @@ def build_taught_side_grasp_plan(
     taught_pose[:3, 3] += taught_contact_offset
     preserve_taught_joint_endpoint = bool(np.allclose(taught_contact_offset, 0.0, atol=1e-12))
 
+    plans: list[TaughtGraspPlan] = []
     failures: list[str] = []
     for candidate_label, direction in _side_direction_candidates(taught_pose):
         try:
-            return _build_candidate(
-                model=model,
-                start_rad=start_rad,
-                taught_rad=taught_rad,
-                lower_rad=lower_rad,
-                upper_rad=upper_rad,
-                start_pose=start_pose,
-                taught_pose=taught_pose,
-                direction=direction,
-                candidate_label=candidate_label,
-                object_height_m=object_height_m,
-                object_radius_m=object_radius_m,
-                pregrasp_clearance_m=pregrasp_clearance_m,
-                overhead_clearance_m=overhead_clearance_m,
-                transit_sag_reserve_m=transit_sag_reserve_m,
-                max_descent_step_m=max_descent_step_m,
-                max_side_step_m=max_side_step_m,
-                contact_handoff_clearance_m=contact_handoff_clearance_m,
-                preserve_taught_joint_endpoint=preserve_taught_joint_endpoint,
-                taught_contact_offset_m=taught_contact_offset,
+            plans.append(
+                _build_candidate(
+                    model=model,
+                    start_rad=start_rad,
+                    taught_rad=taught_rad,
+                    lower_rad=lower_rad,
+                    upper_rad=upper_rad,
+                    start_pose=start_pose,
+                    taught_pose=taught_pose,
+                    direction=direction,
+                    candidate_label=candidate_label,
+                    object_height_m=object_height_m,
+                    object_radius_m=object_radius_m,
+                    pregrasp_clearance_m=pregrasp_clearance_m,
+                    overhead_clearance_m=overhead_clearance_m,
+                    transit_sag_reserve_m=transit_sag_reserve_m,
+                    max_descent_step_m=max_descent_step_m,
+                    max_side_step_m=max_side_step_m,
+                    contact_handoff_clearance_m=contact_handoff_clearance_m,
+                    preserve_taught_joint_endpoint=preserve_taught_joint_endpoint,
+                    taught_contact_offset_m=taught_contact_offset,
+                )
             )
         except TaughtGraspPlanningError as exc:
             failures.append(f"{candidate_label}: {exc}")
+    if plans:
+        return tuple(plans)
     raise TaughtGraspPlanningError(
-        "no orientation-derived side approach is reachable within effective limits: " + "; ".join(failures)
+        "no orientation-derived side approach is reachable within effective limits: "
+        + "; ".join(failures)
     )
+
+
+def build_taught_side_grasp_plan(
+    start_deg: Sequence[float],
+    taught_deg: Sequence[float],
+    *,
+    model: ArmModel,
+    lower_deg: Sequence[float],
+    upper_deg: Sequence[float],
+    object_height_m: float = 0.190,
+    object_radius_m: float = 0.032,
+    pregrasp_clearance_m: float = 0.120,
+    overhead_clearance_m: float = 0.040,
+    transit_sag_reserve_m: float = 0.020,
+    max_descent_step_m: float = 0.030,
+    max_side_step_m: float = 0.015,
+    contact_handoff_clearance_m: float = 0.066,
+    taught_contact_offset_base_m: Sequence[float] = (0.0, 0.0, 0.0),
+) -> TaughtGraspPlan:
+    """Return the first reachable branch for backwards-compatible previews.
+
+    New collision-aware offline workflows should call
+    :func:`build_taught_side_grasp_candidates` and score every returned branch
+    in MuJoCo.  This compatibility function deliberately retains the historical
+    deterministic first-kinematic-branch behaviour and does not imply that its
+    result is collision-free.
+    """
+    return build_taught_side_grasp_candidates(
+        start_deg,
+        taught_deg,
+        model=model,
+        lower_deg=lower_deg,
+        upper_deg=upper_deg,
+        object_height_m=object_height_m,
+        object_radius_m=object_radius_m,
+        pregrasp_clearance_m=pregrasp_clearance_m,
+        overhead_clearance_m=overhead_clearance_m,
+        transit_sag_reserve_m=transit_sag_reserve_m,
+        max_descent_step_m=max_descent_step_m,
+        max_side_step_m=max_side_step_m,
+        contact_handoff_clearance_m=contact_handoff_clearance_m,
+        taught_contact_offset_base_m=taught_contact_offset_base_m,
+    )[0]

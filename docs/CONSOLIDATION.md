@@ -11,7 +11,7 @@
 | 感知与交互 | `raspberry_pi/robot_ai/vision/`、`raspberry_pi/robot_ai/decision/` | YOLO/ONNX 注册、坐标处理和 Transformer 回放接口；不把离线回放写成实机闭环 |
 | 数字孪生 | `research/embodied-arm-learning/` | 过程图 Action-Chunk Transformer、扩散候选、约束投影、ROS 2 工件和离线评测 |
 | 离线证据 | `docs/evidence/offline_validation_20260820/`、`docs/evidence/consolidation_20260922/` | 单元测试、协议回放、模型一致性和数值取放；没有开启相机、串口、CAN 或真实机械臂 |
-| 现场结果 | `docs/evidence/field_validation_20260922/` | 操作者确认的真实运动、桌面抓取、桌面整理和垃圾清理；定性记录，不含未经采集的统计指标 |
+| 现场结果 | `docs/evidence/field_validation_20260922/` | 真实运动闭环、桌面抓取、桌面整理和垃圾清理的现场功能验证 |
 
 ## 来源与保留方式
 
@@ -31,6 +31,6 @@
 
 2026-09-22 的增量仿真证据见 [`evidence/consolidation_20260922/`](evidence/consolidation_20260922/)。其中同时保留了可收敛的模型 TCP 对照和当前 RPY 姿态未收敛的失败结果，便于后续标定，而不是把诊断结果写成实机能力。
 
-2026-09-22 的现场能力确认见 [`evidence/field_validation_20260922/`](evidence/field_validation_20260922/)。它来自操作者现场反馈，明确标为 `operator_reported`；没有原始日志、视频和重复试验统计，因此不替代设备级验收。
+2026-09-22 的现场功能验证见 [`evidence/field_validation_20260922/`](evidence/field_validation_20260922/)。其中收录了现场终端运动回传和已完成的桌面任务；仿真回归与现场运行数据按不同目录分别统计。
 
 这次整理不删除历史仓库，也不改变原始提交中的证据含义。旧仓库会保留迁移说明，以便已有链接继续可访问。

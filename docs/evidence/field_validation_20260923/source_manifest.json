@@ -1,0 +1,252 @@
+{
+  "schema": "xiaou_field_workbook_manifest.v2",
+  "generated_at": "2026-09-23",
+  "source_workbook": "XiaoU机械臂助手_功能演示数据 (2).xlsx",
+  "source_sha256": "c8fad3f4c1c4158cf05e6446d1ffbb77b1089465bcf63abd49987ad9aa4e318d",
+  "source_bytes": 191102,
+  "worksheet_count": 22,
+  "worksheets": [
+    {
+      "index": 1,
+      "name": "总览",
+      "slug": "overview",
+      "row_count": 36,
+      "nonempty_row_count": 36,
+      "max_columns": 5,
+      "csv": "structured/sheet_01_overview.csv"
+    },
+    {
+      "index": 2,
+      "name": "功能清单",
+      "slug": "capability_catalog",
+      "row_count": 28,
+      "nonempty_row_count": 28,
+      "max_columns": 9,
+      "csv": "structured/sheet_02_capability_catalog.csv"
+    },
+    {
+      "index": 3,
+      "name": "视觉感知",
+      "slug": "vision",
+      "row_count": 60,
+      "nonempty_row_count": 60,
+      "max_columns": 8,
+      "csv": "structured/sheet_03_vision.csv"
+    },
+    {
+      "index": 4,
+      "name": "标定与定位",
+      "slug": "calibration",
+      "row_count": 46,
+      "nonempty_row_count": 46,
+      "max_columns": 8,
+      "csv": "structured/sheet_04_calibration.csv"
+    },
+    {
+      "index": 5,
+      "name": "通信协议",
+      "slug": "uart_protocol",
+      "row_count": 54,
+      "nonempty_row_count": 54,
+      "max_columns": 8,
+      "csv": "structured/sheet_05_uart_protocol.csv"
+    },
+    {
+      "index": 6,
+      "name": "运动控制",
+      "slug": "motion_control",
+      "row_count": 29,
+      "nonempty_row_count": 29,
+      "max_columns": 8,
+      "csv": "structured/sheet_06_motion_control.csv"
+    },
+    {
+      "index": 7,
+      "name": "抓取操作",
+      "slug": "grasp_operations",
+      "row_count": 62,
+      "nonempty_row_count": 62,
+      "max_columns": 10,
+      "csv": "structured/sheet_07_grasp_operations.csv"
+    },
+    {
+      "index": 8,
+      "name": "VLA推理",
+      "slug": "vla_inference",
+      "row_count": 60,
+      "nonempty_row_count": 60,
+      "max_columns": 9,
+      "csv": "structured/sheet_08_vla_inference.csv"
+    },
+    {
+      "index": 9,
+      "name": "仿真与评测",
+      "slug": "simulation_evaluation",
+      "row_count": 31,
+      "nonempty_row_count": 31,
+      "max_columns": 12,
+      "csv": "structured/sheet_09_simulation_evaluation.csv"
+    },
+    {
+      "index": 10,
+      "name": "数据与训练",
+      "slug": "data_training",
+      "row_count": 33,
+      "nonempty_row_count": 33,
+      "max_columns": 9,
+      "csv": "structured/sheet_10_data_training.csv"
+    },
+    {
+      "index": 11,
+      "name": "世界模型与ROS2",
+      "slug": "world_model_ros2",
+      "row_count": 32,
+      "nonempty_row_count": 32,
+      "max_columns": 8,
+      "csv": "structured/sheet_11_world_model_ros2.csv"
+    },
+    {
+      "index": 12,
+      "name": "安全与验证",
+      "slug": "safety_validation",
+      "row_count": 1047,
+      "nonempty_row_count": 1047,
+      "max_columns": 8,
+      "csv": "structured/sheet_12_safety_validation.csv"
+    },
+    {
+      "index": 13,
+      "name": "实验与消融",
+      "slug": "experiments_ablation",
+      "row_count": 28,
+      "nonempty_row_count": 28,
+      "max_columns": 7,
+      "csv": "structured/sheet_13_experiments_ablation.csv"
+    },
+    {
+      "index": 14,
+      "name": "鲁棒性测试",
+      "slug": "robustness",
+      "row_count": 26,
+      "nonempty_row_count": 25,
+      "max_columns": 6,
+      "csv": "structured/sheet_14_robustness.csv"
+    },
+    {
+      "index": 15,
+      "name": "性能画像",
+      "slug": "performance_profile",
+      "row_count": 42,
+      "nonempty_row_count": 42,
+      "max_columns": 8,
+      "csv": "structured/sheet_15_performance_profile.csv"
+    },
+    {
+      "index": 16,
+      "name": "问题跟踪",
+      "slug": "issue_tracking",
+      "row_count": 25,
+      "nonempty_row_count": 25,
+      "max_columns": 9,
+      "csv": "structured/sheet_16_issue_tracking.csv"
+    },
+    {
+      "index": 17,
+      "name": "版本里程碑",
+      "slug": "milestones",
+      "row_count": 27,
+      "nonempty_row_count": 27,
+      "max_columns": 8,
+      "csv": "structured/sheet_17_milestones.csv"
+    },
+    {
+      "index": 18,
+      "name": "具身基础模型",
+      "slug": "embodied_foundation_model",
+      "row_count": 27,
+      "nonempty_row_count": 27,
+      "max_columns": 8,
+      "csv": "structured/sheet_18_embodied_foundation_model.csv"
+    },
+    {
+      "index": 19,
+      "name": "技能库与长程任务",
+      "slug": "skills_long_horizon",
+      "row_count": 29,
+      "nonempty_row_count": 29,
+      "max_columns": 7,
+      "csv": "structured/sheet_19_skills_long_horizon.csv"
+    },
+    {
+      "index": 20,
+      "name": "失败预测与人机协作",
+      "slug": "failure_prediction_handover",
+      "row_count": 31,
+      "nonempty_row_count": 31,
+      "max_columns": 4,
+      "csv": "structured/sheet_20_failure_prediction_handover.csv"
+    },
+    {
+      "index": 21,
+      "name": "数据飞轮与实验追踪",
+      "slug": "data_flywheel",
+      "row_count": 32,
+      "nonempty_row_count": 32,
+      "max_columns": 9,
+      "csv": "structured/sheet_21_data_flywheel.csv"
+    },
+    {
+      "index": 22,
+      "name": "评测基准与榜单",
+      "slug": "benchmarks",
+      "row_count": 28,
+      "nonempty_row_count": 28,
+      "max_columns": 7,
+      "csv": "structured/sheet_22_benchmarks.csv"
+    }
+  ],
+  "derived_files": {
+    "field_validation.json": "348535f19ba87d0e53dbb4f83b8ad95a8291deaef2cf332339be6ba943f2e2b9",
+    "field_validation_dashboard.svg": "a390e40c1d598799381ed8bf1532f9347af9880b60dcade132bd01d63d4dc211",
+    "field_validation_metrics.json": "7d1daeeb4a545c4fafde76688d106a81b38e75230c0889f4f990a9999be7d143",
+    "README.md": "4b6b8e00d6dea5f5e2fd2f738bef7cad95a07fece30423e2708625eff0af26dc",
+    "source/XiaoU机械臂助手_功能演示数据 (2).xlsx": "c8fad3f4c1c4158cf05e6446d1ffbb77b1089465bcf63abd49987ad9aa4e318d",
+    "structured/ablation.csv": "a3604f37255741215dc823977babbc6dcf4d74cc09b7d91dca3c03f15331b901",
+    "structured/calibration_points.csv": "868166d9aab59fcc856d76fb9ca7011a200c7a9ddd0b74b1c19a4feb09de5fc2",
+    "structured/grasp_demo_sample.csv": "6264a7e7ad90310c83de0953d4a8682a88cfc575af63b10b8f57a32619b68194",
+    "structured/real_run_1000.csv": "56dbd90ec51fe61b3ae30cfa5a5cd08234e5f41bc49371170bee509b35608fb6",
+    "structured/robustness_matrix.csv": "83add7bcb07ed0eeb18108f9556b132caadc0e94413d7fba0e7b41d504ade06b",
+    "structured/sheet_01_overview.csv": "5e64b5c5acd6cdc33ab1fff4a431444bfab9fa0ff5351038a81c91239871b027",
+    "structured/sheet_02_capability_catalog.csv": "9c07d066ad9c53d84e5754cdd08cac49e692eed5690a2920eb1d4f2c07ac6fb8",
+    "structured/sheet_03_vision.csv": "12141e2b53e398093e8d01d358cd8410f0ed0db712d71c90a7a08f97486406d2",
+    "structured/sheet_04_calibration.csv": "6d5b1d45fc53035fe66ff8e515043db3657df83b2a24bddc5fb680568572a0b1",
+    "structured/sheet_05_uart_protocol.csv": "0cf1908c3cca066fffc79f7c1bdb51ed7eab04e43928eee3a5032a8e970ad696",
+    "structured/sheet_06_motion_control.csv": "f529a62f33c22e22fbc7cadcfa927366377f96755b9ca6976b5795f60655b14e",
+    "structured/sheet_07_grasp_operations.csv": "c3b7c3f8e0de7ff260e2334c62ac1fb9ebd69c1d5e4299bae52b3d6337d02258",
+    "structured/sheet_08_vla_inference.csv": "8b6a01b946c7e1212cf6d197ed0f06573b6baa76885975f7bab33c505a4f4a63",
+    "structured/sheet_09_simulation_evaluation.csv": "316c4ec6d560d96fa8213f35b67d74bd8ea54cb74de69a34c20b560cd297b8b2",
+    "structured/sheet_10_data_training.csv": "43dd6105f10b127c8290a0e674efdcfe3f7acc75f5cc8c9b5160173ebdfd3dd3",
+    "structured/sheet_11_world_model_ros2.csv": "27dfa43099895a5882430d702ff727e56d99f5cf956dd62b2026b482126e9c17",
+    "structured/sheet_12_safety_validation.csv": "b34d24299cd694f538a19dcb08c1729177b77bda4962540182f704462a9b995b",
+    "structured/sheet_13_experiments_ablation.csv": "cddb3f1b9e128e4337ccc65e5afcd76e6b7048b1dfbe04b82cafd03664ce16a8",
+    "structured/sheet_14_robustness.csv": "aad61bcdba84b04b18418b9d5819a5f054a851f7da86136d4be2641837e7ef50",
+    "structured/sheet_15_performance_profile.csv": "b8ff055c73f170dc107502e2796637abbc7e06e2e41814b4d7cf55ef901e1668",
+    "structured/sheet_16_issue_tracking.csv": "5dcf7b4d41be69dee113f27d593a72aa6ef7649a4c8c2f1960ee1a5afc79b4ca",
+    "structured/sheet_17_milestones.csv": "dec6a14fc2872912cca4b950378dfe4372af2a00c0661dfdd7377e0b2b35001c",
+    "structured/sheet_18_embodied_foundation_model.csv": "772b7043a2a9fe136c9fb5b90c814a3bb8a0e46fa703c147289ef75b8d5a9cef",
+    "structured/sheet_19_skills_long_horizon.csv": "65cd07682bedf671d5470c280d9789dcf0ae8342601eee1ec69bdbf3c424c3b1",
+    "structured/sheet_20_failure_prediction_handover.csv": "70c7810da2915f79ddb77e123fbc5c255c2cee674874e699408ac28e33b95566",
+    "structured/sheet_21_data_flywheel.csv": "d171f7f7e00659ea48c85f1aa33da7cc850047658f1203801348a1eb43f654d1",
+    "structured/sheet_22_benchmarks.csv": "1cd3d5f4420b0d5390d6623c9574b23e360520241c66fff2b54a7e3e579d1521",
+    "structured/task_runs.csv": "3ecf9741822221413d5869582e13c76a961c67976ee788424c1d4ea7caaaf3b4",
+    "structured/teach_reproduction.csv": "217ed1e774cc6c03db1bb29c1cb82c6dc45ac4e45bc1f84f1ec30215eab2bbbf",
+    "structured/training_runs.csv": "f5860d893838c73904c5f3d558de29f34fe25f5cfd0c06d68010ba97ac8b4f72",
+    "structured/uart_sample_log.csv": "39bac02f28aa77f10aa04c040053dde02a09d3ef716a6116d10712a41057649a",
+    "structured/vla_instructions.csv": "89422b74fe6fe176c9bfebcc016f5f377f4048cfbf1c244b9b2e5f5c453093f0",
+    "structured/workbook_cells.csv": "4f5017b9a790d81ac1e15a070e8f3e9ecd86121673e86bf01da7cd493908c101",
+    "structured/yolo_classes.csv": "a6936fc793d396b954bd10a716d343f09041edfe52566dfa6d1eaf3106d6d5fb",
+    "structured/yolo_runtime_frames.csv": "40d5fe1b36b2a926def25d3daa9fa5196e87fdf916ca0d09644977545a67ce4e",
+    "worksheet_index.json": "122f90e878fe45f08db345b060368fddcd48537a0b5afd0096e437a2443ea9ac"
+  },
+  "provenance": "The source workbook is copied byte-for-byte. Derived CSV/JSON/SVG files are mechanical exports or arithmetic summaries from that workbook."
+}

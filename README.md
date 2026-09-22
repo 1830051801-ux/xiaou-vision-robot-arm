@@ -1,8 +1,10 @@
 # 小U（XiaoU）视觉具身桌面机器人
 
+[![offline CI](https://github.com/1830051801-ux/xiaou-vision-robot-arm/actions/workflows/offline-verify.yml/badge.svg)](https://github.com/1830051801-ux/xiaou-vision-robot-arm/actions/workflows/offline-verify.yml) [![license](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 小U是一个坐标驱动的六轴桌面机器人项目，覆盖视觉感知、相机标定、抓取规划、树莓派软件、STM32F407 控制器、CAN 关节接口和 ROS 2 离线验证。仓库目标是把一条真实可拆解的机器人工程链路整理成可测试、可回放、可逐步上机的工程，并记录已经完成的现场能力。
 
-> 公开仓库的测试与示例默认处于离线验证和运动锁定模式：不会自动打开相机、串口或 CAN，也不会由测试和示例命令发送真实运动指令。现场已经完成的真实运行另见[现场验证记录](docs/evidence/field_validation_20260922/README.md)，不改变上述默认门禁。
+> 公开仓库的测试与工具默认处于离线验证和运动锁定模式：不会自动打开相机、串口或 CAN，也不会由测试命令发送真实运动指令。最新现场记录见[2026-09-23 数据归档](docs/evidence/field_validation_20260923/README.md)，不改变默认门禁。
 
 ## 成果总览
 
@@ -58,9 +60,23 @@
 
 机器可读结果和完整限制见 [离线验证记录](docs/evidence/offline_validation_20260820/README.md)。
 
-## 现场功能验证（2026-09-22）
+## 现场数据（2026-09-23）
 
-真实机械臂已完成运动闭环，并完成桌面物品抓取、桌面整理和垃圾清理，预设功能均已完成。示教位复现现场回传为 `9.375 s`、单段轨迹、最大关节误差约 `0.311°`。完整结果见[现场验证目录](docs/evidence/field_validation_20260922/README.md)。
+最新工作簿记录了真实运动、桌面物品抓取、桌面整理和垃圾清理的结果：连续运行 `972/1000`，抓取汇总 `105/108`，现场节拍口径 `40.8 s`。完整页签、逐条记录和来源哈希见[现场数据归档](docs/evidence/field_validation_20260923/README.md)。
+
+## 版本与硬件基线
+
+| 层 | 当前工程接口 | 记录或声明 |
+| --- | --- | --- |
+| 主控 | Raspberry Pi 5，8 GB | 工作簿性能画像记录 CPU 71%、内存 1240 MB |
+| 下位机 | STM32F407VGT6，UART 115200 8N1、CAN1、CRC-16/MODBUS | 与 `stm32_keil/` 协议实现对应 |
+| 视觉 | USB 全局快门相机，640×480，30 fps | 工作簿记录 640×480 输入与 22.1 FPS 端侧吞吐 |
+| 感知 | YOLOv8n/ONNX，12 类，INT8 | 工作簿总览 mAP@0.5 为 94.3% |
+| 决策 | TemporalVLA-SixAxis v2.1，1.83M 参数，12 步动作块 | 20 条逐条表与 30 条总览表按不同口径保留 |
+| 训练机 | RTX 4090 24 GB（目标基线） | 工作簿训练记录写为 RTX 4070，不改写该历史记录 |
+| 仿真 | MuJoCo、Gymnasium、PyTorch | 仿真指标与现场运行指标分开统计 |
+
+当前代码的公开测试矩阵支持 Python 3.11–3.13；Pi 运行时依赖见 `raspberry_pi/requirements*.txt`。上表的目标规格不会替代实际运行环境记录。
 
 ## 快速开始：仅离线
 
@@ -99,7 +115,7 @@ stm32_keil/
 
 docs/                       架构、验证、上机边界和协议参考
 scripts/                    发布结构检查
-media/                      演示素材（发布前单独审查体积和来源）
+  media/                      发布素材（发布前单独审查体积和来源）
 ~~~
 
 ## 真实硬件边界
@@ -112,7 +128,7 @@ media/                      演示素材（发布前单独审查体积和来源�
 4. F407 固件哈希、急停链路、反馈新鲜度和轨迹队列行为；
 5. 低速单轴、空载、无夹具、低风险范围内的分阶段验证记录。
 
-teach_grasp_execute.py 的执行入口与离线预览分开，并要求显式参数和现场确认；它不属于 README 的演示流程。未经测量的抓取高度、零偏和限位不能从示例配置复制到另一台机械臂。
+teach_grasp_execute.py 的执行入口与离线预览分开，并要求显式参数和现场确认。未经测量的抓取高度、零偏和限位不能从配置复制到另一台机械臂。
 
 ## 文档入口
 
@@ -121,6 +137,13 @@ teach_grasp_execute.py 的执行入口与离线预览分开，并要求显式参
 - [ROS 2 与离线仿真](docs/ROS2.md)
 - [模型与量化](docs/MODELS.md)
 - [硬件上机与联调](docs/HARDWARE_BRINGUP.md)
+- [标定合同](docs/calibration.md)
+- [Pi-F407 协议](docs/protocol.md)
+- [部署分阶段检查](docs/deployment.md)
+- [故障排查](docs/troubleshooting.md)
 - [STM32F407 / Keil 工程](stm32_keil/README.md)
+- [变更日志](CHANGELOG.md)
 - [第三方组件说明](THIRD_PARTY_NOTICES.md)
 - [机械模型渲染索引](docs/visuals/README.md)
+- [现场工作簿导入与证据规则](docs/evidence/field_validation_20260923/README.md)
+- [仓库结构与接口映射](docs/REPOSITORY_MAP.md)

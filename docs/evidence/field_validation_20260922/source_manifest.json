@@ -1,0 +1,92 @@
+{
+  "source_workbook": "XiaoU机械臂助手_功能演示数据.xlsx",
+  "source_sha256": "1619F56AE1BE43EBA5248163C4BC2BD94DA868F64718F4794F6C808875EBF12B",
+  "recorded_at": "2026-09-22",
+  "derived_files": {
+    "field_validation.json": "F0316D077047ACD3871BC521922FAB68BC840304F4CE604F1B78CD2D9DF333E1",
+    "field_validation_metrics.json": "EDEB1AF52C8BC02EA80BA0B0BEE10952D94EB2D37EB7F5ED874E9D13E6387E02",
+    "README.md": "3944F58BE0245F71D431E6D01F05E6080E9FB6192D230129915DFB06F1CF3F09",
+    "source/XiaoU机械臂助手_功能演示数据.xlsx": "1619F56AE1BE43EBA5248163C4BC2BD94DA868F64718F4794F6C808875EBF12B",
+    "structured/calibration_points.csv": "1A423CA5011512BFE7F168168805B62192E9B31E2B8639D6CC7FCCE903EC6921",
+    "structured/grasp_demo_sample.csv": "D6DBFC46A3A3F7F87BC027DBAAEC8C07E7BD460179C2E3276B17EC30C5B7CE62",
+    "structured/real_run_1000.csv": "801F120C96D2AC584E6255DB6261D3845D2AD85E2B9A09859FBBA92764386A40",
+    "structured/teach_reproduction.csv": "3B028733DCFCDBDD20482318EF656D50D73DB838C1AB376AC5DF56146A3DB77D",
+    "structured/uart_sample_log.csv": "80FC0BCEBC4C1F20436621B663C50E39189506BE105E04D47B08C85ADE121E74",
+    "structured/vla_instructions.csv": "45EA2936AB6BC4E4EF123438DB53C4AED4950C796C524D5EE7BC8B0A624E5524",
+    "structured/yolo_validation.csv": "66F8EE24639BE725E054F7F9BEA047F2B513EE10C7986563154C2F8A30D2C6C1"
+  },
+  "worksheets": [
+    {
+      "name": "总览",
+      "row_count": 36,
+      "nonempty_row_count": 36,
+      "max_columns": 5
+    },
+    {
+      "name": "功能清单",
+      "row_count": 28,
+      "nonempty_row_count": 28,
+      "max_columns": 9
+    },
+    {
+      "name": "视觉感知",
+      "row_count": 60,
+      "nonempty_row_count": 60,
+      "max_columns": 8
+    },
+    {
+      "name": "标定与定位",
+      "row_count": 46,
+      "nonempty_row_count": 46,
+      "max_columns": 8
+    },
+    {
+      "name": "通信协议",
+      "row_count": 54,
+      "nonempty_row_count": 54,
+      "max_columns": 8
+    },
+    {
+      "name": "运动控制",
+      "row_count": 29,
+      "nonempty_row_count": 29,
+      "max_columns": 8
+    },
+    {
+      "name": "抓取操作",
+      "row_count": 62,
+      "nonempty_row_count": 62,
+      "max_columns": 10
+    },
+    {
+      "name": "VLA推理",
+      "row_count": 39,
+      "nonempty_row_count": 39,
+      "max_columns": 9
+    },
+    {
+      "name": "仿真与评测",
+      "row_count": 31,
+      "nonempty_row_count": 31,
+      "max_columns": 12
+    },
+    {
+      "name": "数据与训练",
+      "row_count": 33,
+      "nonempty_row_count": 33,
+      "max_columns": 9
+    },
+    {
+      "name": "世界模型与ROS2",
+      "row_count": 32,
+      "nonempty_row_count": 32,
+      "max_columns": 8
+    },
+    {
+      "name": "安全与验证",
+      "row_count": 1047,
+      "nonempty_row_count": 1047,
+      "max_columns": 8
+    }
+  ]
+}

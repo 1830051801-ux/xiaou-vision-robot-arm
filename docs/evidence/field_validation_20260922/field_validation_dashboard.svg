@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+<title id="title">小U 2026-09-22 实机验证摘要</title>
+<desc id="desc">一千次连续运行、抓取演示、示教复现、视觉与链路指标</desc>
+<style>
+.bg{fill:#f7f9fc}.panel{fill:#fff;stroke:#d9e2ec;stroke-width:1}.title{font:700 28px Arial,"Microsoft YaHei",sans-serif;fill:#102a43}.sub{font:400 14px Arial,"Microsoft YaHei",sans-serif;fill:#52606d}.label{font:600 15px Arial,"Microsoft YaHei",sans-serif;fill:#243b53}.value{font:700 34px Arial,"Microsoft YaHei",sans-serif;fill:#0b7285}.small{font:400 12px Arial,"Microsoft YaHei",sans-serif;fill:#627d98}.barbg{fill:#e6eef5}.bar{fill:#2a9d8f}.bar2{fill:#457b9d}.axis{stroke:#bcccdc;stroke-width:1}.tick{font:400 11px Arial,"Microsoft YaHei",sans-serif;fill:#829ab1}
+</style>
+<rect class="bg" width="1200" height="640"/>
+<text class="title" x="48" y="52">小U现场验证摘要</text><text class="sub" x="48" y="79">用户提供实机数据 · 2026-09-22 · 原始工作簿 SHA-256 见证据目录</text>
+<g transform="translate(48,108)">
+<rect class="panel" width="250" height="132" rx="6"/><text class="label" x="20" y="30">连续运行</text>
+<text class="value" x="20" y="76">1,000 次</text><text class="small" x="20" y="101">972 成功 · 28 失败</text><text class="small" x="20" y="120">成功率 97.2%</text>
+<rect class="panel" x="270" width="250" height="132" rx="6"/><text class="label" x="290" y="30">耗时</text><text class="value" x="290" y="76">41.3 s</text><text class="small" x="290" y="101">均值</text><text class="small" x="290" y="120">P95 45.6 s</text>
+<rect class="panel" x="540" width="250" height="132" rx="6"/><text class="label" x="560" y="30">抓取误差</text><text class="value" x="560" y="76">1.35 mm</text><text class="small" x="560" y="101">均值</text><text class="small" x="560" y="120">P95 2.07 mm</text>
+<rect class="panel" x="810" width="250" height="132" rx="6"/><text class="label" x="830" y="30">演示集</text><text class="value" x="830" y="76">105 / 108</text><text class="small" x="830" y="101">抓取演示成功</text><text class="small" x="830" y="120">成功率 97.22%</text>
+</g>
+<g transform="translate(48,274)"><rect class="panel" width="550" height="312" rx="6"/><text class="label" x="24" y="34">运行类型分布</text>
+<line class="axis" x1="32" y1="270" x2="520" y2="270"/>
+<rect class="bar" x="62" y="78" width="72" height="192"/><rect class="bar" x="178" y="133" width="72" height="137"/><rect class="bar" x="294" y="177" width="72" height="93"/><rect class="bar" x="410" y="213" width="72" height="57"/>
+<text class="tick" x="56" y="292">定点取放</text><text class="tick" x="174" y="292">桌面整理</text><text class="tick" x="297" y="292">垃圾清理</text><text class="tick" x="411" y="292">排序入库</text>
+<text class="small" x="79" y="70">401</text><text class="small" x="195" y="125">286</text><text class="small" x="312" y="169">194</text><text class="small" x="428" y="205">119</text>
+<text class="small" x="24" y="54">次数</text><text class="small" x="24" y="255">0</text><text class="small" x="24" y="150">200</text><text class="small" x="24" y="65">400</text></g>
+<g transform="translate(622,274)"><rect class="panel" width="530" height="312" rx="6"/><text class="label" x="24" y="34">关键测量</text>
+<text class="small" x="24" y="70">YOLO 平均 mAP@0.5</text><rect class="barbg" x="24" y="82" width="450" height="18" rx="3"/><rect class="bar2" x="24" y="82" width="424" height="18" rx="3"/><text class="label" x="488" y="97">94.17%</text>
+<text class="small" x="24" y="132">九点标定平均误差</text><rect class="barbg" x="24" y="144" width="450" height="18" rx="3"/><rect class="bar2" x="24" y="144" width="381" height="18" rx="3"/><text class="label" x="416" y="159">1.27 mm</text>
+<text class="small" x="24" y="194">UART 长测可用率</text><rect class="barbg" x="24" y="206" width="450" height="18" rx="3"/><rect class="bar" x="24" y="206" width="448" height="18" rx="3"/><text class="label" x="480" y="221">99.69%</text>
+<text class="small" x="24" y="258">VLA 指令成功率</text><rect class="barbg" x="24" y="270" width="450" height="18" rx="3"/><rect class="bar" x="24" y="270" width="428" height="18" rx="3"/><text class="label" x="460" y="285">95%</text></g>
+</svg>

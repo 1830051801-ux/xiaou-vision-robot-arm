@@ -11,12 +11,10 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from pathlib import Path
 import re
 import subprocess
-import sys
-from typing import Iterable
-
+from collections.abc import Iterable
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_PATHS = (
@@ -30,6 +28,7 @@ REQUIRED_PATHS = (
     "docs/visuals/mechanical_model/robot_full_iso.png",
     "docs/SHOWCASE.md",
     "docs/evidence/archived_experiments/MANIFEST.json",
+    "docs/evidence/field_validation_20260923/source_manifest.json",
     "docs/visuals/simulation/taught-approach.gif",
     "raspberry_pi/robot_ai/arm_control/uart_protocol.py",
     "raspberry_pi/robot_ai/decision/transformer_policy.py",
@@ -68,25 +67,31 @@ def _forbidden_paths(paths: Iterable[str]) -> list[str]:
         if (
             path == "raspberry_pi/config.env"
             or path.endswith("/scripts/enable_passwordless_sudo.sh")
-            or lower.endswith(".uvoptx")
             or ".uvguix." in lower
+            or "/objects/" in lower
+            or "/listings/" in lower
+            or "/jlink" in lower
+            or lower.endswith(
+                (".uvoptx", ".axf", ".hex", ".pt", ".pth", ".tar.gz", ".whl")
+            )
+            or path.startswith(
+                (
+                    "raspberry_pi/runs/",
+                    "raspberry_pi/output/",
+                    "raspberry_pi/tmp/",
+                    "raspberry_pi/runtime/deployment/",
+                )
+            )
         ):
-            failures.append(path)
-        elif "/objects/" in lower or "/listings/" in lower:
-            failures.append(path)
-        elif "/jlink" in lower or lower.endswith(".axf") or lower.endswith(".hex"):
-            failures.append(path)
-        elif lower.endswith((".pt", ".pth", ".tar.gz", ".whl")):
-            failures.append(path)
-        elif path.startswith(("raspberry_pi/runs/", "raspberry_pi/output/", "raspberry_pi/tmp/")):
-            failures.append(path)
-        elif path.startswith("raspberry_pi/runtime/deployment/"):
             failures.append(path)
     return sorted(set(failures))
 
 
 def _keil_source_failures(root: Path) -> list[str]:
-    project = root / "stm32_keil/BasicSetting_DaRanRobot/MDK-ARM/BasicSetting_DaRanRobot.uvprojx"
+    project = (
+        root
+        / "stm32_keil/BasicSetting_DaRanRobot/MDK-ARM/BasicSetting_DaRanRobot.uvprojx"
+    )
     if not project.is_file():
         return ["Keil project file is missing"]
     content = project.read_text(encoding="utf-8-sig", errors="replace")
@@ -108,7 +113,9 @@ def _keil_source_failures(root: Path) -> list[str]:
 
 
 def _model_registry_failures(root: Path) -> list[str]:
-    registry_path = root / "raspberry_pi/robot_ai/vision/config/yolo_model_registry.json"
+    registry_path = (
+        root / "raspberry_pi/robot_ai/vision/config/yolo_model_registry.json"
+    )
     try:
         registry = json.loads(registry_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -125,7 +132,10 @@ def _model_registry_failures(root: Path) -> list[str]:
         schema = profile.get("class_schema")
         if not isinstance(model, str) or not (root / "raspberry_pi" / model).is_file():
             failures.append(f"profile {name} model is missing: {model}")
-        if not isinstance(schema, str) or not (root / "raspberry_pi" / schema).is_file():
+        if (
+            not isinstance(schema, str)
+            or not (root / "raspberry_pi" / schema).is_file()
+        ):
             failures.append(f"profile {name} schema is missing: {schema}")
     if registry.get("automatic_switching") is not False:
         failures.append("automatic model switching must remain disabled")
@@ -133,7 +143,9 @@ def _model_registry_failures(root: Path) -> list[str]:
 
 
 def _motion_lock_failures(root: Path) -> list[str]:
-    config_path = root / "raspberry_pi/robot_ai/arm_control/config/hardware_calibration.json"
+    config_path = (
+        root / "raspberry_pi/robot_ai/arm_control/config/hardware_calibration.json"
+    )
     try:
         config = json.loads(config_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -161,6 +173,54 @@ def _evidence_failures(root: Path) -> list[str]:
     return failures
 
 
+def _field_workbook_evidence_failures(root: Path) -> list[str]:
+    """Verify the copied source workbook and its generated evidence bundle."""
+
+    base = root / "docs/evidence/field_validation_20260923"
+    try:
+        manifest = json.loads(
+            (base / "source_manifest.json").read_text(encoding="utf-8")
+        )
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"field workbook manifest unreadable: {exc}"]
+
+    failures: list[str] = []
+    source_name = manifest.get("source_workbook")
+    source_hash = manifest.get("source_sha256")
+    if not isinstance(source_name, str) or not source_name:
+        failures.append("field workbook manifest has no source_workbook")
+    elif not isinstance(source_hash, str) or not re.fullmatch(
+        r"[0-9a-f]{64}", source_hash
+    ):
+        failures.append("field workbook manifest has an invalid source_sha256")
+    else:
+        source_path = base / "source" / source_name
+        if not source_path.is_file():
+            failures.append(f"field workbook source is missing: {source_name}")
+        elif hashlib.sha256(source_path.read_bytes()).hexdigest() != source_hash:
+            failures.append(f"field workbook source hash mismatch: {source_name}")
+
+    derived = manifest.get("derived_files")
+    if not isinstance(derived, dict) or not derived:
+        return failures + ["field workbook manifest has no derived_files"]
+    for relative, expected_hash in derived.items():
+        if not isinstance(relative, str) or not isinstance(expected_hash, str):
+            failures.append(
+                "field workbook manifest contains a non-string derived file entry"
+            )
+            continue
+        candidate = (base / relative).resolve()
+        if not candidate.is_relative_to(base.resolve()) or not candidate.is_file():
+            failures.append(
+                f"field workbook derived file missing or out of scope: {relative}"
+            )
+            continue
+        actual_hash = hashlib.sha256(candidate.read_bytes()).hexdigest()
+        if actual_hash != expected_hash:
+            failures.append(f"field workbook derived file hash mismatch: {relative}")
+    return failures
+
+
 def verify(root: Path) -> dict[str, object]:
     root = root.resolve()
     missing = [path for path in REQUIRED_PATHS if not (root / path).exists()]
@@ -174,7 +234,16 @@ def verify(root: Path) -> dict[str, object]:
     registry_failures = _model_registry_failures(root)
     motion_failures = _motion_lock_failures(root)
     evidence_failures = _evidence_failures(root)
-    failures = missing + forbidden + keil_failures + registry_failures + motion_failures + evidence_failures
+    field_evidence_failures = _field_workbook_evidence_failures(root)
+    failures = (
+        missing
+        + forbidden
+        + keil_failures
+        + registry_failures
+        + motion_failures
+        + evidence_failures
+        + field_evidence_failures
+    )
     return {
         "passed": not failures,
         "tracked_file_count": len(tracked),
@@ -184,6 +253,7 @@ def verify(root: Path) -> dict[str, object]:
         "model_registry_failures": registry_failures,
         "motion_lock_failures": motion_failures,
         "evidence_hash_failures": evidence_failures,
+        "field_evidence_hash_failures": field_evidence_failures,
     }
 
 

@@ -1,0 +1,203 @@
+{
+  "source_sha256": "c8fad3f4c1c4158cf05e6446d1ffbb77b1089465bcf63abd49987ad9aa4e318d",
+  "worksheets": [
+    {
+      "index": 1,
+      "name": "总览",
+      "slug": "overview",
+      "row_count": 36,
+      "nonempty_row_count": 36,
+      "max_columns": 5,
+      "csv": "structured/sheet_01_overview.csv"
+    },
+    {
+      "index": 2,
+      "name": "功能清单",
+      "slug": "capability_catalog",
+      "row_count": 28,
+      "nonempty_row_count": 28,
+      "max_columns": 9,
+      "csv": "structured/sheet_02_capability_catalog.csv"
+    },
+    {
+      "index": 3,
+      "name": "视觉感知",
+      "slug": "vision",
+      "row_count": 60,
+      "nonempty_row_count": 60,
+      "max_columns": 8,
+      "csv": "structured/sheet_03_vision.csv"
+    },
+    {
+      "index": 4,
+      "name": "标定与定位",
+      "slug": "calibration",
+      "row_count": 46,
+      "nonempty_row_count": 46,
+      "max_columns": 8,
+      "csv": "structured/sheet_04_calibration.csv"
+    },
+    {
+      "index": 5,
+      "name": "通信协议",
+      "slug": "uart_protocol",
+      "row_count": 54,
+      "nonempty_row_count": 54,
+      "max_columns": 8,
+      "csv": "structured/sheet_05_uart_protocol.csv"
+    },
+    {
+      "index": 6,
+      "name": "运动控制",
+      "slug": "motion_control",
+      "row_count": 29,
+      "nonempty_row_count": 29,
+      "max_columns": 8,
+      "csv": "structured/sheet_06_motion_control.csv"
+    },
+    {
+      "index": 7,
+      "name": "抓取操作",
+      "slug": "grasp_operations",
+      "row_count": 62,
+      "nonempty_row_count": 62,
+      "max_columns": 10,
+      "csv": "structured/sheet_07_grasp_operations.csv"
+    },
+    {
+      "index": 8,
+      "name": "VLA推理",
+      "slug": "vla_inference",
+      "row_count": 60,
+      "nonempty_row_count": 60,
+      "max_columns": 9,
+      "csv": "structured/sheet_08_vla_inference.csv"
+    },
+    {
+      "index": 9,
+      "name": "仿真与评测",
+      "slug": "simulation_evaluation",
+      "row_count": 31,
+      "nonempty_row_count": 31,
+      "max_columns": 12,
+      "csv": "structured/sheet_09_simulation_evaluation.csv"
+    },
+    {
+      "index": 10,
+      "name": "数据与训练",
+      "slug": "data_training",
+      "row_count": 33,
+      "nonempty_row_count": 33,
+      "max_columns": 9,
+      "csv": "structured/sheet_10_data_training.csv"
+    },
+    {
+      "index": 11,
+      "name": "世界模型与ROS2",
+      "slug": "world_model_ros2",
+      "row_count": 32,
+      "nonempty_row_count": 32,
+      "max_columns": 8,
+      "csv": "structured/sheet_11_world_model_ros2.csv"
+    },
+    {
+      "index": 12,
+      "name": "安全与验证",
+      "slug": "safety_validation",
+      "row_count": 1047,
+      "nonempty_row_count": 1047,
+      "max_columns": 8,
+      "csv": "structured/sheet_12_safety_validation.csv"
+    },
+    {
+      "index": 13,
+      "name": "实验与消融",
+      "slug": "experiments_ablation",
+      "row_count": 28,
+      "nonempty_row_count": 28,
+      "max_columns": 7,
+      "csv": "structured/sheet_13_experiments_ablation.csv"
+    },
+    {
+      "index": 14,
+      "name": "鲁棒性测试",
+      "slug": "robustness",
+      "row_count": 26,
+      "nonempty_row_count": 25,
+      "max_columns": 6,
+      "csv": "structured/sheet_14_robustness.csv"
+    },
+    {
+      "index": 15,
+      "name": "性能画像",
+      "slug": "performance_profile",
+      "row_count": 42,
+      "nonempty_row_count": 42,
+      "max_columns": 8,
+      "csv": "structured/sheet_15_performance_profile.csv"
+    },
+    {
+      "index": 16,
+      "name": "问题跟踪",
+      "slug": "issue_tracking",
+      "row_count": 25,
+      "nonempty_row_count": 25,
+      "max_columns": 9,
+      "csv": "structured/sheet_16_issue_tracking.csv"
+    },
+    {
+      "index": 17,
+      "name": "版本里程碑",
+      "slug": "milestones",
+      "row_count": 27,
+      "nonempty_row_count": 27,
+      "max_columns": 8,
+      "csv": "structured/sheet_17_milestones.csv"
+    },
+    {
+      "index": 18,
+      "name": "具身基础模型",
+      "slug": "embodied_foundation_model",
+      "row_count": 27,
+      "nonempty_row_count": 27,
+      "max_columns": 8,
+      "csv": "structured/sheet_18_embodied_foundation_model.csv"
+    },
+    {
+      "index": 19,
+      "name": "技能库与长程任务",
+      "slug": "skills_long_horizon",
+      "row_count": 29,
+      "nonempty_row_count": 29,
+      "max_columns": 7,
+      "csv": "structured/sheet_19_skills_long_horizon.csv"
+    },
+    {
+      "index": 20,
+      "name": "失败预测与人机协作",
+      "slug": "failure_prediction_handover",
+      "row_count": 31,
+      "nonempty_row_count": 31,
+      "max_columns": 4,
+      "csv": "structured/sheet_20_failure_prediction_handover.csv"
+    },
+    {
+      "index": 21,
+      "name": "数据飞轮与实验追踪",
+      "slug": "data_flywheel",
+      "row_count": 32,
+      "nonempty_row_count": 32,
+      "max_columns": 9,
+      "csv": "structured/sheet_21_data_flywheel.csv"
+    },
+    {
+      "index": 22,
+      "name": "评测基准与榜单",
+      "slug": "benchmarks",
+      "row_count": 28,
+      "nonempty_row_count": 28,
+      "max_columns": 7,
+      "csv": "structured/sheet_22_benchmarks.csv"
+    }
+  ]
+}

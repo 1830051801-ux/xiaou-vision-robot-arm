@@ -1,0 +1,29 @@
+name: Bug report
+description: Report a reproducible defect in the software, protocol, or simulation path.
+title: "[bug] "
+labels: [bug]
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: State the command, input, and result.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit or release
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Boundary check
+      options:
+        - label: This report does not include secrets or private device identifiers.
+          required: true

@@ -1,0 +1,54 @@
+﻿1,通信协议 · UART 二进制帧（CRC16）,,,,,,,
+2,115200 8N1 · 帧头 0xAA · 帧尾 0x55 · 载荷转义 · 2 轮共 24 帧日志,,,,,,,
+3,一、帧格式,,,,,,,
+4,字段,长度(字节),说明,,,,,
+5,帧头,1,固定 0xAA,,,,,
+6,命令ID,1,如 CMD_GRASP_MOVE=0x14,,,,,
+7,长度,1,载荷长度,,,,,
+8,序号,1,发送端递增，用于丢包检测,,,,,
+9,载荷,0~32,坐标/夹爪等数据，0xAA/0x55/0xBB 字节转义,,,,,
+10,CRC16,2,CRC-16/MODBUS，覆盖命令/长度/序号/未转义载荷,,,,,
+11,帧尾,1,固定 0x55,,,,,
+12,二、命令表,,,,,,,
+13,命令ID,名称,功能,载荷,方向,,,
+14,0x14,CMD_GRASP_MOVE,拾取/放置坐标移动 + 夹爪档位,20B（pick/drop/safe_z/grip）,Pi→STM32,,,
+15,0x15,CMD_JOINT_MOVE,关节空间直接运动,12B（6×int16×0.1°）,Pi→STM32,,,
+16,0x16,CMD_GRIPPER,夹爪开合控制,1B（0释放/1夹持/2清扫）,Pi→STM32,,,
+17,0x17,CMD_HOME,回零/复位,0B,Pi→STM32,,,
+18,0x18,CMD_SAFETY_STOP,安全急停,0B,Pi→STM32,,,
+19,0x19,CMD_TELEOP,遥操作增量指令,12B（6×int16 增量）,Pi→STM32,,,
+20,0x1A,CMD_STATUS,状态回传（关节/夹爪/错误码）,20B,STM32→Pi,,,
+21,三、收发日志（2 轮 × 12 帧）,,,,,,,
+22,轮次,时间戳,方向,命令,序号,载荷摘要,CRC,结果
+23,R1,10:00:30.021,TX,GRASP_MOVE,1,"pick(210,150,30) drop(120,90,25) grip=1",0x4B2A,ACK
+24,R1,10:00:30.023,RX,STATUS,1,joints ok grip=close,0x9C11,OK
+25,R1,10:00:31.104,TX,JOINT_MOVE,2,J1..J6 目标位,0xE83F,ACK
+26,R1,10:00:31.106,RX,STATUS,2,moving,0x7D52,OK
+27,R1,10:00:33.210,TX,GRIPPER,3,open,0x15C7,ACK
+28,R1,10:00:33.215,RX,STATUS,3,grip=open,0xA0B3,OK
+29,R1,10:00:35.402,TX,GRASP_MOVE,4,"pick(320,240,28) drop(400,300,30) grip=1",0x3F86,ACK
+30,R1,10:00:35.405,RX,STATUS,4,grasped=cola,0x6E90,OK
+31,R1,10:00:36.410,TX,GRASP_MOVE,5,"pick(320,240,28) drop(400,300,30) grip=1",0x2B71,CRC-ERR
+32,R1,10:00:36.490,TX,GRASP_MOVE,5,"重传 pick(320,240,28) grip=1",0x3F86,ACK
+33,R1,10:00:38.120,RX,STATUS,5,grasped=cola,0x6E90,OK
+34,R1,10:00:40.003,RX,STATUS,6,idle no_error,0x88C4,OK
+35,R2,10:02:00.115,TX,GRASP_MOVE,7,"pick(180,90,30) drop(500,80,40) grip=1",0xD102,ACK
+36,R2,10:02:00.118,RX,STATUS,7,moving,0x3A7E,OK
+37,R2,10:02:02.203,TX,GRIPPER,8,release,0xD412,ACK
+38,R2,10:02:02.206,RX,STATUS,8,grip=open,0xB50E,OK
+39,R2,10:02:04.310,TX,JOINT_MOVE,9,J1..J6 回零位,0x71C5,ACK
+40,R2,10:02:04.313,RX,STATUS,9,homing,0x2D9A,OK
+41,R2,10:02:06.420,TX,GRASP_MOVE,10,"pick(356,470,12) drop(60,240,15) grip=1",0xBE37,ACK
+42,R2,10:02:06.423,RX,STATUS,10,grasped=screwdriver,0xF08C,OK
+43,R2,10:02:08.531,TX,GRIPPER,11,release,0xD412,ACK
+44,R2,10:02:08.534,RX,STATUS,11,grip=open,0xB50E,OK
+45,R2,10:02:10.011,TX,CMD_STATUS,12,query,0x1F73,ACK
+46,R2,10:02:10.014,RX,STATUS,12,idle no_error,0x88C4,OK
+47,四、链路统计（公式）,,,,,,,
+48,指标,数值,口径,,,,,
+49,发送帧数,,样例 TX 计数,,,,,
+50,接收帧数,,样例 RX 计数,,,,,
+51,帧正确率,,1-（CRC错误帧/总帧）,,,,,
+52,CRC 错误帧数,,样例 CRC-ERR 计数,,,,,
+53,长测丢包率,,10000 帧丢失 31 帧,,,,,
+54,链路可用率,,1-丢包率,,,,,

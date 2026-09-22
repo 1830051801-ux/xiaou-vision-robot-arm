@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test and lint tools
+        run: python -m pip install --upgrade pip ruff
+      - name: Compile Python sources
+        run: python -m compileall -q raspberry_pi/robot_ai raspberry_pi/tools raspberry_pi/simulation raspberry_pi/tests scripts
+      - name: Run offline unit tests
+        working-directory: raspberry_pi
+        run: python -m unittest discover -s tests -q
+      - name: Ruff lint
+        run: ruff check scripts/import_field_workbook.py
+      - name: Ruff format check
+        run: ruff format --check scripts/import_field_workbook.py
+      - name: Verify release structure and evidence hashes
+        run: python scripts/verify_release.py

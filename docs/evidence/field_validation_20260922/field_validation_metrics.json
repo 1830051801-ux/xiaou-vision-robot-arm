@@ -24,67 +24,15 @@
     ],
     "note": "原始工作簿保留全部专题页；下列 JSON/CSV 是从原表逐行导出的可检索副本。"
   },
-  "capabilities": {
-    "real_motion": "completed",
-    "desktop_item_grasping": "completed",
-    "desk_tidying": "completed",
-    "trash_cleanup": "completed",
-    "preset_functions": "completed"
-  },
-  "headline": {
-    "continuous_run_count": 1000,
-    "continuous_run_success_rate": 0.972,
-    "continuous_run_mean_duration_s": 41.2671,
-    "continuous_run_p95_duration_s": 45.6,
-    "continuous_run_mean_grasp_error_mm": 1.35265,
-    "continuous_run_p95_grasp_error_mm": 2.07,
-    "demo_set_success_rate": 0.972222,
-    "teach_reproduction_repetitions": 6,
-    "teach_reproduction_max_angle_error_deg": 0.68,
-    "yolo_mean_ap50_percent": 94.17,
-    "calibration_mean_error_mm": 1.26963,
-    "uart_long_test_availability": 0.9969,
-    "vla_success_rate": 0.95
-  },
-  "motion_replay": {
-    "teach_pose_reproduction": "completed",
-    "duration_s": 9.375,
-    "segments": 1,
-    "feedback_source": "CMD_GET_JOINT",
-    "max_error_deg": 0.3111724853515625,
-    "completed": true,
-    "start_deg": [
-      -0.0015115737915039062,
-      -50.00178527832031,
-      -55.000858306884766,
-      -69.99977111816406,
-      110.00057983398438,
-      -0.0008344650268554688
+  "hardware_context": {
+    "compute": "Raspberry Pi 5",
+    "controller": "STM32F407",
+    "robot": "六轴机械臂",
+    "buses": [
+      "USART1 115200 8N1",
+      "CAN1"
     ],
-    "goal_deg": [
-      -100.000244140625,
-      -48.93047332763672,
-      -71.99970245361328,
-      -84.9998664855957,
-      110.00060272216797,
-      0.0
-    ],
-    "final_deg": [
-      -99.68907165527344,
-      -48.935638427734375,
-      -71.9581298828125,
-      -84.96224975585938,
-      109.99807739257812,
-      -0.00026226043701171875
-    ],
-    "error_deg": [
-      0.3111724853515625,
-      0.00516510009765625,
-      0.04157257080078125,
-      0.037616729736328125,
-      0.00252532958984375,
-      0.00026226043701171875
-    ]
+    "end_effector": "PWM 夹爪"
   },
   "field_execution": {
     "continuous_run": {
@@ -467,6 +415,5 @@
     "simulation_matrix": "source workbook: 仿真与评测",
     "training_records": "source workbook: 数据与训练"
   },
-  "data_boundary": "现场运行记录、系统测量、仿真与训练记录分别统计；不把仿真结果改写为实机结果。",
-  "metrics_file": "field_validation_metrics.json"
+  "data_boundary": "现场运行记录、系统测量、仿真与训练记录分别统计；不把仿真结果改写为实机结果。"
 }

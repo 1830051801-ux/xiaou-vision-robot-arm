@@ -1,0 +1,21 @@
+round,instruction_zh,instruction_en,parsed_target,target_class,target_pixel,inference_latency_ms,action_block,result
+R1,把可乐瓶放到左边托盘,Put the cola bottle into the left tray,可乐瓶,cola,"(412,236)",4.2,12步@40Hz,成功
+R1,将笔收拾到笔筒,Tidy the pen into the pen holder,笔,pen,"(158,402)",4.5,12步@40Hz,成功
+R1,捡起纸巾扔进垃圾桶,Pick up the tissue and throw it into the bin,纸巾,tissue,"(604,350)",4.3,12步@40Hz,成功
+R1,清理桌面的垃圾,Clean up the trash on the desk,垃圾团,trash,"(520,460)",4.8,级联动作块,成功
+R1,把杯子放到左边,Move the cup to the left side,水杯,cup,"(320,288)",4.1,12步@40Hz,成功
+R1,把手机递过来,Hand me the phone,手机,phone,"(240,180)",4.4,12步@40Hz,成功
+R1,Take the can to the recycle bin,把易拉罐放到回收桶,易拉罐,can,"(688,240)",4.3,12步@40Hz,成功
+R1,整理桌面，把杂物归位,Tidy the desk and put things back,多目标,multi,(多框),5.1,级联动作块,成功
+R1,Move the screwdriver to the toolbox,把螺丝刀放回工具箱,螺丝刀,screwdriver,"(356,512)",4.6,12步@40Hz,成功
+R1,抓取充电器并整理线缆,Grasp the charger and tidy its cable,充电器,charger,"(560,200)",4.9,级联动作块,失败
+R2,把可乐瓶放到左边托盘,Put the cola bottle into the left tray,可乐瓶,cola,"(412,236)",4.3,12步@40Hz,成功
+R2,捡起纸巾扔进垃圾桶,Pick up the tissue and throw it into the bin,纸巾,tissue,"(604,350)",4.4,12步@40Hz,成功
+R2,清理桌面的垃圾,Clean up the trash on the desk,垃圾团,trash,"(520,460)",4.7,级联动作块,成功
+R2,把手机递过来,Hand me the phone,手机,phone,"(240,180)",4.2,12步@40Hz,成功
+R2,Take the can to the recycle bin,把易拉罐放到回收桶,易拉罐,can,"(688,240)",4.5,12步@40Hz,成功
+R2,Move the screwdriver to the toolbox,把螺丝刀放回工具箱,螺丝刀,screwdriver,"(356,512)",4.8,12步@40Hz,成功
+R2,把杯子放到左边,Move the cup to the left side,水杯,cup,"(320,288)",4.1,12步@40Hz,成功
+R2,整理桌面，把杂物归位,Tidy the desk and put things back,多目标,multi,(多框),5,级联动作块,成功
+R2,抓取充电器并整理线缆,Grasp the charger and tidy its cable,充电器,charger,"(560,200)",4.9,级联动作块,成功
+R2,将笔收拾到笔筒,Tidy the pen into the pen holder,笔,pen,"(158,402)",4.6,12步@40Hz,成功

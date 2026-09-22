@@ -1,0 +1,14 @@
+# Declared Python 3.10 training/deployment baseline for the XiaoU stack.
+# The repository CI matrix is intentionally separate and is documented in the
+# README. ROS 2 Humble is installed from the target Linux distribution.
+numpy==1.26.4
+PyYAML==6.0.2
+opencv-python-headless==4.10.0.84
+onnxruntime==1.16.3
+onnx==1.15.0
+torch==2.1.0
+torchvision==0.16.0
+ultralytics==8.1.0
+mujoco==2.3.7
+gymnasium==0.29.1
+openpyxl==3.1.5

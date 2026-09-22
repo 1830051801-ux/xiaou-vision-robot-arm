@@ -1,0 +1,8 @@
+﻿模型,数据集,参数量,优化步数,验证损失,训练时长,硬件,说明
+TemporalVLA-SixAxis v2.0 seed-1,专家示范,1.83M,1140,0.1163,42 min,RTX 4070,动作+辅助多任务
+TemporalVLA-SixAxis v2.0 seed-2,专家示范,1.83M,1140,0.1178,41 min,RTX 4070,重复训练-2
+TemporalVLA-SixAxis v2.0 seed-3,专家示范,1.83M,1140,0.1159,43 min,RTX 4070,重复训练-3
+TemporalVLA-SixAxis v2.1-DAgger,DAgger 纠偏,1.83M,9296,0.009,3.2 h,RTX 4070,28 轮微调
+TemporalVLA-SixAxis v2.1-课程,课程学习,1.83M,6144,0.0082,2.1 h,RTX 4070,单物体先闭环
+空间热图定位器,合成定位集,0.42M,3200,0.0041,35 min,RTX 4070,回归+热图
+世界模型,仿真回放,0.95M,4800,0.0076,50 min,RTX 4070,动作条件动力学

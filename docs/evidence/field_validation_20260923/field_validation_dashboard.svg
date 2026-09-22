@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+<rect width="1200" height="420" fill="#f7f8fa"/>
+<text x="56" y="58" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#1f2937">XiaoU field workbook · 2026-09-23</text>
+<text x="56" y="88" font-family="Arial, sans-serif" font-size="15" fill="#64748b">Source-backed summary; values are not recomputed from an external run.</text>
+<rect x="56" y="130" width="236" height="182" rx="8" fill="#ffffff" stroke="#d7dde5"/>
+<text x="76" y="170" font-family="Arial, sans-serif" font-size="15" fill="#475569">连续运行</text>
+<text x="76" y="225" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0f766e">972 / 1000</text>
+<text x="76" y="267" font-family="Arial, sans-serif" font-size="13" fill="#64748b">现场记录</text>
+<rect x="340" y="130" width="236" height="182" rx="8" fill="#ffffff" stroke="#d7dde5"/>
+<text x="360" y="170" font-family="Arial, sans-serif" font-size="15" fill="#475569">抓取汇总</text>
+<text x="360" y="225" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0f766e">105 / 108</text>
+<text x="360" y="267" font-family="Arial, sans-serif" font-size="13" fill="#64748b">现场记录</text>
+<rect x="624" y="130" width="236" height="182" rx="8" fill="#ffffff" stroke="#d7dde5"/>
+<text x="644" y="170" font-family="Arial, sans-serif" font-size="15" fill="#475569">VLA 总览</text>
+<text x="644" y="225" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0f766e">29 / 30</text>
+<text x="644" y="267" font-family="Arial, sans-serif" font-size="13" fill="#64748b">总览口径</text>
+<rect x="908" y="130" width="236" height="182" rx="8" fill="#ffffff" stroke="#d7dde5"/>
+<text x="928" y="170" font-family="Arial, sans-serif" font-size="15" fill="#475569">YOLO mAP@0.5</text>
+<text x="928" y="225" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0f766e">94.3%</text>
+<text x="928" y="267" font-family="Arial, sans-serif" font-size="13" fill="#64748b">总览口径</text>
+<text x="56" y="370" font-family="Arial, sans-serif" font-size="13" fill="#64748b">Workbook SHA-256: c8fad3f4c1c4158c…</text>
+</svg>
